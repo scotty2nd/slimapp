@@ -1,0 +1,13 @@
+<App>
+	<iOS.StatusBarConfig Style="Light" />
+	<Router ux:Name="router" />
+
+    <ClientPanel>
+        <Navigator DefaultPath="splash">
+        	<SplashPage ux:Template="splash" router="router" />
+        	<LoginPage ux:Template="login" router="router"/>
+            <RegisterPage ux:Template="register" router="router" />
+        </Navigator>
+    </ClientPanel>
+</App>
+

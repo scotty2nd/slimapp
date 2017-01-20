@@ -1,0 +1,39 @@
+<Page ux:Class="RegisterPage" Color="#fff">
+	<Router ux:Dependency="router" />
+	<JavaScript File="Register.js" />
+
+	<Image Layer="Background" File="../Assets/background.jpg" StretchMode="UniformToFill" Opacity=".8" />
+	 <!--<Image Layer="Background" File="../Assets/background.jpg" StretchMode="Fill" /> Verzerrt das Bild-->
+
+	<DockPanel>
+		<StatusBarBackground Dock="Top" />
+		<BottomBarBackground Dock="Bottom" />
+
+		<Button Text="Back" Clicked="{goBack}" Color="#000" Dock="Top" HitTestMode="LocalBounds" Padding="20" />
+
+		<!--<MyButton Text="Registrieren" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>-->
+
+		<MyButton Text="Registrieren" Dock="Bottom" Clicked="{click}"/>
+
+		<!--<WhiteText Dock="Bottom" Margin="10" Opacity=".5" TextAlignment="Center" FontSize="12">original video by Graham Uhelski</WhiteText>-->
+
+		<Grid Rows="1*,1*">
+			<StackPanel Alignment="VerticalCenter">
+				<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
+			</StackPanel>
+
+			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
+ 				<MyTextInput PlaceholderText="Username" Value="{username}" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
+ 				<MyTextInput PlaceholderText="Email" Value="{email}" InputHint="Email" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" />
+ 				<MyTextInput PlaceholderText="Password" Value="{password}" IsPassword="true" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
+ 				<MyTextInput PlaceholderText="Repeat Password" Value="{passwordRepeat}" IsPassword="true" ActionStyle="Send" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
+
+				<Text Alignment="HorizontalCenter" Opacity="1" TextColor="#000" Value="{data.notice.text}" />
+				<Text Alignment="HorizontalCenter" Opacity="1" TextColor="#000" />
+				<Text Alignment="HorizontalCenter" Opacity=".5" />
+				<Text Alignment="HorizontalCenter" Opacity=".5" />
+			</StackPanel>
+		</Grid>
+		
+	</DockPanel>
+</Page>

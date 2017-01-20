@@ -1,0 +1,27 @@
+<Page ux:Class="LoginPage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="Login.js" />
+
+	<DockPanel>
+		<StatusBarBackground Dock="Top" />
+		<BottomBarBackground Dock="Bottom" />
+
+		<Grid Rows="1*,1*">
+			<StackPanel Alignment="VerticalCenter">
+				<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
+			</StackPanel>
+
+			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
+				<MyTextInput PlaceholderText="username" Value="{username}" />
+				<MyTextInput PlaceholderText="password" IsPassword="true" Value="{password}" />
+				<Button Text="go to register page" Clicked="{goToRegisterPage}" />
+				<!--<Button Text="Log in" IsEnabled="{areCredentialsValid}" Clicked="{click}"/>-->
+				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.name}" />
+				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.age}" />
+				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.id}" />
+			</StackPanel>
+		</Grid>
+
+		<MyButton Text="Anmelden" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
+	</DockPanel>
+</Page>
