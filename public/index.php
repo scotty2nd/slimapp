@@ -31,7 +31,7 @@
 	    $error = false;
 	    $error_fields = "";
 	    
-	    //checks _POST  [IS PSR-7 compliant] //Laut Stackoverflow auch für get
+	    //checks _POST  [IS PSR-7 compliant] //Laut Stackoverflow auch für PUT
 	    $request_params = $request->getParsedBody(); 
 
 	    foreach ($required_params as $param) {

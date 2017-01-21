@@ -39,7 +39,7 @@
 	});
 
 	/* *
-	 * URL: http://slimapp.dev/api/customers/<student_id>
+	 * URL: http://slimapp.dev/api/customers/<customer_id>
 	 * Parameters: none
 	 * Authorization: Put API Key in Request Header TO DO
 	 * Method: GET
@@ -130,50 +130,59 @@
 		}
 	});
 
-	// Update Customer
+	/* *
+	 * URL: hhttp://slimapp.dev/api/customer/update/<customer_id>
+	 * Parameters: first_name, last_name, phone, email, city, state
+	 * Authorization: Put API Key in Request Header TO DO
+	 * Method: PUT
+	 * */
 	$app->put('/api/customer/update/{id}', function(Request $request, Response $response){
-	    $id = $request->getAttribute('id');
-	    $first_name = $request->getParam('first_name');
-	    $last_name = $request->getParam('last_name');
-	    $phone = $request->getParam('phone');
-	    $email = $request->getParam('email');
-	    $address = $request->getParam('address');
-	    $city = $request->getParam('city');
-	    $state = $request->getParam('state');
+		$requiredParams = array(
+					'first_name', 
+					'last_name', 
+					'phone', 
+					'email', 
+					'address', 
+					'city', 
+					'state'
+				  );
 
-	    $sql = "UPDATE customers SET
-					first_name 	= :first_name,
-					last_name 	= :last_name,
-	                phone		= :phone,
-	                email		= :email,
-	                address 	= :address,
-	                city 		= :city,
-	                state		= :state
-				WHERE id = $id";
+		// Checks required Parameter exists and not empty
+		if(verifyRequiredParams($requiredParams, $request, $response)){
+			$id = $request->getAttribute('id');
+		    $first_name = $request->getParam('first_name');
+		    $last_name = $request->getParam('last_name');
+		    $phone = $request->getParam('phone');
+		    $email = $request->getParam('email');
+		    $address = $request->getParam('address');
+		    $city = $request->getParam('city');
+		    $state = $request->getParam('state');
 
-	    try{
-	        // Get DB Object
-	        $db = new db();
-	        // Connect
-	        $db = $db->connect();
+			// Get DB Object
+	       	$db = new db();
 
-	        $stmt = $db->prepare($sql);
+	       	// Do DB Magic
+	       	$result = $db->updateCustomer($id, $first_name, $last_name, $phone, $email, $address, $city, $state);
 
-	        $stmt->bindParam(':first_name', $first_name);
-	        $stmt->bindParam(':last_name',  $last_name);
-	        $stmt->bindParam(':phone',      $phone);
-	        $stmt->bindParam(':email',      $email);
-	        $stmt->bindParam(':address',    $address);
-	        $stmt->bindParam(':city',       $city);
-	        $stmt->bindParam(':state',      $state);
+		   	$res = array();
 
-	        $stmt->execute();
+	   	    if($result == 0){
+		        $res['error'] = false;
+		        $res['message'] = "Customer update successfully";
 
-	        echo '{"notice": {"text": "Customer Updated"}';
+		        returnResponse(200,$response, $res);
+		    }else if($result == 1){
+		        $res['error'] = true;
+		        $res['message'] = "Customer update failed";
 
-	    } catch(PDOException $e){
-	        echo '{"error": {"text": '.$e->getMessage().'}';
-	    }
+		        returnResponse(400,$response, $res);
+		    }else if($result == 2){
+		        $res["error"] = true;
+		        $res["message"] = "Sorry, this email is already in use";
+
+		        returnResponse(200, $response, $res);
+		    }
+		}
 	});
 
 	// Delete Customer

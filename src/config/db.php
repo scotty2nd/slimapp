@@ -39,13 +39,13 @@
             $stmt->execute();
             $customer = $stmt->get_result();
             $stmt->close();
-            
+
             return $customer;
         }
 
         //Method to register a new customer
         public function createCustomer($first_name, $last_name, $phone, $email, $address, $city, $state){
-            if (!$this->customerExists($email)) {
+            if (!$this->customerExists($email)){
                 //$password = md5($pass);
                 $apikey = $this->generateApiKey();
                 $stmt = $this->connection->prepare("INSERT INTO customers(first_name, last_name, phone, email, address, city, state, api_key) values(?, ?, ?, ?, ?, ?, ?, ?)");
@@ -54,10 +54,26 @@
                 $stmt->close();
                 if ($result) {
                     return 0;
-                } else {
+                }else {
                     return 1;
                 }
-            } else {
+            }else {
+                return 2;
+            }
+        }
+
+        //Method to update customer
+        public function updateCustomer($id, $first_name, $last_name, $phone, $email, $address, $city, $state){
+            if (!$this->customerExists($email)) {
+                $stmt = $this->connection->prepare("UPDATE customers SET first_name = ?, last_name = ?, phone = ?, email = ?, address = ?, city = ?, state = ? WHERE id = ?");
+                $stmt->bind_param("sssssssi",$first_name, $last_name, $phone, $email, $address, $city, $state, $id);
+                $result = $stmt->execute();
+                $stmt->close();
+                if($result){
+                    return 0;
+                }
+                return 1;
+            }else {
                 return 2;
             }
         }
