@@ -4,164 +4,212 @@
 
 	$app = new \Slim\App;
 
-	//Get all Customers
+	/* *
+	 * URL: http://slimapp.dev/api/customers
+	 * Parameters: none
+	 * Authorization: Put API Key in Request Header TO DO
+	 * Method: GET
+	 * */
 	$app->get('/api/customers', function(Request $request, Response $response){
-	   $sql = "SELECT * FROM customers";
+		// Get DB Object
+       	$db = new db();
 
-	    try{
-	        // Get DB Object
-	        $db = new db();
-	        // Connect
-	        $db = $db->connect();
+       	// Do DB Magic
+	    $result = $db->getAllCustomers();
 
-	        $stmt = $db->query($sql);
-	        $customers = $stmt->fetchAll(PDO::FETCH_OBJ);
-	        $db = null;
-	        echo json_encode($customers);
-	    } catch(PDOException $e){
-	        echo '{"error": {"text": '.$e->getMessage().'}';
+	    $res = array();
+	    $res['error'] = false;
+	    $res['customers'] = array();
+
+	    //Loop DB Results
+	    while($row = $result->fetch_assoc()){
+	        $temp = array();
+	        $temp['first_name'] = $row['first_name'];
+	        $temp['last_name'] = $row['last_name'];
+	        $temp['phone'] = $row['phone'];
+	        $temp['email'] = $row['email'];
+	        $temp['address'] = $row['address'];
+	        $temp['city'] = $row['city'];
+	        $temp['state'] = $row['state'];
+
+	        array_push($res['customers'],$temp);
 	    }
+
+	    returnResponse(200, $response, $res);
 	});
 
-	// Get Single Customer
+	/* *
+	 * URL: http://slimapp.dev/api/customers/<customer_id>
+	 * Parameters: id
+	 * Authorization: Put API Key in Request Header TO DO
+	 * Method: GET
+	 * */
 	$app->get('/api/customer/{id}', function(Request $request, Response $response){
 	    $id = $request->getAttribute('id');
 
-	    $sql = "SELECT * FROM customers WHERE id = $id";
+		// Get DB Object
+       	$db = new db();
 
-	    try{
-	        // Get DB Object
-	        $db = new db();
-	        // Connect
-	        $db = $db->connect();
+       	// Do DB Magic
+	    $result = $db->getCustomer($id);
 
-	        $stmt = $db->query($sql);
-	        $customer = $stmt->fetch(PDO::FETCH_OBJ);
-	        $db = null;
-	        echo json_encode($customer);
-	    } catch(PDOException $e){
-	        echo '{"error": {"text": '.$e->getMessage().'}';
+	   	$res = array();
+	    $res['error'] = false;
+	    $res['customer'] = array();
+
+	    //Loop DB Results
+	    while($row = $result->fetch_assoc()){
+	        $temp = array();
+	        $temp['first_name'] = $row['first_name'];
+	        $temp['last_name'] = $row['last_name'];
+	        $temp['phone'] = $row['phone'];
+	        $temp['email'] = $row['email'];
+	        $temp['address'] = $row['address'];
+	        $temp['city'] = $row['city'];
+	        $temp['state'] = $row['state'];
+
+	        array_push($res['customer'],$temp);
 	    }
+
+	    returnResponse(200, $response, $res);
 	});
 
-	// Add Customer
+	/* *
+	 * URL: http://slimapp.dev/api/customer/add
+	 * Parameters: first_name, last_name, phone, email, city, state
+	 * Method: POST
+	 * */
 	$app->post('/api/customer/add', function(Request $request, Response $response){
-	    $first_name = $request->getParam('first_name');
-	    $last_name = $request->getParam('last_name');
-	    $phone = $request->getParam('phone');
-	    $email = $request->getParam('email');
-	    $address = $request->getParam('address');
-	    $city = $request->getParam('city');
-	    $state = $request->getParam('state');
+		
+		$requiredParams = array(
+							'first_name', 
+							'last_name', 
+							'phone', 
+							'email', 
+							'address', 
+							'city', 
+							'state'
+						  );
 
-	    $sql = "INSERT INTO customers (first_name,last_name,phone,email,address,city,state) VALUES
-	    (:first_name,:last_name,:phone,:email,:address,:city,:state)";
+		// Checks required Parameter exists and not empty
+		if(verifyRequiredParams($requiredParams, $request, $response)){
 
-	    try{
-	        // Get DB Object
-	        $db = new db();
-	        // Connect
-	        $db = $db->connect();
+			//Get Post Parameter from Request
+		    $first_name = $request->getParam('first_name');
+		    $last_name = $request->getParam('last_name');
+		    $phone = $request->getParam('phone');
+		    $email = $request->getParam('email');
+		    $address = $request->getParam('address');
+		    $city = $request->getParam('city');
+		    $state = $request->getParam('state');
 
-	        $stmt = $db->prepare($sql);
+			// Get DB Object
+	       	$db = new db();
 
-	        $stmt->bindParam(':first_name', $first_name);
-	        $stmt->bindParam(':last_name',  $last_name);
-	        $stmt->bindParam(':phone',      $phone);
-	        $stmt->bindParam(':email',      $email);
-	        $stmt->bindParam(':address',    $address);
-	        $stmt->bindParam(':city',       $city);
-	        $stmt->bindParam(':state',      $state);
+	       	// Do DB Magic
+		    $result = $db->createCustomer($first_name, $last_name, $phone, $email, $address, $city, $state);
 
-	        $stmt->execute();
+		   	$res = array();
 
-	        //$arr = array(
-	        //	'notice' => array('text' => 'Customer Added')
-    		//);
+	   	    if ($result == 0) {
+		        $res["error"] = false;
+		        $res["message"] = "You are successfully registered";
 
-    		//return $response->withHeader('Content-Type', 'application/json')
-    						//->write('{"notice": {"text": "Customer Added"}}');
+		        returnResponse(201, $response, $res);
+		    } else if ($result == 1) {
+		        $res["error"] = true;
+		        $res["message"] = "Oops! An error occurred while registereing";
 
-	       	//return $response->withStatus(200)
-	          //  ->withHeader('Content-Type', 'application/json')
-	            //->write(json_encode($arr));
+		        returnResponse(500, $response, $res);
+		    } else if ($result == 2) {
+		        $res["error"] = true;
+		        $res["message"] = "Sorry, this customer already existed";
 
-	        //echo '{"notice": {"text": "Customer Added"}';
-			return $response->withStatus(201)
-				->withHeader('Content-Type', 'application/json')
-				->write('{"notice": {"text": "Customer Added"}}');
-
-	    } catch(PDOException $e){
-            //echo '{"error": {"text": '.$e->getMessage().'}';
-			return $response->withHeader('Content-Type', 'application/json')
-				->write('{"error": {"text": ' . $e->getMessage() . '}}');
-	    }
+		        returnResponse(200, $response, $res);
+		    }
+		}
 	});
 
-	// Update Customer
+	/* *
+	 * URL: http://slimapp.dev/api/customer/update/<customer_id>
+	 * Parameters: first_name, last_name, phone, email, city, state
+	 * Authorization: Put API Key in Request Header TO DO
+	 * Method: PUT
+	 * */
 	$app->put('/api/customer/update/{id}', function(Request $request, Response $response){
-	    $id = $request->getAttribute('id');
-	    $first_name = $request->getParam('first_name');
-	    $last_name = $request->getParam('last_name');
-	    $phone = $request->getParam('phone');
-	    $email = $request->getParam('email');
-	    $address = $request->getParam('address');
-	    $city = $request->getParam('city');
-	    $state = $request->getParam('state');
+		$requiredParams = array(
+					'first_name', 
+					'last_name', 
+					'phone', 
+					'email', 
+					'address', 
+					'city', 
+					'state'
+				  );
 
-	    $sql = "UPDATE customers SET
-					first_name 	= :first_name,
-					last_name 	= :last_name,
-	                phone		= :phone,
-	                email		= :email,
-	                address 	= :address,
-	                city 		= :city,
-	                state		= :state
-				WHERE id = $id";
+		// Checks required Parameter exists and not empty
+		if(verifyRequiredParams($requiredParams, $request, $response)){
+			$id = $request->getAttribute('id');
+		    $first_name = $request->getParam('first_name');
+		    $last_name = $request->getParam('last_name');
+		    $phone = $request->getParam('phone');
+		    $email = $request->getParam('email');
+		    $address = $request->getParam('address');
+		    $city = $request->getParam('city');
+		    $state = $request->getParam('state');
 
-	    try{
-	        // Get DB Object
-	        $db = new db();
-	        // Connect
-	        $db = $db->connect();
+			// Get DB Object
+	       	$db = new db();
 
-	        $stmt = $db->prepare($sql);
+	       	// Do DB Magic
+	       	$result = $db->updateCustomer($id, $first_name, $last_name, $phone, $email, $address, $city, $state);
 
-	        $stmt->bindParam(':first_name', $first_name);
-	        $stmt->bindParam(':last_name',  $last_name);
-	        $stmt->bindParam(':phone',      $phone);
-	        $stmt->bindParam(':email',      $email);
-	        $stmt->bindParam(':address',    $address);
-	        $stmt->bindParam(':city',       $city);
-	        $stmt->bindParam(':state',      $state);
+		   	$res = array();
 
-	        $stmt->execute();
+	   	    if($result == 0){
+		        $res['error'] = false;
+		        $res['message'] = "Customer update successfully";
 
-	        echo '{"notice": {"text": "Customer Updated"}';
+		        returnResponse(200,$response, $res);
+		    }else if($result == 1){
+		        $res['error'] = true;
+		        $res['message'] = "Customer update failed";
 
-	    } catch(PDOException $e){
-	        echo '{"error": {"text": '.$e->getMessage().'}';
-	    }
+		        returnResponse(400,$response, $res);
+		    }else if($result == 2){
+		        $res["error"] = true;
+		        $res["message"] = "Sorry, this email is already in use";
+
+		        returnResponse(200, $response, $res);
+		    }
+		}
 	});
 
-	// Delete Customer
+	/* *
+	 * URL: http://slimapp.dev/api/customer/delete/<customer_id>
+	 * Parameters: id
+	 * Authorization: Put API Key in Request Header TO DO
+	 * Method: DELETE
+	 * */
 	$app->delete('/api/customer/delete/{id}', function(Request $request, Response $response){
 	    $id = $request->getAttribute('id');
 
-	    $sql = "DELETE FROM customers WHERE id = $id";
+		// Get DB Object
+       	$db = new db();
 
-	    try{
-	        // Get DB Object
-	        $db = new db();
-	        // Connect
-	        $db = $db->connect();
+       	// Do DB Magic
+       	$result = $db->deleteCustomer($id);
 
-	        $stmt = $db->prepare($sql);
-	        $stmt->execute();
-	        $db = null;
-	        echo '{"notice": {"text": "Customer Deleted"}';
-	    } catch(PDOException $e){
-	        echo '{"error": {"text": '.$e->getMessage().'}';
-	    }
+	   	$res = array();
+
+   	    if($result){
+		    $res['error'] = false;
+		    $res['message'] = "Customer successfully deleted";
+    		returnResponse(200, $response, $res);
+		}else{
+		    $res['error'] = true;
+		    $res['message'] = "Delete customer failed";
+    		returnResponse(400, $response, $res);
+		}
 	});
 ?>
