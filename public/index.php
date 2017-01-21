@@ -17,6 +17,7 @@
 	//Customer Routes
 	require '../src/routes/customers.php';
 
+	//Method to write Response Status, Content-Type and Message
 	function returnResponse($status_code, $response, $res)
 	{
 		return $response->withStatus($status_code)
@@ -24,6 +25,7 @@
 			->write(json_encode($res));
 	}
 
+	//Method to check required Parameter exists and not empty
 	function verifyRequiredParams($required_params, $request, $response)
 	{
 	    $error = false;
@@ -40,7 +42,6 @@
 	    }
 
 	    /*$allGetVars = $request->getQueryParams();
-
 		foreach($allGetVars as $key => $param){
 		   //GET parameters list
 		}*/
