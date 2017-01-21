@@ -4,7 +4,12 @@
 
 	$app = new \Slim\App;
 
-	//Get all Customers
+	/* *
+	 * URL: http://slimapp.dev/api/customers
+	 * Parameters: none
+	 * Authorization: Put API Key in Request Header TO DO
+	 * Method: GET
+	 * */
 	$app->get('/api/customers', function(Request $request, Response $response){
 		// Get DB Object
        	$db = new db();
@@ -16,6 +21,7 @@
 	    $res['error'] = false;
 	    $res['customers'] = array();
 
+	    //Loop DB Results
 	    while($row = $result->fetch_assoc()){
 	        $temp = array();
 	        $temp['first_name'] = $row['first_name'];
@@ -25,6 +31,7 @@
 	        $temp['address'] = $row['address'];
 	        $temp['city'] = $row['city'];
 	        $temp['state'] = $row['state'];
+
 	        array_push($res['customers'],$temp);
 	    }
 
@@ -33,25 +40,42 @@
 			->write(json_encode($res));
 	});
 
-	// Get Single Customer
+	/* *
+	 * URL: http://slimapp.dev/api/customers/<student_id>
+	 * Parameters: none
+	 * Authorization: Put API Key in Request Header TO DO
+	 * Method: GET
+	 * */
 	$app->get('/api/customer/{id}', function(Request $request, Response $response){
 	    $id = $request->getAttribute('id');
 
-	    $sql = "SELECT * FROM customers WHERE id = $id";
+		// Get DB Object
+       	$db = new db();
 
-	    try{
-	        // Get DB Object
-	        $db = new db();
-	        // Connect
-	        $db = $db->connect();
+       	// Do DB Magic
+	    $result = $db->getCustomer($id);
 
-	        $stmt = $db->query($sql);
-	        $customer = $stmt->fetch(PDO::FETCH_OBJ);
-	        $db = null;
-	        echo json_encode($customer);
-	    } catch(PDOException $e){
-	        echo '{"error": {"text": '.$e->getMessage().'}';
+	   	$res = array();
+	    $res['error'] = false;
+	    $res['customer'] = array();
+
+	    //Loop DB Results
+	    while($row = $result->fetch_assoc()){
+	        $temp = array();
+	        $temp['first_name'] = $row['first_name'];
+	        $temp['last_name'] = $row['last_name'];
+	        $temp['phone'] = $row['phone'];
+	        $temp['email'] = $row['email'];
+	        $temp['address'] = $row['address'];
+	        $temp['city'] = $row['city'];
+	        $temp['state'] = $row['state'];
+
+	        array_push($res['customer'],$temp);
 	    }
+
+		return $response->withStatus(200)
+			->withHeader('Content-Type', 'application/json')
+			->write(json_encode($res));
 	});
 
 	// Add Customer

@@ -22,13 +22,23 @@
             return $this->connection;
         }
 
-        //Method to fetch all students from database
+        //Method to fetch all customer from database
         public function getAllCustomers(){
             $stmt = $this->connection->prepare("SELECT * FROM customers");
             $stmt->execute();
             $customers = $stmt->get_result();
             $stmt->close();
             return $customers;
+        }
+
+       //Method to get all the infos of a particular customer
+        public function getCustomer($id){
+            $stmt = $this->connection->prepare("SELECT * FROM customers WHERE id=?");
+            $stmt->bind_param("i",$id);
+            $stmt->execute();
+            $customer = $stmt->get_result();
+            $stmt->close();
+            return $customer;
         }
     }
 ?>
