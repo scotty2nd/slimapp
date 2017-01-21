@@ -28,6 +28,7 @@
             $stmt->execute();
             $customers = $stmt->get_result();
             $stmt->close();
+
             return $customers;
         }
 
@@ -38,6 +39,7 @@
             $stmt->execute();
             $customer = $stmt->get_result();
             $stmt->close();
+            
             return $customer;
         }
 
@@ -45,9 +47,9 @@
         public function createCustomer($first_name, $last_name, $phone, $email, $address, $city, $state){
             if (!$this->customerExists($email)) {
                 //$password = md5($pass);
-                //$apikey = $this->generateApiKey();
-                $stmt = $this->connection->prepare("INSERT INTO customers(first_name, last_name, phone, email, address, city, state) values(?, ?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("sssssss", $first_name, $last_name, $phone, $email, $address, $city, $state);
+                $apikey = $this->generateApiKey();
+                $stmt = $this->connection->prepare("INSERT INTO customers(first_name, last_name, phone, email, address, city, state, api_key) values(?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("ssssssss", $first_name, $last_name, $phone, $email, $address, $city, $state, $apikey);
                 $result = $stmt->execute();
                 $stmt->close();
                 if ($result) {
@@ -60,15 +62,20 @@
             }
         }
 
-    //Method to check the customer email adress already exist or not
-    private function customerExists($email) {
-        $stmt = $this->connection->prepare("SELECT id from customers WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $stmt->store_result();
-        $num_rows = $stmt->num_rows;
-        $stmt->close();
-        return $num_rows > 0;
-    }
+        //Method to check the customer email adress already exist or not
+        private function customerExists($email) {
+            $stmt = $this->connection->prepare("SELECT id from customers WHERE email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->store_result();
+            $num_rows = $stmt->num_rows;
+            $stmt->close();
+            return $num_rows > 0;
+        }
+
+        //Method to generate a unique api key every time
+        private function generateApiKey(){
+            return md5(uniqid(rand(), true));
+        }
     }
 ?>

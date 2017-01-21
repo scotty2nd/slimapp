@@ -75,122 +75,59 @@
 	});
 
 	/* *
-	 * URL: http://localhost/StudentApp/v1/createstudent
+	 * URL: http://slimapp.dev/api/customer/add
 	 * Parameters: first_name, last_name, phone, email, city, state
 	 * Method: POST
 	 * */
 	$app->post('/api/customer/add', function(Request $request, Response $response){
-		//TO DO
-		//verifyRequiredParams(array('name', 'username', 'password'));
+		
+		$requiredParams = array(
+							'first_name', 
+							'last_name', 
+							'phone', 
+							'email', 
+							'address', 
+							'city', 
+							'state'
+						  );
 
-		//$first_name = $request->getParsedBody()['first_name']; 
-		//checks _POST  [IS PSR-7 compliant]
-	    $first_name = $request->getParam('first_name');
-	    $last_name = $request->getParam('last_name');
-	    $phone = $request->getParam('phone');
-	    $email = $request->getParam('email');
-	    $address = $request->getParam('address');
-	    $city = $request->getParam('city');
-	    $state = $request->getParam('state');
+		// Checks required Parameter exists and not empty
+		if(verifyRequiredParams($requiredParams, $request, $response)){
 
-		// Get DB Object
-       	$db = new db();
+			//Get Post Parameter from Request
+		    $first_name = $request->getParam('first_name');
+		    $last_name = $request->getParam('last_name');
+		    $phone = $request->getParam('phone');
+		    $email = $request->getParam('email');
+		    $address = $request->getParam('address');
+		    $city = $request->getParam('city');
+		    $state = $request->getParam('state');
 
-       	// Do DB Magic
-	    $result = $db->createCustomer($first_name, $last_name, $phone, $email, $address, $city, $state);
+			// Get DB Object
+	       	$db = new db();
 
-	   	$res = array();
+	       	// Do DB Magic
+		    $result = $db->createCustomer($first_name, $last_name, $phone, $email, $address, $city, $state);
 
-   	    if ($result == 0) {
-	        $res["error"] = false;
-	        $res["message"] = "You are successfully registered";
-	        returnResponse(201, $response, $res);
-	    } else if ($result == 1) {
-	        $res["error"] = true;
-	        $response["message"] = "Oops! An error occurred while registereing";
-	        returnResponse(200, $response, $res);
-	    } else if ($result == 2) {
-	        $res["error"] = true;
-	        $res["message"] = "Sorry, this customer already existed";
-	        returnResponse(200, $response, $res);
-	    }
+		   	$res = array();
 
-        /* 
+	   	    if ($result == 0) {
+		        $res["error"] = false;
+		        $res["message"] = "You are successfully registered";
 
-        //$result = $db->createStudent($name, $username, $password);
+		        returnResponse(201, $response, $res);
+		    } else if ($result == 1) {
+		        $res["error"] = true;
+		        $res["message"] = "Oops! An error occurred while registereing";
 
-        //$password = md5($password);
-        //$apikey = $this->generateApiKey();
-        $stmt = $db->prepare("INSERT INTO customers(first_name, last_name, phone, email, address, city, state) values(?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssss", $first_name, $last_name, $phone, $email, $address, $city, $state);
-        $result = $stmt->execute();
-        $stmt->close();
-        if ($result) {
-	        $response["error"] = false;
-	        $response["message"] = "You are successfully registered";
-            $app->status(201);
-		    $app->contentType('application/json');
-		    echo json_encode($response);
-	        //echoResponse(201, $response);
-	        echo "if";
-	    } else {
-	        $response["error"] = true;
-	        $response["message"] = "Oops! An error occurred while registereing";
-            $app->status(200);
-		    $app->contentType('application/json');
-		    echo json_encode($response);
-		    echo "else";
-	        //echoResponse(200, $response);
-	    }*/
-        /*if () {
-            return 0;
-        } else {
-            return 1;
-        }*/
+		        returnResponse(500, $response, $res);
+		    } else if ($result == 2) {
+		        $res["error"] = true;
+		        $res["message"] = "Sorry, this customer already existed";
 
-	    /* Old PDO Stuff
-	    $sql = "INSERT INTO customers (first_name,last_name,phone,email,address,city,state) VALUES
-	    (:first_name,:last_name,:phone,:email,:address,:city,:state)";
-
-	    try{
-	        // Get DB Object
-	        $db = new db();
-	        // Connect
-	        $db = $db->connect();
-
-	        $stmt = $db->prepare($sql);
-
-	        $stmt->bindParam(':first_name', $first_name);
-	        $stmt->bindParam(':last_name',  $last_name);
-	        $stmt->bindParam(':phone',      $phone);
-	        $stmt->bindParam(':email',      $email);
-	        $stmt->bindParam(':address',    $address);
-	        $stmt->bindParam(':city',       $city);
-	        $stmt->bindParam(':state',      $state);
-
-	        $stmt->execute();
-
-	        //$arr = array(
-	        //	'notice' => array('text' => 'Customer Added')
-    		//);
-
-    		//return $response->withHeader('Content-Type', 'application/json')
-    						//->write('{"notice": {"text": "Customer Added"}}');
-
-	       	//return $response->withStatus(200)
-	          //  ->withHeader('Content-Type', 'application/json')
-	            //->write(json_encode($arr));
-
-	        //echo '{"notice": {"text": "Customer Added"}';
-			return $response->withStatus(201)
-				->withHeader('Content-Type', 'application/json')
-				->write('{"notice": {"text": "Customer Added"}}');
-
-	    } catch(PDOException $e){
-            //echo '{"error": {"text": '.$e->getMessage().'}';
-			return $response->withHeader('Content-Type', 'application/json')
-				->write('{"error": {"text": ' . $e->getMessage() . '}}');
-	    }*/
+		        returnResponse(200, $response, $res);
+		    }
+		}
 	});
 
 	// Update Customer
