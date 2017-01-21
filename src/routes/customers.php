@@ -36,10 +36,6 @@
 	    }
 
 	    returnResponse(200, $response, $res);
-
-		/*return $response->withStatus(200)
-			->withHeader('Content-Type', 'application/json')
-			->write(json_encode($res));*/
 	});
 
 	/* *
@@ -76,14 +72,19 @@
 	    }
 
 	    returnResponse(200, $response, $res);
-
-		/*return $response->withStatus(200)
-			->withHeader('Content-Type', 'application/json')
-			->write(json_encode($res));*/
 	});
 
-	// Add Customer
+	/* *
+	 * URL: http://localhost/StudentApp/v1/createstudent
+	 * Parameters: first_name, last_name, phone, email, city, state
+	 * Method: POST
+	 * */
 	$app->post('/api/customer/add', function(Request $request, Response $response){
+		//TO DO
+		//verifyRequiredParams(array('name', 'username', 'password'));
+
+		//$first_name = $request->getParsedBody()['first_name']; 
+		//checks _POST  [IS PSR-7 compliant]
 	    $first_name = $request->getParam('first_name');
 	    $last_name = $request->getParam('last_name');
 	    $phone = $request->getParam('phone');
@@ -92,13 +93,29 @@
 	    $city = $request->getParam('city');
 	    $state = $request->getParam('state');
 
-	    echo 'add';
+		// Get DB Object
+       	$db = new db();
 
-        // Get DB Object
-       $db = new db();
+       	// Do DB Magic
+	    $result = $db->createCustomer($first_name, $last_name, $phone, $email, $address, $city, $state);
 
-        // Connect
-        $db = $db->connect();/* 
+	   	$res = array();
+
+   	    if ($result == 0) {
+	        $res["error"] = false;
+	        $res["message"] = "You are successfully registered";
+	        returnResponse(201, $response, $res);
+	    } else if ($result == 1) {
+	        $res["error"] = true;
+	        $response["message"] = "Oops! An error occurred while registereing";
+	        returnResponse(200, $response, $res);
+	    } else if ($result == 2) {
+	        $res["error"] = true;
+	        $res["message"] = "Sorry, this student  already existed";
+	        echoResponse(200, $response, $res);
+	    }
+
+        /* 
 
         //$result = $db->createStudent($name, $username, $password);
 

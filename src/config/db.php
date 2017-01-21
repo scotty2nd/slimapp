@@ -40,5 +40,24 @@
             $stmt->close();
             return $customer;
         }
+
+        //Method to register a new customer
+        public function createCustomer($first_name, $last_name, $phone, $email, $address, $city, $state){
+            //if (!$this->isStudentExists($username)) {
+                //$password = md5($pass);
+                //$apikey = $this->generateApiKey();
+                $stmt = $this->connection->prepare("INSERT INTO customers(first_name, last_name, phone, email, address, city, state) values(?, ?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("sssssss", $first_name, $last_name, $phone, $email, $address, $city, $state);
+                $result = $stmt->execute();
+                $stmt->close();
+                if ($result) {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            /*} else {
+                return 2;
+            }*/
+        }
     }
 ?>
