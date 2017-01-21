@@ -40,7 +40,7 @@
 
 	/* *
 	 * URL: http://slimapp.dev/api/customers/<customer_id>
-	 * Parameters: none
+	 * Parameters: id
 	 * Authorization: Put API Key in Request Header TO DO
 	 * Method: GET
 	 * */
@@ -131,7 +131,7 @@
 	});
 
 	/* *
-	 * URL: hhttp://slimapp.dev/api/customer/update/<customer_id>
+	 * URL: http://slimapp.dev/api/customer/update/<customer_id>
 	 * Parameters: first_name, last_name, phone, email, city, state
 	 * Authorization: Put API Key in Request Header TO DO
 	 * Method: PUT
@@ -185,7 +185,12 @@
 		}
 	});
 
-	// Delete Customer
+	/* *
+	 * URL: http://slimapp.dev/api/customer/delete/<customer_id>
+	 * Parameters: id
+	 * Authorization: Put API Key in Request Header TO DO
+	 * Method: DELETE
+	 * */
 	$app->delete('/api/customer/delete/{id}', function(Request $request, Response $response){
 	    $id = $request->getAttribute('id');
 
