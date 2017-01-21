@@ -111,8 +111,8 @@
 	        returnResponse(200, $response, $res);
 	    } else if ($result == 2) {
 	        $res["error"] = true;
-	        $res["message"] = "Sorry, this student  already existed";
-	        echoResponse(200, $response, $res);
+	        $res["message"] = "Sorry, this customer already existed";
+	        returnResponse(200, $response, $res);
 	    }
 
         /* 
