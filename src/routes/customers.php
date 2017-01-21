@@ -6,21 +6,31 @@
 
 	//Get all Customers
 	$app->get('/api/customers', function(Request $request, Response $response){
-	   $sql = "SELECT * FROM customers";
+		// Get DB Object
+       	$db = new db();
 
-	    try{
-	        // Get DB Object
-	        $db = new db();
-	        // Connect
-	        $db = $db->connect();
+       	// Do DB Magic
+	    $result = $db->getAllCustomers();
 
-	        $stmt = $db->query($sql);
-	        $customers = $stmt->fetchAll(PDO::FETCH_OBJ);
-	        $db = null;
-	        echo json_encode($customers);
-	    } catch(PDOException $e){
-	        echo '{"error": {"text": '.$e->getMessage().'}';
+	    $res = array();
+	    $res['error'] = false;
+	    $res['customers'] = array();
+
+	    while($row = $result->fetch_assoc()){
+	        $temp = array();
+	        $temp['first_name'] = $row['first_name'];
+	        $temp['last_name'] = $row['last_name'];
+	        $temp['phone'] = $row['phone'];
+	        $temp['email'] = $row['email'];
+	        $temp['address'] = $row['address'];
+	        $temp['city'] = $row['city'];
+	        $temp['state'] = $row['state'];
+	        array_push($res['customers'],$temp);
 	    }
+
+		return $response->withStatus(200)
+			->withHeader('Content-Type', 'application/json')
+			->write(json_encode($res));
 	});
 
 	// Get Single Customer
@@ -54,6 +64,46 @@
 	    $city = $request->getParam('city');
 	    $state = $request->getParam('state');
 
+	    echo 'add';
+
+        // Get DB Object
+       $db = new db();
+
+        // Connect
+        $db = $db->connect();/* 
+
+        //$result = $db->createStudent($name, $username, $password);
+
+        //$password = md5($password);
+        //$apikey = $this->generateApiKey();
+        $stmt = $db->prepare("INSERT INTO customers(first_name, last_name, phone, email, address, city, state) values(?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $first_name, $last_name, $phone, $email, $address, $city, $state);
+        $result = $stmt->execute();
+        $stmt->close();
+        if ($result) {
+	        $response["error"] = false;
+	        $response["message"] = "You are successfully registered";
+            $app->status(201);
+		    $app->contentType('application/json');
+		    echo json_encode($response);
+	        //echoResponse(201, $response);
+	        echo "if";
+	    } else {
+	        $response["error"] = true;
+	        $response["message"] = "Oops! An error occurred while registereing";
+            $app->status(200);
+		    $app->contentType('application/json');
+		    echo json_encode($response);
+		    echo "else";
+	        //echoResponse(200, $response);
+	    }*/
+        /*if () {
+            return 0;
+        } else {
+            return 1;
+        }*/
+
+	    /* Old PDO Stuff
 	    $sql = "INSERT INTO customers (first_name,last_name,phone,email,address,city,state) VALUES
 	    (:first_name,:last_name,:phone,:email,:address,:city,:state)";
 
@@ -95,7 +145,7 @@
             //echo '{"error": {"text": '.$e->getMessage().'}';
 			return $response->withHeader('Content-Type', 'application/json')
 				->write('{"error": {"text": ' . $e->getMessage() . '}}');
-	    }
+	    }*/
 	});
 
 	// Update Customer
