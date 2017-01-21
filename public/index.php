@@ -17,5 +17,12 @@
 	//Customer Routes
 	require '../src/routes/customers.php';
 
+	function returnResponse($status_code, $response, $res)
+	{
+		return $response->withStatus($status_code)
+			->withHeader('Content-Type', 'application/json')
+			->write(json_encode($res));
+	}
+
 	$app->run();
 ?>

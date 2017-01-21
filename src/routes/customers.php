@@ -35,9 +35,11 @@
 	        array_push($res['customers'],$temp);
 	    }
 
-		return $response->withStatus(200)
+	    returnResponse(200, $response, $res);
+
+		/*return $response->withStatus(200)
 			->withHeader('Content-Type', 'application/json')
-			->write(json_encode($res));
+			->write(json_encode($res));*/
 	});
 
 	/* *
@@ -73,9 +75,11 @@
 	        array_push($res['customer'],$temp);
 	    }
 
-		return $response->withStatus(200)
+	    returnResponse(200, $response, $res);
+
+		/*return $response->withStatus(200)
 			->withHeader('Content-Type', 'application/json')
-			->write(json_encode($res));
+			->write(json_encode($res));*/
 	});
 
 	// Add Customer
