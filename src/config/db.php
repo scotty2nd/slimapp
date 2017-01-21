@@ -78,6 +78,18 @@
             }
         }
 
+        //Method to delete customer
+        public function deleteCustomer($id){
+            $stmt = $this->connection->prepare("DELETE FROM customers WHERE id = ?");
+            $stmt->bind_param("i",$id);
+            $result = $stmt->execute();
+            $stmt->close();
+            if($result){
+                return true;
+            }
+            return false;
+        }
+
         //Method to check the customer email adress already exist or not
         private function customerExists($email) {
             $stmt = $this->connection->prepare("SELECT id from customers WHERE email = ?");

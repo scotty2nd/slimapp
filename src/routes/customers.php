@@ -189,20 +189,22 @@
 	$app->delete('/api/customer/delete/{id}', function(Request $request, Response $response){
 	    $id = $request->getAttribute('id');
 
-	    $sql = "DELETE FROM customers WHERE id = $id";
+		// Get DB Object
+       	$db = new db();
 
-	    try{
-	        // Get DB Object
-	        $db = new db();
-	        // Connect
-	        $db = $db->connect();
+       	// Do DB Magic
+       	$result = $db->deleteCustomer($id);
 
-	        $stmt = $db->prepare($sql);
-	        $stmt->execute();
-	        $db = null;
-	        echo '{"notice": {"text": "Customer Deleted"}';
-	    } catch(PDOException $e){
-	        echo '{"error": {"text": '.$e->getMessage().'}';
-	    }
+	   	$res = array();
+
+   	    if($result){
+		    $res['error'] = false;
+		    $res['message'] = "Customer successfully deleted";
+    		returnResponse(200, $response, $res);
+		}else{
+		    $res['error'] = true;
+		    $res['message'] = "Delete customer failed";
+    		returnResponse(400, $response, $res);
+		}
 	});
 ?>
