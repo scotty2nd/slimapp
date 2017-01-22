@@ -33,6 +33,17 @@
             return $customer;
         }
 
+        //Method to get all the infos of a particular customer
+        public function getCustomers($id){
+            $stmt = $this->connection->prepare("SELECT * FROM customers WHERE id=?");
+            $stmt->bind_param("i",$id);
+            $stmt->execute();
+            $customer = $stmt->get_result();
+            $stmt->close();
+
+            return $customer;
+        }
+
         //Method to fetch all customer from database
         public function getAllCustomers(){
             $stmt = $this->connection->prepare("SELECT * FROM customers");
@@ -42,17 +53,6 @@
 
             return $customers;
         }
-
-        //Method to get all the infos of a particular customer
-        /*public function getCustomer($id){
-            $stmt = $this->connection->prepare("SELECT * FROM customers WHERE id=?");
-            $stmt->bind_param("i",$id);
-            $stmt->execute();
-            $customer = $stmt->get_result();
-            $stmt->close();
-
-            return $customer;
-        }*/
 
         //Method to register a new customer
         public function createCustomer($first_name, $last_name, $password, $phone, $email, $address, $city, $state){

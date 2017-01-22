@@ -45,14 +45,14 @@
 	 * Authorization: Put API Key in Request Header TO DO
 	 * Method: GET
 	 * */
-	/*$app->get('/api/customer/{id}', function(Request $request, Response $response){
+	$app->get('/api/customers/{id}', function(Request $request, Response $response){
 	    $id = $request->getAttribute('id');
 
 		// Get DB Object
        	$db = new db();
 
        	// Do DB Magic
-	    $result = $db->getCustomer($id);
+	    $result = $db->getCustomers($id);
 
 	   	$res = array();
 	    $res['error'] = false;
@@ -73,7 +73,7 @@
 	    }
 
 	    returnResponse(200, $response, $res);
-	});*/
+	});
 
 	/* *
 	 * URL: http://slimapp.dev/api/customer/add
