@@ -4,6 +4,8 @@
 
 	$app = new \Slim\App;
 
+	require '../src/middelware/auth.php';
+
 	/* *
 	 * URL: http://slimapp.dev/api/customers
 	 * Parameters: none
@@ -45,9 +47,8 @@
 	 * Authorization: Put API Key in Request Header TO DO
 	 * Method: GET
 	 * */
-	$app->get('/api/customers/{id}', function(Request $request, Response $response){
+	$app->get('/api/customers/{id}', function(Request $request, Response $response, $args){
 	    $id = $request->getAttribute('id');
-
 		// Get DB Object
        	$db = new db();
 
@@ -73,7 +74,7 @@
 	    }
 
 	    returnResponse(200, $response, $res);
-	});
+	})->add($authenticateCustomer);
 
 	/* *
 	 * URL: http://slimapp.dev/api/customer/add

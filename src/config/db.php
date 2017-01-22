@@ -122,6 +122,18 @@
             return $num_rows > 0;
         }
 
+        //Checking the customer is valid or not by api key
+        public function isValidCustomer($api_key){
+            $stmt = $this->connection->prepare("SELECT id from customers WHERE api_key = ?");
+            $stmt->bind_param("s",$api_key);
+            $stmt->execute();
+            $stmt->store_result();
+            $num_rows = $stmt->num_rows;
+            $stmt->close();
+
+            return $num_rows > 0;
+        }
+
         //Method to generate a unique api key every time
         private function generateApiKey(){
             return md5(uniqid(rand(), true));
