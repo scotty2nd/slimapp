@@ -22,6 +22,17 @@
             return $this->connection;
         }
 
+        //Method to get customer details
+        public function getCustomer($email){
+            $stmt = $this->connection->prepare("SELECT * FROM customers WHERE email = ?");
+            $stmt->bind_param("s",$email);
+            $stmt->execute();
+            $customer = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+
+            return $customer;
+        }
+
         //Method to fetch all customer from database
         public function getAllCustomers(){
             $stmt = $this->connection->prepare("SELECT * FROM customers");
@@ -32,8 +43,8 @@
             return $customers;
         }
 
-       //Method to get all the infos of a particular customer
-        public function getCustomer($id){
+        //Method to get all the infos of a particular customer
+        /*public function getCustomer($id){
             $stmt = $this->connection->prepare("SELECT * FROM customers WHERE id=?");
             $stmt->bind_param("i",$id);
             $stmt->execute();
@@ -41,15 +52,15 @@
             $stmt->close();
 
             return $customer;
-        }
+        }*/
 
         //Method to register a new customer
-        public function createCustomer($first_name, $last_name, $phone, $email, $address, $city, $state){
+        public function createCustomer($first_name, $last_name, $password, $phone, $email, $address, $city, $state){
             if (!$this->customerExists($email)){
                 //$password = md5($pass);
                 $apikey = $this->generateApiKey();
-                $stmt = $this->connection->prepare("INSERT INTO customers(first_name, last_name, phone, email, address, city, state, api_key) values(?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("ssssssss", $first_name, $last_name, $phone, $email, $address, $city, $state, $apikey);
+                $stmt = $this->connection->prepare("INSERT INTO customers(first_name, last_name, password, phone, email, address, city, state, api_key) values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("sssssssss", $first_name, $last_name, $password, $phone, $email, $address, $city, $state, $apikey);
                 $result = $stmt->execute();
                 $stmt->close();
                 if ($result) {
@@ -62,20 +73,30 @@
             }
         }
 
+        //Method to let a customer log in
+        public function customerLogin($email,$password){
+            //$password = md5($pass);
+            $stmt = $this->connection->prepare("SELECT * from customers WHERE email = ? and password = ?");
+            $stmt->bind_param("ss", $email, $password);
+            $stmt->execute();
+            $stmt->store_result();
+            $num_rows = $stmt->num_rows;
+            $stmt->close();
+
+            return $num_rows > 0;
+        }
+
         //Method to update customer
-        public function updateCustomer($id, $first_name, $last_name, $phone, $email, $address, $city, $state){
-            if (!$this->customerExists($email)) {
-                $stmt = $this->connection->prepare("UPDATE customers SET first_name = ?, last_name = ?, phone = ?, email = ?, address = ?, city = ?, state = ? WHERE id = ?");
-                $stmt->bind_param("sssssssi",$first_name, $last_name, $phone, $email, $address, $city, $state, $id);
-                $result = $stmt->execute();
-                $stmt->close();
-                if($result){
-                    return 0;
-                }
-                return 1;
-            }else {
-                return 2;
+        public function updateCustomer($id, $first_name, $last_name, $password, $phone, $email, $address, $city, $state){
+
+            $stmt = $this->connection->prepare("UPDATE customers SET first_name = ?, last_name = ?, password = ?, phone = ?, address = ?, city = ?, state = ? WHERE id = ?");
+            $stmt->bind_param("sssssssi",$first_name, $last_name, $password, $phone, $address, $city, $state, $id);
+            $result = $stmt->execute();
+            $stmt->close();
+            if($result){
+                return true;
             }
+            return false;
         }
 
         //Method to delete customer
