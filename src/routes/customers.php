@@ -140,19 +140,13 @@
 	 * */
 	$app->post('/api/login', function(Request $request, Response $response){
 		
-		/*$requiredParams = array(
-							'first_name', 
-							'last_name', 
+		$requiredParams = array(
 							'password', 
-							'phone', 
-							'email', 
-							'address', 
-							'city', 
-							'state'
+							'email'
 						  );
 
 		// Checks required Parameter exists and not empty
-		if(verifyRequiredParams($requiredParams, $request, $response)){*/
+		if(verifyRequiredParams($requiredParams, $request, $response)){
 
 			//Get Post Parameter from Request
 		    $email = $request->getParam('email');
@@ -183,7 +177,7 @@
 
     		    returnResponse(400, $response, $res);
 		    }
-		//}
+		}
 	});
 
 	/* *
