@@ -28,8 +28,8 @@
  				<MyTextInput PlaceholderText="Password" Value="{password}" IsPassword="true" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
  				<MyTextInput PlaceholderText="Repeat Password" Value="{passwordRepeat}" IsPassword="true" ActionStyle="Send" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
 
-				<Text Alignment="HorizontalCenter" Opacity="1" TextColor="#000" Value="{data.notice.text}" />
-				<Text Alignment="HorizontalCenter" Opacity="1" TextColor="#000" />
+				<Text Alignment="HorizontalCenter" Opacity="1" TextColor="#000" Value="{data.error}" />
+				<Text Alignment="HorizontalCenter" Opacity="1" TextColor="#000" Value="{data.message}"/>
 				<Text Alignment="HorizontalCenter" Opacity=".5" />
 				<Text Alignment="HorizontalCenter" Opacity=".5" />
 			</StackPanel>

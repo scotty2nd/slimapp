@@ -18,7 +18,7 @@ function click() {
     console.log(password.value);
     console.log(passwordRepeat.value);
 
-    var requestObject = {first_name: username.value, last_name: email.value, phone: password.value, email: "Test1234@aol.de", address: "Test Streert",
+    var requestObject = {first_name: username.value, last_name: 'last_name', password: password.value, phone: '1234', email: email.value, address: "Test Streert",
 city: "Testtown", state: "BZW"};
 	var status = 0;
 	var response_ok = false;
@@ -39,11 +39,8 @@ city: "Testtown", state: "BZW"};
 	    // Do something with the result
 	    console.log('do something');
 
-
-	    //console.log(JSON.stringify(responseObject));
-	    //console.log(responseObject.message);
-	    //console.log(JSON.stringify(responseObject.notice));
-	    console.log(responseObject.notice.text);
+	    console.log(responseObject.error);
+	    console.log(responseObject.message);
 	    data.value = responseObject;
 	    //data.value = responseObject.id; //Nur die ID in Value speichern
 	    //debug_log(data.value);
@@ -51,12 +48,12 @@ city: "Testtown", state: "BZW"};
 	    email.value = '';
 	    password.value = '';
 	    passwordRepeat.value = '';
-	    	    	      debugger;
+	    	    	      //debugger;
 	  
 	}).catch(function(error) {
 	    // An error occurred somewhere in the Promise chain
 	    console.log('error');
-	    	    debugger;
+	    	    //debugger;
 	    //console.log('ERROR ' . error.message);
 
 	});
