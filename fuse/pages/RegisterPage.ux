@@ -13,8 +13,6 @@
 
 		<!--<MyButton Text="Registrieren" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>-->
 
-		<MyButton Text="Registrieren" Dock="Bottom" Clicked="{click}"/>
-
 		<!--<WhiteText Dock="Bottom" Margin="10" Opacity=".5" TextAlignment="Center" FontSize="12">original video by Graham Uhelski</WhiteText>-->
 
 		<Grid Rows="1*,1*">
@@ -34,6 +32,8 @@
 				<Text Alignment="HorizontalCenter" Opacity=".5" />
 			</StackPanel>
 		</Grid>
+
+		<MyButton Text="Registrieren" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
 		
 	</DockPanel>
 </Page>

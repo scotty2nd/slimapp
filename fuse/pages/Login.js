@@ -10,8 +10,7 @@ var areCredentialsValid = Observable(function() {
 	return credentials;
 });
 
-function click(args) {
-    //console.log(JSON.stringify(args));
+function click() {
     console.log('clicked');
     console.log(username.value);
     console.log(password.value);

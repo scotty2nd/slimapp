@@ -7,11 +7,12 @@ var email = Observable("");
 var data = Observable();
 
 var areCredentialsValid = Observable(function() {
-	return username.value != "" && email.value != "" && password.value != "" && passwordRepeat.value != "";
+	var credentials = username.value != "" && email.value != "" && password.value != "" && passwordRepeat.value != "";
+	console.log('all crendetials entered: ' + credentials);
+	return credentials;
 });
 
 function click() {
-    //console.log(JSON.stringify(args));
     console.log('clicked');
     console.log(username.value);
     console.log(email.value);
