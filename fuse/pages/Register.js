@@ -23,7 +23,6 @@ city: "Testtown", state: "BZW"};
 	var status = 0;
 	var response_ok = false;
 
-  	//fetch('http://rest.learncode.academy/api/johnbob/friends', {
 	fetch('http://slimapp.dev/api/customer/add', {
 	  	method: 'POST',
 	  	headers: { "Content-type": "application/json", "Accept": "application/json" },
@@ -31,31 +30,29 @@ city: "Testtown", state: "BZW"};
   	}).then(function(response) {
     	status = response.status;  // Get the HTTP status code
 		response_ok = response.ok; // Is response.status in the 200-range?
+
 	  	console.log("Status Code " + status);
 	  	console.log("Response OK " + response_ok);
+	  	
 	  	return response.json();    // This returns a promise
-	  	//return response;
   	}).then(function(responseObject) {
 	    // Do something with the result
 	    console.log('do something');
-
 	    console.log(responseObject.error);
 	    console.log(responseObject.message);
+
 	    data.value = responseObject;
-	    //data.value = responseObject.id; //Nur die ID in Value speichern
-	    //debug_log(data.value);
-	    username.value = '';
+
+	    username.value = '';		//Set Field to blank
 	    email.value = '';
 	    password.value = '';
 	    passwordRepeat.value = '';
-	    	    	      //debugger;
-	  
+      	//debugger;
 	}).catch(function(error) {
 	    // An error occurred somewhere in the Promise chain
 	    console.log('error');
-	    	    //debugger;
+	    //debugger;
 	    //console.log('ERROR ' . error.message);
-
 	});
 }
 

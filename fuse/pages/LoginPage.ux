@@ -16,9 +16,9 @@
 				<MyTextInput PlaceholderText="password" IsPassword="true" Value="{password}" />
 				<Button Text="go to register page" Clicked="{goToRegisterPage}" />
 				<!--<Button Text="Log in" IsEnabled="{areCredentialsValid}" Clicked="{click}"/>-->
-				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.name}" />
-				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.age}" />
+				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.message}"/>
 				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.id}" />
+				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.apikey}" />
 			</StackPanel>
 		</Grid>
 

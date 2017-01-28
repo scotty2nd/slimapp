@@ -5,9 +5,9 @@ var password = Observable("");
 var data = Observable();
 
 var areCredentialsValid = Observable(function() {
-	var test = username.value != "" && password.value != "";
-	console.log(test);
-	return test;
+	var credentials = username.value != "" && password.value != "";
+	console.log('all crendetials entered: ' + credentials);
+	return credentials;
 });
 
 function click(args) {
@@ -16,41 +16,38 @@ function click(args) {
     console.log(username.value);
     console.log(password.value);
 
-    var requestObject = {name: 'Billy Bob', age: '27'};
+    var requestObject = {email: username.value, password: password.value};
 	var status = 0;
 	var response_ok = false;
 
-  	fetch('http://rest.learncode.academy/api/johnbob/friends', {
+  	fetch('http://slimapp.dev/api/login', {
 	  	method: 'POST',
 	  	headers: { "Content-type": "application/json", "Accept": "application/json" },
 	  	body: JSON.stringify(requestObject)
   	}).then(function(response) {
-	    	status = response.status;  // Get the HTTP status code
+    	status = response.status;  // Get the HTTP status code
 		response_ok = response.ok; // Is response.status in the 200-range?
-	  	console.log("1");
-	  	/*console.log(response_ok);
-	  	console.log(response.json());
-	  	console.log(response);
-	  	console.log(JSON.stringify(response.json()));*/
-	  	return response.json();    // This returns a promise
 
-	  	/*var errors = JSON.stringify(response.responseJSON);
-	  	console.log(errors);
+	  	console.log("Status Code " + status);
+	  	console.log("Response OK " + response_ok);
 
-	  	if (response.status === 422) {
-	  		errors.forEach(function(error) {
-		  		console.log(error);
-	  		});
-	  	}*/
+		return response.json();    // This returns a promise
   	}).then(function(responseObject) {
 	    // Do something with the result
 	    console.log('do something');
-	    //data.value = responseObject.id; //Nur die ID in Value speichern
+		console.log(responseObject.error);
+	    console.log(responseObject.message);
+
 	    data.value = responseObject;
+
+	    username.value = '';		//Set Field to blank
+	    password.value = '';
+      	//debugger;
 	}).catch(function(error) {
 	    // An error occurred somewhere in the Promise chain
 	    console.log('error');
 	    console.log(error);
+	    //debugger;
 	});
 }
 

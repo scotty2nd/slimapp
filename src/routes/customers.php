@@ -142,8 +142,8 @@
 	$app->post('/api/login', function(Request $request, Response $response){
 		
 		$requiredParams = array(
-							'password', 
-							'email'
+							'email',
+							'password'
 						  );
 
 		// Checks required Parameter exists and not empty
@@ -161,15 +161,16 @@
        	    if ($db->customerLogin($email, $password)) {
 		        $customer = $db->getCustomer($email);
 		        $res['error'] = false;
+		        $res['message'] = "Login successfull";
 		        $res['id'] = $customer['id'];
-		        $res['first_name'] = $customer['first_name'];
+		        $res['apikey'] = $customer['api_key'];
+		        /*$res['first_name'] = $customer['first_name'];
 		        $res['last_name'] = $customer['last_name'];
 		        $res['phone'] = $customer['phone'];
 		        $res['email'] = $customer['email'];
 		        $res['address'] = $customer['address'];
 		        $res['city'] = $customer['city'];
-		        $res['state'] = $customer['state'];
-		        $res['apikey'] = $customer['api_key'];
+		        $res['state'] = $customer['state'];*/
 
     		    returnResponse(200, $response, $res);
 		    } else {
