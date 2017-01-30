@@ -1,6 +1,20 @@
 <Page ux:Class="LoginPage">
 	<Router ux:Dependency="router" />
-	<JavaScript File="Login.js" />
+	<!--<JavaScript File="Login.js" />-->
+	<JavaScript>
+		var Context = require("modules/context");
+
+		function goToHike(arg) {
+		    var hike = arg.data;
+		    router.push("home", hike);
+		}
+
+		module.exports = {
+		    hikes: Context.hikes,
+
+		    goToHike: goToHike
+		};
+	</JavaScript>
 
 	<DockPanel>
 		<StatusBarBackground Dock="Top" />
@@ -15,13 +29,16 @@
 				<MyTextInput PlaceholderText="username" Value="{username}" />
 				<MyTextInput PlaceholderText="password" IsPassword="true" Value="{password}" />
 				<Button Text="go to register page" Clicked="{goToRegisterPage}" />
-				<!--<Button Text="Log in" IsEnabled="{areCredentialsValid}" Clicked="{click}"/>-->
-				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.message}"/>
-				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.id}" />
-				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.apikey}" />
+				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.message}"/>
+				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.id}" />
+				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.apikey}" />
+                <Each Items="{hikes}">
+                    <Button Text="{name}" Clicked="{goToHike}" />
+                </Each>
 			</StackPanel>
 		</Grid>
 
 		<MyButton Text="Anmelden" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
 	</DockPanel>
+
 </Page>

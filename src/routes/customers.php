@@ -172,7 +172,7 @@
 		        $res['city'] = $customer['city'];
 		        $res['state'] = $customer['state'];*/
 
-    		    returnResponse(200, $response, $res);
+    		    returnResponse(201, $response, $res);
 		    } else {
 		        $res['error'] = true;
 		        $res['message'] = "Invalid username or password";

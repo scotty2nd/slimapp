@@ -1,0 +1,40 @@
+<Page ux:Class="HomePage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="Home.js" />
+
+	<DockPanel>
+		<StatusBarBackground Dock="Top" />
+		<BottomBarBackground Dock="Bottom" />
+
+		<Button Text="Logout" Clicked="{logout}" Color="#000" Dock="Top" HitTestMode="LocalBounds" Padding="20" />
+
+		<StackPanel Alignment="VerticalCenter">
+			<Text Alignment="HorizontalCenter" Opacity=".5" Value="{Clear dataOb.id}"/>
+			<Text Alignment="HorizontalCenter" Opacity=".5" Value="{Clear dataOb.apikey}" />
+
+            <StackPanel>
+                <Text Value="{name}" />
+
+                <Text>Name:</Text>
+                <TextBox Value="{name}" />
+
+                <Text>Location:</Text>
+                <TextBox Value="{location}" />
+
+                <Text>Distance (km):</Text>
+                <TextBox Value="{distance}" InputHint="Decimal" />
+
+                <Text>Rating:</Text>
+                <TextBox Value="{rating}" InputHint="Integer" />
+
+                <Text>Comments:</Text>
+                <TextView Value="{comments}" TextWrapping="Wrap" />
+
+                <Button Text="Save" Clicked="{save}" />
+                <Button Text="Cancel" Clicked="{cancel}" />
+            </StackPanel>
+		</StackPanel>
+
+		<MyButton Text="Weiter" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
+	</DockPanel>
+</Page>

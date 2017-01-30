@@ -2,7 +2,8 @@ var Observable = require("FuseJS/Observable");
 
 var username = Observable("");
 var password = Observable("");
-var data = Observable();
+//var data = Observable();
+var dataObs = require("hikes");
 
 var areCredentialsValid = Observable(function() {
 	var credentials = username.value != "" && password.value != "";
@@ -12,6 +13,8 @@ var areCredentialsValid = Observable(function() {
 
 function click() {
     console.log('clicked');
+    //console.log(dataObs);
+    //debugger;
     console.log(username.value);
     console.log(password.value);
 
@@ -36,8 +39,16 @@ function click() {
 	    console.log('do something');
 		console.log(responseObject.error);
 	    console.log(responseObject.message);
+	    console.log(responseObject.id);
+	    console.log(responseObject.apikey);
+	    //debugger;
 
-	    data.value = responseObject;
+	    if((responseObject.id != "" || responseObject.id != null) && (responseObject.apikey != "" || responseObject.apikey != null)){
+    		console.log('gotoHome')
+    		router.push("home");
+	    }
+
+	    dataObs.value = responseObject;
 
 	    username.value = '';		//Set Field to blank
 	    password.value = '';
@@ -60,6 +71,6 @@ module.exports = {
 	password: password,
 	areCredentialsValid: areCredentialsValid,
 	click: click,
-	data: data,
+	dataObs: dataObs,
 	goToRegisterPage: goToRegisterPage
 };
