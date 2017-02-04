@@ -32,8 +32,8 @@ function click() {
 	    //debugger;
 
 	    if((responseObject.id != "" || responseObject.id != null) && (responseObject.apikey != "" || responseObject.apikey != null)){
-    		console.log('gotoHome & addHike');
-    		context.addHike(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey);
+    		console.log('gotoHome & addCustomerIdentifier');
+    		context.addCustomerIdentifier(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey);
     		router.push("home");
 	    }
 

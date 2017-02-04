@@ -47,14 +47,14 @@ function updateHike(id, name, location, distance, rating, comments) {
 /* *
  * Parameters: error, message, id, apikey
  * */
-function addHike(error, message, id, apikey) {
-    console.log('addHike context');
+function addCustomerIdentifier(error, message, id, apikey) {
+    console.log('addCustomerIdentifier context');
     console.log("error: " + error);
     console.log("message: " + message);
     console.log("id: " + id);
     console.log("apikey: " + apikey);
 
-    Backend.addHike(error, message, id, apikey)
+    Backend.addCustomerIdentifier(error, message, id, apikey)
         .catch(function(error) {
             console.log("Couldn't add hike: " + id);
         });
@@ -80,6 +80,6 @@ module.exports = {
     customerIdentifier: customerIdentifier,
 
     //updateHike: updateHike,
-    addHike: addHike,
+    addCustomerIdentifier: addCustomerIdentifier,
     clearHikes: clearHikes
 };

@@ -8,7 +8,9 @@ var customerIdentifier = [
 ];
 
 /* *
+ * Description
  * Parameters: none
+ * Return: a Promise
  * */
 function getCustomerIdentifier() {
     console.log('getCustomerIdentifier backend');
@@ -43,8 +45,8 @@ function updateHike(id, name, location, distance, rating, comments) {
 /* *
  * Parameters: error, message, id, apikey
  * */
-function addHike(error, message, id, apikey) {
-    console.log('addHike backend');
+function addCustomerIdentifier(error, message, id, apikey) {
+    console.log('addCustomerIdentifier backend');
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
             
@@ -89,6 +91,6 @@ function clearHikes() {
 module.exports = {
     getCustomerIdentifier: getCustomerIdentifier,
     //updateHike: updateHike,
-    addHike: addHike,
+    addCustomerIdentifier: addCustomerIdentifier,
     clearHikes: clearHikes
 };
