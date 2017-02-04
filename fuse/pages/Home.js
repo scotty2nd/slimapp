@@ -9,6 +9,7 @@ var comments = hike.map(function(x) { return x.comments; });
 
 function logout() {
     console.log('logout');
+    context.clearHikes();
     router.goBack();
 }
 
@@ -29,6 +30,7 @@ module.exports = {
     distance: distance,
     rating: rating,
     comments: comments,
+    hikes: context.hikes,
 
     logout: logout,
     save: save,

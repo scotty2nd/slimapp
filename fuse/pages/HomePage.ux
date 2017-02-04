@@ -9,7 +9,11 @@
 		<Button Text="Logout" Clicked="{logout}" Color="#000" Dock="Top" HitTestMode="LocalBounds" Padding="20" />
 
 		<StackPanel Alignment="VerticalCenter">
-			<Text Alignment="HorizontalCenter" Opacity=".5" Value="{Clear dataOb.id}"/>
+            <Each Items="{hikes}">
+                <Button Text="{name}" Clicked="{goToHike}" />
+            </Each>
+
+			<!--<Text Alignment="HorizontalCenter" Opacity=".5" Value="{Clear dataOb.id}"/>
 			<Text Alignment="HorizontalCenter" Opacity=".5" Value="{Clear dataOb.apikey}" />
 
             <StackPanel>
@@ -32,7 +36,7 @@
 
                 <Button Text="Save" Clicked="{save}" />
                 <Button Text="Cancel" Clicked="{cancel}" />
-            </StackPanel>
+            </StackPanel>-->
 		</StackPanel>
 
 		<MyButton Text="Weiter" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>

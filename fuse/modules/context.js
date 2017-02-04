@@ -54,9 +54,21 @@ function addHike(id, name, location, distance, rating, comments) {
     getHikes();
 }
 
+function clearHikes() {
+    console.log('clearHikes context');
+
+    Backend.clearHikes()
+        .catch(function(error) {
+            console.log("Couldn't add hike: " + id);
+        });
+    
+    getHikes();
+}
+
 module.exports = {
     hikes: hikes,
 
     updateHike: updateHike,
-    addHike: addHike
+    addHike: addHike,
+    clearHikes: clearHikes
 };

@@ -1,7 +1,7 @@
 var hikesSourceArray = [
     {
         id: 0,
-        name: "Tricky Trails",
+        name: "Kontroll Eintrag",
         location: "Lakebed, Utah",
         distance: 10.4,
         rating: 4,
@@ -65,8 +65,29 @@ function addHike(id, name, location, distance, rating, comments) {
     });
 }
 
+function clearHikes() {
+    console.log('clearHikes backend');
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            hikesSourceArray = [
+            {
+                id: 0,
+                name: "Kontroll Eintrag Löschen",
+                location: "Lakebed, Utah",
+                distance: 10.4,
+                rating: 4,
+                comments: "This hike was nice and hike-like. Glad I didn't bring a bike."
+            }];
+            debugger;
+            resolve();
+        }, 0);
+    });
+
+}
+
 module.exports = {
     getHikes: getHikes,
     updateHike: updateHike,
-    addHike: addHike
+    addHike: addHike,
+    clearHikes: clearHikes
 };

@@ -1,15 +1,12 @@
 var context = require("modules/context");
 var observable = require("modules/observable");
-//var data = Observable();
 
-/*function click() {
+function click() {
     console.log('clicked');
-    //console.log(dataObs);
-    //debugger;
-    console.log(username.value);
-    console.log(password.value);
+    console.log(observable.username.value);
+    console.log(observable.password.value);
 
-    var requestObject = {email: username.value, password: password.value};
+    var requestObject = {email: observable.username.value, password: observable.password.value};
 	var status = 0;
 	var response_ok = false;
 
@@ -23,44 +20,44 @@ var observable = require("modules/observable");
 
 	  	console.log("Status Code " + status);
 	  	console.log("Response OK " + response_ok);
-	  	//console.log(response.json());
+
 		return response.json();    // This returns a promise
   	}).then(function(responseObject) {
 	    // Do something with the result
 	    console.log('do something');
-		console.log(responseObject.error);
-	    console.log(responseObject.message);
-	    console.log(responseObject.id);
-	    console.log(responseObject.apikey);
+		console.log('Error: ' + responseObject.error);
+	    console.log('Message: ' + responseObject.message);
+	    console.log('ID: ' + responseObject.id);
+	    console.log('API Key: ' + responseObject.apikey);
 	    //debugger;
 
 	    if((responseObject.id != "" || responseObject.id != null) && (responseObject.apikey != "" || responseObject.apikey != null)){
-    		console.log('gotoHome')
+    		console.log('gotoHome');
+    		context.addHike(responseObject.id, responseObject.apikey, responseObject.error, responseObject.message, '1', 'comments1');
     		router.push("home");
 	    }
 
-	    //data.value = responseObject;
-	    customerIdentifiers = responseObject;
+	    //observable.data.value = responseObject;
+	    /*customerIdentifiers = responseObject;
 	    console.log(customerIdentifiers.message);
-	    console.log();
-	    debugger;
+	    console.log();*/
 
 	    //Reset Fields
-	    username.value = '';
-	    password.value = '';
+	    observable.username.value = '';
+	    observable.password.value = '';
       	//debugger;
 	}).catch(function(error) {
 	    // An error occurred somewhere in the Promise chain
 	    console.log('error');
-	    console.log(error);
+	    //console.log(error);
 	    //debugger;
 	});
-}*/
+}
 
-/*function goToRegisterPage() {
+function goToRegisterPage() {
 	console.log('gotoRegsiter')
     router.push("register");
-}*/
+}
 
 function save() {
 	console.log('save clicked');
@@ -77,14 +74,16 @@ module.exports = {
 	hikes: context.hikes,
 	username: observable.username,
 	password: observable.password,
+	data: observable.data,
 	//username: username,
 	//password: password,
 	//areCredentialsValid: areCredentialsValid,
 	//click: click,
 	//data: data,
-	//goToRegisterPage: goToRegisterPage,
-	//getCustomerIdentifiers: getCustomerIdentifiers,
+	click: click,
 	areCredentialsValid: observable.areCredentialsValid,
+
+	goToRegisterPage: goToRegisterPage,
 	save: save,
 	goToHike: goToHike
 };

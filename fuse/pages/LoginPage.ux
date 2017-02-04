@@ -17,7 +17,6 @@
                 </Each>
 
                 <Button Text="Save" Clicked="{save}" />
-                <Button Text="Cancel" Clicked="{cancel}" />
             </StackPanel>
 
 			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
