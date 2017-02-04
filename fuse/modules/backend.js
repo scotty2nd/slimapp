@@ -70,8 +70,8 @@ function addCustomerIdentifier(error, message, id, apikey) {
 /* *
  * Parameters: none
  * */
-function clearHikes() {
-    console.log('clearHikes backend');
+function clearCustomerIdentifier() {
+    console.log('clearCustomerIdentifier backend');
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
             customerIdentifier = [
@@ -92,5 +92,5 @@ module.exports = {
     getCustomerIdentifier: getCustomerIdentifier,
     //updateHike: updateHike,
     addCustomerIdentifier: addCustomerIdentifier,
-    clearHikes: clearHikes
+    clearCustomerIdentifier: clearCustomerIdentifier
 };

@@ -9,7 +9,7 @@ var comments = hike.map(function(x) { return x.comments; });*/
 
 function logout() {
     console.log('logout');
-    context.clearHikes();
+    context.clearCustomerIdentifier();
     router.goBack();
 }
 

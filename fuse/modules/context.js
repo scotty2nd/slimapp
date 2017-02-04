@@ -65,10 +65,10 @@ function addCustomerIdentifier(error, message, id, apikey) {
 /* *
  * Parameters: none
  * */
-function clearHikes() {
-    console.log('clearHikes context');
+function clearCustomerIdentifier() {
+    console.log('clearCustomerIdentifier context');
 
-    Backend.clearHikes()
+    Backend.clearCustomerIdentifier()
         .catch(function(error) {
             console.log("Couldn't add hike: " + id);
         });
@@ -81,5 +81,5 @@ module.exports = {
 
     //updateHike: updateHike,
     addCustomerIdentifier: addCustomerIdentifier,
-    clearHikes: clearHikes
+    clearCustomerIdentifier: clearCustomerIdentifier
 };
