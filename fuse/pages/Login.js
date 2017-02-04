@@ -2,12 +2,6 @@ var context = require("modules/context");
 var observable = require("modules/observable");
 //var data = Observable();
 
-/*var areCredentialsValid = Observable(function() {
-	var credentials = username.value != "" && password.value != "";
-	console.log('all crendetials entered: ' + credentials);
-	return credentials;
-});*/
-
 /*function click() {
     console.log('clicked');
     //console.log(dataObs);
@@ -74,7 +68,13 @@ function save() {
 	context.addHike('id1', observable.username.value, 'location1', '12', '1', 'comments1');
 }
 
+function goToHike(arg) {
+    var hike = arg.data;
+    router.push("home", hike);
+}
+
 module.exports = {
+	hikes: context.hikes,
 	username: observable.username,
 	password: observable.password,
 	//username: username,
@@ -85,5 +85,6 @@ module.exports = {
 	//goToRegisterPage: goToRegisterPage,
 	//getCustomerIdentifiers: getCustomerIdentifiers,
 	areCredentialsValid: observable.areCredentialsValid,
-	save: save
+	save: save,
+	goToHike: goToHike
 };

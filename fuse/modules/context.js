@@ -2,8 +2,6 @@ var Observable = require("FuseJS/Observable");
 var Backend = require("./backend");
 
 var hikes = Observable();
-//var username = Observable();
-//var password = Observable();
 
 //Hikes initial aufrufen
 getHikes();
@@ -47,57 +45,17 @@ function addHike(id, name, location, distance, rating, comments) {
     console.log('add hike context');
     console.log(id);
     console.log(name);
-    //console.log(hikes);
-    //debugger;
-    /*var test = [
-        {
-            id: 0,
-            name: "Tricky Trails context",
-            location: "Lakebed, Utah",
-            distance: 10.4,
-            rating: 4,
-            comments: "This hike was nice and hike-like. Glad I didn't bring a bike."
-        }
-    ];*/
-
-//hikes.push(test);
-
-    //hikes.value = test;
-    //hikes.value.id = 0;
-    //hikes.value.name = "Tricky Trails context";
-    //hikes.id = id;
-    //hikes.push({id: id, name: name, location: location, distance: distance, rating: rating, comments: comments});
-
-    /*var element = {}, cart = [];
-    element.id = id;
-    element.quantity = quantity;
-    cart.push(element);*/
-
-    /*hikes.push({
-        id: id,
-        name: name,
-        location: location,
-        distance: distance,
-        rating: rating,
-        comments: comments
-    }); */
-
-       //debugger;
 
     Backend.addHike(id, name, location, distance, rating, comments)
         .catch(function(error) {
             console.log("Couldn't add hike: " + id);
         });
     
-    //debugger;
     getHikes();
-    //debugger;
 }
 
 module.exports = {
     hikes: hikes,
-    //username: username,
-    //password: password,
 
     updateHike: updateHike,
     addHike: addHike
