@@ -40,7 +40,7 @@ function updateHike(id, name, location, distance, rating, comments) {
 
 function addHike(id, name, location, distance, rating, comments) {
     console.log('addHike backend');
-    debugger;
+    //debugger;
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
             

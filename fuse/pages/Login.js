@@ -92,7 +92,7 @@ function getCustomerIdentifiers() {
 
 function save() {
 	console.log('save clicked');
-	context.addHike('id1', 'name', 'location1', '12', '1', 'comments1');
+	context.addHike('id1', 'name2', 'location1', '12', '1', 'comments1');
 }
 
 module.exports = {

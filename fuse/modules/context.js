@@ -74,23 +74,23 @@ function addHike(id, name, location, distance, rating, comments) {
         comments: comments
     }); */
 
-       debugger;
+       //debugger;
 
     Backend.addHike(id, name, location, distance, rating, comments)
         .catch(function(error) {
             console.log("Couldn't add hike: " + id);
         });
     
-    debugger;
+    //debugger;
 
-    /*Backend.getHikes().then(function(newHikes) {
+    Backend.getHikes().then(function(newHikes) {
         hikes.replaceAll(newHikes);
-        console.log('newHikes');
+        console.log('newHikes in add');
     }).catch(function(error) {
-        console.log("Couldn't get hikes: " + error);
+        console.log("Couldn't get hikes in add: " + error);
     });
 
-    debugger;*/
+    //debugger;
 }
 
 module.exports = {
