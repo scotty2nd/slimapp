@@ -67,7 +67,7 @@ function goToHike(arg) {
 }*/
 
 module.exports = {
-	hikes: context.hikes,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
+	customerIdentifier: context.customerIdentifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 	username: observable.username,
 	password: observable.password,
 	data: observable.data,

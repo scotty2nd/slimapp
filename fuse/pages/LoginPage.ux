@@ -13,8 +13,8 @@
 
 			<!-- Nur zur Kontrolle -->
 			<StackPanel>
-                <Each Items="{hikes}">
-                    <Button Text="{message}" />
+                <Each Items="{customerIdentifier}">
+                    <Button Text="{id}" />
                 </Each>
             </StackPanel>
             <!-- Wird später entfernt -->

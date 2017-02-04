@@ -9,8 +9,8 @@
 		<Button Text="Logout" Clicked="{logout}" Color="#000" Dock="Top" HitTestMode="LocalBounds" Padding="20" />
 
 		<StackPanel Alignment="VerticalCenter">
-            <Each Items="{hikes}">
-                <Button Text="{message}" Clicked="{goToHike}" />
+            <Each Items="{customerIdentifier}">
+                <Button Text="{id}" Clicked="{goToHike}" />
             </Each>
 
 			<!--<Text Alignment="HorizontalCenter" Opacity=".5" Value="{Clear dataOb.id}"/>

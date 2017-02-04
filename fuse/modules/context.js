@@ -1,20 +1,20 @@
 var Observable = require("FuseJS/Observable");
 var Backend = require("./backend");
 
-var hikes = Observable();
+var customerIdentifier = Observable();
 
 //Hikes initial aufrufen
-getHikes();
+getCustomerIdentifier();
 
 /* *
  * Parameters: none
  * */
-function getHikes() {
-    console.log('get hikes');
-    Backend.getHikes().then(function(newHikes) {
-        hikes.replaceAll(newHikes);
+function getCustomerIdentifier() {
+    console.log('getCustomerIdentifier context');
+    Backend.getCustomerIdentifier().then(function(newIdentifier) {
+        customerIdentifier.replaceAll(newIdentifier);
     }).catch(function(error) {
-        console.log("Couldn't get hikes: " + error);
+        console.log("Couldn't get identifier: " + error);
     });
 }
 
@@ -59,7 +59,7 @@ function addHike(error, message, id, apikey) {
             console.log("Couldn't add hike: " + id);
         });
     
-    getHikes();
+    getCustomerIdentifier();
 }
 
 /* *
@@ -73,11 +73,11 @@ function clearHikes() {
             console.log("Couldn't add hike: " + id);
         });
     
-    getHikes();
+    getCustomerIdentifier();
 }
 
 module.exports = {
-    hikes: hikes,
+    customerIdentifier: customerIdentifier,
 
     //updateHike: updateHike,
     addHike: addHike,

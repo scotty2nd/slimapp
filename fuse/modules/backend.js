@@ -1,4 +1,4 @@
-var hikesSourceArray = [
+var customerIdentifier = [
     {
         error: false,
         message: "Kontroll Eintrag",
@@ -10,11 +10,11 @@ var hikesSourceArray = [
 /* *
  * Parameters: none
  * */
-function getHikes() {
-    console.log('getHikes backend');
+function getCustomerIdentifier() {
+    console.log('getCustomerIdentifier backend');
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            resolve(hikesSourceArray);
+            resolve(customerIdentifier);
         }, 0);
     });
 }
@@ -23,8 +23,8 @@ function getHikes() {
 function updateHike(id, name, location, distance, rating, comments) {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            for (var i = 0; i < hikesSourceArray.length; i++) {
-                var hike = hikesSourceArray[i];
+            for (var i = 0; i < customerIdentifier.length; i++) {
+                var hike = customerIdentifier[i];
                 if (hike.id == id) {
                     hike.name = name;
                     hike.location = location;
@@ -53,7 +53,7 @@ function addHike(error, message, id, apikey) {
             console.log("id: " + id);
             console.log("apikey: " + apikey);
 
-            hikesSourceArray.push({
+            customerIdentifier.push({
                 error: error,
                 message: message,
                 id: id,
@@ -72,7 +72,7 @@ function clearHikes() {
     console.log('clearHikes backend');
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            hikesSourceArray = [
+            customerIdentifier = [
             {
                 error: false,
                 message: "Kontroll Eintrag Gelöscht",
@@ -87,7 +87,7 @@ function clearHikes() {
 }
 
 module.exports = {
-    getHikes: getHikes,
+    getCustomerIdentifier: getCustomerIdentifier,
     //updateHike: updateHike,
     addHike: addHike,
     clearHikes: clearHikes
