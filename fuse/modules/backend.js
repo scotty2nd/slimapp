@@ -1,4 +1,4 @@
-var hikes = [
+var hikesSourceArray = [
     {
         id: 0,
         name: "Tricky Trails",
@@ -6,21 +6,14 @@ var hikes = [
         distance: 10.4,
         rating: 4,
         comments: "This hike was nice and hike-like. Glad I didn't bring a bike."
-    },
-    {
-        id: 1,
-        name: "Mondo Mountains",
-        location: "Black Hills, South Dakota",
-        distance: 20.86,
-        rating: 3,
-        comments: "Not the best, but would probably do again. Note to self: don't forget the sandwiches next time."
     }
 ];
 
 function getHikes() {
-  return new Promise(function(resolve, reject) {
+    console.log('getHikes backend');
+    return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            resolve(hikes);
+            resolve(hikesSourceArray);
         }, 0);
     });
 }
@@ -28,8 +21,8 @@ function getHikes() {
 function updateHike(id, name, location, distance, rating, comments) {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            for (var i = 0; i < hikes.length; i++) {
-                var hike = hikes[i];
+            for (var i = 0; i < hikesSourceArray.length; i++) {
+                var hike = hikesSourceArray[i];
                 if (hike.id == id) {
                     hike.name = name;
                     hike.location = location;
@@ -45,7 +38,35 @@ function updateHike(id, name, location, distance, rating, comments) {
     });
 }
 
+function addHike(id, name, location, distance, rating, comments) {
+    console.log('addHike backend');
+    debugger;
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            
+            console.log(id);
+            console.log(name);
+            console.log(location);
+            console.log(distance);
+            console.log(rating);
+            console.log(comments);
+
+            hikesSourceArray.push({
+                id: id,
+                name: name,
+                location: location,
+                distance: distance,
+                rating: rating,
+                comments: comments
+            }); 
+            debugger;
+            resolve();
+        }, 0);
+    });
+}
+
 module.exports = {
     getHikes: getHikes,
-    updateHike: updateHike
+    updateHike: updateHike,
+    addHike: addHike
 };

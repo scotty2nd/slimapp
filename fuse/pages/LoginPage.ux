@@ -1,6 +1,7 @@
 <Page ux:Class="LoginPage">
 	<Router ux:Dependency="router" />
-	<!--<JavaScript File="Login.js" />-->
+	<JavaScript File="Login.js" />
+
 	<JavaScript>
 		var Context = require("modules/context");
 
@@ -25,13 +26,35 @@
 				<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
 			</StackPanel>
 
+			<StackPanel>
+                <!--<Text Value="{name}" />
+
+                <Text>Name:</Text>
+                <TextBox Value="{name}" />
+
+                <Text>Location:</Text>
+                <TextBox Value="{location}" />
+
+                <Text>Distance (km):</Text>
+                <TextBox Value="{distance}" InputHint="Decimal" />
+
+                <Text>Rating:</Text>
+                <TextBox Value="{rating}" InputHint="Integer" />
+
+                <Text>Comments:</Text>
+                <TextView Value="{comments}" TextWrapping="Wrap" />-->
+
+                <Button Text="Save" Clicked="{save}" />
+                <Button Text="Cancel" Clicked="{cancel}" />
+            </StackPanel>
+
 			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
-				<MyTextInput PlaceholderText="username" Value="{username}" />
+				<!--<MyTextInput PlaceholderText="username" Value="{username}" />
 				<MyTextInput PlaceholderText="password" IsPassword="true" Value="{password}" />
 				<Button Text="go to register page" Clicked="{goToRegisterPage}" />
 				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.message}"/>
 				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.id}" />
-				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.apikey}" />
+				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.apikey}" />-->
                 <Each Items="{hikes}">
                     <Button Text="{name}" Clicked="{goToHike}" />
                 </Each>

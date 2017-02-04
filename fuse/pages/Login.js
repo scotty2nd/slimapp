@@ -1,17 +1,26 @@
-var Observable = require("FuseJS/Observable");
+var context = require("modules/context");
+//var Observable = require("FuseJS/Observable");
 
-var username = Observable("");
-var password = Observable("");
+//var username = Observable("");
+//var password = Observable("");
 //var data = Observable();
-var dataObs = require("hikes");
 
-var areCredentialsValid = Observable(function() {
+/*var hikes = [    {
+        id: 0,
+        name: "Tricky Trails",
+        location: "Lakebed, Utah",
+        distance: 10.4,
+        rating: 4,
+        comments: "This hike was nice and hike-like. Glad I didn't bring a bike."
+    }]; */
+
+/*var areCredentialsValid = Observable(function() {
 	var credentials = username.value != "" && password.value != "";
 	console.log('all crendetials entered: ' + credentials);
 	return credentials;
-});
+});*/
 
-function click() {
+/*function click() {
     console.log('clicked');
     //console.log(dataObs);
     //debugger;
@@ -32,7 +41,7 @@ function click() {
 
 	  	console.log("Status Code " + status);
 	  	console.log("Response OK " + response_ok);
-
+	  	//console.log(response.json());
 		return response.json();    // This returns a promise
   	}).then(function(responseObject) {
 	    // Do something with the result
@@ -48,9 +57,14 @@ function click() {
     		router.push("home");
 	    }
 
-	    dataObs.value = responseObject;
+	    //data.value = responseObject;
+	    customerIdentifiers = responseObject;
+	    console.log(customerIdentifiers.message);
+	    console.log();
+	    debugger;
 
-	    username.value = '';		//Set Field to blank
+	    //Reset Fields
+	    username.value = '';
 	    password.value = '';
       	//debugger;
 	}).catch(function(error) {
@@ -59,18 +73,35 @@ function click() {
 	    console.log(error);
 	    //debugger;
 	});
-}
+}*/
 
-function goToRegisterPage() {
+/*function goToRegisterPage() {
 	console.log('gotoRegsiter')
     router.push("register");
+}*/
+
+
+function getCustomerIdentifiers() {
+	console.log('getCustomerIdentifiers');
+  return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            resolve(hikes);
+        }, 0);
+    });
+}
+
+function save() {
+	console.log('save clicked');
+	context.addHike('id1', 'name', 'location1', '12', '1', 'comments1');
 }
 
 module.exports = {
-	username: username,
-	password: password,
-	areCredentialsValid: areCredentialsValid,
-	click: click,
-	dataObs: dataObs,
-	goToRegisterPage: goToRegisterPage
+	//username: username,
+	//password: password,
+	//areCredentialsValid: areCredentialsValid,
+	//click: click,
+	//data: data,
+	//goToRegisterPage: goToRegisterPage,
+	getCustomerIdentifiers: getCustomerIdentifiers,
+	save: save
 };
