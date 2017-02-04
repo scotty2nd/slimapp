@@ -15,6 +15,7 @@
 
 		    goToHike: goToHike
 		};
+		//debugger;
 	</JavaScript>
 
 	<DockPanel>
@@ -44,20 +45,21 @@
                 <Text>Comments:</Text>
                 <TextView Value="{comments}" TextWrapping="Wrap" />-->
 
+                <Each Items="{hikes}">
+                    <Button Text="{name}" Clicked="{goToHike}" />
+                </Each>
+
                 <Button Text="Save" Clicked="{save}" />
                 <Button Text="Cancel" Clicked="{cancel}" />
             </StackPanel>
 
 			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
-				<!--<MyTextInput PlaceholderText="username" Value="{username}" />
+				<MyTextInput PlaceholderText="username" Value="{username}" />
 				<MyTextInput PlaceholderText="password" IsPassword="true" Value="{password}" />
 				<Button Text="go to register page" Clicked="{goToRegisterPage}" />
 				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.message}"/>
 				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.id}" />
-				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.apikey}" />-->
-                <Each Items="{hikes}">
-                    <Button Text="{name}" Clicked="{goToHike}" />
-                </Each>
+				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.apikey}" />
 			</StackPanel>
 		</Grid>
 

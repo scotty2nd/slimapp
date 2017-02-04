@@ -1,6 +1,6 @@
 var context = require("modules/context");
-//var Observable = require("FuseJS/Observable");
-
+//var Observable = context.Observable;
+//hikes: Context.hikes,
 //var username = Observable("");
 //var password = Observable("");
 //var data = Observable();
@@ -92,10 +92,12 @@ function getCustomerIdentifiers() {
 
 function save() {
 	console.log('save clicked');
-	context.addHike('id1', 'name3', 'location1', '12', '1', 'comments1');
+	context.addHike('id1', context.username.value, 'location1', '12', '1', 'comments1');
 }
 
 module.exports = {
+	username: context.username,
+	//Observable: context.Observable,
 	//username: username,
 	//password: password,
 	//areCredentialsValid: areCredentialsValid,
