@@ -6,7 +6,9 @@ var hikes = Observable();
 //Hikes initial aufrufen
 getHikes();
 
-
+/* *
+ * Parameters: none
+ * */
 function getHikes() {
     console.log('get hikes');
     Backend.getHikes().then(function(newHikes) {
@@ -16,6 +18,7 @@ function getHikes() {
     });
 }
 
+/* TODO wird später noch mit eingebaut
 function updateHike(id, name, location, distance, rating, comments) {
     console.log('update hike');
     console.log(id);
@@ -39,14 +42,19 @@ function updateHike(id, name, location, distance, rating, comments) {
         .catch(function(error) {
             console.log("Couldn't update hike: " + id);
         });
-}
+}*/
 
-function addHike(id, name, location, distance, rating, comments) {
-    console.log('add hike context');
-    console.log(id);
-    console.log(name);
+/* *
+ * Parameters: error, message, id, apikey
+ * */
+function addHike(error, message, id, apikey) {
+    console.log('addHike context');
+    console.log("error: " + error);
+    console.log("message: " + message);
+    console.log("id: " + id);
+    console.log("apikey: " + apikey);
 
-    Backend.addHike(id, name, location, distance, rating, comments)
+    Backend.addHike(error, message, id, apikey)
         .catch(function(error) {
             console.log("Couldn't add hike: " + id);
         });
@@ -54,6 +62,9 @@ function addHike(id, name, location, distance, rating, comments) {
     getHikes();
 }
 
+/* *
+ * Parameters: none
+ * */
 function clearHikes() {
     console.log('clearHikes context');
 
@@ -68,7 +79,7 @@ function clearHikes() {
 module.exports = {
     hikes: hikes,
 
-    updateHike: updateHike,
+    //updateHike: updateHike,
     addHike: addHike,
     clearHikes: clearHikes
 };

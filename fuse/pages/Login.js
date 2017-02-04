@@ -32,15 +32,12 @@ function click() {
 	    //debugger;
 
 	    if((responseObject.id != "" || responseObject.id != null) && (responseObject.apikey != "" || responseObject.apikey != null)){
-    		console.log('gotoHome');
-    		context.addHike(responseObject.id, responseObject.apikey, responseObject.error, responseObject.message, '1', 'comments1');
+    		console.log('gotoHome & addHike');
+    		context.addHike(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey);
     		router.push("home");
 	    }
 
 	    //observable.data.value = responseObject;
-	    /*customerIdentifiers = responseObject;
-	    console.log(customerIdentifiers.message);
-	    console.log();*/
 
 	    //Reset Fields
 	    observable.username.value = '';
@@ -49,8 +46,6 @@ function click() {
 	}).catch(function(error) {
 	    // An error occurred somewhere in the Promise chain
 	    console.log('error');
-	    //console.log(error);
-	    //debugger;
 	});
 }
 
@@ -59,7 +54,8 @@ function goToRegisterPage() {
     router.push("register");
 }
 
-function save() {
+//Da kein Button mehr kann das gelöscht werden
+/*function save() {
 	console.log('save clicked');
 	console.log(observable.username.value);
 	context.addHike('id1', observable.username.value, 'location1', '12', '1', 'comments1');
@@ -68,22 +64,18 @@ function save() {
 function goToHike(arg) {
     var hike = arg.data;
     router.push("home", hike);
-}
+}*/
 
 module.exports = {
-	hikes: context.hikes,
+	hikes: context.hikes,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 	username: observable.username,
 	password: observable.password,
 	data: observable.data,
-	//username: username,
-	//password: password,
-	//areCredentialsValid: areCredentialsValid,
-	//click: click,
-	//data: data,
-	click: click,
+
 	areCredentialsValid: observable.areCredentialsValid,
 
+	click: click,
 	goToRegisterPage: goToRegisterPage,
-	save: save,
-	goToHike: goToHike
+	//save: save,
+	//goToHike: goToHike
 };

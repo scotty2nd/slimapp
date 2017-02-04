@@ -1,14 +1,15 @@
 var hikesSourceArray = [
     {
-        id: 0,
-        name: "Kontroll Eintrag",
-        location: "Lakebed, Utah",
-        distance: 10.4,
-        rating: 4,
-        comments: "This hike was nice and hike-like. Glad I didn't bring a bike."
+        error: false,
+        message: "Kontroll Eintrag",
+        id: 1,
+        apikey: "1238cf96c359e74065035206af06b123"
     }
 ];
 
+/* *
+ * Parameters: none
+ * */
 function getHikes() {
     console.log('getHikes backend');
     return new Promise(function(resolve, reject) {
@@ -18,6 +19,7 @@ function getHikes() {
     });
 }
 
+/* TODO wird später noch mit eingebaut
 function updateHike(id, name, location, distance, rating, comments) {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
@@ -36,28 +38,26 @@ function updateHike(id, name, location, distance, rating, comments) {
             resolve();
         }, 0);
     });
-}
+}*/
 
-function addHike(id, name, location, distance, rating, comments) {
+/* *
+ * Parameters: error, message, id, apikey
+ * */
+function addHike(error, message, id, apikey) {
     console.log('addHike backend');
-    //debugger;
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
             
-            console.log(id);
-            console.log(name);
-            console.log(location);
-            console.log(distance);
-            console.log(rating);
-            console.log(comments);
+            console.log("error: " + error);
+            console.log("message: " + message);
+            console.log("id: " + id);
+            console.log("apikey: " + apikey);
 
             hikesSourceArray.push({
+                error: error,
+                message: message,
                 id: id,
-                name: name,
-                location: location,
-                distance: distance,
-                rating: rating,
-                comments: comments
+                apikey: apikey
             }); 
             debugger;
             resolve();
@@ -65,18 +65,19 @@ function addHike(id, name, location, distance, rating, comments) {
     });
 }
 
+/* *
+ * Parameters: none
+ * */
 function clearHikes() {
     console.log('clearHikes backend');
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
             hikesSourceArray = [
             {
-                id: 0,
-                name: "Kontroll Eintrag Löschen",
-                location: "Lakebed, Utah",
-                distance: 10.4,
-                rating: 4,
-                comments: "This hike was nice and hike-like. Glad I didn't bring a bike."
+                error: false,
+                message: "Kontroll Eintrag Gelöscht",
+                id: 2,
+                apikey: "1238cf96c359e74065035206af06b123"
             }];
             debugger;
             resolve();
@@ -87,7 +88,7 @@ function clearHikes() {
 
 module.exports = {
     getHikes: getHikes,
-    updateHike: updateHike,
+    //updateHike: updateHike,
     addHike: addHike,
     clearHikes: clearHikes
 };

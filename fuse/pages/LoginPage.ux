@@ -11,13 +11,13 @@
 				<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
 			</StackPanel>
 
+			<!-- Nur zur Kontrolle -->
 			<StackPanel>
                 <Each Items="{hikes}">
-                    <Button Text="{name}" Clicked="{goToHike}" />
+                    <Button Text="{message}" />
                 </Each>
-
-                <Button Text="Save" Clicked="{save}" />
             </StackPanel>
+            <!-- Wird später entfernt -->
 
 			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
 				<MyTextInput PlaceholderText="username" Value="{username}" />
