@@ -2,8 +2,8 @@ var Observable = require("FuseJS/Observable");
 var Backend = require("./backend");
 
 var hikes = Observable();
-var username = Observable();
-var password = Observable();
+//var username = Observable();
+//var password = Observable();
 
 //Hikes initial aufrufen
 getHikes();
@@ -96,8 +96,8 @@ function addHike(id, name, location, distance, rating, comments) {
 
 module.exports = {
     hikes: hikes,
-    username: username,
-    password: password,
+    //username: username,
+    //password: password,
 
     updateHike: updateHike,
     addHike: addHike

@@ -1,18 +1,6 @@
 var context = require("modules/context");
-//var Observable = context.Observable;
-//hikes: Context.hikes,
-//var username = Observable("");
-//var password = Observable("");
+var observable = require("modules/observable");
 //var data = Observable();
-
-/*var hikes = [    {
-        id: 0,
-        name: "Tricky Trails",
-        location: "Lakebed, Utah",
-        distance: 10.4,
-        rating: 4,
-        comments: "This hike was nice and hike-like. Glad I didn't bring a bike."
-    }]; */
 
 /*var areCredentialsValid = Observable(function() {
 	var credentials = username.value != "" && password.value != "";
@@ -80,30 +68,22 @@ var context = require("modules/context");
     router.push("register");
 }*/
 
-
-function getCustomerIdentifiers() {
-	console.log('getCustomerIdentifiers');
-  return new Promise(function(resolve, reject) {
-        setTimeout(function() {
-            resolve(hikes);
-        }, 0);
-    });
-}
-
 function save() {
 	console.log('save clicked');
-	context.addHike('id1', context.username.value, 'location1', '12', '1', 'comments1');
+	console.log(observable.username.value);
+	context.addHike('id1', observable.username.value, 'location1', '12', '1', 'comments1');
 }
 
 module.exports = {
-	username: context.username,
-	//Observable: context.Observable,
+	username: observable.username,
+	password: observable.password,
 	//username: username,
 	//password: password,
 	//areCredentialsValid: areCredentialsValid,
 	//click: click,
 	//data: data,
 	//goToRegisterPage: goToRegisterPage,
-	getCustomerIdentifiers: getCustomerIdentifiers,
+	//getCustomerIdentifiers: getCustomerIdentifiers,
+	areCredentialsValid: observable.areCredentialsValid,
 	save: save
 };
