@@ -3,17 +3,12 @@
 	<JavaScript File="Register.js" />
 
 	<Image Layer="Background" File="../Assets/background.jpg" StretchMode="UniformToFill" Opacity=".8" />
-	 <!--<Image Layer="Background" File="../Assets/background.jpg" StretchMode="Fill" /> Verzerrt das Bild-->
 
 	<DockPanel>
 		<StatusBarBackground Dock="Top" />
 		<BottomBarBackground Dock="Bottom" />
 
 		<Button Text="Back" Clicked="{goBack}" Color="#000" Dock="Top" HitTestMode="LocalBounds" Padding="20" />
-
-		<!--<MyButton Text="Registrieren" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>-->
-
-		<!--<WhiteText Dock="Bottom" Margin="10" Opacity=".5" TextAlignment="Center" FontSize="12">original video by Graham Uhelski</WhiteText>-->
 
 		<Grid Rows="1*,1*">
 			<StackPanel Alignment="VerticalCenter">

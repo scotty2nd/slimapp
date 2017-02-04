@@ -11,17 +11,25 @@
 				<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
 			</StackPanel>
 
+			<!-- Nur zur Kontrolle -->
+			<StackPanel>
+                <Each Items="{customerIdentifier}">
+                    <Button Text="{id}" />
+                </Each>
+            </StackPanel>
+            <!-- Wird später entfernt -->
+
 			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
 				<MyTextInput PlaceholderText="username" Value="{username}" />
 				<MyTextInput PlaceholderText="password" IsPassword="true" Value="{password}" />
 				<Button Text="go to register page" Clicked="{goToRegisterPage}" />
-				<!--<Button Text="Log in" IsEnabled="{areCredentialsValid}" Clicked="{click}"/>-->
-				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.message}"/>
-				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.id}" />
-				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{data.apikey}" />
+				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.message}"/>
+				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.id}" />
+				<Text Alignment="HorizontalCenter" Opacity=".5" Value="{dataObs.apikey}" />
 			</StackPanel>
 		</Grid>
 
 		<MyButton Text="Anmelden" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
 	</DockPanel>
+
 </Page>

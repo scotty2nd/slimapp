@@ -1,21 +1,12 @@
-var Observable = require("FuseJS/Observable");
-
-var username = Observable("");
-var password = Observable("");
-var data = Observable();
-
-var areCredentialsValid = Observable(function() {
-	var credentials = username.value != "" && password.value != "";
-	console.log('all crendetials entered: ' + credentials);
-	return credentials;
-});
+var context = require("modules/context");
+var observable = require("modules/observable");
 
 function click() {
     console.log('clicked');
-    console.log(username.value);
-    console.log(password.value);
+    console.log(observable.username.value);
+    console.log(observable.password.value);
 
-    var requestObject = {email: username.value, password: password.value};
+    var requestObject = {email: observable.username.value, password: observable.password.value};
 	var status = 0;
 	var response_ok = false;
 
@@ -34,19 +25,27 @@ function click() {
   	}).then(function(responseObject) {
 	    // Do something with the result
 	    console.log('do something');
-		console.log(responseObject.error);
-	    console.log(responseObject.message);
+		console.log('Error: ' + responseObject.error);
+	    console.log('Message: ' + responseObject.message);
+	    console.log('ID: ' + responseObject.id);
+	    console.log('API Key: ' + responseObject.apikey);
+	    //debugger;
 
-	    data.value = responseObject;
+	    if((responseObject.id != "" || responseObject.id != null) && (responseObject.apikey != "" || responseObject.apikey != null)){
+    		console.log('gotoHome & addCustomerIdentifier');
+    		context.addCustomerIdentifier(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey);
+    		router.push("home");
+	    }
 
-	    username.value = '';		//Set Field to blank
-	    password.value = '';
+	    //observable.data.value = responseObject;
+
+	    //Reset Fields
+	    observable.username.value = '';
+	    observable.password.value = '';
       	//debugger;
 	}).catch(function(error) {
 	    // An error occurred somewhere in the Promise chain
 	    console.log('error');
-	    console.log(error);
-	    //debugger;
 	});
 }
 
@@ -55,11 +54,28 @@ function goToRegisterPage() {
     router.push("register");
 }
 
+//Da kein Button mehr kann das gelöscht werden
+/*function save() {
+	console.log('save clicked');
+	console.log(observable.username.value);
+	context.addHike('id1', observable.username.value, 'location1', '12', '1', 'comments1');
+}
+
+function goToHike(arg) {
+    var hike = arg.data;
+    router.push("home", hike);
+}*/
+
 module.exports = {
-	username: username,
-	password: password,
-	areCredentialsValid: areCredentialsValid,
+	customerIdentifier: context.customerIdentifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
+	username: observable.username,
+	password: observable.password,
+	data: observable.data,
+
+	areCredentialsValid: observable.areCredentialsValid,
+
 	click: click,
-	data: data,
-	goToRegisterPage: goToRegisterPage
+	goToRegisterPage: goToRegisterPage,
+	//save: save,
+	//goToHike: goToHike
 };
