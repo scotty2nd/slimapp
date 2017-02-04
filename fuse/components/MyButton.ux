@@ -3,8 +3,8 @@
     <Text ux:Name="text" Value="{ReadProperty Text}" Color="#fff" Alignment="Center" />
 
     <WhilePressed>
-    	<Change this.Color="#138" Duration="0.05" />
-        <Change text.Color="#fff" Duration="0.05" />
+    	<Change this.Color="#138" Duration="0.3" Easing="QuarticInOut" />
+        <Scale Target="text" Factor="0.95" Duration="0.3" Easing="QuarticInOut" />
     </WhilePressed>
 
     <WhileDisabled>
