@@ -1,12 +1,12 @@
-var context = require("modules/context");
-var observable = require("modules/observable");
+var Customer = require("modules/Customer");
+var Observable = require("modules/LoginObservable");
 
 function click() {
     console.log('clicked');
-    console.log(observable.username.value);
-    console.log(observable.password.value);
+    console.log(Observable.Username.value);
+    console.log(Observable.Password.value);
 
-    var requestObject = {email: observable.username.value, password: observable.password.value};
+    var requestObject = {email: Observable.Username.value, password: Observable.Password.value};
 	var status = 0;
 	var response_ok = false;
 
@@ -33,15 +33,13 @@ function click() {
 
 	    if((responseObject.id != "" || responseObject.id != null) && (responseObject.apikey != "" || responseObject.apikey != null)){
     		console.log('gotoHome & addCustomerIdentifier');
-    		context.addCustomerIdentifier(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey);
+    		Customer.addIdentifier(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey);
     		router.push("home");
 	    }
 
-	    //observable.data.value = responseObject;
-
 	    //Reset Fields
-	    observable.username.value = '';
-	    observable.password.value = '';
+	    Observable.Username.value = '';
+	    Observable.Password.value = '';
       	//debugger;
 	}).catch(function(error) {
 	    // An error occurred somewhere in the Promise chain
@@ -67,12 +65,12 @@ function goToHike(arg) {
 }*/
 
 module.exports = {
-	customerIdentifier: context.customerIdentifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
-	username: observable.username,
-	password: observable.password,
-	data: observable.data,
+	Identifier: Customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
+	Username: Observable.Username,
+	Password: Observable.Password,
+	Data: Observable.Data,
 
-	areCredentialsValid: observable.areCredentialsValid,
+	areCredentialsValid: Observable.areCredentialsValid,
 
 	click: click,
 	goToRegisterPage: goToRegisterPage,

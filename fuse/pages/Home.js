@@ -1,4 +1,4 @@
-var context = require("modules/context");
+var Customer = require("modules/Customer");
 /*var hike = this.Parameter;
 
 var name = hike.map(function(x) { return x.name; });
@@ -9,7 +9,7 @@ var comments = hike.map(function(x) { return x.comments; });*/
 
 function logout() {
     console.log('logout');
-    context.clearCustomerIdentifier();
+    Customer.clearIdentifier();
     router.goBack();
 }
 
@@ -32,7 +32,7 @@ module.exports = {
     rating: rating,
     comments: comments,*/
 
-    customerIdentifier: context.customerIdentifier,
+    Identifier: Customer.Identifier,
 
     logout: logout,
     //save: save,

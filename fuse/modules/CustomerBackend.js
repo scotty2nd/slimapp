@@ -1,4 +1,4 @@
-var customerIdentifier = [
+var identifier = [
     {
         error: false,
         message: "Kontroll Eintrag",
@@ -12,11 +12,11 @@ var customerIdentifier = [
  * Parameters: none
  * Return: a Promise
  * */
-function getCustomerIdentifier() {
-    console.log('getCustomerIdentifier backend');
+function getIdentifier() {
+    console.log('getIdentifier backend');
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            resolve(customerIdentifier);
+            resolve(identifier);
         }, 0);
     });
 }
@@ -45,8 +45,8 @@ function updateHike(id, name, location, distance, rating, comments) {
 /* *
  * Parameters: error, message, id, apikey
  * */
-function addCustomerIdentifier(error, message, id, apikey) {
-    console.log('addCustomerIdentifier backend');
+function addIdentifier(error, message, id, apikey) {
+    console.log('addIdentifier backend');
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
             
@@ -55,7 +55,7 @@ function addCustomerIdentifier(error, message, id, apikey) {
             console.log("id: " + id);
             console.log("apikey: " + apikey);
 
-            customerIdentifier.push({
+            identifier.push({
                 error: error,
                 message: message,
                 id: id,
@@ -70,11 +70,11 @@ function addCustomerIdentifier(error, message, id, apikey) {
 /* *
  * Parameters: none
  * */
-function clearCustomerIdentifier() {
-    console.log('clearCustomerIdentifier backend');
+function clearIdentifier() {
+    console.log('clearIdentifier backend');
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            customerIdentifier = [
+            identifier = [
             {
                 error: false,
                 message: "Kontroll Eintrag Gelöscht",
@@ -89,8 +89,8 @@ function clearCustomerIdentifier() {
 }
 
 module.exports = {
-    getCustomerIdentifier: getCustomerIdentifier,
+    getIdentifier: getIdentifier,
     //updateHike: updateHike,
-    addCustomerIdentifier: addCustomerIdentifier,
-    clearCustomerIdentifier: clearCustomerIdentifier
+    addIdentifier: addIdentifier,
+    clearIdentifier: clearIdentifier
 };

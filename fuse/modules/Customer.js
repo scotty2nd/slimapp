@@ -1,18 +1,18 @@
 var Observable = require("FuseJS/Observable");
-var Backend = require("./backend");
+var CustomerBackend = require("./CustomerBackend");
 
-var customerIdentifier = Observable();
+var Identifier = Observable();
 
 //Hikes initial aufrufen
-getCustomerIdentifier();
+getIdentifier();
 
 /* *
  * Parameters: none
  * */
-function getCustomerIdentifier() {
-    console.log('getCustomerIdentifier context');
-    Backend.getCustomerIdentifier().then(function(newIdentifier) {
-        customerIdentifier.replaceAll(newIdentifier);
+function getIdentifier() {
+    console.log('getIdentifier context');
+    CustomerBackend.getIdentifier().then(function(newIdentifier) {
+        Identifier.replaceAll(newIdentifier);
     }).catch(function(error) {
         console.log("Couldn't get identifier: " + error);
     });
@@ -47,39 +47,39 @@ function updateHike(id, name, location, distance, rating, comments) {
 /* *
  * Parameters: error, message, id, apikey
  * */
-function addCustomerIdentifier(error, message, id, apikey) {
-    console.log('addCustomerIdentifier context');
+function addIdentifier(error, message, id, apikey) {
+    console.log('addIdentifier context');
     console.log("error: " + error);
     console.log("message: " + message);
     console.log("id: " + id);
     console.log("apikey: " + apikey);
 
-    Backend.addCustomerIdentifier(error, message, id, apikey)
+    CustomerBackend.addIdentifier(error, message, id, apikey)
         .catch(function(error) {
             console.log("Couldn't add hike: " + id);
         });
     
-    getCustomerIdentifier();
+    getIdentifier();
 }
 
 /* *
  * Parameters: none
  * */
-function clearCustomerIdentifier() {
-    console.log('clearCustomerIdentifier context');
+function clearIdentifier() {
+    console.log('clearIdentifier context');
 
-    Backend.clearCustomerIdentifier()
+    CustomerBackend.clearIdentifier()
         .catch(function(error) {
             console.log("Couldn't add hike: " + id);
         });
     
-    getCustomerIdentifier();
+    getIdentifier();
 }
 
 module.exports = {
-    customerIdentifier: customerIdentifier,
+    Identifier: Identifier,
 
     //updateHike: updateHike,
-    addCustomerIdentifier: addCustomerIdentifier,
-    clearCustomerIdentifier: clearCustomerIdentifier
+    addIdentifier: addIdentifier,
+    clearIdentifier: clearIdentifier
 };
