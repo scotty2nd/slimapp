@@ -27,7 +27,21 @@
 		</Grid>
 
 		<MyButton Text="Anmelden" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
-				<!--<MyButton Text="Anmelden" Dock="Bottom" Clicked="{click}" />-->
 	</DockPanel>
 
+	<Panel ux:Name="overlay" Background="#0008" Layer="Overlay">
+		<Rectangle ux:Name="errorModal" Color="#970A0A" Width="300" Height="200" CornerRadius="10" Padding="20">
+			<StackPanel Background="Yellow">
+				<Text TextColor="#fff" TextAlignment="Center" Background="Green">Text123</Text>
+				<Button Text="OK" Background="Blue" Clicked="{okButton}"/>
+			</StackPanel>
+		</Rectangle>
+	</Panel>
+
+	<WhileTrue Value="{isPasswordInvalid}">
+	    <Change errorModal.Width="0" Duration=".3" Easing="BounceIn" />
+	    <Change errorModal.Height="0" Duration=".3" Easing="BounceIn" />
+	    <Change overlay.Opacity="0" Duration=".3" />
+	    <Change overlay.Visibility="Hidden" Duration=".3" />
+	</WhileTrue>
 </Page>

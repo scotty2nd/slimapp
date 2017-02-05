@@ -1,6 +1,11 @@
 var Customer = require("modules/Customer");
 var Observable = require("modules/LoginObservable");
 
+var isPasswordInvalid = Observable.Password.map(function(value) {
+		console.log('PW Length: ' + value.length);
+        return value.length < 6;
+});
+
 function click() {
     console.log('clicked');
     console.log(Observable.Username.value);
@@ -53,6 +58,12 @@ function goToRegisterPage() {
     router.push("register");
 }
 
+function okButton() {
+	console.log('okButton');
+
+	return Observable.Password.value = "";
+}
+
 //Da kein Button mehr kann das gelöscht werden
 /*function save() {
 	console.log('save clicked');
@@ -70,11 +81,13 @@ module.exports = {
 	Username: Observable.Username,
 	Password: Observable.Password,
 	Data: Observable.Data,
+	isPasswordInvalid: isPasswordInvalid,
 
 	areCredentialsValid: Observable.areCredentialsValid,
 
 	click: click,
 	goToRegisterPage: goToRegisterPage,
+	okButton: okButton
 	//save: save,
 	//goToHike: goToHike
 };
