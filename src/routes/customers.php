@@ -176,6 +176,8 @@
 		    } else {
 		        $res['error'] = true;
 		        $res['message'] = "Invalid username or password";
+		        $res['id'] = "";
+		        $res['apikey'] = "";
 
     		    returnResponse(400, $response, $res);
 		    }

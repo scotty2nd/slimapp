@@ -31,15 +31,16 @@ function click() {
 	    console.log('API Key: ' + responseObject.apikey);
 	    //debugger;
 
-	    if((responseObject.id != "" || responseObject.id != null) && (responseObject.apikey != "" || responseObject.apikey != null)){
+	    if(responseObject.id != "" && responseObject.apikey != "" && responseObject.error == false){
     		console.log('gotoHome & addCustomerIdentifier');
     		Customer.addIdentifier(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey);
     		router.push("home");
+
+		    //Reset Fields
+		    Observable.Username.value = '';
+		    Observable.Password.value = '';
 	    }
 
-	    //Reset Fields
-	    Observable.Username.value = '';
-	    Observable.Password.value = '';
       	//debugger;
 	}).catch(function(error) {
 	    // An error occurred somewhere in the Promise chain
