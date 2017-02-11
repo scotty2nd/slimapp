@@ -41,8 +41,8 @@ function click() {
 
 	    if(responseObject.id != "" && responseObject.apikey != "" && responseObject.error == false){
     		console.log('gotoHome & addCustomerIdentifier');
-    		Observable.ResponseData.value = responseObject;
-    		debugger;
+    		//Observable.ResponseData.value = responseObject;
+    		//debugger;
 
     		Customer.addIdentifier(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey);
     		router.push("home");
@@ -50,11 +50,15 @@ function click() {
 		    //Reset Fields
 		    Observable.Username.value = '';
 		    Observable.Password.value = '';
+	    }else if(responseObject.error == true){
+			console.log('Error: ' + responseObject.error);
+    		console.log('Message: ' + responseObject.message);
+    		Observable.ResponseData.value = responseObject;
+	    	//debugger;
 	    }
-
-      	//debugger;
 	}).catch(function(error) {
 	    // An error occurred somewhere in the Promise chain
+	    debugger;
 	    console.log('error');
 	});
 }
