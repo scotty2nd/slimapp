@@ -7,12 +7,6 @@ var isPasswordInvalid = Observable.Password.map(function(value) {
         return value.length < 6;
 });
 
-function okButton() {
-	console.log('okButton');
-
-	return Observable.Password.value = "";
-}
-
 /** Für das Modal Ende **/
 
 function click() {
@@ -86,14 +80,10 @@ module.exports = {
 	Identifier: Customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 	Username: Observable.Username,
 	Password: Observable.Password,
-	Data: Observable.Data,
 	isPasswordInvalid: isPasswordInvalid,
 
 	areCredentialsValid: Observable.areCredentialsValid,
 
 	click: click,
-	goToRegisterPage: goToRegisterPage,
-	okButton: okButton
-	//save: save,
-	//goToHike: goToHike
+	goToRegisterPage: goToRegisterPage
 };
