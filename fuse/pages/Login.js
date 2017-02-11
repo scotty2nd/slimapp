@@ -1,10 +1,19 @@
 var Customer = require("modules/Customer");
 var Observable = require("modules/LoginObservable");
 
+/** Für das Modal **/
 var isPasswordInvalid = Observable.Password.map(function(value) {
 		console.log('PW Length: ' + value.length);
         return value.length < 6;
 });
+
+function okButton() {
+	console.log('okButton');
+
+	return Observable.Password.value = "";
+}
+
+/** Für das Modal Ende **/
 
 function click() {
     console.log('clicked');
@@ -38,6 +47,9 @@ function click() {
 
 	    if(responseObject.id != "" && responseObject.apikey != "" && responseObject.error == false){
     		console.log('gotoHome & addCustomerIdentifier');
+    		Observable.ResponseData.value = responseObject;
+    		debugger;
+
     		Customer.addIdentifier(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey);
     		router.push("home");
 
@@ -56,12 +68,6 @@ function click() {
 function goToRegisterPage() {
 	console.log('gotoRegsiter')
     router.push("register");
-}
-
-function okButton() {
-	console.log('okButton');
-
-	return Observable.Password.value = "";
 }
 
 //Da kein Button mehr kann das gelöscht werden

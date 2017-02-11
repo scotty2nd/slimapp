@@ -2,7 +2,7 @@ var Observable = require("FuseJS/Observable");
 
 var Username = Observable("");
 var Password = Observable("");
-var Data = Observable();
+var ResponseData = Observable();
 
 var areCredentialsValid = Observable(function() {
 	var credentials = Username.value != "" && Password.value != "";
@@ -13,7 +13,7 @@ var areCredentialsValid = Observable(function() {
 module.exports = {
     Username: Username,
     Password: Password,
-    Data: Data,
+    ResponseData: ResponseData,
 
     areCredentialsValid: areCredentialsValid
 };
