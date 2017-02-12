@@ -61,7 +61,7 @@ function addIdentifier(error, message, id, apikey) {
                 id: id,
                 apikey: apikey
             }); 
-            debugger;
+            //debugger;
             resolve();
         }, 0);
     });
@@ -81,7 +81,7 @@ function clearIdentifier() {
                 id: 2,
                 apikey: "1238cf96c359e74065035206af06b123"
             }];
-            debugger;
+            //debugger;
             resolve();
         }, 0);
     });

@@ -23,7 +23,14 @@
 		</Rectangle>
 	</Panel>
 
-	<WhileTrue Value="{isPasswordInvalid}">
+	<!--<WhileTrue Value="{isPasswordInvalid}">
+	    <Change errorModal.Width="0" Duration=".3" Easing="BounceInOut" />
+	    <Change errorModal.Height="0" Duration=".3" Easing="BounceInOut" />
+	    <Change overlay.Opacity="0" Duration=".3" />
+	    <Change overlay.Visibility="Hidden" Duration=".3" />
+	</WhileTrue>-->
+
+	<WhileTrue Value="{isEmailValid}">
 	    <Change errorModal.Width="0" Duration=".3" Easing="BounceInOut" />
 	    <Change errorModal.Height="0" Duration=".3" Easing="BounceInOut" />
 	    <Change overlay.Opacity="0" Duration=".3" />
@@ -36,11 +43,13 @@
 		function okButton() {
 			console.log('okButton');
 
-			return Observable.Password.value = "";
+			//return Observable.Password.value = "";
+			return Observable.isEmailValid.value = true;
 		}
 
 		module.exports = {
 			Password: Observable.Password,
+			isEmailValid: Observable.isEmailValid,
 
 			okButton: okButton
 		};
