@@ -1,16 +1,17 @@
 <Panel ux:Class="ErrorModal" Layer="Overlay">
 	<Panel ux:Name="Overlay" Background="#0008">
+
 		<Rectangle ux:Name="ErrorModal" Color="#cc4339" Width="100%" MaxWidth="400" MinHeight="160" Alignment="VerticalCenter">
+
 			<DockPanel>
 				<StackPanel Dock="Top" Margin="20, 20, 20, 20">
-					<string ux:Property="Message" />
 					<Text TextColor="#fff" Font="MyriadProSemibold" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10">Oops! Ein Fehler ist aufgetreten.</Text>
-					<Text Value="{ReadProperty Message}" TextColor="#fff" FontSize="14" TextAlignment="Center" TextWrapping="Wrap" />
+					<Text Value="{ModalMessage}" TextColor="#fff" FontSize="14" TextAlignment="Center" TextWrapping="Wrap" />
 				</StackPanel>
 
 				<StackPanel Dock="Bottom" Height="62">
 					<Rectangle Width="100%" Height="1" Color="#99352d"/>
-					<Panel ux:Name="OkButton" HitTestMode="LocalBounds" Background="#b73c33" Padding="20" Clicked="{okButton}">
+					<Panel ux:Name="OkButton" HitTestMode="LocalBounds" Background="#b73c33" Padding="20" Clicked="{ok}">
 					    <string ux:Property="Text" />
 					    <Text ux:Name="OkButtonText" Color="#fff" Font="MyriadProBold" FontSize="16" Alignment="Center">OK</Text>
 
@@ -21,10 +22,12 @@
 					</Panel>
 				</StackPanel>
 			</DockPanel>
+
 		</Rectangle>
+
 	</Panel>
 
-	<WhileTrue Value="{isEmailValid}">
+	<WhileTrue Value="{onError}">
 	    <Change ErrorModal.Width="0" Duration=".3" Easing="BounceInOut" />
 	    <Change ErrorModal.Height="0" Duration=".3" Easing="BounceInOut" />
 	    <Change Overlay.Opacity="0" Duration=".3" />
@@ -34,18 +37,14 @@
 	<JavaScript>
 		var Observable = require("modules/LoginObservable");
 
-		function okButton() {
-			console.log('okButton');
-
-			//return Observable.Password.value = "";
-			return Observable.isEmailValid.value = true;
+		function ok() {
+			return Observable.onError.value = true;
 		}
 
 		module.exports = {
-			Password: Observable.Password,
-			isEmailValid: Observable.isEmailValid,
+			onError: Observable.onError,
 
-			okButton: okButton
+			ok: ok
 		};
 	</JavaScript>
 </Panel>

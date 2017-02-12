@@ -2,8 +2,8 @@ var Observable = require("FuseJS/Observable");
 
 var Username = Observable("");
 var Password = Observable("");
-var ResponseData = Observable();
-var isEmailValid = Observable(true);
+var ModalMessage = Observable("");
+var onError = Observable(true);
 
 var areCredentialsValid = Observable(function() {
 	var credentials = Username.value != "" && Password.value != "";
@@ -14,8 +14,8 @@ var areCredentialsValid = Observable(function() {
 module.exports = {
     Username: Username,
     Password: Password,
-    isEmailValid: isEmailValid,
-    ResponseData: ResponseData,
+    ModalMessage: ModalMessage,
+    onError: onError,
 
     areCredentialsValid: areCredentialsValid
 };

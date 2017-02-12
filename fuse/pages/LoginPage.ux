@@ -29,5 +29,5 @@
 		<MyButton Text="Anmelden" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
 	</DockPanel>
  
-	<ErrorModal Message="Lorem ipsum dolor sit amet.." />
+	<ErrorModal />
 </Page>
