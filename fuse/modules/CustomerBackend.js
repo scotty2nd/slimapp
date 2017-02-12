@@ -13,7 +13,6 @@ var identifier = [
  * Return: a Promise
  * */
 function getIdentifier() {
-    console.log('getIdentifier backend');
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
             resolve(identifier);
@@ -46,22 +45,14 @@ function updateHike(id, name, location, distance, rating, comments) {
  * Parameters: error, message, id, apikey
  * */
 function addIdentifier(error, message, id, apikey) {
-    console.log('addIdentifier backend');
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            
-            console.log("error: " + error);
-            console.log("message: " + message);
-            console.log("id: " + id);
-            console.log("apikey: " + apikey);
-
             identifier.push({
                 error: error,
                 message: message,
                 id: id,
                 apikey: apikey
             }); 
-            debugger;
             resolve();
         }, 0);
     });
@@ -71,7 +62,6 @@ function addIdentifier(error, message, id, apikey) {
  * Parameters: none
  * */
 function clearIdentifier() {
-    console.log('clearIdentifier backend');
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
             identifier = [
@@ -81,7 +71,6 @@ function clearIdentifier() {
                 id: 2,
                 apikey: "1238cf96c359e74065035206af06b123"
             }];
-            debugger;
             resolve();
         }, 0);
     });

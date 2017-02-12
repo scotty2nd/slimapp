@@ -2,6 +2,10 @@
 	<iOS.StatusBarConfig Style="Light" />
 	<Router ux:Name="router" />
 
+    <Font File="assets/font/MyriadPro-Regular.otf" ux:Global="MyriadProRegular" />
+    <Font File="assets/font/MyriadPro-Semibold.otf" ux:Global="MyriadProSemibold" />
+    <Font File="assets/font/MyriadPro-Bold.otf" ux:Global="MyriadProBold" />
+
     <ClientPanel>
         <Navigator DefaultPath="login">
         	<SplashPage ux:Template="splash" router="router" />

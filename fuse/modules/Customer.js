@@ -10,7 +10,6 @@ getIdentifier();
  * Parameters: none
  * */
 function getIdentifier() {
-    console.log('getIdentifier context');
     CustomerBackend.getIdentifier().then(function(newIdentifier) {
         Identifier.replaceAll(newIdentifier);
     }).catch(function(error) {
@@ -48,15 +47,9 @@ function updateHike(id, name, location, distance, rating, comments) {
  * Parameters: error, message, id, apikey
  * */
 function addIdentifier(error, message, id, apikey) {
-    console.log('addIdentifier context');
-    console.log("error: " + error);
-    console.log("message: " + message);
-    console.log("id: " + id);
-    console.log("apikey: " + apikey);
-
     CustomerBackend.addIdentifier(error, message, id, apikey)
         .catch(function(error) {
-            console.log("Couldn't add hike: " + id);
+            console.log("Couldn't add Identifier: " + id);
         });
     
     getIdentifier();
@@ -66,11 +59,9 @@ function addIdentifier(error, message, id, apikey) {
  * Parameters: none
  * */
 function clearIdentifier() {
-    console.log('clearIdentifier context');
-
     CustomerBackend.clearIdentifier()
         .catch(function(error) {
-            console.log("Couldn't add hike: " + id);
+            console.log("Couldn't clear Identifier: " + id);
         });
     
     getIdentifier();

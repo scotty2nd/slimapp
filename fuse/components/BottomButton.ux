@@ -1,0 +1,14 @@
+<Panel ux:Class="BottomButton" HitTestMode="LocalBounds" Color="#4080ff" Padding="20">
+    <string ux:Property="Text" />
+    <Text ux:Name="ButtonText" Value="{ReadProperty Text}" Color="#fff" Alignment="Center" />
+
+    <WhilePressed>
+    	<Change this.Color="#138" Duration="0.3" Easing="QuarticInOut" />
+        <Scale Target="ButtonText" Factor="0.95" Duration="0.3" Easing="QuarticInOut" />
+    </WhilePressed>
+
+    <WhileDisabled>
+    	<Change this.Color="#ccc" Duration="0.05" />
+    	<Change ButtonText.Color="#a6a6a6" Duration="0.05" />
+    </WhileDisabled>
+</Panel>

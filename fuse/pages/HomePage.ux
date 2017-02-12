@@ -39,6 +39,6 @@
             </StackPanel>-->
 		</StackPanel>
 
-		<MyButton Text="Weiter" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
+		<BottomButton Text="Weiter" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
 	</DockPanel>
 </Page>

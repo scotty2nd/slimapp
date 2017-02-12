@@ -28,7 +28,7 @@
 			</StackPanel>
 		</Grid>
 
-		<MyButton Text="Registrieren" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
+		<BottomButton Text="Registrieren" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
 		
 	</DockPanel>
 </Page>
