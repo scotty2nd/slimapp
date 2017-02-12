@@ -24,7 +24,6 @@ function click() {
 			return response.json();    // This returns a promise
 	  	}).then(function(responseObject) {
 		    // Do something with the result
-
 		    // Prüfe ob ID und der API Kkey gefüllt ist sowie kein Fehler existiert 
 		    if(responseObject.id != "" && responseObject.apikey != "" && responseObject.error == false){
 	    		Customer.addIdentifier(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey);
@@ -35,16 +34,18 @@ function click() {
 			    Observable.Username.value = '';
 			    Observable.Password.value = '';
 		    }else if(responseObject.error == true){
-				console.log('Error: ' + responseObject.error);
-	    		console.log('Message: ' + responseObject.message);
+	    		// Error Modal zeigen
+	    		Observable.onError.value = false;
+				Observable.ModalMessage.value = responseObject.message;
 		    }
 		}).catch(function(error) {
 		    // An error occurred somewhere in the Promise chain
-		    debugger;
-		    console.log('error');
+		    // Error Modal zeigen
+			Observable.onError.value = false;
+			Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten.";
 		});
 	}else{
-		// Email Adresse ist ungültig 
+		// Email Adresse ist ungültig Error Modal zeigen
 		Observable.onError.value = false;
 		Observable.ModalMessage.value = "Ungültige E-Mail-Adresse";
 	}
