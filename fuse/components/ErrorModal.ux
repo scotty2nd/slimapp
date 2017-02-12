@@ -3,8 +3,8 @@
 		<Rectangle ux:Name="errorModal" Color="#cc4339" Width="100%" MaxWidth="400" MinHeight="160" Alignment="VerticalCenter">
 			<DockPanel>
 				<StackPanel Dock="Top" Margin="20, 20, 20, 20">
-					<Text TextColor="#fff" Font="MyriadProSemibold" TextAlignment="Center" Margin="0, 0, 0, 10">Oops! Ein Fehler ist aufgetreten.</Text>
-					<Text TextColor="#fff" TextAlignment="Center" TextWrapping="Wrap">Lorem ipsum dolor sit amet </Text>
+					<Text TextColor="#fff" Font="MyriadProSemibold" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10">Oops! Ein Fehler ist aufgetreten.</Text>
+					<Text TextColor="#fff" FontSize="14" TextAlignment="Center" TextWrapping="Wrap">Lorem ipsum dolor sit amet </Text>
 				</StackPanel>
 
 				<StackPanel Dock="Bottom" Height="62">
@@ -24,8 +24,8 @@
 	</Panel>
 
 	<WhileTrue Value="{isPasswordInvalid}">
-	    <Change errorModal.Width="0" Duration=".3" Easing="BounceIn" />
-	    <Change errorModal.Height="0" Duration=".3" Easing="BounceIn" />
+	    <Change errorModal.Width="0" Duration=".3" Easing="BounceInOut" />
+	    <Change errorModal.Height="0" Duration=".3" Easing="BounceInOut" />
 	    <Change overlay.Opacity="0" Duration=".3" />
 	    <Change overlay.Visibility="Hidden" Duration=".3" />
 	</WhileTrue>
