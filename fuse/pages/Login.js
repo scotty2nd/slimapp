@@ -75,7 +75,7 @@ module.exports = {
 	ModalMessage: Observable.ModalMessage,
 	onError: Observable.onError,
 
-	areCredentialsValid: Observable.areCredentialsValid,
+	allLoginCredentialsEntered: Observable.allLoginCredentialsEntered,
 
 	click: click,
 	goToRegisterPage: goToRegisterPage

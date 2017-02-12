@@ -26,7 +26,7 @@
 			</StackPanel>
 		</Grid>
 
-		<MyButton Text="Anmelden" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
+		<MyButton Text="Anmelden" Dock="Bottom" Clicked="{click}" IsEnabled="{allLoginCredentialsEntered}"/>
 	</DockPanel>
  
 	<ErrorModal />

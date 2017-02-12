@@ -11,8 +11,4 @@
     	<Change this.Color="#ccc" Duration="0.05" />
     	<Change ButtonText.Color="#a6a6a6" Duration="0.05" />
     </WhileDisabled>
-
-    <!--<WhileEnabled>
-    <Rotate Degrees="45" Duration="0.5"/>
-	</WhileEnabled>-->
 </Panel>
