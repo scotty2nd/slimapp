@@ -1,7 +1,19 @@
 var Customer = require("modules/Customer");
 var Observable = require("modules/LoginObservable");
 
+//busy.deactivate();
+
 function click() {
+		//Observable.onError.value = false;
+		console.log('Anmelden geklickt busy aktiviert');
+		busy.activate();
+		//Observable.onError.value = false;
+		/*setTimeout(function() {
+			console.log('setTimeout');
+			busy.deactivate();
+		}, 4000);*/
+		//debugger;
+
 	// Regex um auf gültige Email Adressen zu prüfen
     var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -30,31 +42,69 @@ function click() {
 	    		// Weiterleiten auf Home Seite
 	    		router.push("home");
 
+	    		busy.deactivate();
+
 			    // Reset Fields
 			    Observable.Username.value = '';
 			    Observable.Password.value = '';
 		    }else if(responseObject.error == true){
+		    	
+		    	busy.deactivate();
+
 	    		// Error Modal zeigen
 	    		Observable.onError.value = false;
 				Observable.ModalMessage.value = responseObject.message;
 		    }
 		}).catch(function(error) {
 		    // An error occurred somewhere in the Promise chain
+
+		    busy.deactivate();
+
 		    // Error Modal zeigen
 			Observable.onError.value = false;
 			Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten.";
 		});
 	}else{
-		// Email Adresse ist ungültig Error Modal zeigen
-		Observable.onError.value = false;
+		console.log('email adresse ungültig');
+		// Email Adresse ist ungültig 
+		// Error Modal zeigen
+		Observable.OnError.value = true;
 		Observable.ModalMessage.value = "Ungültige E-Mail-Adresse";
+
+		/*setTimeout(function() {
+			Observable.ErrorOccured.value = false;
+			busy.deactivate();
+			console.log('timeoout');
+		}, 40000);*/
+		//console.log('feedback error modal?????');
+		//console.log(Observable.ErrorModalOkayClicked.value);
+		//debugger;
+		/*if(ErrorModal.okClicked()){
+			console.log('true Login.js');
+			Observable.onError.value = true;
+			debugger;
+			busy.deactivate();
+		}*/
+
+		//debugger;
 	}
+	//Observable.ErrorOccured.value = false;
+	//busy.deactivate();
 }
 
 function goToRegisterPage() {
 	console.log('gotoRegsiter')
     router.push("register");
 }
+
+Observable.OnError.onValueChanged(module, function(error) {
+    //do something
+    if(!error){
+	    console.log('do something');
+    	console.log(error);
+    	busy.deactivate();
+    }
+});
 
 //Da kein Button mehr kann das gelöscht werden
 /*function save() {
@@ -73,7 +123,8 @@ module.exports = {
 	Username: Observable.Username,
 	Password: Observable.Password,
 	ModalMessage: Observable.ModalMessage,
-	onError: Observable.onError,
+	ErrorModalOkayClicked: Observable.ErrorModalOkayClicked,
+	OnError: Observable.OnError,
 
 	allLoginCredentialsEntered: Observable.allLoginCredentialsEntered,
 

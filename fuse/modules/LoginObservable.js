@@ -3,7 +3,7 @@ var Observable = require("FuseJS/Observable");
 var Username = Observable("");
 var Password = Observable("");
 var ModalMessage = Observable("");
-var onError = Observable(true);
+var OnError = Observable(false);
 
 var allLoginCredentialsEntered = Observable(function() {
 	var credentials = Username.value != "" && Password.value != "";
@@ -15,7 +15,7 @@ module.exports = {
     Username: Username,
     Password: Password,
     ModalMessage: ModalMessage,
-    onError: onError,
+    OnError: OnError,
 
     allLoginCredentialsEntered: allLoginCredentialsEntered
 };

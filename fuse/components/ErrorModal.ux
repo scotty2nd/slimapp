@@ -1,49 +1,63 @@
 <Panel ux:Class="ErrorModal" Layer="Overlay">
-	<Panel ux:Name="Overlay" Background="#0008">
+	<Rectangle ux:Name="ErrorModal" Color="#cc4339" Width="100%" MaxWidth="400" MinHeight="160" Alignment="VerticalCenter">
 
-		<Rectangle ux:Name="ErrorModal" Color="#cc4339" Width="100%" MaxWidth="400" MinHeight="160" Alignment="VerticalCenter">
+		<DockPanel>
+			<StackPanel Dock="Top" Margin="20, 20, 20, 20">
+				<Text TextColor="#000" Font="MyriadProSemibold" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10">Oops! Ein Fehler ist aufgetreten.</Text>
+				<Text Value="{ModalMessage}" TextColor="#000" FontSize="14" TextAlignment="Center" TextWrapping="Wrap" />
+			</StackPanel>
 
-			<DockPanel>
-				<StackPanel Dock="Top" Margin="20, 20, 20, 20">
-					<Text TextColor="#fff" Font="MyriadProSemibold" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10">Oops! Ein Fehler ist aufgetreten.</Text>
-					<Text Value="{ModalMessage}" TextColor="#fff" FontSize="14" TextAlignment="Center" TextWrapping="Wrap" />
-				</StackPanel>
+			<StackPanel Dock="Bottom" Height="62">
+				<Rectangle Width="100%" Height="1" Color="#99352d"/>
+				<Panel ux:Name="OkButton" HitTestMode="LocalBounds" Background="#b73c33" Padding="20" Clicked="{ok}">
+				    <string ux:Property="Text" />
+				    <Text ux:Name="OkButtonText" Color="#fff" Font="MyriadProBold" FontSize="16" Alignment="Center">OK</Text>
 
-				<StackPanel Dock="Bottom" Height="62">
-					<Rectangle Width="100%" Height="1" Color="#99352d"/>
-					<Panel ux:Name="OkButton" HitTestMode="LocalBounds" Background="#b73c33" Padding="20" Clicked="{ok}">
-					    <string ux:Property="Text" />
-					    <Text ux:Name="OkButtonText" Color="#fff" Font="MyriadProBold" FontSize="16" Alignment="Center">OK</Text>
+				    <WhilePressed>
+				    	<Change OkButton.Background="#a6362e" Duration="0.3" Easing="QuarticInOut" />
+				        <Scale Target="OkButtonText" Factor="0.95" Duration="0.3" Easing="QuarticInOut" />
+				    </WhilePressed>
+				</Panel>
+			</StackPanel>
+		</DockPanel>
+	</Rectangle>
 
-					    <WhilePressed>
-					    	<Change OkButton.Background="#a6362e" Duration="0.3" Easing="QuarticInOut" />
-					        <Scale Target="OkButtonText" Factor="0.95" Duration="0.3" Easing="QuarticInOut" />
-					    </WhilePressed>
-					</Panel>
-				</StackPanel>
-			</DockPanel>
-
-		</Rectangle>
-
-	</Panel>
-
-	<WhileTrue Value="{onError}">
-	    <Change ErrorModal.Width="0" Duration=".3" Easing="BounceInOut" />
-	    <Change ErrorModal.Height="0" Duration=".3" Easing="BounceInOut" />
-	    <Change Overlay.Opacity="0" Duration=".3" />
-	    <Change Overlay.Visibility="Hidden" Duration=".3" />
-	</WhileTrue>
+	<WhileFalse Value="{OnError}">
+	    <Change ErrorModal.Width="0" Duration="1.3" Easing="BounceInOut" />
+	    <Change ErrorModal.Height="0" Duration="1.3" Easing="BounceInOut" />
+	    <Change ErrorModal.Opacity="0" Duration="1.3" Easing="BounceInOut" />
+	    <!--<Change Overlay.Opacity="0" Duration=".3" />
+	    <Change Overlay.Visibility="Hidden" Duration=".3" />-->
+	</WhileFalse>
 
 	<JavaScript>
-		var Observable = require("modules/LoginObservable");
+		/*var Observable = require("modules/LoginObservable");
 
 		function ok() {
+			console.log('ok clicked');
+			busy.deactivate();
 			return Observable.onError.value = true;
 		}
 
 		module.exports = {
 			onError: Observable.onError,
 
+			ok: ok
+		};*/
+
+		var Observable = require("modules/LoginObservable");
+
+		function ok() {
+			console.log('ok clicked error modal ux');
+			Observable.OnError.value = false;
+			//Observable.ErrorModalOkayClicked.value = true;
+			//debugger;
+			//return Observable.onError.value = true;
+			//console.log(ErrorTest.clicked123());
+			//return Observable.onError.value = true;
+		}
+
+		module.exports = {
 			ok: ok
 		};
 	</JavaScript>

@@ -16,6 +16,8 @@
                 <Each Items="{Identifier}">
                     <Button Text="{id}" />
                 </Each>
+            	<Text>On Error: </Text>
+            	<Text Value="{OnError}" />
             </StackPanel>
             <!-- Wird später entfernt -->
 
@@ -28,6 +30,15 @@
 
 		<BottomButton Text="Anmelden" Dock="Bottom" Clicked="{click}" IsEnabled="{allLoginCredentialsEntered}"/>
 	</DockPanel>
+
+	<Busy ux:Name="busy" IsActive="false" />
+	<WhileBusy>
+		<Change Overlay.Opacity="1" Duration=".3" />
+		<Change Overlay.Visibility="Visible" Duration=".3" />
+	</WhileBusy>
  
-	<ErrorModal />
+	<Overlay ux:Name="Overlay">
+		<ErrorModal />
+		<LoadingIndicator />
+	</Overlay>
 </Page>

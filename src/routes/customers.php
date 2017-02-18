@@ -174,6 +174,7 @@
 
     		    returnResponse(201, $response, $res);
 		    } else {
+		    	sleep ( 30 );
 		        $res['error'] = true;
 		        $res['message'] = "Benutzername oder Passwort ungültig.";
 		        $res['id'] = "";
