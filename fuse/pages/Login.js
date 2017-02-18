@@ -48,20 +48,15 @@ function click() {
 			    Observable.Username.value = '';
 			    Observable.Password.value = '';
 		    }else if(responseObject.error == true){
-		    	
-		    	busy.deactivate();
-
+		    	console.log('response error');
 	    		// Error Modal zeigen
-	    		Observable.onError.value = false;
+	    		Observable.OnError.value = true;
 				Observable.ModalMessage.value = responseObject.message;
 		    }
 		}).catch(function(error) {
 		    // An error occurred somewhere in the Promise chain
-
-		    busy.deactivate();
-
 		    // Error Modal zeigen
-			Observable.onError.value = false;
+			Observable.OnError.value = true;
 			Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten.";
 		});
 	}else{
@@ -70,26 +65,7 @@ function click() {
 		// Error Modal zeigen
 		Observable.OnError.value = true;
 		Observable.ModalMessage.value = "Ungültige E-Mail-Adresse";
-
-		/*setTimeout(function() {
-			Observable.ErrorOccured.value = false;
-			busy.deactivate();
-			console.log('timeoout');
-		}, 40000);*/
-		//console.log('feedback error modal?????');
-		//console.log(Observable.ErrorModalOkayClicked.value);
-		//debugger;
-		/*if(ErrorModal.okClicked()){
-			console.log('true Login.js');
-			Observable.onError.value = true;
-			debugger;
-			busy.deactivate();
-		}*/
-
-		//debugger;
 	}
-	//Observable.ErrorOccured.value = false;
-	//busy.deactivate();
 }
 
 function goToRegisterPage() {
@@ -98,10 +74,7 @@ function goToRegisterPage() {
 }
 
 Observable.OnError.onValueChanged(module, function(error) {
-    //do something
     if(!error){
-	    console.log('do something');
-    	console.log(error);
     	busy.deactivate();
     }
 });
