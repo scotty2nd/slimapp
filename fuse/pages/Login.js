@@ -4,15 +4,9 @@ var Observable = require("modules/LoginObservable");
 //busy.deactivate();
 
 function click() {
-		//Observable.onError.value = false;
-		console.log('Anmelden geklickt busy aktiviert');
-		busy.activate();
-		//Observable.onError.value = false;
-		/*setTimeout(function() {
-			console.log('setTimeout');
-			busy.deactivate();
-		}, 4000);*/
-		//debugger;
+	console.log('Anmelden geklickt busy aktiviert');
+	// Busy Modus Starten
+	busy.activate();
 
 	// Regex um auf gültige Email Adressen zu prüfen
     var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -28,43 +22,34 @@ function click() {
 		  	headers: { "Content-type": "application/json", "Accept": "application/json" },
 		  	body: JSON.stringify(requestObject)
 	  	}).then(function(response) {
-	  		// Get the HTTP status code
-	  		// Is response.status in the 200-range?
-	    	status = response.status;
-			response_ok = response.ok;
+	    	status = response.status; // Get the HTTP status code
+			response_ok = response.ok; // Is response.status in the 200-range?
 
-			return response.json();    // This returns a promise
+			return response.json(); // This returns a promise
 	  	}).then(function(responseObject) {
 		    // Do something with the result
-		    // Prüfe ob ID und der API Kkey gefüllt ist sowie kein Fehler existiert 
-		    if(responseObject.id != "" && responseObject.apikey != "" && responseObject.error == false){
-	    		Customer.addIdentifier(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey);
-	    		// Weiterleiten auf Home Seite
-	    		router.push("home");
+		    if(responseObject.id != "" && responseObject.apikey != "" && responseObject.error == false){ // Prüfe ob ID und der API Kkey gefüllt ist sowie kein Fehler existiert 
+	    		Customer.addIdentifier(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey); // ID und API Key abspeichern
+	    		
+	    		router.push("home"); // Weiterleiten auf Home Seite
 
-	    		busy.deactivate();
+	    		busy.deactivate(); // Busy Modus beenden
 
-			    // Reset Fields
-			    Observable.Username.value = '';
-			    Observable.Password.value = '';
+			    Observable.Username.value = '';  // Reset Field
+			    Observable.Password.value = '';  // Reset Field
 		    }else if(responseObject.error == true){
-		    	console.log('response error');
-	    		// Error Modal zeigen
-	    		Observable.OnError.value = true;
-				Observable.ModalMessage.value = responseObject.message;
+	    		Observable.OnError.value = true; // Error Modal einblenden
+				Observable.ModalMessage.value = responseObject.message; // Error Modal Text setzen
 		    }
 		}).catch(function(error) {
 		    // An error occurred somewhere in the Promise chain
-		    // Error Modal zeigen
-			Observable.OnError.value = true;
-			Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten.";
+			Observable.OnError.value = true; // Error Modal einblenden
+			Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten."; // Error Modal Text setzen
 		});
 	}else{
-		console.log('email adresse ungültig');
 		// Email Adresse ist ungültig 
-		// Error Modal zeigen
-		Observable.OnError.value = true;
-		Observable.ModalMessage.value = "Ungültige E-Mail-Adresse";
+		Observable.OnError.value = true; // Error Modal einblenden
+		Observable.ModalMessage.value = "Ungültige E-Mail-Adresse"; // Error Modal Text setzen
 	}
 }
 
@@ -73,9 +58,9 @@ function goToRegisterPage() {
     router.push("register");
 }
 
-Observable.OnError.onValueChanged(module, function(error) {
+Observable.OnError.onValueChanged(module, function(error) { // Prüft ob sich OnError Observable geändert hat
     if(!error){
-    	busy.deactivate();
+    	busy.deactivate(); 
     }
 });
 

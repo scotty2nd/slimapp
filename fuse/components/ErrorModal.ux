@@ -29,30 +29,10 @@
 	</WhileFalse>
 
 	<JavaScript>
-		/*var Observable = require("modules/LoginObservable");
-
-		function ok() {
-			console.log('ok clicked');
-			busy.deactivate();
-			return Observable.onError.value = true;
-		}
-
-		module.exports = {
-			onError: Observable.onError,
-
-			ok: ok
-		};*/
-
 		var Observable = require("modules/LoginObservable");
 
 		function ok() {
-			console.log('ok clicked error modal ux');
-			Observable.OnError.value = false;
-			//Observable.ErrorModalOkayClicked.value = true;
-			//debugger;
-			//return Observable.onError.value = true;
-			//console.log(ErrorTest.clicked123());
-			//return Observable.onError.value = true;
+			Observable.OnError.value = false; // Error Modal ausblenden
 		}
 
 		module.exports = {
