@@ -2,7 +2,7 @@ var identifier = [
     {
         error: false,
         message: "Kontroll Eintrag",
-        id: 1,
+        id: "1 Kontrolle Initial",
         apikey: "1238cf96c359e74065035206af06b123"
     }
 ];
@@ -68,7 +68,7 @@ function clearIdentifier() {
             {
                 error: false,
                 message: "Kontroll Eintrag Gelöscht",
-                id: 2,
+                id: "2 Kontrolle Logout",
                 apikey: "1238cf96c359e74065035206af06b123"
             }];
             resolve();

@@ -7,21 +7,22 @@
 		<BottomBarBackground Dock="Bottom" />
 
 		<Grid Rows="1*,1*">
-			<!--<StackPanel Alignment="VerticalCenter">
-				<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
-			</StackPanel>-->
+			<Panel>
+	            <StackPanel Alignment="VerticalCenter">
+					<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
 
-			<!-- Nur zur Kontrolle -->
-			<StackPanel Alignment="HorizontalCenter">
-            	<Text>ShowOverlay: </Text>
-            	<Text Value="{ShowOverlay}" />
-            	<Text>On Error: </Text>
-            	<Text Value="{OnError}" />
-                <Each Items="{Identifier}">
-                    <Button Text="{id}" />
-                </Each>
-            </StackPanel>
-            <!-- Wird später entfernt -->
+	            	<Text TextAlignment="Center">Show Overlay: </Text>
+	            	<Text TextAlignment="Center" Value="{ShowOverlay}" />
+	            	<Text TextAlignment="Center">Show Error Modal: </Text>
+	            	<Text TextAlignment="Center" Value="{ShowErrorModal}" />
+
+	                <Each Items="{Identifier}">
+	                	<Text TextAlignment="Center">User ID: </Text>
+	                    <Button Text="{id}" />
+	                </Each>
+	            </StackPanel>
+	            <!-- Wird später entfernt -->
+        	</Panel>
 
 			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
 				<MyTextInput PlaceholderText="Username" Value="{Username}" />
@@ -44,7 +45,7 @@
 	</WhileFalse>
  
 	<Overlay ux:Name="Overlay">
-		<LoadingIndicator ux:Name="LoadingIndicator"/>
 		<ErrorModal />
+		<LoadingIndicator ux:Name="LoadingIndicator"/>
 	</Overlay>
 </Page>

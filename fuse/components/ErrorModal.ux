@@ -17,26 +17,21 @@
 				    	<Change OkButton.Background="#a6362e" Duration="0.3" Easing="QuarticInOut" />
 				        <Scale Target="OkButtonText" Factor="0.95" Duration="0.3" Easing="QuarticInOut" />
 				    </WhilePressed>
-
-				    <!--<Clicked>
-				        <Scale Target="ErrorModal" Factor="0" Duration="0.3" Easing="QuarticInOut" />
-				   	</Clicked>-->
 				</Panel>
 			</StackPanel>
 		</DockPanel>
 	</Rectangle>
 
-	<WhileFalse Value="{OnError}">
+	<WhileFalse Value="{ShowErrorModal}">
 	    <Change ErrorModal.Width="0" Duration=".3" Easing="BounceIn" />
 	    <Change ErrorModal.Height="0" Duration=".3" Easing="BounceIn" />
-	    <!--<Change ErrorModal.Opacity="0" Duration=".3" />-->
 	</WhileFalse>
 
 	<JavaScript>
 		var Observable = require("modules/LoginObservable");
 
 		function ok() {
-			Observable.OnError.value = false; // Error Modal ausblenden
+			Observable.ShowErrorModal.value = false; // Error Modal ausblenden
 			Observable.ShowOverlay.value = false;
 		}
 

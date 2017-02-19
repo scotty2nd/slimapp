@@ -31,17 +31,19 @@ function click() {
 		    // Do something with the result
 		    if(responseObject.id != "" && responseObject.apikey != "" && responseObject.error == false){ // Prüfe ob ID und der API Kkey gefüllt ist sowie kein Fehler existiert 
 	    		Customer.addIdentifier(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey); // ID und API Key abspeichern
-	    		
-	    		router.push("home"); // Weiterleiten auf Home Seite
 
 	    		busy.deactivate(); // Loading Symbol ausblenden
+
+	    		Observable.ShowOverlay.value = false; // Overlay ausblenden
+
+	    		router.push("home"); // Weiterleiten auf Home Seite
 
 			    Observable.Username.value = '';  // Reset Field
 			    Observable.Password.value = '';  // Reset Field
 		    }else if(responseObject.error == true){
 		    	busy.deactivate(); // Loading Symbol ausblenden
 
-	    		Observable.OnError.value = true; // Error Modal einblenden
+	    		Observable.ShowErrorModal.value = true; // Error Modal einblenden
 				Observable.ModalMessage.value = responseObject.message; // Error Modal Text setzen
 		    }
 		}).catch(function(error) {
@@ -49,7 +51,7 @@ function click() {
 
 		    busy.deactivate(); // Loading Symbol ausblenden
 
-			Observable.OnError.value = true; // Error Modal einblenden
+			Observable.ShowErrorModal.value = true; // Error Modal einblenden
 			Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten."; // Error Modal Text setzen
 		});
 	}else{
@@ -57,7 +59,7 @@ function click() {
 
 		busy.deactivate(); // Loading Symbol ausblenden
 
-		Observable.OnError.value = true; // Error Modal einblenden
+		Observable.ShowErrorModal.value = true; // Error Modal einblenden
 		Observable.ModalMessage.value = "Ungültige E-Mail-Adresse"; // Error Modal Text setzen
 	}
 }
@@ -86,12 +88,12 @@ function goToHike(arg) {
 }*/
 
 module.exports = {
-	Identifier: Customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 	Username: Observable.Username,
 	Password: Observable.Password,
-	ModalMessage: Observable.ModalMessage,
 	ShowOverlay: Observable.ShowOverlay,
-	OnError: Observable.OnError,
+	ShowErrorModal: Observable.ShowErrorModal,
+	ModalMessage: Observable.ModalMessage,
+	Identifier: Customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 
 	allLoginCredentialsEntered: Observable.allLoginCredentialsEntered,
 
