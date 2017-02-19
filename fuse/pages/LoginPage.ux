@@ -38,13 +38,8 @@
 	<WhileBusy>
 		<Change LoadingIndicator.Opacity="1" Duration=".3" />
 	</WhileBusy>
-
-	<WhileFalse Value="{ShowOverlay}">
-	    <Change Overlay.Visibility="Hidden" Duration=".3" />
-	    <Change Overlay.Opacity="0" Duration=".3" />
-	</WhileFalse>
  
-	<Overlay ux:Name="Overlay">
+	<Overlay>
 		<ErrorModal />
 		<LoadingIndicator ux:Name="LoadingIndicator"/>
 	</Overlay>
