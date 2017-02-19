@@ -4,10 +4,9 @@ var Observable = require("modules/LoginObservable");
 //busy.deactivate();
 
 function click() {
-	console.log('Anmelden geklickt busy aktiviert');
-	Observable.ShowOverlay.value = true;
+	Observable.ShowOverlay.value = true; // Overlay einblenden
 
-	busy.activate(); // Busy Modus Starten
+	busy.activate(); // Loading Symbol einblenden
 
     var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // Regex um auf gültige Email Adressen zu prüfen
 
