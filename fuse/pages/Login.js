@@ -5,9 +5,10 @@ var Observable = require("modules/LoginObservable");
 
 function click() {
 	console.log('Anmelden geklickt busy aktiviert');
-	// Busy Modus Starten
-	busy.activate();
-
+	Observable.ShowOverlay.value = true;
+	//debugger;
+	busy.activate(); // Busy Modus Starten
+	//debugger;
 	// Regex um auf gültige Email Adressen zu prüfen
     var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -33,21 +34,29 @@ function click() {
 	    		
 	    		router.push("home"); // Weiterleiten auf Home Seite
 
-	    		busy.deactivate(); // Busy Modus beenden
+	    		busy.deactivate(); // Loading Symbol ausblenden
 
 			    Observable.Username.value = '';  // Reset Field
 			    Observable.Password.value = '';  // Reset Field
 		    }else if(responseObject.error == true){
+		    	busy.deactivate(); // Loading Symbol ausblenden
+
 	    		Observable.OnError.value = true; // Error Modal einblenden
 				Observable.ModalMessage.value = responseObject.message; // Error Modal Text setzen
 		    }
 		}).catch(function(error) {
 		    // An error occurred somewhere in the Promise chain
+
+		    busy.deactivate(); // Loading Symbol ausblenden
+
 			Observable.OnError.value = true; // Error Modal einblenden
 			Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten."; // Error Modal Text setzen
 		});
 	}else{
-		// Email Adresse ist ungültig 
+		// Email Adresse ist ungültig
+
+		busy.deactivate(); // Loading Symbol ausblenden
+
 		Observable.OnError.value = true; // Error Modal einblenden
 		Observable.ModalMessage.value = "Ungültige E-Mail-Adresse"; // Error Modal Text setzen
 	}
@@ -58,11 +67,11 @@ function goToRegisterPage() {
     router.push("register");
 }
 
-Observable.OnError.onValueChanged(module, function(error) { // Prüft ob sich OnError Observable geändert hat
+/*Observable.OnError.onValueChanged(module, function(error) { // Prüft ob sich OnError Observable geändert hat
     if(!error){
-    	busy.deactivate(); 
+    	//busy.deactivate(); 
     }
-});
+});*/
 
 //Da kein Button mehr kann das gelöscht werden
 /*function save() {
@@ -81,7 +90,7 @@ module.exports = {
 	Username: Observable.Username,
 	Password: Observable.Password,
 	ModalMessage: Observable.ModalMessage,
-	ErrorModalOkayClicked: Observable.ErrorModalOkayClicked,
+	ShowOverlay: Observable.ShowOverlay,
 	OnError: Observable.OnError,
 
 	allLoginCredentialsEntered: Observable.allLoginCredentialsEntered,

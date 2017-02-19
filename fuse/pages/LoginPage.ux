@@ -7,17 +7,19 @@
 		<BottomBarBackground Dock="Bottom" />
 
 		<Grid Rows="1*,1*">
-			<StackPanel Alignment="VerticalCenter">
+			<!--<StackPanel Alignment="VerticalCenter">
 				<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
-			</StackPanel>
+			</StackPanel>-->
 
 			<!-- Nur zur Kontrolle -->
-			<StackPanel>
+			<StackPanel Alignment="HorizontalCenter">
+            	<Text>ShowOverlay: </Text>
+            	<Text Value="{ShowOverlay}" />
+            	<Text>On Error: </Text>
+            	<Text Value="{OnError}" />
                 <Each Items="{Identifier}">
                     <Button Text="{id}" />
                 </Each>
-            	<Text>On Error: </Text>
-            	<Text Value="{OnError}" />
             </StackPanel>
             <!-- Wird später entfernt -->
 
@@ -33,12 +35,16 @@
 
 	<Busy ux:Name="busy" IsActive="false" />
 	<WhileBusy>
-		<Change Overlay.Opacity="1" Duration=".3" />
-		<Change Overlay.Visibility="Visible" Duration=".3" />
+		<Change LoadingIndicator.Opacity="1" Duration=".3" />
 	</WhileBusy>
+
+	<WhileFalse Value="{ShowOverlay}">
+	    <Change Overlay.Visibility="Hidden" Duration=".3" />
+	    <Change Overlay.Opacity="0" Duration=".3" />
+	</WhileFalse>
  
 	<Overlay ux:Name="Overlay">
+		<LoadingIndicator ux:Name="LoadingIndicator"/>
 		<ErrorModal />
-		<LoadingIndicator />
 	</Overlay>
 </Page>

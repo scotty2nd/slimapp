@@ -17,6 +17,10 @@
 				    	<Change OkButton.Background="#a6362e" Duration="0.3" Easing="QuarticInOut" />
 				        <Scale Target="OkButtonText" Factor="0.95" Duration="0.3" Easing="QuarticInOut" />
 				    </WhilePressed>
+
+				    <!--<Clicked>
+				        <Scale Target="ErrorModal" Factor="0" Duration="0.3" Easing="QuarticInOut" />
+				   	</Clicked>-->
 				</Panel>
 			</StackPanel>
 		</DockPanel>
@@ -33,6 +37,7 @@
 
 		function ok() {
 			Observable.OnError.value = false; // Error Modal ausblenden
+			Observable.ShowOverlay.value = false;
 		}
 
 		module.exports = {
