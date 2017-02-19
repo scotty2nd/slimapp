@@ -1,5 +1,5 @@
 <Panel ux:Class="ErrorModal" Layer="Overlay">
-	<Rectangle ux:Name="ErrorModal" Color="#cc4339" Width="100%" MaxWidth="400" Height="160" Alignment="VerticalCenter">
+	<Rectangle ux:Name="ErrorModal" Color="#cc4339" Width="100%" MaxWidth="400" Height="160" Alignment="VerticalCenter" ClipToBounds="True">
 
 		<DockPanel>
 			<StackPanel Dock="Top" Margin="20, 20, 20, 20">
@@ -25,7 +25,7 @@
 	<WhileFalse Value="{OnError}">
 	    <Change ErrorModal.Width="0" Duration=".3" Easing="BounceIn" />
 	    <Change ErrorModal.Height="0" Duration=".3" Easing="BounceIn" />
-	    <Change ErrorModal.Opacity="0" Duration=".3" />
+	    <!--<Change ErrorModal.Opacity="0" Duration=".3" />-->
 	</WhileFalse>
 
 	<JavaScript>
