@@ -6,11 +6,10 @@ var Observable = require("modules/LoginObservable");
 function click() {
 	console.log('Anmelden geklickt busy aktiviert');
 	Observable.ShowOverlay.value = true;
-	//debugger;
+
 	busy.activate(); // Busy Modus Starten
-	//debugger;
-	// Regex um auf gültige Email Adressen zu prüfen
-    var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // Regex um auf gültige Email Adressen zu prüfen
 
 	if(regex.test(Observable.Username.value)){
 		// Email Adresse ist eingegeben und gültig
