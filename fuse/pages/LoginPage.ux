@@ -11,14 +11,26 @@
 	            <StackPanel Alignment="VerticalCenter">
 					<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
 
-	            	<Text TextAlignment="Center">Show Overlay: </Text>
-	            	<Text TextAlignment="Center" Value="{ShowOverlay}" />
-	            	<Text TextAlignment="Center">Show Error Modal: </Text>
-	            	<Text TextAlignment="Center" Value="{ShowErrorModal}" />
+	            	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
+		            	<Text TextAlignment="Center">Show Overlay: </Text>
+	            		<Text TextAlignment="Center" Value="{ShowOverlay}" />
+	            	</StackPanel>
+
+	            	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
+		            	<Text TextAlignment="Center">Show Loading Indicator: </Text>
+		            	<Text TextAlignment="Center" Value="{ShowLoadingIndicator}" />
+	            	</StackPanel>
+
+	            	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
+		            	<Text TextAlignment="Center">Show Error Modal: </Text>
+		            	<Text TextAlignment="Center" Value="{ShowErrorModal}" />
+	            	</StackPanel>
 
 	                <Each Items="{Identifier}">
-	                	<Text TextAlignment="Center">User ID: </Text>
-	                    <Button Text="{id}" />
+	                	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
+		                	<Text TextAlignment="Center">User ID: </Text>
+		                    <Button Text="{id}" />
+	                	</StackPanel>
 	                </Each>
 	            </StackPanel>
 	            <!-- Wird später entfernt -->
@@ -33,14 +45,9 @@
 
 		<BottomButton Text="Anmelden" Dock="Bottom" Clicked="{click}" IsEnabled="{allLoginCredentialsEntered}"/>
 	</DockPanel>
-
-	<Busy ux:Name="busy" IsActive="false" />
-	<WhileBusy>
-		<Change LoadingIndicator.Opacity="1" Duration=".3" />
-	</WhileBusy>
  
 	<Overlay>
 		<ErrorModal />
-		<LoadingIndicator ux:Name="LoadingIndicator"/>
+		<LoadingIndicator />
 	</Overlay>
 </Page>

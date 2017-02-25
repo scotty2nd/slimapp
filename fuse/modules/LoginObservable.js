@@ -4,6 +4,7 @@ var Username = Observable("");
 var Password = Observable("");
 var ModalMessage = Observable("");
 var ShowOverlay = Observable(false);
+var ShowLoadingIndicator = Observable(false);
 var ShowErrorModal = Observable(false);
 
 var allLoginCredentialsEntered = Observable(function() {
@@ -16,6 +17,7 @@ module.exports = {
     Username: Username,
     Password: Password,
     ShowOverlay: ShowOverlay,
+    ShowLoadingIndicator, ShowLoadingIndicator,
     ShowErrorModal: ShowErrorModal,
     ModalMessage: ModalMessage,
 
