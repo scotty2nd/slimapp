@@ -1,9 +1,13 @@
 var Customer = require("modules/Customer");
 var Observable = require("modules/LoginObservable");
 
+//busy.deactivate();
+
 function click() {
-	// Regex um auf gültige Email Adressen zu prüfen
-    var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	Observable.ShowOverlay.value = true; // Overlay einblenden
+	Observable.ShowLoadingIndicator.value = true; // Loading Symbol einblenden
+
+    var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // Regex um auf gültige Email Adressen zu prüfen
 
 	if(regex.test(Observable.Username.value)){
 		// Email Adresse ist eingegeben und gültig
@@ -16,38 +20,40 @@ function click() {
 		  	headers: { "Content-type": "application/json", "Accept": "application/json" },
 		  	body: JSON.stringify(requestObject)
 	  	}).then(function(response) {
-	  		// Get the HTTP status code
-	  		// Is response.status in the 200-range?
-	    	status = response.status;
-			response_ok = response.ok;
+	    	status = response.status; // Get the HTTP status code
+			response_ok = response.ok; // Is response.status in the 200-range?
 
-			return response.json();    // This returns a promise
+			return response.json(); // This returns a promise
 	  	}).then(function(responseObject) {
 		    // Do something with the result
-		    // Prüfe ob ID und der API Kkey gefüllt ist sowie kein Fehler existiert 
-		    if(responseObject.id != "" && responseObject.apikey != "" && responseObject.error == false){
-	    		Customer.addIdentifier(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey);
-	    		// Weiterleiten auf Home Seite
-	    		router.push("home");
+		    if(responseObject.id != "" && responseObject.apikey != "" && responseObject.error == false){ // Prüfe ob ID und der API Kkey gefüllt ist sowie kein Fehler existiert 
+	    		Customer.addIdentifier(responseObject.error, responseObject.message, responseObject.id, responseObject.apikey); // ID und API Key abspeichern
 
-			    // Reset Fields
-			    Observable.Username.value = '';
-			    Observable.Password.value = '';
+	    		Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
+	    		Observable.ShowOverlay.value = false; // Overlay ausblenden
+
+	    		router.push("home"); // Weiterleiten auf Home Seite
+
+			    Observable.Username.value = '';  // Reset Field
+			    Observable.Password.value = '';  // Reset Field
 		    }else if(responseObject.error == true){
-	    		// Error Modal zeigen
-	    		Observable.onError.value = false;
-				Observable.ModalMessage.value = responseObject.message;
+		    	Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
+	    		Observable.ShowErrorModal.value = true; // Error Modal einblenden
+				Observable.ModalMessage.value = responseObject.message; // Error Modal Text setzen
 		    }
 		}).catch(function(error) {
 		    // An error occurred somewhere in the Promise chain
-		    // Error Modal zeigen
-			Observable.onError.value = false;
-			Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten.";
+
+		    Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
+			Observable.ShowErrorModal.value = true; // Error Modal einblenden
+			Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten."; // Error Modal Text setzen
 		});
 	}else{
-		// Email Adresse ist ungültig Error Modal zeigen
-		Observable.onError.value = false;
-		Observable.ModalMessage.value = "Ungültige E-Mail-Adresse";
+		// Email Adresse ist ungültig
+
+		Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
+		Observable.ShowErrorModal.value = true; // Error Modal einblenden
+		Observable.ModalMessage.value = "Ungültige E-Mail-Adresse"; // Error Modal Text setzen
 	}
 }
 
@@ -55,6 +61,12 @@ function goToRegisterPage() {
 	console.log('gotoRegsiter')
     router.push("register");
 }
+
+/*Observable.OnError.onValueChanged(module, function(error) { // Prüft ob sich OnError Observable geändert hat
+    if(!error){
+    	//busy.deactivate(); 
+    }
+});*/
 
 //Da kein Button mehr kann das gelöscht werden
 /*function save() {
@@ -69,11 +81,13 @@ function goToHike(arg) {
 }*/
 
 module.exports = {
-	Identifier: Customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 	Username: Observable.Username,
 	Password: Observable.Password,
+	ShowOverlay: Observable.ShowOverlay,
+	ShowLoadingIndicator: Observable.ShowLoadingIndicator,
+	ShowErrorModal: Observable.ShowErrorModal,
 	ModalMessage: Observable.ModalMessage,
-	onError: Observable.onError,
+	Identifier: Customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 
 	allLoginCredentialsEntered: Observable.allLoginCredentialsEntered,
 

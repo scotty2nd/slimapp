@@ -1,0 +1,15 @@
+<Panel ux:Class="LoadingIndicator" Layer="Overlay">
+	<Circle ux:Name="RotatingStroke" Width="50" Height="50" StartAngleDegrees="-45" EndAngleDegrees="45">
+		<Stroke Width="2" Color="#fff" />
+	</Circle>
+
+	<Circle Color="#fff" Width="20" Height="20" />
+
+	<WhileFalse>
+		<Spin Target="RotatingStroke" Frequency="1" />
+	</WhileFalse>
+
+	<WhileFalse Value="{ShowLoadingIndicator}">
+	    <Change this.Opacity="1" />
+	</WhileFalse>
+</Panel>
