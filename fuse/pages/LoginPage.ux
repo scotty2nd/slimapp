@@ -36,15 +36,14 @@
 	            </StackPanel>
            	</Panel>
            	<!-- Wird später entfernt -->
-
 			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
 				<MyTextInput PlaceholderText="Username" Value="{Username}" />
 				<MyTextInput PlaceholderText="Password" IsPassword="true" Value="{Password}" />
-				<Button Text="go to register page" Clicked="{goToRegisterPage}" />
+				<Button Text="Neues Konto erstellen" Clicked="{goToRegisterPage}" />
 			</StackPanel>
 		</Grid>
 
-		<BottomButton Text="Anmelden" Dock="Bottom" Clicked="{click}" IsEnabled="{allLoginCredentialsEntered}"/>
+		<BottomButton Text="Anmelden" Dock="Bottom" Clicked="{login}" IsEnabled="{allLoginCredentialsEntered}"/>
 	</DockPanel>
  
 	<Overlay>

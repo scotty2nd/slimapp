@@ -24,7 +24,7 @@
 	</WhileFalse>
 
 	<JavaScript>
-		var Observable = require("modules/LoginObservable");
+		var Observable = require("modules/Observable");
 
 		function ok() {
 			Observable.ShowErrorModal.value = false; // Error Modal ausblenden

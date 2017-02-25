@@ -1,5 +1,5 @@
 var Customer = require("modules/Customer");
-var Observable = require("modules/LoginObservable");
+var Observable = require("modules/Observable");
 var LoginObservable = require("FuseJS/Observable");
 
 var Username = LoginObservable("");
@@ -7,11 +7,11 @@ var Password = LoginObservable("");
 
 var allLoginCredentialsEntered = LoginObservable(function() {
 	var credentials = Username.value != "" && Password.value != "";
-	console.log('are credentials valid: ' + credentials);
+	//console.log('are credentials valid: ' + credentials);
 	return credentials;
 });
 
-function click() {
+function login() {
 	Observable.ShowOverlay.value = true; // Overlay einblenden
 	Observable.ShowLoadingIndicator.value = true; // Loading Symbol einblenden
 
@@ -51,14 +51,12 @@ function click() {
 		    }
 		}).catch(function(error) {
 		    // An error occurred somewhere in the Promise chain
-
 		    Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
 			Observable.ShowErrorModal.value = true; // Error Modal einblenden
 			Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten."; // Error Modal Text setzen
 		});
 	}else{
 		// Email Adresse ist ungültig
-
 		Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
 		Observable.ShowErrorModal.value = true; // Error Modal einblenden
 		Observable.ModalMessage.value = "Ungültige E-Mail-Adresse"; // Error Modal Text setzen
@@ -69,12 +67,6 @@ function goToRegisterPage() {
 	console.log('gotoRegsiter')
     router.push("register");
 }
-
-/*Observable.OnError.onValueChanged(module, function(error) { // Prüft ob sich OnError Observable geändert hat
-    if(!error){
-    	//busy.deactivate(); 
-    }
-});*/
 
 //Da kein Button mehr kann das gelöscht werden
 /*function save() {
@@ -98,6 +90,6 @@ module.exports = {
 	Identifier: Customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 
 	allLoginCredentialsEntered: allLoginCredentialsEntered,
-	click: click,
+	login: login,
 	goToRegisterPage: goToRegisterPage
 };
