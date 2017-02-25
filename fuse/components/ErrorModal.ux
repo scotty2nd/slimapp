@@ -1,30 +1,26 @@
-<Panel ux:Class="ErrorModal" Layer="Overlay">
-	<Rectangle ux:Name="ErrorModal" Color="#cc4339" Width="100%" MaxWidth="400" Height="160" Alignment="VerticalCenter" ClipToBounds="True">
+<Panel ux:Class="ErrorModal" Layer="Overlay" Color="#cc4339" Width="100%" MaxWidth="400" Alignment="VerticalCenter" ClipToBounds="True">
+	<DockPanel>
+		<StackPanel Dock="Top" Margin="20, 20, 20, 20">
+			<Text TextColor="#fff" Font="MyriadProSemibold" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10">Oops! Ein Fehler ist aufgetreten.</Text>
+			<Text Value="{ModalMessage}" TextColor="#fff" FontSize="14" TextAlignment="Center" TextWrapping="Wrap" />
+		</StackPanel>
 
-		<DockPanel>
-			<StackPanel Dock="Top" Margin="20, 20, 20, 20">
-				<Text TextColor="#fff" Font="MyriadProSemibold" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10">Oops! Ein Fehler ist aufgetreten.</Text>
-				<Text Value="{ModalMessage}" TextColor="#fff" FontSize="14" TextAlignment="Center" TextWrapping="Wrap" />
-			</StackPanel>
+		<StackPanel Dock="Bottom" Height="62">
+			<Rectangle Width="100%" Height="1" Color="#99352d"/>
+			<Panel ux:Name="OkButton" HitTestMode="LocalBounds" Background="#b73c33" Padding="20" Clicked="{ok}">
+			    <string ux:Property="Text" />
+			    <Text ux:Name="OkButtonText" Color="#fff" Font="MyriadProBold" FontSize="16" Alignment="Center">OK</Text>
 
-			<StackPanel Dock="Bottom" Height="62">
-				<Rectangle Width="100%" Height="1" Color="#99352d"/>
-				<Panel ux:Name="OkButton" HitTestMode="LocalBounds" Background="#b73c33" Padding="20" Clicked="{ok}">
-				    <string ux:Property="Text" />
-				    <Text ux:Name="OkButtonText" Color="#fff" Font="MyriadProBold" FontSize="16" Alignment="Center">OK</Text>
-
-				    <WhilePressed>
-				    	<Change OkButton.Background="#a6362e" Duration="0.3" Easing="QuarticInOut" />
-				        <Scale Target="OkButtonText" Factor="0.95" Duration="0.3" Easing="QuarticInOut" />
-				    </WhilePressed>
-				</Panel>
-			</StackPanel>
-		</DockPanel>
-	</Rectangle>
+			    <WhilePressed>
+			    	<Change OkButton.Background="#a6362e" Duration="0.3" Easing="QuarticInOut" />
+			        <Scale Target="OkButtonText" Factor="0.95" Duration="0.3" Easing="QuarticInOut" />
+			    </WhilePressed>
+			</Panel>
+		</StackPanel>
+	</DockPanel>
 
 	<WhileFalse Value="{ShowErrorModal}">
-	    <Change ErrorModal.Width="0" Duration=".3" Easing="BounceIn" />
-	    <Change ErrorModal.Height="0" Duration=".3" Easing="BounceIn" />
+	    <Scale Factor="0" Duration=".3" Easing="BounceIn" />
 	</WhileFalse>
 
 	<JavaScript>
@@ -32,7 +28,7 @@
 
 		function ok() {
 			Observable.ShowErrorModal.value = false; // Error Modal ausblenden
-			Observable.ShowOverlay.value = false;
+			Observable.ShowOverlay.value = false; // Overlay ausblenden
 		}
 
 		module.exports = {
