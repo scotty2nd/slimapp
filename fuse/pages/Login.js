@@ -1,7 +1,15 @@
 var Customer = require("modules/Customer");
 var Observable = require("modules/LoginObservable");
+var LoginObservable = require("FuseJS/Observable");
 
-//busy.deactivate();
+var Username = LoginObservable("");
+var Password = LoginObservable("");
+
+var allLoginCredentialsEntered = LoginObservable(function() {
+	var credentials = Username.value != "" && Password.value != "";
+	console.log('are credentials valid: ' + credentials);
+	return credentials;
+});
 
 function click() {
 	Observable.ShowOverlay.value = true; // Overlay einblenden
@@ -9,9 +17,9 @@ function click() {
 
     var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // Regex um auf gültige Email Adressen zu prüfen
 
-	if(regex.test(Observable.Username.value)){
+	if(regex.test(Username.value)){
 		// Email Adresse ist eingegeben und gültig
-		var requestObject = {email: Observable.Username.value, password: Observable.Password.value};
+		var requestObject = {email: Username.value, password: Password.value};
 		var status = 0;
 		var response_ok = false;
 
@@ -34,8 +42,8 @@ function click() {
 
 	    		router.push("home"); // Weiterleiten auf Home Seite
 
-			    Observable.Username.value = '';  // Reset Field
-			    Observable.Password.value = '';  // Reset Field
+			    Username.value = '';  // Reset Field
+			    Password.value = '';  // Reset Field
 		    }else if(responseObject.error == true){
 		    	Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
 	    		Observable.ShowErrorModal.value = true; // Error Modal einblenden
@@ -81,16 +89,15 @@ function goToHike(arg) {
 }*/
 
 module.exports = {
-	Username: Observable.Username,
-	Password: Observable.Password,
+	Username: Username,
+	Password: Password,
 	ShowOverlay: Observable.ShowOverlay,
 	ShowLoadingIndicator: Observable.ShowLoadingIndicator,
 	ShowErrorModal: Observable.ShowErrorModal,
 	ModalMessage: Observable.ModalMessage,
 	Identifier: Customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 
-	allLoginCredentialsEntered: Observable.allLoginCredentialsEntered,
-
+	allLoginCredentialsEntered: allLoginCredentialsEntered,
 	click: click,
 	goToRegisterPage: goToRegisterPage
 };
