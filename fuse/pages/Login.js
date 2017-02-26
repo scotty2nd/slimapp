@@ -5,7 +5,7 @@ var LoginObservable = require("FuseJS/Observable");
 var Username = LoginObservable("");
 var Password = LoginObservable("");
 
-var allLoginCredentialsEntered = LoginObservable(function() {
+var allCredentialsEntered = LoginObservable(function() {
 	var credentials = Username.value != "" && Password.value != "";
 	//console.log('are credentials valid: ' + credentials);
 	return credentials;
@@ -89,7 +89,7 @@ module.exports = {
 	ModalMessage: Observable.ModalMessage,
 	Identifier: Customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 
-	allLoginCredentialsEntered: allLoginCredentialsEntered,
+	allCredentialsEntered: allCredentialsEntered,
 	login: login,
 	goToRegisterPage: goToRegisterPage
 };
