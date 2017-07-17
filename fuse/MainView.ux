@@ -1,18 +1,20 @@
 <App>
-	<iOS.StatusBarConfig Style="Light" />
+	<iOS.StatusBarConfig IsVisible="true" Animation="Slide"/>
 	<Router ux:Name="router" />
 
     <Font File="assets/font/MyriadPro-Regular.otf" ux:Global="MyriadProRegular" />
     <Font File="assets/font/MyriadPro-Semibold.otf" ux:Global="MyriadProSemibold" />
     <Font File="assets/font/MyriadPro-Bold.otf" ux:Global="MyriadProBold" />
 
-    <ClientPanel>
-        <Navigator DefaultPath="login">
+    <DockPanel>
+        <StatusBarBackground Dock="Top" />
+        <Navigator DefaultPath="test">
         	<SplashPage ux:Template="splash" router="router" />
         	<LoginPage ux:Template="login" router="router"/>
             <RegisterPage ux:Template="register" router="router" />
             <HomePage ux:Template="home" router="router" />
+            <TestPage ux:Template="test" />
         </Navigator>
-    </ClientPanel>
+    </DockPanel>
 </App>
 

@@ -1,0 +1,14 @@
+<Panel Alignment="TopCenter" Margin=" 0, 57, 0, 50" Width="15%" MaxWidth="116" ux:Class="LogoPanel">
+    <Image Width="100%">
+        <MultiDensityImageSource>
+            <FileImageSource Density="1" File="../assets/logo.png" />
+            <FileImageSource Density="2" File="../assets/logo@2x.png" />
+            <FileImageSource Density="3" File="../assets/logo@4x.png" />
+        </MultiDensityImageSource>
+    </Image>
+
+    <!-- Extra Small Smartphone View e.g. iPhone 4, 3 und 2 -->
+    <WhileWindowSize LessThan="320,480">
+    	<Change this.Margin="0, 50, 0, 0"/>
+	</WhileWindowSize>
+</Panel>

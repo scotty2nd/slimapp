@@ -1,0 +1,8 @@
+<Panel ux:Class="LoginFooter">
+    <StackPanel Alignment="Bottom">
+        <Text Color="White" Alignment="Center" Margin="0, 25, 0, 25">Konto erstellen</Text>
+        <Rectangle Width="100%" Height="50" Color="Green">
+            <Text Alignment="Center" Color="White">Anmelden</Text>
+        </Rectangle>
+    </StackPanel>
+</Panel>
