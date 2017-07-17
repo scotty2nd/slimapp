@@ -1,8 +1,8 @@
-<Page ux:Class="TestPage" Background="Green">
+<Page ux:Class="TestPage">
     <Image ux:Name="BackgroundImage" Url="http://app.iauftrag.de/res/images/mobile/loginBackground.jpg" Layer="Background" StretchMode="UniformToFill" />
 
     <!-- Default View -->
-    <Panel ux:Name="PortraitContentPanel" Background="#0008">
+    <Panel ux:Name="PortraitContent" Background="#0008">
         <LogoPanel />
         <LoginFields />
         <LoginFooter />
@@ -11,8 +11,8 @@
     <!-- Smartphone Landscape View -->
     <WhileWindowLandscape>
         <WhileWindowSize LessThan="1023,99999">
-            <Change PortraitContentPanel.Visibility="Collapsed"/>
-            <Panel ux:Name="LandscapeContentPanel" Background="#0008">
+            <Change PortraitContent.Visibility="Collapsed"/>
+            <Panel Background="#0008">
                 <ScrollView>
                     <Grid Rows="auto, auto, auto">
                         <LogoPanel />
@@ -25,8 +25,6 @@
     </WhileWindowLandscape>
 
     <WhileKeyboardVisible>
-        <Move Target="PortraitContentPanel" RelativeTo="Keyboard" Y="-1" Duration="0.26" Easing="CubicInOut"/>
-        <Move Target="LandscapeContentPanel" RelativeTo="Keyboard" Y="-1" Duration="0.26" Easing="CubicInOut"/>
-        <Move Target="BackgroundImage" RelativeTo="Keyboard" Y="-1" Duration="0.26" Easing="CubicInOut" />
+        <Move Target="this" RelativeTo="Keyboard" Y="-1" Duration="0.26" Easing="CubicInOut"/>
     </WhileKeyboardVisible>
 </Page>

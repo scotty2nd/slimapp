@@ -1,4 +1,4 @@
-<App>
+<App Background="Green">
 	<iOS.StatusBarConfig IsVisible="true" Animation="Slide"/>
 	<Router ux:Name="router" />
 
@@ -7,7 +7,7 @@
     <Font File="assets/font/MyriadPro-Bold.otf" ux:Global="MyriadProBold" />
 
     <DockPanel>
-        <StatusBarBackground Dock="Top" />
+        <StatusBarBackground Dock="Top" Background="#fff"/>
         <Navigator DefaultPath="test">
         	<SplashPage ux:Template="splash" router="router" />
         	<LoginPage ux:Template="login" router="router"/>
