@@ -1,7 +1,7 @@
 <Panel ux:Class="LoginFields">
-    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 25, 50, 25">
+    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0" Padding="0, 25, 0, 25" Background="Blue">
         <Panel Margin="0, 0, 0, 35">
-            <TextInput Padding="0, 0, 0, 10" TextColor="#fff" PlaceholderColor="#fff8" PlaceholderText="Email Adresse hier eingeben" InputHint="Email" AutoCorrectHint="Disabled" AutoCapitalizationHint="None">
+            <TextInput Padding="0, 0, 0, 10" TextColor="#fff" PlaceholderColor="#fff8" PlaceholderText="Email Adresse hier eingeben" InputHint="Email" AutoCapitalizationHint="None">
                 <Rectangle Layer="Background" Height="1" Background="#fff8" Alignment="Bottom"></Rectangle>
             </TextInput>
         </Panel>

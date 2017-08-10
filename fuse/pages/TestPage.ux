@@ -25,6 +25,6 @@
     </WhileWindowLandscape>
 
     <WhileKeyboardVisible>
-        <Move Target="this" RelativeTo="Keyboard" Y="-1" Duration="0.26" Easing="CubicInOut"/>
+        <Move Target="this" RelativeTo="Keyboard" Y="-1" Duration="0.27"/>
     </WhileKeyboardVisible>
 </Page>
