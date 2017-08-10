@@ -24,7 +24,8 @@
         </WhileWindowSize>
     </WhileWindowLandscape>
 
-    <WhileKeyboardVisible>
-        <Move Target="this" RelativeTo="Keyboard" Y="-1" Duration="0.27"/>
-    </WhileKeyboardVisible>
+    <!-- Extra Small Smartphone View e.g. iPhone 4, 3 und 2 -->
+    <WhileWindowSize LessThan="320,480">
+        <Change this.Margin="0, 70, 0, 0"/>
+    </WhileWindowSize>
 </Page>

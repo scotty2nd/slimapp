@@ -1,13 +1,14 @@
-<Panel ux:Class="LoginFields">
-    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0" Padding="0, 25, 0, 25" Background="Blue">
-        <Panel Margin="0, 0, 0, 35">
-            <TextInput Padding="0, 0, 0, 10" TextColor="#fff" PlaceholderColor="#fff8" PlaceholderText="Email Adresse hier eingeben" InputHint="Email" AutoCapitalizationHint="None">
+<Panel ux:Class="LoginFields" Margin="0, 0, 0, 0">
+    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
+        <MyTextInput LabelText="Email-Adresse" PlaceholderText="Email-Adresse eingeben" InputHint="Email" AutoCapitalizationHint="None" Value="{Username}" />
+        <!--<Panel Margin="0, 15, 0, 15" Background="Black">
+            <TextInput Padding="0, 10, 0, 10" TextColor="#fff" PlaceholderColor="#fff8" PlaceholderText="Email Adresse hier eingeben" InputHint="Email" AutoCapitalizationHint="None">
                 <Rectangle Layer="Background" Height="1" Background="#fff8" Alignment="Bottom"></Rectangle>
             </TextInput>
-        </Panel>
+        </Panel>-->
 
-        <Panel Margin="0, 0, 0, 35">
-            <TextInput Padding="0, 0, 0, 10" TextColor="#fff" PlaceholderColor="#fff8" PlaceholderText="Passwort hier eingeben" IsPassword="true" ActionStyle="Send" AutoCorrectHint="Disabled" AutoCapitalizationHint="None">
+        <Panel Margin="0, 0, 0, 15" Background="Green">
+            <TextInput Padding="0, 10, 0, 10" TextColor="#fff" PlaceholderColor="#fff8" PlaceholderText="Passwort hier eingeben" IsPassword="true" ActionStyle="Send" AutoCorrectHint="Disabled" AutoCapitalizationHint="None">
                  <Rectangle Layer="Background" Height="1" Background="#fff8" Alignment="Bottom"></Rectangle>
             </TextInput>
         </Panel>
@@ -16,4 +17,9 @@
             <Text>Panel</Text>
         </Panel>
     </StackPanel>
+
+    <!-- Extra Small Smartphone View e.g. iPhone 4, 3 und 2 -->
+    <!--<WhileWindowSize LessThan="320,480">
+        <Change this.Margin="0, 70, 0, 0"/>
+    </WhileWindowSize>-->
 </Panel>
