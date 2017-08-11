@@ -27,8 +27,6 @@
 				<Text Alignment="HorizontalCenter" Opacity=".5" />
 			</StackPanel>
 		</Grid>
-
-		<BottomButton Text="Registrieren" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
 		
 	</DockPanel>
 </Page>
