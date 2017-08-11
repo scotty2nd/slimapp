@@ -7,7 +7,7 @@
 	</Image>
 
 	<!-- Wird später entfernt -->
-	<Panel Alignment="TopCenter">
+	<!--<Panel Alignment="TopCenter">
         <StackPanel Alignment="VerticalCenter">
         	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
             	<Text TextAlignment="Center" TextColor="#fff">Show Overlay: </Text>
@@ -31,7 +31,7 @@
             	</StackPanel>
             </Each>
         </StackPanel>
-   	</Panel>
+   	</Panel>-->
    	<!-- Wird später entfernt -->
 
     <!-- Default View -->
@@ -92,9 +92,55 @@
             <Panel Background="#0008">
                 <ScrollView>
                     <Grid Rows="auto, auto, auto">
-                        <!--<LogoPanel />
-                        <LoginFields />
-                        <LoginFooter />-->
+
+            	    	<Panel ux:Name="LogoWrapperLandscape" Alignment="TopCenter" Margin=" 0, 100, 0, 50" Width="15%" MaxWidth="116">
+					        <Image Width="100%">
+					            <MultiDensityImageSource>
+					                <FileImageSource Density="1" File="../assets/logo.png" />
+					                <FileImageSource Density="2" File="../assets/logo@2x.png" />
+					                <FileImageSource Density="3" File="../assets/logo@4x.png" />
+					            </MultiDensityImageSource>
+					        </Image>
+
+					        <!-- Extra Small Smartphone View e.g. iPhone 4, 3 und 2 -->
+					        <WhileWindowSize LessThan="320,480">
+					            <Change LogoWrapperLandscape.Margin="0, 45, 0, 0"/>
+					        </WhileWindowSize>
+						</Panel>
+
+						<Panel Margin="0, 0, 0, 0">
+						    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
+
+						    	<TextField TextColor="#fff" CaretColor="#fff" Label="E-Mail-Adresse" PlaceholderColor="#fff8" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Username}" />
+
+					            <TextField Padding="0, 30, 0, 10" TextColor="#fff" CaretColor="#fff" Label="Passwort" PlaceholderColor="#fff8" PlaceholderText="Passwort eingeben" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}">
+				            	    <TextInputActionTriggered>
+								         <Callback Handler="{login}" />
+								    </TextInputActionTriggered>
+					            </TextField>
+
+						        <Panel>
+						            <Text Color="#fff" FontSize="14" Font="MyriadProRegular" Alignment="Right" Margin="0, 15, 0, 5">Passwort vergessen?</Text>
+						        </Panel>
+						    </StackPanel>
+						</Panel>
+
+						<Panel>
+						    <StackPanel Alignment="Bottom">
+						        <Text Color="#fff" Font="MyriadProRegular" Alignment="Center" Margin="0, 25, 0, 25">Kostenlos registrieren</Text>
+						        <Rectangle ux:Name="LoginButtonLandscape" Width="100%" Height="60" Color="#4080ff" HitTestMode="LocalBounds" Clicked="{login}" IsEnabled="{allCredentialsEntered}">
+						            <Text Alignment="Center" Color="White" Font="MyriadProSemibold">Login</Text>
+						                <WhilePressed>
+									    	<Change LoginButtonLandscape.Color="#138" Duration="0.3" />
+									    </WhilePressed>
+
+									    <WhileDisabled>
+									    	<Change LoginButtonLandscape.Color="#ccc" Duration="0.3" />
+									    </WhileDisabled>
+						        </Rectangle>
+						    </StackPanel>
+						</Panel>
+
                     </Grid>
                 </ScrollView>
             </Panel>
