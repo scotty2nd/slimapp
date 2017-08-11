@@ -1,4 +1,4 @@
-<Panel ux:Class="BottomButton" HitTestMode="LocalBounds" Background="#4080ff" Padding="20">
+<Panel ux:Class="BottomButton" HitTestMode="LocalBounds" Background="#4080ff" Padding="20" Height="60">
     <string ux:Property="Text" />
     <Text ux:Name="ButtonText" Value="{ReadProperty Text}" TextColor="#fff" Alignment="Center" />
 

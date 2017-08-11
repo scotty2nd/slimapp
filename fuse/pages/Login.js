@@ -12,6 +12,7 @@ var allCredentialsEntered = LoginObservable(function() {
 });
 
 function login() {
+	//console.log('login clicked');
 	Observable.ShowOverlay.value = true; // Overlay einblenden
 	Observable.ShowLoadingIndicator.value = true; // Loading Symbol einblenden
 
