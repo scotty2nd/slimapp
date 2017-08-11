@@ -1,0 +1,20 @@
+<TextInput ux:Class="TextField" Padding="0, 10, 0, 10" Font="MyriadProRegular">
+	<string ux:Property="Label" />
+	<Text ux:Name="LabelText" Value="{ReadProperty Label}" TextColor="#fff" Opacity="0" />
+	
+	<Panel Height="1" Alignment="Bottom" Padding="0, 10, 0, 0">
+	    <Rectangle ux:Name="Stroke" Height="1" Background="#fff8" />
+	    <Rectangle ux:Name="StrokeOnFocus" Height="1" Width="0%" Alignment="BottomLeft" Background="#4080ff" Layer="Overlay" Opacity="0" />
+	</Panel>
+
+	<WhileFocused>
+		<Change StrokeOnFocus.Opacity="1" Duration=".4" />
+		<Change StrokeOnFocus.Width="100%" Duration=".4" />
+		<Change Stroke.Opacity="0" Duration=".5" />
+	</WhileFocused>
+
+    <WhileContainsText>
+    	<Move Target="LabelText" Y="-22" Duration=".2" />
+    	<Change LabelText.Opacity="1" Duration=".1" />
+    </WhileContainsText>
+</TextInput>

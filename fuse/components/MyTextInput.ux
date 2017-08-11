@@ -1,9 +1,17 @@
-	<TextInput ux:Class="MyTextInput" PlaceholderColor="#ccc" Padding="5" Margin="0,0,0,15">
-	    <Rectangle Height="2" Alignment="Bottom">
-	        <SolidColor Color="#ccc"/>
-	    </Rectangle>
+<TextInput ux:Class="MyTextInput" PlaceholderColor="#ccc" Padding="5" Margin="0,0,0,15">
+	<string ux:Property="LabelText" />
+	<Text ux:Name="Label" Value="{ReadProperty LabelText}" TextColor="#ccc" />
+	<Panel>
+	    <Rectangle ux:Name="Stroke" Height="2" Alignment="Bottom" Background="#ccc" />
+	    <Rectangle ux:Name="StrokeOnFocus" Height="2" Width="0%" Alignment="BottomLeft" Background="#4080ff" Layer="Overlay" Opacity="0" />
+	</Panel>
 
-	    <!--<Rectangle Layer="Background">
-	        <SolidColor Color="#fff" />
-	    </Rectangle>-->
-	</TextInput>
+    <WhileFocused>
+    	<Change StrokeOnFocus.Opacity="1" Duration=".3" />
+    	<Change StrokeOnFocus.Width="100%" Duration=".3" Easing="BackIn" />
+    </WhileFocused>
+
+    <WhileContainsText>
+    	<Move Target="Label" Y="-22" Duration=".3" />
+    </WhileContainsText>
+</TextInput>

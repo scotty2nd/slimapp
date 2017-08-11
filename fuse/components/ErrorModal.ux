@@ -1,11 +1,12 @@
 <Panel ux:Class="ErrorModal" Layer="Overlay" Color="#cc4339" Width="100%" MaxWidth="400" Alignment="VerticalCenter" ClipToBounds="True">
 	<DockPanel>
 		<StackPanel Dock="Top" Margin="20, 20, 20, 20">
-			<Text TextColor="#fff" Font="MyriadProSemibold" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10">Oops! Ein Fehler ist aufgetreten.</Text>
+			<Text TextColor="#fff" Font="MyriadProSemibold" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10">Oops! </Text>
+			<Text TextColor="#fff" Font="MyriadProSemibold" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10">Ein Fehler ist aufgetreten.</Text>
 			<Text Value="{ModalMessage}" TextColor="#fff" FontSize="14" TextAlignment="Center" TextWrapping="Wrap" />
 		</StackPanel>
 
-		<StackPanel Dock="Bottom" Height="62">
+		<StackPanel Dock="Bottom" Height="60">
 			<Rectangle Width="100%" Height="1" Color="#99352d"/>
 			<Panel ux:Name="OkButton" HitTestMode="LocalBounds" Background="#b73c33" Padding="20" Clicked="{ok}">
 			    <string ux:Property="Text" />
@@ -24,7 +25,7 @@
 	</WhileFalse>
 
 	<JavaScript>
-		var Observable = require("modules/LoginObservable");
+		var Observable = require("modules/Observable");
 
 		function ok() {
 			Observable.ShowErrorModal.value = false; // Error Modal ausblenden
