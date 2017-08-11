@@ -6,6 +6,34 @@
 		<Blur />
 	</Image>
 
+	<!-- Wird später entfernt -->
+	<Panel Alignment="TopCenter">
+        <StackPanel Alignment="VerticalCenter">
+        	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
+            	<Text TextAlignment="Center" TextColor="#fff">Show Overlay: </Text>
+        		<Text TextAlignment="Center" TextColor="#fff" Value="{ShowOverlay}" />
+        	</StackPanel>
+
+        	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
+            	<Text TextAlignment="Center" TextColor="#fff">Show Loading Indicator: </Text>
+            	<Text TextAlignment="Center" TextColor="#fff" Value="{ShowLoadingIndicator}" />
+        	</StackPanel>
+
+        	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
+            	<Text TextAlignment="Center" TextColor="#fff">Show Error Modal: </Text>
+            	<Text TextAlignment="Center" TextColor="#fff" Value="{ShowErrorModal}" />
+        	</StackPanel>
+
+            <Each Items="{Identifier}">
+            	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
+                	<Text TextAlignment="Center" TextColor="#fff">User ID: </Text>
+                    <Button Text="{id}"/>
+            	</StackPanel>
+            </Each>
+        </StackPanel>
+   	</Panel>
+   	<!-- Wird später entfernt -->
+
     <!-- Default View -->
     <Panel ux:Name="PortraitContent" Background="#0009">
     	<Panel ux:Name="LogoWrapper" Alignment="TopCenter" Margin=" 0, 100, 0, 50" Width="15%" MaxWidth="116">
@@ -35,40 +63,10 @@
 	            </TextField>
 
 		        <Panel>
-		            <Text Color="#fff" FontSize="12" Font="MyriadProRegular" Alignment="Right" Margin="0, 15, 0, 5">Passwort vergessen?</Text>
+		            <Text Color="#fff" FontSize="14" Font="MyriadProRegular" Alignment="Right" Margin="0, 15, 0, 5">Passwort vergessen?</Text>
 		        </Panel>
 		    </StackPanel>
 		</Panel>
-
-		<!-- Wird später entfernt -->
-			<!--<Panel>
-	            <StackPanel Alignment="VerticalCenter">
-					<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
-
-	            	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
-		            	<Text TextAlignment="Center">Show Overlay: </Text>
-	            		<Text TextAlignment="Center" Value="{ShowOverlay}" />
-	            	</StackPanel>
-
-	            	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
-		            	<Text TextAlignment="Center">Show Loading Indicator: </Text>
-		            	<Text TextAlignment="Center" Value="{ShowLoadingIndicator}" />
-	            	</StackPanel>
-
-	            	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
-		            	<Text TextAlignment="Center">Show Error Modal: </Text>
-		            	<Text TextAlignment="Center" Value="{ShowErrorModal}" />
-	            	</StackPanel>
-
-	                <Each Items="{Identifier}">
-	                	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
-		                	<Text TextAlignment="Center">User ID: </Text>
-		                    <Button Text="{id}" />
-	                	</StackPanel>
-	                </Each>
-	            </StackPanel>
-           	</Panel>-->
-           	<!-- Wird später entfernt -->
 
 		<Panel>
 		    <StackPanel Alignment="Bottom">
@@ -106,55 +104,9 @@
 	<WhileKeyboardVisible>
     	<Move Target="this" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
 	</WhileKeyboardVisible>
-
-
-	<!--<DockPanel>
-		<StatusBarBackground Dock="Top" />
-		<BottomBarBackground Dock="Bottom" />-->
-
-		<!--<Grid Rows="1*,1*">-->
-			<!-- Wird später entfernt -->
-			<!--<Panel>
-	            <StackPanel Alignment="VerticalCenter">
-					<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
-
-	            	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
-		            	<Text TextAlignment="Center">Show Overlay: </Text>
-	            		<Text TextAlignment="Center" Value="{ShowOverlay}" />
-	            	</StackPanel>
-
-	            	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
-		            	<Text TextAlignment="Center">Show Loading Indicator: </Text>
-		            	<Text TextAlignment="Center" Value="{ShowLoadingIndicator}" />
-	            	</StackPanel>
-
-	            	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
-		            	<Text TextAlignment="Center">Show Error Modal: </Text>
-		            	<Text TextAlignment="Center" Value="{ShowErrorModal}" />
-	            	</StackPanel>
-
-	                <Each Items="{Identifier}">
-	                	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
-		                	<Text TextAlignment="Center">User ID: </Text>
-		                    <Button Text="{id}" />
-	                	</StackPanel>
-	                </Each>
-	            </StackPanel>
-           	</Panel>-->
-           	<!-- Wird später entfernt -->
-
-			<!--<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
-				<MyTextInput LabelText="E-Mail Adresse" Value="{Username}" />
-				<MyTextInput LabelText="Passwort" IsPassword="true" Value="{Password}" />
-				<Button Text="Neues Konto erstellen" Clicked="{goToRegisterPage}" />
-			</StackPanel>-->
-		<!--</Grid>-->
-
-		<!--<BottomButton Text="Anmelden" Dock="Bottom" Clicked="{login}" IsEnabled="{allCredentialsEntered}" Alignment="Bottom" />-->
-	<!--</DockPanel>-->
  
-	<!--<Overlay>
+	<Overlay>
 		<ErrorModal />
 		<LoadingIndicator />
-	</Overlay>-->
+	</Overlay>
 </Page>

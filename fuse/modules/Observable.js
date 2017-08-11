@@ -7,7 +7,7 @@ var ModalMessage = Observable("");
 
 module.exports = {
     ShowOverlay: ShowOverlay,
-    ShowLoadingIndicator, ShowLoadingIndicator,
+    ShowLoadingIndicator: ShowLoadingIndicator,
     ShowErrorModal: ShowErrorModal,
     ModalMessage: ModalMessage
 };
