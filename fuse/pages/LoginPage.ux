@@ -54,25 +54,25 @@
 		<Panel Margin="0, 0, 0, 0">
 		    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
 
-		    	<TextField TextColor="#fff" CaretColor="#fff" Label="E-Mail-Adresse" PlaceholderColor="#fff8" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Username}" />
+		    	<TextField ux:Name="EmailAdresseText" TextColor="#fff" CaretColor="#fff" Label="E-Mail-Adresse" PlaceholderColor="#fff8" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Username}" />
 
-	            <TextField Padding="0, 30, 0, 10" TextColor="#fff" CaretColor="#fff" Label="Passwort" PlaceholderColor="#fff8" PlaceholderText="Passwort eingeben" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}">
+	            <TextField ux:Name="PasswortText" Padding="0, 30, 0, 10" TextColor="#fff" CaretColor="#fff" Label="Passwort" PlaceholderColor="#fff8" PlaceholderText="Passwort eingeben" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}">
             	    <TextInputActionTriggered>
 				         <Callback Handler="{login}" />
 				    </TextInputActionTriggered>
 	            </TextField>
 
 		        <Panel>
-		            <Text Color="#fff" FontSize="14" Font="MyriadProRegular" Alignment="Right" Margin="0, 15, 0, 5">Passwort vergessen?</Text>
+		            <Text ux:Name="PasswortVergessenText" Color="#fff" FontSize="14" Font="MyriadProRegular" Alignment="Right" Margin="0, 15, 0, 5">Passwort vergessen?</Text>
 		        </Panel>
 		    </StackPanel>
 		</Panel>
 
 		<Panel>
 		    <StackPanel Alignment="Bottom">
-		        <Text Color="#fff" Font="MyriadProRegular" Alignment="Center" Margin="0, 25, 0, 25">Kostenlos registrieren</Text>
+		        <Text ux:Name="RegistrierenText" Color="#fff" Font="MyriadProRegular" Alignment="Center" Margin="0, 25, 0, 25">Kostenlos registrieren</Text>
 		        <Rectangle ux:Name="LoginButton" Width="100%" Height="60" Color="#4080ff" HitTestMode="LocalBounds" Clicked="{login}" IsEnabled="{allCredentialsEntered}">
-		            <Text Alignment="Center" Color="White" Font="MyriadProSemibold">Login</Text>
+		            <Text ux:Name="LoginButtonText" Alignment="Center" Color="White" Font="MyriadProSemibold">Login</Text>
 		                <WhilePressed>
 					    	<Change LoginButton.Color="#138" Duration="0.3" />
 					    </WhilePressed>
@@ -83,6 +83,17 @@
 		        </Rectangle>
 		    </StackPanel>
 		</Panel>
+
+		<WhileWindowSize GreaterThan="768,1024">
+			<Change EmailAdresseText.FontSize="24" />
+			<Change PasswortText.Padding="0, 60, 0, 10" />
+			<Change PasswortText.FontSize="24" />
+			<Change PasswortVergessenText.FontSize="18" />
+			
+		    <Change RegistrierenText.FontSize="24" />
+		    <Change LoginButton.Height="80" />
+		    <Change LoginButtonText.FontSize="24" />
+		</WhileWindowSize>
 	</Panel>
 
     <!-- Smartphone Landscape View -->
@@ -145,6 +156,17 @@
                 </ScrollView>
             </Panel>
         </WhileWindowSize>
+
+		<WhileWindowSize GreaterThan="1024,768">
+			<Change EmailAdresseText.FontSize="24" />
+			<Change PasswortText.Padding="0, 60, 0, 10" />
+			<Change PasswortText.FontSize="24" />
+			<Change PasswortVergessenText.FontSize="18" />
+			
+		    <Change RegistrierenText.FontSize="24" />
+		    <Change LoginButton.Height="80" />
+		    <Change LoginButtonText.FontSize="24" />
+		</WhileWindowSize>
 	</WhileWindowLandscape>
 
 	<WhileKeyboardVisible>

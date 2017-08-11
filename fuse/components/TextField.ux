@@ -17,4 +17,23 @@
     	<Move Target="LabelText" Y="-22" Duration=".2" />
     	<Change LabelText.Opacity="1" Duration=".1" />
     </WhileContainsText>
+
+	<WhileWindowSize GreaterThan="768,1024">
+		<Change LabelText.FontSize="24" />
+
+	    <WhileContainsText>
+	    	<Move Target="LabelText" Y="-22" Duration=".2" />
+	    </WhileContainsText>
+	</WhileWindowSize>
+
+	<WhileWindowLandscape>
+		<WhileWindowSize GreaterThan="1024,768">
+			<Change LabelText.FontSize="24" />
+		</WhileWindowSize>
+
+	    <WhileContainsText>
+	    	<Move Target="LabelText" Y="-22" Duration=".2" />
+	    	<Change LabelText.Opacity="1" Duration=".1" />
+	    </WhileContainsText>
+	</WhileWindowLandscape>
 </TextInput>
