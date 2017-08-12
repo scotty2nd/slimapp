@@ -36,126 +36,85 @@
 
     <!-- Default View -->
     <Panel ux:Name="PortraitContent" Background="#0009">
-    	<Panel ux:Name="LogoWrapper" Alignment="TopCenter" Margin=" 0, 100, 0, 50" Width="15%" MaxWidth="116">
-	        <Image Width="100%">
-	            <MultiDensityImageSource>
-	                <FileImageSource Density="1" File="../assets/logo.png" />
-	                <FileImageSource Density="2" File="../assets/logo@2x.png" />
-	                <FileImageSource Density="3" File="../assets/logo@4x.png" />
-	            </MultiDensityImageSource>
-	        </Image>
+    	<ScrollView>
+    		<Grid ux:Name="LoginGrid" MinHeight="100%">
+		    	<Panel ux:Name="LogoWrapper" Alignment="TopCenter" Margin=" 0, 75, 0, 50" Height="75">
+			        <Image>
+			            <MultiDensityImageSource>
+			                <FileImageSource Density="1" File="../assets/logo.png" />
+			                <FileImageSource Density="2" File="../assets/logo@2x.png" />
+			                <FileImageSource Density="3" File="../assets/logo@4x.png" />
+			            </MultiDensityImageSource>
+			        </Image>
+				</Panel>
 
-	        <!-- Extra Small Smartphone View e.g. iPhone 4, 3 und 2 -->
-	        <WhileWindowSize LessThan="320,480">
-	            <Change LogoWrapper.Margin="0, 45, 0, 0"/>
-	        </WhileWindowSize>
-		</Panel>
+				<Panel>
+				    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
 
-		<Panel Margin="0, 0, 0, 0">
-		    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
+				    	<TextField ux:Name="EmailAdresseText" TextColor="#fff" CaretColor="#fff" Label="E-Mail-Adresse" PlaceholderColor="#fff8" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Username}" />
 
-		    	<TextField ux:Name="EmailAdresseText" TextColor="#fff" CaretColor="#fff" Label="E-Mail-Adresse" PlaceholderColor="#fff8" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Username}" />
+			            <TextField ux:Name="PasswortText" Padding="0, 30, 0, 10" TextColor="#fff" CaretColor="#fff" Label="Passwort" PlaceholderColor="#fff8" PlaceholderText="Passwort eingeben" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}">
+		            	    <TextInputActionTriggered>
+						         <Callback Handler="{login}" />
+						    </TextInputActionTriggered>
+			            </TextField>
 
-	            <TextField ux:Name="PasswortText" Padding="0, 30, 0, 10" TextColor="#fff" CaretColor="#fff" Label="Passwort" PlaceholderColor="#fff8" PlaceholderText="Passwort eingeben" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}">
-            	    <TextInputActionTriggered>
-				         <Callback Handler="{login}" />
-				    </TextInputActionTriggered>
-	            </TextField>
+				        <Panel>
+				            <Text ux:Name="PasswortVergessenText" Color="#fff" FontSize="14" Font="MyriadProRegular" Alignment="Right" Margin="0, 15, 0, 5">Passwort vergessen?</Text>
+				        </Panel>
+				    </StackPanel>
+				</Panel>
 
-		        <Panel>
-		            <Text ux:Name="PasswortVergessenText" Color="#fff" FontSize="14" Font="MyriadProRegular" Alignment="Right" Margin="0, 15, 0, 5">Passwort vergessen?</Text>
-		        </Panel>
-		    </StackPanel>
-		</Panel>
+				<Panel>
+				    <StackPanel Alignment="Bottom">
+				        <Text ux:Name="RegistrierenText" Color="#fff" Font="MyriadProRegular" Alignment="Center" Margin="0, 25, 0, 25">Kostenlos registrieren</Text>
+				        <Rectangle ux:Name="LoginButton" Width="100%" Height="60" Color="#4080ff" HitTestMode="LocalBounds" Clicked="{login}" IsEnabled="{allCredentialsEntered}">
+				            <Text ux:Name="LoginButtonText" Alignment="Center" Color="White" Font="MyriadProSemibold">Login</Text>
+				                <WhilePressed>
+							    	<Change LoginButton.Color="#138" Duration="0.3" />
+							    </WhilePressed>
 
-		<Panel>
-		    <StackPanel Alignment="Bottom">
-		        <Text ux:Name="RegistrierenText" Color="#fff" Font="MyriadProRegular" Alignment="Center" Margin="0, 25, 0, 25">Kostenlos registrieren</Text>
-		        <Rectangle ux:Name="LoginButton" Width="100%" Height="60" Color="#4080ff" HitTestMode="LocalBounds" Clicked="{login}" IsEnabled="{allCredentialsEntered}">
-		            <Text ux:Name="LoginButtonText" Alignment="Center" Color="White" Font="MyriadProSemibold">Login</Text>
-		                <WhilePressed>
-					    	<Change LoginButton.Color="#138" Duration="0.3" />
-					    </WhilePressed>
-
-					    <WhileDisabled>
-					    	<Change LoginButton.Color="#ccc" Duration="0.3" />
-					    </WhileDisabled>
-		        </Rectangle>
-		    </StackPanel>
-		</Panel>
-
-		<WhileWindowSize GreaterThan="768,1">
-			<Change EmailAdresseText.FontSize="24" />
-			<Change PasswortText.Padding="0, 60, 0, 10" />
-			<Change PasswortText.FontSize="24" />
-			<Change PasswortVergessenText.FontSize="18" />
-			
-		    <Change RegistrierenText.FontSize="24" />
-		    <Change LoginButton.Height="80" />
-		    <Change LoginButtonText.FontSize="24" />
-		</WhileWindowSize>
+							    <WhileDisabled>
+							    	<Change LoginButton.Color="#ccc" Duration="0.3" />
+							    </WhileDisabled>
+				        </Rectangle>
+				    </StackPanel>
+				</Panel>
+			</Grid>
+		</ScrollView>
 	</Panel>
 
-    <!-- Smartphone Landscape View -->
+    <!-- Extra Small Smartphone View e.g. iPhone 4, 3 und 2 -->
+    <WhileWindowSize LessThan="321,481">
+        <Change LogoWrapper.Margin="0, 45, 0, 0"/>
+    </WhileWindowSize>
+
+	<!-- Optimized Sizes for iPad and bigger Views -->
+	<WhileWindowSize GreaterThan="768,1">
+		<Change LogoWrapper.Margin="0, 125, 0, 50"/>
+		<Change LogoWrapper.Height="150"/>
+		<Change EmailAdresseText.FontSize="24" />
+		<Change PasswortText.Padding="0, 60, 0, 10" />
+		<Change PasswortText.FontSize="24" />
+		<Change PasswortVergessenText.FontSize="18" />
+	    <Change RegistrierenText.FontSize="24" />
+	    <Change LoginButton.Height="80" />
+	    <Change LoginButtonText.FontSize="24" />
+	</WhileWindowSize>
+
+	<!-- For all Landscape Views -->
     <WhileWindowLandscape>
-        <WhileWindowSize LessThan="1023,99999">
-            <Change PortraitContent.Visibility="Collapsed"/>
-            <Panel Background="#0008">
-                <ScrollView>
-                    <Grid Rows="auto, auto, auto">
+    	<!-- For Smartphone and smaller Views -->
+    	<WhileWindowSize LessThan="1023,99999">
+    		<Change LoginGrid.Rows="auto, auto, auto" />
+	    	<Change RegistrierenText.Margin="0, 75, 0, 50" />
+		</WhileWindowSize>
 
-            	    	<Panel ux:Name="LogoWrapperLandscape" Alignment="TopCenter" Margin=" 0, 100, 0, 50" Width="15%" MaxWidth="116">
-					        <Image Width="100%">
-					            <MultiDensityImageSource>
-					                <FileImageSource Density="1" File="../assets/logo.png" />
-					                <FileImageSource Density="2" File="../assets/logo@2x.png" />
-					                <FileImageSource Density="3" File="../assets/logo@4x.png" />
-					            </MultiDensityImageSource>
-					        </Image>
-
-					        <!-- Extra Small Smartphone View e.g. iPhone 4, 3 und 2 -->
-					        <WhileWindowSize LessThan="320,480">
-					            <Change LogoWrapperLandscape.Margin="0, 45, 0, 0"/>
-					        </WhileWindowSize>
-						</Panel>
-
-						<Panel Margin="0, 0, 0, 0">
-						    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
-
-						    	<TextField TextColor="#fff" CaretColor="#fff" Label="E-Mail-Adresse" PlaceholderColor="#fff8" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Username}" />
-
-					            <TextField Padding="0, 30, 0, 10" TextColor="#fff" CaretColor="#fff" Label="Passwort" PlaceholderColor="#fff8" PlaceholderText="Passwort eingeben" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}">
-				            	    <TextInputActionTriggered>
-								         <Callback Handler="{login}" />
-								    </TextInputActionTriggered>
-					            </TextField>
-
-						        <Panel>
-						            <Text Color="#fff" FontSize="14" Font="MyriadProRegular" Alignment="Right" Margin="0, 15, 0, 5">Passwort vergessen?</Text>
-						        </Panel>
-						    </StackPanel>
-						</Panel>
-
-						<Panel>
-						    <StackPanel Alignment="Bottom">
-						        <Text Color="#fff" Font="MyriadProRegular" Alignment="Center" Margin="0, 25, 0, 25">Kostenlos registrieren</Text>
-						        <Rectangle ux:Name="LoginButtonLandscape" Width="100%" Height="60" Color="#4080ff" HitTestMode="LocalBounds" Clicked="{login}" IsEnabled="{allCredentialsEntered}">
-						            <Text Alignment="Center" Color="White" Font="MyriadProSemibold">Login</Text>
-						                <WhilePressed>
-									    	<Change LoginButtonLandscape.Color="#138" Duration="0.3" />
-									    </WhilePressed>
-
-									    <WhileDisabled>
-									    	<Change LoginButtonLandscape.Color="#ccc" Duration="0.3" />
-									    </WhileDisabled>
-						        </Rectangle>
-						    </StackPanel>
-						</Panel>
-
-                    </Grid>
-                </ScrollView>
-            </Panel>
-        </WhileWindowSize>
+    	<!-- For iPad and bigger Views -->
+    	<WhileWindowSize GreaterThan="1023,1">
+    		<Change LogoWrapper.Margin="0, 0, 0, 50"/>
+		    <Change RegistrierenText.Margin="0, 125, 0, 50" />
+	    </WhileWindowSize>
 	</WhileWindowLandscape>
 
 	<WhileKeyboardVisible>
