@@ -84,7 +84,7 @@
 		    </StackPanel>
 		</Panel>
 
-		<WhileWindowSize GreaterThan="768,1024">
+		<WhileWindowSize GreaterThan="768,1">
 			<Change EmailAdresseText.FontSize="24" />
 			<Change PasswortText.Padding="0, 60, 0, 10" />
 			<Change PasswortText.FontSize="24" />
@@ -156,17 +156,6 @@
                 </ScrollView>
             </Panel>
         </WhileWindowSize>
-
-		<WhileWindowSize GreaterThan="1024,768">
-			<Change EmailAdresseText.FontSize="24" />
-			<Change PasswortText.Padding="0, 60, 0, 10" />
-			<Change PasswortText.FontSize="24" />
-			<Change PasswortVergessenText.FontSize="18" />
-			
-		    <Change RegistrierenText.FontSize="24" />
-		    <Change LoginButton.Height="80" />
-		    <Change LoginButtonText.FontSize="24" />
-		</WhileWindowSize>
 	</WhileWindowLandscape>
 
 	<WhileKeyboardVisible>
