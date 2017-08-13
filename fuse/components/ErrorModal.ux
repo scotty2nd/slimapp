@@ -2,7 +2,7 @@
 	<DockPanel>
 		<StackPanel Dock="Top" Margin="20, 20, 20, 20">
 			<Text TextColor="#fff" Font="MyriadProSemibold" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10">Oops! </Text>
-			<Text TextColor="#fff" Font="MyriadProSemibold" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10">Ein Fehler ist aufgetreten.</Text>
+			<!--<Text TextColor="#fff" Font="MyriadProSemibold" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10">Ein Fehler ist aufgetreten.</Text>-->
 			<Text Value="{ModalMessage}" TextColor="#fff" FontSize="14" TextAlignment="Center" TextWrapping="Wrap" />
 		</StackPanel>
 
