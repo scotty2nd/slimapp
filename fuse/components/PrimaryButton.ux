@@ -1,12 +1,12 @@
-<Rectangle ux:Class="PrimaryButton" Width="100%" Height="60" Color="#4080ff" HitTestMode="LocalBounds">
+<Rectangle ux:Class="PrimaryButton" Width="100%" Height="60" Color="Primary" HitTestMode="LocalBounds">
 	<string ux:Property="Text" />
     <Text ux:Name="LoginButtonText" Value="{ReadProperty Text}" Alignment="Center" Color="White" Font="MyriadProSemibold" />
     <WhilePressed>
-    	<Change this.Color="#138" Duration="0.3" />
+    	<Change this.Color="PrimaryPressed" Duration="0.3" />
     </WhilePressed>
 
     <WhileDisabled>
-    	<Change this.Color="#ccc" Duration="0.3" />
+    	<Change this.Color="PrimaryDisabled" Duration="0.3" />
     </WhileDisabled>
 
 	<!-- Optimized Sizes for iPad and bigger Views -->

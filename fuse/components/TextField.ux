@@ -1,10 +1,12 @@
 <TextInput ux:Class="TextField" Padding="0, 10, 0, 10" Font="MyriadProRegular">
 	<string ux:Property="Label" />
-	<Text ux:Name="LabelText" Value="{ReadProperty Label}" TextColor="#fff" Opacity="0" />
+	<float4 ux:Property="LabelColor" />
+
+	<Text ux:Name="LabelText" Value="{ReadProperty Label}" TextColor="{ReadProperty LabelColor}" Font="MyriadProRegular" Opacity="0" />
 	
 	<Panel Height="1" Alignment="Bottom" Padding="0, 10, 0, 0">
-	    <Rectangle ux:Name="Stroke" Height="1" Background="#fff8" />
-	    <Rectangle ux:Name="StrokeOnFocus" Height="1" Width="0%" Alignment="BottomLeft" Background="#4080ff" Layer="Overlay" Opacity="0" />
+	    <Rectangle ux:Name="Stroke" Height="1" Color="Placeholder" />
+	    <Rectangle ux:Name="StrokeOnFocus" Height="1" Width="0%" Alignment="BottomLeft" Color="Primary" Layer="Overlay" Opacity="0" />
 	</Panel>
 
 	<WhileFocused>
