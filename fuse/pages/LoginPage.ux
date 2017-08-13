@@ -68,16 +68,8 @@
 				<Panel>
 				    <StackPanel Alignment="Bottom">
 				        <Text ux:Name="RegistrierenText" Color="#fff" Font="MyriadProRegular" Alignment="Center" Margin="0, 25, 0, 25">Kostenlos registrieren</Text>
-				        <Rectangle ux:Name="LoginButton" Width="100%" Height="60" Color="#4080ff" HitTestMode="LocalBounds" Clicked="{login}" IsEnabled="{allCredentialsEntered}">
-				            <Text ux:Name="LoginButtonText" Alignment="Center" Color="White" Font="MyriadProSemibold">Login</Text>
-				                <WhilePressed>
-							    	<Change LoginButton.Color="#138" Duration="0.3" />
-							    </WhilePressed>
 
-							    <WhileDisabled>
-							    	<Change LoginButton.Color="#ccc" Duration="0.3" />
-							    </WhileDisabled>
-				        </Rectangle>
+				        <PrimaryButton Text="Login" Clicked="{login}" IsEnabled="{allCredentialsEntered}" />
 				    </StackPanel>
 				</Panel>
 			</Grid>
@@ -98,8 +90,6 @@
 		<Change PasswortText.FontSize="24" />
 		<Change PasswortVergessenText.FontSize="18" />
 	    <Change RegistrierenText.FontSize="24" />
-	    <Change LoginButton.Height="80" />
-	    <Change LoginButtonText.FontSize="24" />
 	</WhileWindowSize>
 
 	<!-- For all Landscape Views -->
@@ -117,6 +107,7 @@
 	    </WhileWindowSize>
 	</WhileWindowLandscape>
 
+	<!-- When Keyboard become visible then move entire page 3/4 of keyboard size to top -->
 	<WhileKeyboardVisible>
     	<Move Target="this" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
 	</WhileKeyboardVisible>
