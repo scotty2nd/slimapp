@@ -35,7 +35,7 @@
    	<!-- Wird später entfernt -->
 
     <!-- Default View -->
-    <Panel ux:Name="PortraitContent" Background="#0009">
+    <Panel ux:Name="PortraitContent" Background="#000b">
     	<ScrollView>
     		<Grid ux:Name="LoginGrid" MinHeight="100%">
 		    	<Panel ux:Name="LogoWrapper" Alignment="TopCenter" Margin=" 0, 75, 0, 50" Height="75">
