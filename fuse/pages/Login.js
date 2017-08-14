@@ -18,8 +18,8 @@ function login() {
 
     var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // Regex um auf gültige Email Adressen zu prüfen
 
-	if(regex.test(Username.value)){
-		// Email Adresse ist eingegeben und gültig
+	// Email Adresse ist eingegeben, gültig und Passwort ist eingegeben
+	if(regex.test(Username.value) && Password.value != ""){
 		var requestObject = {email: Username.value, password: Password.value};
 		var status = 0;
 		var response_ok = false;
@@ -60,13 +60,17 @@ function login() {
 		// Email Adresse ist ungültig
 		Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
 		Observable.ShowErrorModal.value = true; // Error Modal einblenden
-		Observable.ModalMessage.value = "Ungültige E-Mail-Adresse"; // Error Modal Text setzen
+		Observable.ModalMessage.value = "Bitte E-Mail-Adresse und/oder Passwort eingeben."; // Error Modal Text setzen
 	}
 }
 
 function goToRegisterPage() {
-	console.log('gotoRegsiter')
     router.push("register");
+}
+
+function goToForgotPasswordPage() {
+	console.log('goToForgotPassword');
+    router.push("forgotPassword");
 }
 
 //Da kein Button mehr kann das gelöscht werden
@@ -92,5 +96,6 @@ module.exports = {
 
 	allCredentialsEntered: allCredentialsEntered,
 	login: login,
-	goToRegisterPage: goToRegisterPage
+	goToRegisterPage: goToRegisterPage,
+	goToForgotPasswordPage: goToForgotPasswordPage
 };

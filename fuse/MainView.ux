@@ -2,17 +2,28 @@
 	<iOS.StatusBarConfig IsVisible="true" Animation="Slide"/>
 	<Router ux:Name="router" />
 
+    <!-- Include Custom Font -->
     <Font File="assets/font/MyriadPro-Regular.otf" ux:Global="MyriadProRegular" />
     <Font File="assets/font/MyriadPro-Semibold.otf" ux:Global="MyriadProSemibold" />
     <Font File="assets/font/MyriadPro-Bold.otf" ux:Global="MyriadProBold" />
 
+    <!-- Include Custom Colors -->
+    <float4 ux:Global="Primary" ux:Value="#4080ff" />
+    <float4 ux:Global="PrimaryDisabled" ux:Value="#ccc" />
+    <float4 ux:Global="PrimaryPressed" ux:Value="#138" />
+    <float4 ux:Global="Placeholder" ux:Value="#fff8" />
+    <float4 ux:Global="Error" ux:Value="#cc4339" />
+
+    <float ux:Global="BaseTablet" ux:Value="24" />
+
     <DockPanel>
-        <StatusBarBackground Dock="Top" Background="#fff"/>
+        <StatusBarBackground Dock="Top" Background="White"/>
         <Navigator DefaultPath="login">
         	<SplashPage ux:Template="splash" router="router" />
         	<LoginPage ux:Template="login" router="router"/>
             <RegisterPage ux:Template="register" router="router" />
             <HomePage ux:Template="home" router="router" />
+            <ForgotPasswordPage ux:Template="forgotPassword" router="router" />
         </Navigator>
     </DockPanel>
 </App>

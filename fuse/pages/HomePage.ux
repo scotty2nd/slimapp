@@ -10,7 +10,8 @@
 
 		<StackPanel Alignment="VerticalCenter">
             <Each Items="{Identifier}">
-                <Button Text="{id}" Clicked="{goToHike}" />
+                <!--<Button Text="{id}" Clicked="{goToHike}" />-->
+                <Button Text="{id}" />
             </Each>
 
 			<!--<Text Alignment="HorizontalCenter" Opacity=".5" Value="{Clear dataOb.id}"/>
@@ -39,6 +40,5 @@
             </StackPanel>-->
 		</StackPanel>
 
-		<BottomButton Text="Weiter" Dock="Bottom" Clicked="{click}" IsEnabled="{areCredentialsValid}"/>
 	</DockPanel>
 </Page>

@@ -8,7 +8,6 @@ var rating = hike.map(function(x) { return x.rating; });
 var comments = hike.map(function(x) { return x.comments; });*/
 
 function logout() {
-    console.log('logout');
     Customer.clearIdentifier();
     router.goBack();
 }
