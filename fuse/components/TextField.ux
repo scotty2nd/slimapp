@@ -21,7 +21,7 @@
     </WhileContainsText>
 
 	<WhileWindowSize GreaterThan="768,1">
-		<Change LabelText.FontSize="24" />
+		<Change LabelText.FontSize="BaseTablet" />
 
 	    <WhileContainsText>
 	    	<Move Target="LabelText" Y="-22" Duration=".2" />

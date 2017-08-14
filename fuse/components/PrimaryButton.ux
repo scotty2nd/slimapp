@@ -14,6 +14,6 @@
 	<!-- Optimized Sizes for iPad and bigger Views -->
 	<WhileWindowSize GreaterThan="768,1">
 	    <Change this.Height="80" />
-	    <Change LoginButtonText.FontSize="24" />
+	    <Change LoginButtonText.FontSize="BaseTablet" />
 	</WhileWindowSize>
 </Rectangle>

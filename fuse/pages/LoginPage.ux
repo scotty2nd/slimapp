@@ -6,7 +6,7 @@
 		<Blur />
 	</Image>
 	<!-- Wird später entfernt -->
-	<Panel Alignment="TopCenter">
+	<!--<Panel Alignment="TopCenter">
         <StackPanel Alignment="VerticalCenter">
         	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
             	<Text TextAlignment="Center" TextColor="#fff">Show Overlay: </Text>
@@ -30,7 +30,7 @@
             	</StackPanel>
             </Each>
         </StackPanel>
-   	</Panel>
+   	</Panel>-->
    	<!-- Wird später entfernt -->
 
     <!-- Default View -->
@@ -84,15 +84,15 @@
         <Change LogoWrapper.Margin="0, 45, 0, 0"/>
     </WhileWindowSize>
 
-	<!-- Optimized Sizes for iPad and bigger Views -->
+	<!-- Optimized Sizes for Tablets and bigger Views -->
 	<WhileWindowSize GreaterThan="768,1">
 		<Change LogoWrapper.Margin="0, 125, 0, 50"/>
 		<Change LogoWrapper.Height="150"/>
-		<Change EmailAdresseText.FontSize="24" />
+		<Change EmailAdresseText.FontSize="BaseTablet" />
 		<Change PasswortText.Padding="0, 60, 0, 10" />
-		<Change PasswortText.FontSize="24" />
+		<Change PasswortText.FontSize="BaseTablet" />
 		<Change PasswortVergessenText.FontSize="18" />
-	    <Change RegistrierenText.FontSize="24" />
+	    <Change RegistrierenText.FontSize="BaseTablet" />
 	</WhileWindowSize>
 
 	<!-- For all Landscape Views -->
