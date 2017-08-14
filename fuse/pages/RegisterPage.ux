@@ -2,15 +2,10 @@
 	<Router ux:Dependency="router" />
 	<JavaScript File="Register.js" />
 
-	<Image Layer="Background" File="../Assets/background.jpg" StretchMode="UniformToFill" Opacity=".8" />
-
-	<DockPanel>
-		<StatusBarBackground Dock="Top" />
-		<BottomBarBackground Dock="Bottom" />
 
 		<Button Text="Back" Clicked="{goBack}" Color="#000" Dock="Top" HitTestMode="LocalBounds" Padding="20" />
 
-		<Grid Rows="1*,1*">
+		<!--<Grid Rows="1*,1*">-->
 			<StackPanel Alignment="VerticalCenter">
 				<!--<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>-->
 			</StackPanel>
@@ -26,7 +21,5 @@
 				<Text Alignment="HorizontalCenter" Opacity=".5" />
 				<Text Alignment="HorizontalCenter" Opacity=".5" />
 			</StackPanel>
-		</Grid>
-		
-	</DockPanel>
+		<!--</Grid>-->
 </Page>

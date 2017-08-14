@@ -37,15 +37,8 @@
     <Panel ux:Name="PortraitContent" Background="#000b">
     	<ScrollView>
     		<Grid ux:Name="LoginGrid" MinHeight="100%">
-		    	<Panel ux:Name="LogoWrapper" Alignment="TopCenter" Margin=" 0, 75, 0, 50" Height="75">
-			        <Image>
-			            <MultiDensityImageSource>
-			                <FileImageSource Density="1" File="../assets/logo.png" />
-			                <FileImageSource Density="2" File="../assets/logo@2x.png" />
-			                <FileImageSource Density="3" File="../assets/logo@4x.png" />
-			            </MultiDensityImageSource>
-			        </Image>
-				</Panel>
+    			
+				<Logo />
 
 				<Panel>
 				    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
@@ -68,7 +61,7 @@
 
 				<Panel>
 				    <StackPanel Alignment="Bottom">
-				        <RegularText ux:Name="RegistrierenText" Color="White" Alignment="Center" Margin="0, 25, 0, 25">
+				        <RegularText ux:Name="RegistrierenText" Clicked="{goToRegisterPage}" Color="White" Alignment="Center" Margin="0, 25, 0, 25">
 				        	Kostenlos registrieren
 				        </RegularText>
 
@@ -79,20 +72,14 @@
 		</ScrollView>
 	</Panel>
 
-    <!-- Extra Small Smartphone View e.g. iPhone 4, 3 und 2 -->
-    <WhileWindowSize LessThan="321,481">
-        <Change LogoWrapper.Margin="0, 45, 0, 0"/>
-    </WhileWindowSize>
-
 	<!-- Optimized Sizes for Tablets and bigger Views -->
 	<WhileWindowSize GreaterThan="768,1">
-		<Change LogoWrapper.Margin="0, 125, 0, 50"/>
-		<Change LogoWrapper.Height="150"/>
 		<Change EmailAdresseText.FontSize="BaseTablet" />
 		<Change PasswortText.Padding="0, 60, 0, 10" />
 		<Change PasswortText.FontSize="BaseTablet" />
 		<Change PasswortVergessenText.FontSize="18" />
 	    <Change RegistrierenText.FontSize="BaseTablet" />
+	    <Change RegistrierenText.Margin="0, 0, 0, 50" />
 	</WhileWindowSize>
 
 	<!-- For all Landscape Views -->
@@ -103,9 +90,8 @@
 	    	<Change RegistrierenText.Margin="0, 75, 0, 50" />
 		</WhileWindowSize>
 
-    	<!-- For iPad and bigger Views -->
+    	<!-- For Tablet and bigger Views -->
     	<WhileWindowSize GreaterThan="1023,1">
-    		<Change LogoWrapper.Margin="0, 0, 0, 50"/>
 		    <Change RegistrierenText.Margin="0, 125, 0, 50" />
 	    </WhileWindowSize>
 	</WhileWindowLandscape>
