@@ -5,9 +5,8 @@
 	<Image ux:Name="BackgroundImage" File="../assets/background.jpg" Layer="Background" StretchMode="UniformToFill">
 		<Blur />
 	</Image>
-
 	<!-- Wird später entfernt -->
-	<!--<Panel Alignment="TopCenter">
+	<Panel Alignment="TopCenter">
         <StackPanel Alignment="VerticalCenter">
         	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
             	<Text TextAlignment="Center" TextColor="#fff">Show Overlay: </Text>
@@ -31,7 +30,7 @@
             	</StackPanel>
             </Each>
         </StackPanel>
-   	</Panel>-->
+   	</Panel>
    	<!-- Wird später entfernt -->
 
     <!-- Default View -->

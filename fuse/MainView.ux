@@ -12,6 +12,7 @@
     <float4 ux:Global="PrimaryDisabled" ux:Value="#ccc" />
     <float4 ux:Global="PrimaryPressed" ux:Value="#138" />
     <float4 ux:Global="Placeholder" ux:Value="#fff8" />
+    <float4 ux:Global="Error" ux:Value="#cc4339" />
 
     <DockPanel>
         <StatusBarBackground Dock="Top" Background="White"/>
