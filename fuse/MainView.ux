@@ -23,6 +23,7 @@
         	<LoginPage ux:Template="login" router="router"/>
             <RegisterPage ux:Template="register" router="router" />
             <HomePage ux:Template="home" router="router" />
+            <ForgotPasswordPage ux:Template="forgotPassword" router="router" />
         </Navigator>
     </DockPanel>
 </App>

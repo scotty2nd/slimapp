@@ -65,8 +65,12 @@ function login() {
 }
 
 function goToRegisterPage() {
-	console.log('gotoRegsiter')
     router.push("register");
+}
+
+function goToForgotPasswordPage() {
+	console.log('goToForgotPassword');
+    router.push("forgotPassword");
 }
 
 //Da kein Button mehr kann das gelöscht werden
@@ -92,5 +96,6 @@ module.exports = {
 
 	allCredentialsEntered: allCredentialsEntered,
 	login: login,
-	goToRegisterPage: goToRegisterPage
+	goToRegisterPage: goToRegisterPage,
+	goToForgotPasswordPage: goToForgotPasswordPage
 };

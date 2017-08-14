@@ -37,31 +37,25 @@
     <Panel ux:Name="PortraitContent" Background="#000b">
     	<ScrollView>
     		<Grid ux:Name="LoginGrid" MinHeight="100%">
-    			
+
 				<Logo />
 
 				<Panel>
 				    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
-
 				    	<TextField ux:Name="EmailAdresseText" TextColor="White" CaretColor="White" Label="E-Mail-Adresse" LabelColor="White" PlaceholderColor="Placeholder" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Username}" />
 
-			            <TextField ux:Name="PasswortText" Padding="0, 30, 0, 10" TextColor="White" CaretColor="White" Label="Passwort" LabelColor="#fff" PlaceholderColor="Placeholder" PlaceholderText="Passwort eingeben" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}">
-		            	    <TextInputActionTriggered>
-					        	<Callback Handler="{login}" />
-						    </TextInputActionTriggered>
-			            </TextField>
+			            <TextField ux:Name="PasswortText" Padding="0, 30, 0, 10" TextColor="White" CaretColor="White" Label="Passwort" LabelColor="White" PlaceholderColor="Placeholder" PlaceholderText="Passwort eingeben" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}" ActionTriggered="{login}" />
 
-				        <Panel>
-				        	<RegularText ux:Name="PasswortVergessenText" Color="White" FontSize="14" Alignment="Right" Margin="0, 15, 0, 5">
-			        			Passwort vergessen?
-				        	</RegularText>
-				        </Panel>
+
+			        	<RegularText ux:Name="PasswortVergessenText" Clicked="{goToForgotPasswordPage}" TextColor="White" FontSize="14" TextAlignment="Right" Margin="0, 15, 0, 5">
+		        			Passwort vergessen?
+			        	</RegularText>
 				    </StackPanel>
 				</Panel>
 
 				<Panel>
 				    <StackPanel Alignment="Bottom">
-				        <RegularText ux:Name="RegistrierenText" Clicked="{goToRegisterPage}" Color="White" Alignment="Center" Margin="0, 25, 0, 25">
+				        <RegularText ux:Name="RegistrierenText" Clicked="{goToRegisterPage}" TextColor="White" TextAlignment="Center" Margin="0, 25, 0, 25">
 				        	Kostenlos registrieren
 				        </RegularText>
 
