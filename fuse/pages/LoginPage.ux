@@ -60,14 +60,18 @@
 			            </TextField>
 
 				        <Panel>
-				            <Text ux:Name="PasswortVergessenText" Color="White" FontSize="14" Font="MyriadProRegular" Alignment="Right" Margin="0, 15, 0, 5">Passwort vergessen?</Text>
+				        	<RegularText ux:Name="PasswortVergessenText" Color="White" FontSize="14" Alignment="Right" Margin="0, 15, 0, 5">
+			        			Passwort vergessen?
+				        	</RegularText>
 				        </Panel>
 				    </StackPanel>
 				</Panel>
 
 				<Panel>
 				    <StackPanel Alignment="Bottom">
-				        <Text ux:Name="RegistrierenText" Color="White" Font="MyriadProRegular" Alignment="Center" Margin="0, 25, 0, 25">Kostenlos registrieren</Text>
+				        <RegularText ux:Name="RegistrierenText" Color="White" Alignment="Center" Margin="0, 25, 0, 25">
+				        	Kostenlos registrieren
+				        </RegularText>
 
 				        <PrimaryButton Text="Login" Clicked="{login}" IsEnabled="{allCredentialsEntered}" />
 				    </StackPanel>

@@ -1,6 +1,8 @@
 <Rectangle ux:Class="PrimaryButton" Width="100%" Height="60" Color="Primary" HitTestMode="LocalBounds">
 	<string ux:Property="Text" />
-    <Text ux:Name="LoginButtonText" Value="{ReadProperty Text}" Alignment="Center" Color="White" Font="MyriadProSemibold" />
+    
+    <SemiboldText ux:Name="LoginButtonText" Value="{ReadProperty Text}" Alignment="Center" Color="White" />
+
     <WhilePressed>
     	<Change this.Color="PrimaryPressed" Duration="0.3" />
     </WhilePressed>
