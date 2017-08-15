@@ -1,14 +1,17 @@
-<Panel ux:Class="ErrorModal" Layer="Overlay" >
+<Panel ux:Class="Modal" Layer="Overlay" >
 	<!-- Wenn ErrorModal zusehen ist -->
 	<WhileTrue Value="{ShowErrorModal}">
-		<Panel Color="Error" Width="100%" MaxWidth="400" Alignment="Center" ClipToBounds="True">
+		<float4 ux:Property="Background" />
+		<string ux:Property="Headline" />
+		<string ux:Property="Titel" />
+
+		<Panel Background="{ReadProperty Background}" Width="100%" MaxWidth="400" Alignment="Center" ClipToBounds="True">
 			<DockPanel>
 				<StackPanel Dock="Top" Margin="20, 20, 20, 20">
-					<SemiboldText ux:Name="OopsText" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10">
-						Oops!
-					</SemiboldText>
+					<SemiboldText ux:Name="ModalHeadline" Value="{ReadProperty Headline}" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 5" />
+					<SemiboldText ux:Name="ModalTitel" Value="{ReadProperty Titel}" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10" />
 
-					<RegularText ux:Name="ErrorMessage" Value="{ModalMessage}" TextColor="White" TextAlignment="Center" FontSize="14" TextWrapping="Wrap" />
+					<RegularText ux:Name="ModalMessage" Value="{ModalMessage}" TextColor="White" TextAlignment="Center" FontSize="14" TextWrapping="Wrap" />
 				</StackPanel>
 
 				<StackPanel Dock="Bottom" Height="60">
@@ -28,8 +31,9 @@
 
 			<!-- Optimized Sizes for Tablets and bigger Views -->
 			<WhileWindowSize GreaterThan="768,1">
-				<Change OopsText.FontSize="BaseTablet" />
-				<Change ErrorMessage.FontSize="BaseTablet" />
+				<Change ModalHeadline.FontSize="BaseTablet" />
+				<Change ModalTitel.FontSize="BaseTablet" />
+				<Change ModalMessage.FontSize="20" />
 			    <Change OkButtonText.FontSize="BaseTablet" />
 			</WhileWindowSize>
 
