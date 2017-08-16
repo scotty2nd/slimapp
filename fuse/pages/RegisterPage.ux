@@ -1,25 +1,98 @@
-<Page ux:Class="RegisterPage" Color="#fff">
+<Page ux:Class="RegisterPage">
 	<Router ux:Dependency="router" />
-	<JavaScript File="Register.js" />
+	<!--<JavaScript File="Register.js" />-->
+	<JavaScript>
+		function goBack() {
+			console.log('goBack');
+		    router.goBack();
+		}
 
+		module.exports = {
+			goBack: goBack
+		};
+	</JavaScript>
 
-		<Button Text="Back" Clicked="{goBack}" Color="#000" Dock="Top" HitTestMode="LocalBounds" Padding="20" />
+    <Panel>
+    	<Panel ux:Name="Navbar" Height="60" Alignment="Top">
+			<Grid Columns="1*,2*,1*" Background="#fffe">
+				<Panel ux:Name="LeftIconWrapper" Clicked="{goBack}" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Left" >
+				    <Image>
+				        <MultiDensityImageSource>
+				            <FileImageSource Density="1" File="../assets/arrow-left.png" />
+				            <FileImageSource Density="2" File="../assets/arrow-left@2x.png" />
+				            <FileImageSource Density="3" File="../assets/arrow-left@4x.png" />
+				        </MultiDensityImageSource>
+				    </Image>
+				</Panel>
+				<RegularText ux:Name="PageTitel" TextColor="Primary" TextAlignment="Center" Margin="0, 3, 0, 0" Alignment="VerticalCenter">Registrieren</RegularText>
+				
+				<!-- More Bubble Icon -->
+				<!--<Panel Margin="25,10" Alignment="Right">
+					<Grid Rows="7,7,7" Alignment="VerticalCenter">
+						<Circle Color="White" Width="4" Height="4"/>
+						<Circle Color="White" Width="4" Height="4"/>
+						<Circle Color="White" Width="4" Height="4"/>
+					</Grid>
+				</Panel>-->
+			</Grid>
 
-		<!--<Grid Rows="1*,1*">-->
+			<Rectangle Height="1" Color="#000d" Alignment="Bottom" />
+		</Panel>
+
+		<ScrollView ux:Name="Content">
+			<Grid Rows="auto, auto, auto" MinHeight="100%">
+				<Logo />
+
+				<StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
+			    	<TextField Label="Vorname" PlaceholderText="Vorname eingeben" ActionStyle="Next" />
+
+			    	<TextField Label="Nachname" PlaceholderText="Nachname eingeben" ActionStyle="Next" />
+
+			    	<TextField Label="E-Mail-Adresse" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" />
+
+	            	<TextField Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" />
+
+		            <TextField Label="Passwort wiederholen" PlaceholderText="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" />
+
+			        <RegularText ux:Name="RegistrierenText" TextColor="Black" TextAlignment="Center" Margin="0, 25, 0, 85">
+				        	Kostenlos registrieren
+			        </RegularText>
+			    </StackPanel>
+
+			</Grid>
+		</ScrollView>
+
+		<PrimaryButton Text="Absenden" Dock="Bottom" Alignment="Bottom" Layer="Overlay" />
+	</Panel>
+
+	<!-- Optimized Sizes for iPad and bigger Views -->
+	<WhileWindowSize GreaterThan="768,1">
+	    <Change Navbar.Height="80" />
+	    <Change LeftIconWrapper.Padding="20, 25" />
+	</WhileWindowSize>
+
+	<!-- When Keyboard become visible then move entire page 3/4 of keyboard size to top -->
+	<WhileKeyboardVisible>
+    	<Move Target="Content" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
+	</WhileKeyboardVisible>
+
+		<!--
+		Alter Kram
+		<Grid Rows="1*,1*">
 			<StackPanel Alignment="VerticalCenter">
-				<!--<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>-->
+				<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
 			</StackPanel>
 
 			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
- 				<!--<MyTextInput PlaceholderText="Username" Value="{username}" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
+ 				<MyTextInput PlaceholderText="Username" Value="{username}" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
  				<MyTextInput PlaceholderText="Email" Value="{email}" InputHint="Email" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" />
  				<MyTextInput PlaceholderText="Password" Value="{password}" IsPassword="true" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
- 				<MyTextInput PlaceholderText="Repeat Password" Value="{passwordRepeat}" IsPassword="true" ActionStyle="Send" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>-->
+ 				<MyTextInput PlaceholderText="Repeat Password" Value="{passwordRepeat}" IsPassword="true" ActionStyle="Send" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
 
 				<Text Alignment="HorizontalCenter" Opacity="1" TextColor="#000" Value="{data.error}" />
 				<Text Alignment="HorizontalCenter" Opacity="1" TextColor="#000" Value="{data.message}"/>
 				<Text Alignment="HorizontalCenter" Opacity=".5" />
 				<Text Alignment="HorizontalCenter" Opacity=".5" />
 			</StackPanel>
-		<!--</Grid>-->
+		</Grid>-->
 </Page>

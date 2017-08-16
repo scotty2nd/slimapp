@@ -1,7 +1,7 @@
 <Rectangle ux:Class="PrimaryButton" Width="100%" Height="60" Color="Primary" HitTestMode="LocalBounds">
 	<string ux:Property="Text" />
     
-    <SemiboldText ux:Name="LoginButtonText" Value="{ReadProperty Text}" Alignment="Center" Color="White" />
+    <SemiboldText ux:Name="LoginButtonText" Value="{ReadProperty Text}" Alignment="Center" TextColor="White" />
 
     <WhilePressed>
     	<Change this.Color="PrimaryPressed" Duration="0.3" />
@@ -11,9 +11,8 @@
     	<Change this.Color="PrimaryDisabled" Duration="0.3" />
     </WhileDisabled>
 
-	<!-- Optimized Sizes for iPad and bigger Views -->
+	<!-- Optimized Sizes for Tablets and bigger Views -->
 	<WhileWindowSize GreaterThan="768,1">
 	    <Change this.Height="80" />
-	    <Change LoginButtonText.FontSize="BaseTablet" />
 	</WhileWindowSize>
 </Rectangle>
