@@ -3,7 +3,6 @@
 	<!--<JavaScript File="Register.js" />-->
 	<JavaScript>
 		function goBack() {
-			console.log('goBack');
 		    router.goBack();
 		}
 
@@ -24,7 +23,10 @@
 				        </MultiDensityImageSource>
 				    </Image>
 				</Panel>
-				<RegularText ux:Name="PageTitel" TextColor="Primary" TextAlignment="Center" Margin="0, 3, 0, 0" Alignment="VerticalCenter">Registrieren</RegularText>
+
+				<RegularText ux:Name="PageTitel" TextColor="Primary" TextAlignment="Center" Margin="0, 3, 0, 0" Alignment="VerticalCenter">
+					Registrieren
+				</RegularText>
 				
 				<!-- More Bubble Icon -->
 				<!--<Panel Margin="25,10" Alignment="Right">
@@ -36,11 +38,12 @@
 				</Panel>-->
 			</Grid>
 
-			<Rectangle Height="1" Color="#000d" Alignment="Bottom" />
+			<!--<Rectangle Height="1" Color="#000d" Alignment="Bottom" />-->
 		</Panel>
 
 		<ScrollView ux:Name="Content">
 			<Grid Rows="auto, auto, auto" MinHeight="100%">
+
 				<Logo />
 
 				<StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
@@ -54,15 +57,29 @@
 
 		            <TextField Label="Passwort wiederholen" PlaceholderText="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" />
 
-			        <RegularText ux:Name="RegistrierenText" TextColor="Black" TextAlignment="Center" Margin="0, 25, 0, 85">
-				        	Kostenlos registrieren
-			        </RegularText>
+					<StackPanel ContentAlignment="Center" Margin="0, 50, 0, 85">
+					    <StackPanel Orientation="Horizontal" ItemSpacing="2" ContentAlignment="Center">
+						    <RegularText FontSize="11" Value="Mit dem" />
+						    <BoldText FontSize="11" Value="Abschluss" />
+						    <RegularText FontSize="11" Value="der" />
+						    <BoldText FontSize="11" Value="Registrierung" />
+					    	<RegularText FontSize="11" Value="stimmen Sie den" />		
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal" ItemSpacing="2" ContentAlignment="Center">
+					    	<RegularText FontSize="11" TextColor="Primary" Value="Nutzungsbedingungen" />
+					    	<RegularText FontSize="11" Value="und den" />	
+					    	<RegularText FontSize="11" TextColor="Primary" Value="Datenschutzbestimmungen" />
+					    	<RegularText FontSize="11" Value="zu" />
+						</StackPanel>
+					</StackPanel>	
+
 			    </StackPanel>
 
 			</Grid>
 		</ScrollView>
 
-		<PrimaryButton Text="Absenden" Dock="Bottom" Alignment="Bottom" Layer="Overlay" />
+		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" />
 	</Panel>
 
 	<!-- Optimized Sizes for iPad and bigger Views -->

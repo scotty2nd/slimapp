@@ -58,7 +58,7 @@
 				        	Kostenlos registrieren
 				        </RegularText>
 
-				        <PrimaryButton Text="Login" Clicked="{login}" IsEnabled="{allCredentialsEntered}" />
+				        <PrimaryButton Text="LOGIN" Clicked="{login}" IsEnabled="{allCredentialsEntered}" />
 				    </StackPanel>
 				</Panel>
 			</Grid>
