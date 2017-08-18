@@ -1,14 +1,14 @@
 <Page ux:Class="RegisterPage">
 	<Router ux:Dependency="router" />
-	<!--<JavaScript File="Register.js" />-->
+	<JavaScript File="Register.js" />
 	<JavaScript>
-		function goBack() {
+		/*function goBack() {
 		    router.goBack();
 		}
 
 		module.exports = {
 			goBack: goBack
-		};
+		};*/
 	</JavaScript>
 
     <Panel>
@@ -51,7 +51,7 @@
 
 			    	<TextField Label="Nachname" PlaceholderText="Nachname eingeben" ActionStyle="Next" />
 
-			    	<TextField Label="E-Mail-Adresse" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" />
+			    	<TextField Label="E-Mail-Adresse" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{email}" />
 
 	            	<TextField Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" />
 
@@ -79,7 +79,7 @@
 			</Grid>
 		</ScrollView>
 
-		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" />
+		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" Clicked="{click}" />
 	</Panel>
 
 	<!-- Optimized Sizes for iPad and bigger Views -->

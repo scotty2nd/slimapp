@@ -1,14 +1,16 @@
-var Observable = require("FuseJS/Observable");
+//var Customer = require("modules/Customer");
+var Observable = require("modules/Observable");
+var RegisterObservable = require("FuseJS/Observable");
 
-var username = Observable("");
-var password = Observable("");
-var passwordRepeat = Observable("");
-var email = Observable("");
-var data = Observable();
+var username = RegisterObservable("");
+var password = RegisterObservable("");
+var passwordRepeat = RegisterObservable("");
+var email = RegisterObservable("");
+//var data = Observable();
 
-var areCredentialsValid = Observable(function() {
+var areCredentialsValid = RegisterObservable(function() {
 	var credentials = username.value != "" && email.value != "" && password.value != "" && passwordRepeat.value != "";
-	console.log('all crendetials entered: ' + credentials);
+	/*console.log('all crendetials entered: ' + credentials);*/
 	return credentials;
 });
 
@@ -19,7 +21,7 @@ function click() {
     console.log(password.value);
     console.log(passwordRepeat.value);
 
-    var requestObject = {first_name: username.value, last_name: 'last_name', password: password.value, phone: '1234', email: email.value, address: "Test Streert",
+    var requestObject = {first_name: 'first_name', last_name: 'last_name', password: 'pw', phone: '1234', email: 'email', address: "Test Streert",
 city: "Testtown", state: "BZW"};
 	var status = 0;
 	var response_ok = false;
@@ -69,6 +71,6 @@ module.exports = {
 	passwordRepeat: passwordRepeat,
 	areCredentialsValid: areCredentialsValid,
 	click: click,
-	data: data,
+	//data: data,
 	goBack: goBack
 };
