@@ -46,7 +46,7 @@
 
 			            <TextField ux:Name="PasswortText" TextColor="White" CaretColor="White" Label="Passwort" LabelColor="White" PlaceholderColor="LightGray" PlaceholderText="Passwort eingeben" StrokeColor="LightGray" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}" ActionTriggered="{login}" />
 
-			        	<RegularText ux:Name="PasswortVergessenText" Clicked="{goToForgotPasswordPage}" TextColor="White" FontSize="14" TextAlignment="Right" Margin="0, 15, 0, 5">
+			        	<RegularText ux:Name="PasswortVergessenText" Clicked="{goToForgotPasswordPage}" TextColor="White" FontSize="14" Alignment="Right" TextAlignment="Center" Margin="0, 15, 0, 5">
 		        			Passwort vergessen?
 			        	</RegularText>
 				    </StackPanel>
