@@ -1,4 +1,4 @@
-<Text ux:Class="RegularText" Font="MyriadProRegular" TextColor="Black">
+<Text ux:Class="RegularText" TextColor="Black">
 	<WhilePressed>
 		<Scale Factor=".8" Duration=".3" Easing="BounceIn" />
 	</WhilePressed>

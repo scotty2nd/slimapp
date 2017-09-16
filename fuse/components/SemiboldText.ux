@@ -1,4 +1,4 @@
-<Text ux:Class="SemiboldText" Font="MyriadProSemibold" TextColor="Black">
+<Text ux:Class="SemiboldText" TextColor="Black">
 	<WhilePressed>
 		<Scale Factor=".8" Duration=".3" Easing="BounceIn" />
 	</WhilePressed>

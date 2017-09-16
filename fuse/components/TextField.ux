@@ -1,4 +1,4 @@
-<TextInput ux:Class="TextField" Padding="0, 30, 0, 10" Font="MyriadProRegular" LabelColor="Black" TextColor="Black" CaretColor="Black" StrokeColor="Gray" PlaceholderColor="Gray">
+<TextInput ux:Class="TextField" Padding="0, 30, 0, 10" LabelColor="Black" TextColor="Black" CaretColor="Black" StrokeColor="Gray" PlaceholderColor="Gray">
 	<string ux:Property="Label" />
 	<float4 ux:Property="LabelColor" />
 	<float4 ux:Property="StrokeColor" />
