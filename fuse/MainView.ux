@@ -2,7 +2,7 @@
 	<iOS.StatusBarConfig IsVisible="true" Animation="Slide"/>
     <Android.StatusBarConfig IsVisible="false" />
 	<Router ux:Name="router" />
-
+ssh test
     <!-- Include Custom Font -->
     <!-- Aktuell auskommentiert da die App sonst nicht auf Android Geräten funktioniert -->
     <!--<Font File="assets/fonts/MyriadProRegular.ttf" ux:Global="MyriadProRegular" />
