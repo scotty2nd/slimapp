@@ -1,8 +1,4 @@
 <Text ux:Class="RegularText" TextColor="Black">
-	<WhilePressed>
-		<Scale Factor=".8" Duration=".3" Easing="BounceIn" />
-	</WhilePressed>
-
 	<WhileWindowSize GreaterThan="768,1">
 		<Change this.FontSize="BaseTablet" />
 	</WhileWindowSize>

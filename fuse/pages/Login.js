@@ -24,7 +24,7 @@ function login() {
 		var status = 0;
 		var response_ok = false;
 
-	  	fetch('http://slimapp.dev/api/login', {
+	  	fetch('http://app.scotty2nd.square7.ch/api/login', {
 		  	method: 'POST',
 		  	headers: { "Content-type": "application/json", "Accept": "application/json" },
 		  	body: JSON.stringify(requestObject)
