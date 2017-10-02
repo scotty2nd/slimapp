@@ -44,7 +44,11 @@
 				    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
 				    	<TextField ux:Name="EmailAdresseText" TextColor="White" CaretColor="White" Label="E-Mail-Adresse" LabelColor="White" PlaceholderColor="LightGray" PlaceholderText="E-Mail-Adresse eingeben" StrokeColor="LightGray" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Username}" />
 
-			            <TextField ux:Name="PasswortText" TextColor="White" CaretColor="White" Label="Passwort" LabelColor="White" PlaceholderColor="LightGray" PlaceholderText="Passwort eingeben" StrokeColor="LightGray" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}" ActionTriggered="{login}" />
+			            <TextField ux:Name="PasswortText" TextColor="White" CaretColor="White" Label="Passwort" LabelColor="White" PlaceholderColor="LightGray" PlaceholderText="Passwort eingeben" StrokeColor="LightGray" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}" ActionTriggered="{login}">
+		            	    <TextInputActionTriggered>
+						        <ReleaseFocus />
+						    </TextInputActionTriggered>
+			            </TextField>
 
 			            <Panel Padding="0, 15, 0, 5" Clicked="{goToForgotPasswordPage}" HitTestMode="LocalBounds">
 				        	<RegularText ux:Name="PasswortVergessenText" TextColor="White" FontSize="14" Alignment="Right" TextAlignment="Center">
