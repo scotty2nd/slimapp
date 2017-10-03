@@ -17,42 +17,32 @@ var areCredentialsValid = RegisterObservable(function() {
 
 function register() {
     console.log('clicked');
-    console.log(Firstname.value);
-    console.log(Lastname.value);
-    console.log(Email.value);
-    console.log(Password.value);
-    console.log(RepeatPassword.value);
 
-    var requestObject = {first_name: Firstname.value, last_name: Lastname.value, password: Password.value, phone: '', email: Email.value, address: '',
-city: '', state: ''};
-	var status = 0;
-	var response_ok = false;
+    var requestObject = {
+    	first_name: Firstname.value, 
+    	last_name: Lastname.value, 
+    	password: Password.value, 
+    	email: Email.value
+    };
 
 	fetch('http://slimapp.dev/api/customer/add', {
 	  	method: 'POST',
 	  	headers: { "Content-type": "application/json", "Accept": "application/json" },
 	  	body: JSON.stringify(requestObject)
   	}).then(function(response) {
-    	status = response.status;  // Get the HTTP status code
-		response_ok = response.ok; // Is response.status in the 200-range?
-
-	  	console.log("Status Code " + status);
-	  	console.log("Response OK " + response_ok);
-	  	
 	  	return response.json();    // This returns a promise
-  	}).then(function(responseObject) {
+  	}).then(function(data) {
 	    // Do something with the result
 	    console.log('do something');
-	    console.log(responseObject.error);
-	    console.log(responseObject.message);
+	    console.log(data.error);
+	    console.log(data.message);
 
-	    data.value = responseObject;
+	    Firstname.value = '';		//Set Field to blank
+	    Lastname.value = '';
+	    Email.value = '';
+	    Password.value = '';
+	    RepeatPassword.value = '';
 
-	    username.value = '';		//Set Field to blank
-	    email.value = '';
-	    password.value = '';
-	    passwordRepeat.value = '';
-      	//debugger;
 	}).catch(function(error) {
 	    // An error occurred somewhere in the Promise chain
 	    console.log('error');
