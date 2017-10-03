@@ -1,6 +1,6 @@
 <App>
 	<iOS.StatusBarConfig IsVisible="true" Animation="Slide"/>
-    <Android.StatusBarConfig IsVisible="false" />
+    <Android.StatusBarConfig IsVisible="true" Color="Primary" />
 	<Router ux:Name="router" />
 
     <!-- Include Custom Font -->

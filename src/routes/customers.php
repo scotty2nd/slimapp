@@ -82,16 +82,16 @@
 	 * Method: POST
 	 * */
 	$app->post('/api/customer/add', function(Request $request, Response $response){
-		
+
 		$requiredParams = array(
 							'first_name', 
-							'last_name', 
-							'password', 
-							'phone', 
+							'last_name',
 							'email', 
+							'password'/*, 
+							'phone',
 							'address', 
 							'city', 
-							'state'
+							'state'*/
 						  );
 
 		// Checks required Parameter exists and not empty
@@ -100,12 +100,12 @@
 			//Get Post Parameter from Request
 		    $first_name = $request->getParam('first_name');
 		    $last_name = $request->getParam('last_name');
-		    $password = $request->getParam('password');
-		    $phone = $request->getParam('phone');
 		    $email = $request->getParam('email');
-		    $address = $request->getParam('address');
-		    $city = $request->getParam('city');
-		    $state = $request->getParam('state');
+		    $password = $request->getParam('password');
+		    $phone = "";
+		    $address = "";
+		    $city = "";
+		    $state = "";
 
 			// Get DB Object
 	       	$db = new db();

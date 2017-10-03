@@ -2,27 +2,29 @@
 var Observable = require("modules/Observable");
 var RegisterObservable = require("FuseJS/Observable");
 
-var username = RegisterObservable("");
-var password = RegisterObservable("");
-var passwordRepeat = RegisterObservable("");
-var email = RegisterObservable("");
+var Firstname = RegisterObservable("");
+var Lastname = RegisterObservable("");
+var Email = RegisterObservable("");
+var Password = RegisterObservable("");
+var RepeatPassword = RegisterObservable("");
 //var data = Observable();
 
 var areCredentialsValid = RegisterObservable(function() {
-	var credentials = username.value != "" && email.value != "" && password.value != "" && passwordRepeat.value != "";
-	/*console.log('all crendetials entered: ' + credentials);*/
+	var credentials = Firstname.value != "" && Lastname.value != "" && Password.value != "" && RepeatPassword.value != "";
+	//console.log('all crendetials entered: ' + credentials);
 	return credentials;
 });
 
-function click() {
+function register() {
     console.log('clicked');
-    console.log(username.value);
-    console.log(email.value);
-    console.log(password.value);
-    console.log(passwordRepeat.value);
+    console.log(Firstname.value);
+    console.log(Lastname.value);
+    console.log(Email.value);
+    console.log(Password.value);
+    console.log(RepeatPassword.value);
 
-    var requestObject = {first_name: 'first_name', last_name: 'last_name', password: 'pw', phone: '1234', email: 'email', address: "Test Streert",
-city: "Testtown", state: "BZW"};
+    var requestObject = {first_name: Firstname.value, last_name: Lastname.value, password: Password.value, phone: '', email: Email.value, address: '',
+city: '', state: ''};
 	var status = 0;
 	var response_ok = false;
 
@@ -65,12 +67,14 @@ function goBack() {
 }
 
 module.exports = {
-	username: username,
-	email: email,
-	password: password,
-	passwordRepeat: passwordRepeat,
+	Firstname: Firstname,
+	Lastname: Lastname,
+	Email: Email,
+	Password: Password,
+	RepeatPassword: RepeatPassword,
+
 	areCredentialsValid: areCredentialsValid,
-	click: click,
-	//data: data,
+	register: register,
 	goBack: goBack
+	//data: data,
 };
