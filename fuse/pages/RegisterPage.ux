@@ -88,6 +88,11 @@
     	<Move Target="Content" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
 	</WhileKeyboardVisible>
 
+	<!-- Showed only when Observable is true -->
+ 	<Modal Background="Error" Headline="Oops!" Titel="Es ist ein Fehler aufgetreten." />
+ 	<LoadingIndicator />
+ 	<Overlay />
+
 		<!--
 		Alter Kram
 		<Grid Rows="1*,1*">

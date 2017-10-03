@@ -7,16 +7,16 @@ var Lastname = RegisterObservable("");
 var Email = RegisterObservable("");
 var Password = RegisterObservable("");
 var RepeatPassword = RegisterObservable("");
-//var data = Observable();
 
 var areCredentialsValid = RegisterObservable(function() {
 	var credentials = Firstname.value != "" && Lastname.value != "" && Password.value != "" && RepeatPassword.value != "";
-	//console.log('all crendetials entered: ' + credentials);
 	return credentials;
 });
 
 function register() {
     console.log('clicked');
+	Observable.ShowOverlay.value = true; // Overlay einblenden
+	Observable.ShowLoadingIndicator.value = true; // Loading Symbol einblenden
 
     var requestObject = {
     	first_name: Firstname.value, 
@@ -32,27 +32,38 @@ function register() {
   	}).then(function(response) {
 	  	return response.json();    // This returns a promise
   	}).then(function(data) {
-	    // Do something with the result
-	    console.log('do something');
-	    console.log(data.error);
-	    console.log(data.message);
+	    // Server Antwort verarbeiten
+	    if(data.error == false){
+		    console.log('do something');
+		    console.log(data.error);
+		    console.log(data.message);
 
-	    Firstname.value = '';		//Set Field to blank
-	    Lastname.value = '';
-	    Email.value = '';
-	    Password.value = '';
-	    RepeatPassword.value = '';
+    		Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
+    		Observable.ShowModal.value = true; // Error Modal einblenden
+			Observable.ModalMessage.value = data.message; // Error Modal Text setzen
 
+			debugger;
+
+		    Firstname.value = '';		//Set Field to blank
+		    Lastname.value = '';
+		    Email.value = '';
+		    Password.value = '';
+		    RepeatPassword.value = '';
+		}else if(data.error == true){
+	    	Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
+    		Observable.ShowModal.value = true; // Error Modal einblenden
+			Observable.ModalMessage.value = data.message; // Error Modal Text setzen
+	    }
 	}).catch(function(error) {
 	    // An error occurred somewhere in the Promise chain
 	    console.log('error');
-	    //debugger;
-	    //console.log('ERROR ' . error.message);
+	    Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
+		Observable.ShowModal.value = true; // Error Modal einblenden
+		Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten."; // Error Modal Text setzen
 	});
 }
 
 function goBack() {
-	console.log('goBack');
     router.goBack();
 }
 
@@ -62,6 +73,11 @@ module.exports = {
 	Email: Email,
 	Password: Password,
 	RepeatPassword: RepeatPassword,
+
+	ShowOverlay: Observable.ShowOverlay,
+	ShowLoadingIndicator: Observable.ShowLoadingIndicator,
+	ShowModal: Observable.ShowModal,
+	ModalMessage: Observable.ModalMessage,
 
 	areCredentialsValid: areCredentialsValid,
 	register: register,

@@ -7,12 +7,10 @@ var Password = LoginObservable("");
 
 var allCredentialsEntered = LoginObservable(function() {
 	var credentials = Username.value != "" && Password.value != "";
-	//console.log('are credentials valid: ' + credentials);
 	return credentials;
 });
 
 function login() {
-	//console.log('login clicked');
 	Observable.ShowOverlay.value = true; // Overlay einblenden
 	Observable.ShowLoadingIndicator.value = true; // Loading Symbol einblenden
 
@@ -32,7 +30,7 @@ function login() {
 	  	}).then(function(response) {
 			return response.json(); // This returns a promise
 	  	}).then(function(data) {
-		    // Do something with the result
+		    // Server Antwort verarbeiten
 		    if(data.id != "" && data.apikey != "" && data.error == false){ // Prüfe ob ID und der API Kkey gefüllt ist sowie kein Fehler existiert 
 	    		Customer.addIdentifier(data.error, data.message, data.id, data.apikey); // ID und API Key abspeichern
 
@@ -45,19 +43,19 @@ function login() {
 			    Password.value = '';  // Reset Field
 		    }else if(data.error == true){
 		    	Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
-	    		Observable.ShowErrorModal.value = true; // Error Modal einblenden
+	    		Observable.ShowModal.value = true; // Error Modal einblenden
 				Observable.ModalMessage.value = data.message; // Error Modal Text setzen
 		    }
 		}).catch(function(error) {
 		    // An error occurred somewhere in the Promise chain
 		    Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
-			Observable.ShowErrorModal.value = true; // Error Modal einblenden
+			Observable.ShowModal.value = true; // Error Modal einblenden
 			Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten."; // Error Modal Text setzen
 		});
 	}else{
 		// Email Adresse ist ungültig
 		Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
-		Observable.ShowErrorModal.value = true; // Error Modal einblenden
+		Observable.ShowModal.value = true; // Error Modal einblenden
 		Observable.ModalMessage.value = "Bitte E-Mail-Adresse und/oder Passwort eingeben."; // Error Modal Text setzen
 	}
 }
@@ -86,9 +84,10 @@ function goToHike(arg) {
 module.exports = {
 	Username: Username,
 	Password: Password,
+
 	ShowOverlay: Observable.ShowOverlay,
 	ShowLoadingIndicator: Observable.ShowLoadingIndicator,
-	ShowErrorModal: Observable.ShowErrorModal,
+	ShowModal: Observable.ShowModal,
 	ModalMessage: Observable.ModalMessage,
 	Identifier: Customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 

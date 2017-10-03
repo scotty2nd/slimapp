@@ -1,6 +1,6 @@
 <Panel ux:Class="Modal" Layer="Overlay" >
 	<!-- Wenn ErrorModal zusehen ist -->
-	<WhileTrue Value="{ShowErrorModal}">
+	<WhileTrue Value="{ShowModal}">
 		<float4 ux:Property="Background" />
 		<string ux:Property="Headline" />
 		<string ux:Property="Titel" />
@@ -33,7 +33,7 @@
 				var Observable = require("modules/Observable");
 
 				function ok() {
-					Observable.ShowErrorModal.value = false; // Error Modal ausblenden
+					Observable.ShowModal.value = false; // Error Modal ausblenden
 					Observable.ShowOverlay.value = false; // Overlay ausblenden
 				}
 
@@ -45,7 +45,7 @@
 	</WhileTrue>
 
 	<!-- Wenn ErrorModal nicht zusehen ist -->
-	<WhileFalse Value="{ShowErrorModal}">
+	<WhileFalse Value="{ShowModal}">
 	    <Scale Factor="0" Duration=".3" Easing="BounceIn" />
 	</WhileFalse>
 </Panel>
