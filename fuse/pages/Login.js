@@ -15,10 +15,8 @@ function login() {
 	Observable.ShowOverlay.value = true; // Overlay einblenden
 	Observable.ShowLoadingIndicator.value = true; // Loading Symbol einblenden
 
-    var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // Regex um auf gültige Email Adressen zu prüfen
-
 	// Email Adresse ist eingegeben, gültig und Passwort ist eingegeben
-	if(regex.test(Username.value) && Password.value != ""){
+	if(Observable.EmailRegex.test(Username.value) && Password.value != ""){
 		var requestObject = {
 			email: Username.value, 
 			password: Password.value
