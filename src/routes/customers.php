@@ -87,11 +87,7 @@
 							'first_name', 
 							'last_name',
 							'email', 
-							'password'/*, 
-							'phone',
-							'address', 
-							'city', 
-							'state'*/
+							'password'
 						  );
 
 		// Checks required Parameter exists and not empty
@@ -117,17 +113,17 @@
 
 	   	    if ($result == 0) {
 		        $res["error"] = false;
-		        $res["message"] = "You are successfully registered";
+		        $res["message"] = "Ihr Benutzerkonto wurde erfolgreich erstellt.";
 
 		        returnResponse(201, $response, $res);
 		    } else if ($result == 1) {
 		        $res["error"] = true;
-		        $res["message"] = "Oops! An error occurred while registereing";
+		        $res["message"] = "Erstellen des Benutzerkontos fehlgeschlagen.";
 
 		        returnResponse(500, $response, $res);
 		    } else if ($result == 2) {
 		        $res["error"] = true;
-		        $res["message"] = "Sorry, this customer already existed";
+		        $res["message"] = "Dieses Benutzerkonto existiert bereits.";
 
 		        returnResponse(200, $response, $res);
 		    }

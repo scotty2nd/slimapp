@@ -99,8 +99,6 @@ module.exports = {
 
 	ShowOverlay: Observable.ShowOverlay,
 	ShowLoadingIndicator: Observable.ShowLoadingIndicator,
-	ShowModal: Observable.ShowModal,
-	ModalMessage: Observable.ModalMessage,
 	Modal: Observable.Modal,
 	Identifier: Customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 

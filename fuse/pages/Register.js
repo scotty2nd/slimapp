@@ -13,7 +13,14 @@ var areCredentialsValid = RegisterObservable(function() {
 });
 
 function register() {
-    console.log('clicked');
+	/*
+		To Do:
+		- Email Adresse prüfen / Email Adress Prüfung in Funktion auslagern
+		- Passwort und Repeatpasswort prüfen
+		- Passwort Komplexität einbauen
+		- Nutzungs- und Datenschutzschutz Popup bauen
+		- Console.logs entfernen
+	*/
 	Observable.ShowOverlay.value = true; // Overlay einblenden
 	Observable.ShowLoadingIndicator.value = true; // Loading Symbol einblenden
 
@@ -38,10 +45,12 @@ function register() {
 		    console.log(data.message);
 
     		Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
-    		Observable.ShowModal.value = true; // Error Modal einblenden
-			Observable.ModalMessage.value = data.message; // Error Modal Text setzen
-
-			debugger;
+			
+			Observable.Modal.Background = Observable.Colors.Success; // Modal Hintergrundfarbe setzen 
+			Observable.Modal.Headline = ""; // Modal Dachzeile setzen
+			Observable.Modal.Title = "Glückwunsch"; // Modal Titel setzen
+			Observable.Modal.Message.value = data.message; // Modal Text setzen
+			Observable.Modal.Visibility.value = true; // Modal sichtbar machen
 
 		    Firstname.value = '';		//Set Field to blank
 		    Lastname.value = '';
@@ -50,15 +59,22 @@ function register() {
 		    RepeatPassword.value = '';
 		}else if(data.error == true){
 	    	Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
-    		Observable.ShowModal.value = true; // Error Modal einblenden
-			Observable.ModalMessage.value = data.message; // Error Modal Text setzen
+
+			Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
+			Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
+			Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+			Observable.Modal.Message.value = data.message; // Modal Text setzen
+			Observable.Modal.Visibility.value = true; // Modal sichtbar machen
 	    }
 	}).catch(function(error) {
 	    // An error occurred somewhere in the Promise chain
-	    console.log('error');
-	    Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
-		Observable.ShowModal.value = true; // Error Modal einblenden
-		Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten."; // Error Modal Text setzen
+	    Observable.ShowLoadingIndicator.value = false; // Loading Symbol ausblenden
+
+		Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
+		Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
+		Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+		Observable.Modal.Message.value = "Ein unbekannter Fehler ist aufgetreten."; // Modal Text setzen
+		Observable.Modal.Visibility.value = true; // Modal sichtbar machen
 	});
 }
 
@@ -75,11 +91,9 @@ module.exports = {
 
 	ShowOverlay: Observable.ShowOverlay,
 	ShowLoadingIndicator: Observable.ShowLoadingIndicator,
-	ShowModal: Observable.ShowModal,
-	ModalMessage: Observable.ModalMessage,
+	Modal: Observable.Modal,
 
 	areCredentialsValid: areCredentialsValid,
 	register: register,
 	goBack: goBack
-	//data: data,
 };
