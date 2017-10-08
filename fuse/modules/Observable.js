@@ -1,7 +1,7 @@
 var Observable = require("FuseJS/Observable");
 
-var ShowOverlay = Observable(false);
-var ShowLoadingIndicator = Observable(false);
+var ShowOverlay = Observable(false),
+	ShowLoadingIndicator = Observable(false);
 
 var Modal = { 
 	Visibility: Observable(false),

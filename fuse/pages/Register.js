@@ -1,11 +1,11 @@
 var Observable = require("modules/Observable");
 var RegisterObservable = require("FuseJS/Observable");
 
-var Firstname = RegisterObservable("");
-var Lastname = RegisterObservable("");
-var Email = RegisterObservable("");
-var Password = RegisterObservable("");
-var RepeatPassword = RegisterObservable("");
+var Firstname = RegisterObservable(""),
+	Lastname = RegisterObservable(""),
+	Email = RegisterObservable(""),
+	Password = RegisterObservable(""),
+	RepeatPassword = RegisterObservable("");
 
 var areCredentialsValid = RegisterObservable(function() {
 	var credentials = Firstname.value != "" && Lastname.value != "" && Password.value != "" && RepeatPassword.value != "";

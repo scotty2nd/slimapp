@@ -1,9 +1,10 @@
-var Observable = require("modules/Observable");
-var Customer = require("modules/Customer");
+var Observable = require("modules/Observable"),
+	Customer = require("modules/Customer");
+	
 var LoginObservable = require("FuseJS/Observable");
 
-var Username = LoginObservable("");
-var Password = LoginObservable("");
+var Username = LoginObservable(""),
+	Password = LoginObservable("");
 
 var allCredentialsEntered = LoginObservable(function() {
 	var credentials = Username.value != "" && Password.value != "";
