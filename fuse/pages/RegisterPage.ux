@@ -89,7 +89,7 @@
 	</WhileKeyboardVisible>
 
 	<!-- Showed only when Observable is true -->
- 	<Modal Background="Error" Headline="Oops!" Titel="Es ist ein Fehler aufgetreten." />
+ 	<Modal Background="Error" Headline="Oops!" Title="Es ist ein Fehler aufgetreten." />
  	<LoadingIndicator />
  	<Overlay />
 

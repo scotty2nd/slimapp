@@ -1,5 +1,5 @@
-var Customer = require("modules/Customer");
 var Observable = require("modules/Observable");
+var Customer = require("modules/Customer");
 var LoginObservable = require("FuseJS/Observable");
 
 var Username = LoginObservable("");
@@ -43,20 +43,32 @@ function login() {
 			    Password.value = '';  // Reset Field
 		    }else if(data.error == true){
 		    	Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
-	    		Observable.ShowModal.value = true; // Error Modal einblenden
-				Observable.ModalMessage.value = data.message; // Error Modal Text setzen
+
+				Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
+				Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
+				Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+				Observable.Modal.Message.value = data.message; // Modal Text setzen
+				Observable.Modal.Visibility.value = true; // Modal sichtbar machen
 		    }
 		}).catch(function(error) {
 		    // An error occurred somewhere in the Promise chain
-		    Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
-			Observable.ShowModal.value = true; // Error Modal einblenden
-			Observable.ModalMessage.value = "Ein unbekannter Fehler ist aufgetreten."; // Error Modal Text setzen
+		    Observable.ShowLoadingIndicator.value = false; // Loading Symbol ausblenden
+
+			Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
+			Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
+			Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+			Observable.Modal.Message.value = "Ein unbekannter Fehler ist aufgetreten."; // Modal Text setzen
+			Observable.Modal.Visibility.value = true; // Modal sichtbar machen
 		});
 	}else{
 		// Email Adresse ist ungültig
-		Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
-		Observable.ShowModal.value = true; // Error Modal einblenden
-		Observable.ModalMessage.value = "Bitte E-Mail-Adresse und/oder Passwort eingeben."; // Error Modal Text setzen
+		Observable.ShowLoadingIndicator.value = false; // Loading Symbol ausblenden
+
+		Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
+		Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
+		Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+		Observable.Modal.Message.value = "Bitte E-Mail-Adresse und/oder Passwort eingeben."; // Modal Text setzen
+		Observable.Modal.Visibility.value = true; // Modal sichtbar machen
 	}
 }
 
@@ -89,6 +101,7 @@ module.exports = {
 	ShowLoadingIndicator: Observable.ShowLoadingIndicator,
 	ShowModal: Observable.ShowModal,
 	ModalMessage: Observable.ModalMessage,
+	Modal: Observable.Modal,
 	Identifier: Customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 
 	allCredentialsEntered: allCredentialsEntered,

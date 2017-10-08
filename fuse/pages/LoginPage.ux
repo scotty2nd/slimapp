@@ -62,6 +62,12 @@
 				</Panel>
 
 				<Panel>
+    		    	<!--<Text Value="{vehicles.type}" Color="{vehicles.name}" />
+    		    	-->
+    		    	<!--<Each Items="{vehicles}">
+		    		 	<Text Value="{name}" />
+    		    	</Each>-->
+
 				    <StackPanel Alignment="Bottom">
 				    	<Panel Padding="0, 25, 0, 25" Clicked="{goToRegisterPage}" HitTestMode="LocalBounds">
 					        <RegularText ux:Name="RegistrierenText" TextColor="White" TextAlignment="Center">
@@ -110,7 +116,8 @@
 	</WhileKeyboardVisible>
 
  	<!-- Showed only when Observable is true -->
- 	<Modal Background="Error" Headline="Oops!" Titel="Es ist ein Fehler aufgetreten." />
+ 	<!--<Modal Background="Error" Headline="Oops!" Titel="Es ist ein Fehler aufgetreten." />-->
+ 	<Modal />
  	<LoadingIndicator />
  	<Overlay />
 </Page>

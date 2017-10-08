@@ -1,4 +1,3 @@
-//var Customer = require("modules/Customer");
 var Observable = require("modules/Observable");
 var RegisterObservable = require("FuseJS/Observable");
 
