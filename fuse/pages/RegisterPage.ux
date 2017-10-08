@@ -38,18 +38,34 @@
 				<Logo />
 
 				<StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
-			    	<TextField Label="Vorname" PlaceholderText="Vorname eingeben" ActionStyle="Next" Value="{Firstname}" />
+			    	<TextField ux:Name="Firstname" Label="Vorname" PlaceholderText="Vorname eingeben" ActionStyle="Next" Value="{Firstname}">
+	            	    <TextInputActionTriggered>
+					        <GiveFocus Target="Lastname" />
+					    </TextInputActionTriggered>
+			    	</TextField>
 
-			    	<TextField Label="Nachname" PlaceholderText="Nachname eingeben" ActionStyle="Next" Value="{Lastname}" />
+			    	<TextField ux:Name="Lastname" Label="Nachname" PlaceholderText="Nachname eingeben" ActionStyle="Next" Value="{Lastname}">
+	            	    <TextInputActionTriggered>
+					        <GiveFocus Target="EmailAdress" />
+					    </TextInputActionTriggered>
+			    	</TextField>
 
-			    	<TextField Label="E-Mail-Adresse" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Email}" />
+			    	<TextField ux:Name="EmailAdress" Label="E-Mail-Adresse" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Email}">
+	            	    <TextInputActionTriggered>
+					        <GiveFocus Target="Password" />
+					    </TextInputActionTriggered>
+			    	</TextField>
 
-	            	<TextField Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}" />
+	            	<TextField ux:Name="Password" Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}">
+	            	    <TextInputActionTriggered>
+					        <GiveFocus Target="RepeatPassword" />
+					    </TextInputActionTriggered>
+	            	</TextField>
 
-		            <TextField Label="Passwort wiederholen" PlaceholderText="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{RepeatPassword}">
-		            	    <TextInputActionTriggered>
-						        <ReleaseFocus />
-						    </TextInputActionTriggered>
+		            <TextField ux:Name="RepeatPassword" Label="Passwort wiederholen" PlaceholderText="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{RepeatPassword}" ActionTriggered="{register}">
+	            	    <TextInputActionTriggered>
+					        <ReleaseFocus />
+					    </TextInputActionTriggered>
 		            </TextField>
 
 					<StackPanel ContentAlignment="Center" Margin="0, 50, 0, 85">

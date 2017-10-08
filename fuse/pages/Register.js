@@ -15,10 +15,12 @@ var areCredentialsValid = RegisterObservable(function() {
 function register() {
 	/*
 		To Do:
+		- Alle Felder checken wenn mit Tastatur abgeschickt wird
 		- Email Adresse prüfen / Email Adress Prüfung in Funktion auslagern
 		- Passwort und Repeatpasswort prüfen
 		- Passwort Komplexität einbauen
 		- Nutzungs- und Datenschutzschutz Popup bauen
+		- Konstante für Host URL
 		- Console.logs entfernen
 	*/
 	Observable.ShowOverlay.value = true; // Overlay einblenden
@@ -31,7 +33,7 @@ function register() {
     	email: Email.value
     };
 
-	fetch('http://slimapp.dev/api/customer/add', {
+	fetch('http://app.scotty2nd.square7.ch/api/customer/add', {
 	  	method: 'POST',
 	  	headers: { "Content-type": "application/json", "Accept": "application/json" },
 	  	body: JSON.stringify(requestObject)
