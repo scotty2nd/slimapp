@@ -1,74 +1,99 @@
-var Observable = require("FuseJS/Observable");
+var Observable = require("modules/Observable");
+var RegisterObservable = require("FuseJS/Observable");
 
-var username = Observable("");
-var password = Observable("");
-var passwordRepeat = Observable("");
-var email = Observable("");
-var data = Observable();
+var Firstname = RegisterObservable(""),
+	Lastname = RegisterObservable(""),
+	Email = RegisterObservable(""),
+	Password = RegisterObservable(""),
+	RepeatPassword = RegisterObservable("");
 
-var areCredentialsValid = Observable(function() {
-	var credentials = username.value != "" && email.value != "" && password.value != "" && passwordRepeat.value != "";
-	console.log('all crendetials entered: ' + credentials);
+var areCredentialsValid = RegisterObservable(function() {
+	var credentials = Firstname.value != "" && Lastname.value != "" && Password.value != "" && RepeatPassword.value != "";
 	return credentials;
 });
 
-function click() {
-    console.log('clicked');
-    console.log(username.value);
-    console.log(email.value);
-    console.log(password.value);
-    console.log(passwordRepeat.value);
+function register() {
+	/*
+		To Do:
+		- Email Adresse prüfen / Email Adress Prüfung in Funktion auslagern
+		- Passwort und Repeatpasswort prüfen
+		- Passwort Komplexität einbauen
+		- Nutzungs- und Datenschutzschutz Popup bauen
+		- Console.logs entfernen
+	*/
+	Observable.ShowOverlay.value = true; // Overlay einblenden
+	Observable.ShowLoadingIndicator.value = true; // Loading Symbol einblenden
 
-    var requestObject = {first_name: username.value, last_name: 'last_name', password: password.value, phone: '1234', email: email.value, address: "Test Streert",
-city: "Testtown", state: "BZW"};
-	var status = 0;
-	var response_ok = false;
+    var requestObject = {
+    	first_name: Firstname.value, 
+    	last_name: Lastname.value, 
+    	password: Password.value, 
+    	email: Email.value
+    };
 
 	fetch('http://slimapp.dev/api/customer/add', {
 	  	method: 'POST',
 	  	headers: { "Content-type": "application/json", "Accept": "application/json" },
 	  	body: JSON.stringify(requestObject)
   	}).then(function(response) {
-    	status = response.status;  // Get the HTTP status code
-		response_ok = response.ok; // Is response.status in the 200-range?
-
-	  	console.log("Status Code " + status);
-	  	console.log("Response OK " + response_ok);
-	  	
 	  	return response.json();    // This returns a promise
-  	}).then(function(responseObject) {
-	    // Do something with the result
-	    console.log('do something');
-	    console.log(responseObject.error);
-	    console.log(responseObject.message);
+  	}).then(function(data) {
+	    // Server Antwort verarbeiten
+	    if(data.error == false){
+		    console.log('do something');
+		    console.log(data.error);
+		    console.log(data.message);
 
-	    data.value = responseObject;
+    		Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
+			
+			Observable.Modal.Background = Observable.Colors.Success; // Modal Hintergrundfarbe setzen 
+			Observable.Modal.Headline = ""; // Modal Dachzeile setzen
+			Observable.Modal.Title = "Glückwunsch"; // Modal Titel setzen
+			Observable.Modal.Message.value = data.message; // Modal Text setzen
+			Observable.Modal.Visibility.value = true; // Modal sichtbar machen
 
-	    username.value = '';		//Set Field to blank
-	    email.value = '';
-	    password.value = '';
-	    passwordRepeat.value = '';
-      	//debugger;
+		    Firstname.value = '';		//Set Field to blank
+		    Lastname.value = '';
+		    Email.value = '';
+		    Password.value = '';
+		    RepeatPassword.value = '';
+		}else if(data.error == true){
+	    	Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
+
+			Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
+			Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
+			Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+			Observable.Modal.Message.value = data.message; // Modal Text setzen
+			Observable.Modal.Visibility.value = true; // Modal sichtbar machen
+	    }
 	}).catch(function(error) {
 	    // An error occurred somewhere in the Promise chain
-	    console.log('error');
-	    //debugger;
-	    //console.log('ERROR ' . error.message);
+	    Observable.ShowLoadingIndicator.value = false; // Loading Symbol ausblenden
+
+		Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
+		Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
+		Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+		Observable.Modal.Message.value = "Ein unbekannter Fehler ist aufgetreten."; // Modal Text setzen
+		Observable.Modal.Visibility.value = true; // Modal sichtbar machen
 	});
 }
 
 function goBack() {
-	console.log('goBack');
     router.goBack();
 }
 
 module.exports = {
-	username: username,
-	email: email,
-	password: password,
-	passwordRepeat: passwordRepeat,
+	Firstname: Firstname,
+	Lastname: Lastname,
+	Email: Email,
+	Password: Password,
+	RepeatPassword: RepeatPassword,
+
+	ShowOverlay: Observable.ShowOverlay,
+	ShowLoadingIndicator: Observable.ShowLoadingIndicator,
+	Modal: Observable.Modal,
+
 	areCredentialsValid: areCredentialsValid,
-	click: click,
-	data: data,
+	register: register,
 	goBack: goBack
 };

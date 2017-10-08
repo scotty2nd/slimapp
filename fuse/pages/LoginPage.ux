@@ -38,41 +38,61 @@
     	<ScrollView>
     		<Grid ux:Name="LoginGrid" MinHeight="100%">
 
-				<Logo />
+				<Logo ux:Name="Logo" />
 
 				<Panel>
 				    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
-				    	<TextField ux:Name="EmailAdresseText" TextColor="White" CaretColor="White" Label="E-Mail-Adresse" LabelColor="White" PlaceholderColor="Placeholder" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Username}" />
+				    	<TextField ux:Name="EmailAdresseText" TextColor="White" CaretColor="White" Label="E-Mail-Adresse" LabelColor="White" PlaceholderColor="LightGray" PlaceholderText="E-Mail-Adresse eingeben" StrokeColor="LightGray" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Username}" />
 
-			            <TextField ux:Name="PasswortText" Padding="0, 30, 0, 10" TextColor="White" CaretColor="White" Label="Passwort" LabelColor="White" PlaceholderColor="Placeholder" PlaceholderText="Passwort eingeben" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}" ActionTriggered="{login}" />
+			            <TextField ux:Name="PasswortText" TextColor="White" CaretColor="White" Label="Passwort" LabelColor="White" PlaceholderColor="LightGray" PlaceholderText="Passwort eingeben" StrokeColor="LightGray" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}" ActionTriggered="{login}">
+		            	    <TextInputActionTriggered>
+						        <ReleaseFocus />
+						    </TextInputActionTriggered>
+			            </TextField>
 
-
-			        	<RegularText ux:Name="PasswortVergessenText" Clicked="{goToForgotPasswordPage}" TextColor="White" FontSize="14" TextAlignment="Right" Margin="0, 15, 0, 5">
-		        			Passwort vergessen?
-			        	</RegularText>
+			            <Panel Padding="0, 15, 0, 5" Clicked="{goToForgotPasswordPage}" HitTestMode="LocalBounds">
+				        	<RegularText ux:Name="PasswortVergessenText" TextColor="White" FontSize="14" Alignment="Right" TextAlignment="Center">
+				        		Passwort vergessen?
+				        	</RegularText>
+			        		<WhilePressed>
+								<Scale Factor=".8" Duration=".2" Easing="BounceIn" />
+							</WhilePressed>
+			        	</Panel>
 				    </StackPanel>
 				</Panel>
 
 				<Panel>
-				    <StackPanel Alignment="Bottom">
-				        <RegularText ux:Name="RegistrierenText" Clicked="{goToRegisterPage}" TextColor="White" TextAlignment="Center" Margin="0, 25, 0, 25">
-				        	Kostenlos registrieren
-				        </RegularText>
+    		    	<!--<Text Value="{vehicles.type}" Color="{vehicles.name}" />
+    		    	-->
+    		    	<!--<Each Items="{vehicles}">
+		    		 	<Text Value="{name}" />
+    		    	</Each>-->
 
-				        <PrimaryButton Text="Login" Clicked="{login}" IsEnabled="{allCredentialsEntered}" />
+				    <StackPanel Alignment="Bottom">
+				    	<Panel Padding="0, 25, 0, 25" Clicked="{goToRegisterPage}" HitTestMode="LocalBounds">
+					        <RegularText ux:Name="RegistrierenText" TextColor="White" TextAlignment="Center">
+					        	Kostenlos registrieren
+					        </RegularText>
+			        		<WhilePressed>
+								<Scale Factor=".8" Duration=".2" Easing="BounceIn" />
+							</WhilePressed>
+				    	</Panel>
+
+				        <PrimaryButton Text="LOGIN" Clicked="{login}" IsEnabled="{allCredentialsEntered}" />
 				    </StackPanel>
 				</Panel>
 			</Grid>
 		</ScrollView>
 	</Panel>
 
+    <!-- Extra Small Smartphone View e.g. iPhone 4, 3 und 2 -->
+    <WhileWindowSize LessThan="321,481">
+    	<Change Logo.Margin="0, 45, 0, 0"/>
+    </WhileWindowSize>
+
 	<!-- Optimized Sizes for Tablets and bigger Views -->
 	<WhileWindowSize GreaterThan="768,1">
-		<Change EmailAdresseText.FontSize="BaseTablet" />
-		<Change PasswortText.Padding="0, 60, 0, 10" />
-		<Change PasswortText.FontSize="BaseTablet" />
-		<Change PasswortVergessenText.FontSize="18" />
-	    <Change RegistrierenText.FontSize="BaseTablet" />
+		<Change PasswortVergessenText.FontSize="8" />
 	    <Change RegistrierenText.Margin="0, 0, 0, 50" />
 	</WhileWindowSize>
 
@@ -94,9 +114,10 @@
 	<WhileKeyboardVisible>
     	<Move Target="this" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
 	</WhileKeyboardVisible>
- 
-	<Overlay>
-		<ErrorModal />
-		<LoadingIndicator />
-	</Overlay>
+
+ 	<!-- Showed only when Observable is true -->
+ 	<!--<Modal Background="Error" Headline="Oops!" Titel="Es ist ein Fehler aufgetreten." />-->
+ 	<Modal />
+ 	<LoadingIndicator />
+ 	<Overlay />
 </Page>

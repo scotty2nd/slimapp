@@ -1,11 +1,12 @@
-<TextInput ux:Class="TextField" Padding="0, 10, 0, 10" Font="MyriadProRegular">
+<TextInput ux:Class="TextField" Padding="0, 30, 0, 10" LabelColor="Black" TextColor="Black" CaretColor="Black" StrokeColor="Gray" PlaceholderColor="Gray">
 	<string ux:Property="Label" />
 	<float4 ux:Property="LabelColor" />
+	<float4 ux:Property="StrokeColor" />
 
 	<RegularText ux:Name="LabelText" Value="{ReadProperty Label}" TextColor="{ReadProperty LabelColor}" Opacity="0" />
 	
 	<Panel Height="1" Alignment="Bottom" Padding="0, 10, 0, 0">
-	    <Rectangle ux:Name="Stroke" Height="1" Color="Placeholder" />
+	    <Rectangle ux:Name="Stroke" Height="1" Color="{ReadProperty StrokeColor}" />
 	    <Rectangle ux:Name="StrokeOnFocus" Height="1" Width="0%" Alignment="BottomLeft" Color="Primary" Layer="Overlay" Opacity="0" />
 	</Panel>
 
@@ -21,10 +22,11 @@
     </WhileContainsText>
 
 	<WhileWindowSize GreaterThan="768,1">
-		<Change LabelText.FontSize="BaseTablet" />
+		<Change this.FontSize="BaseTablet" />
+		<Change this.Padding="0, 50, 0, 10" />
 
 	    <WhileContainsText>
-	    	<Move Target="LabelText" Y="-22" Duration=".2" />
+	    	<Move Target="LabelText" Y="-10" Duration=".2" />
 	    </WhileContainsText>
 	</WhileWindowSize>
 </TextInput>

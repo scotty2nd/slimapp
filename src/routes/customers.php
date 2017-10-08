@@ -82,16 +82,12 @@
 	 * Method: POST
 	 * */
 	$app->post('/api/customer/add', function(Request $request, Response $response){
-		
+
 		$requiredParams = array(
 							'first_name', 
-							'last_name', 
-							'password', 
-							'phone', 
+							'last_name',
 							'email', 
-							'address', 
-							'city', 
-							'state'
+							'password'
 						  );
 
 		// Checks required Parameter exists and not empty
@@ -100,12 +96,12 @@
 			//Get Post Parameter from Request
 		    $first_name = $request->getParam('first_name');
 		    $last_name = $request->getParam('last_name');
-		    $password = $request->getParam('password');
-		    $phone = $request->getParam('phone');
 		    $email = $request->getParam('email');
-		    $address = $request->getParam('address');
-		    $city = $request->getParam('city');
-		    $state = $request->getParam('state');
+		    $password = $request->getParam('password');
+		    $phone = "";
+		    $address = "";
+		    $city = "";
+		    $state = "";
 
 			// Get DB Object
 	       	$db = new db();
@@ -117,17 +113,17 @@
 
 	   	    if ($result == 0) {
 		        $res["error"] = false;
-		        $res["message"] = "You are successfully registered";
+		        $res["message"] = "Ihr Benutzerkonto wurde erfolgreich erstellt.";
 
 		        returnResponse(201, $response, $res);
 		    } else if ($result == 1) {
 		        $res["error"] = true;
-		        $res["message"] = "Oops! An error occurred while registereing";
+		        $res["message"] = "Erstellen des Benutzerkontos fehlgeschlagen.";
 
 		        returnResponse(500, $response, $res);
 		    } else if ($result == 2) {
 		        $res["error"] = true;
-		        $res["message"] = "Sorry, this customer already existed";
+		        $res["message"] = "Dieses Benutzerkonto existiert bereits.";
 
 		        returnResponse(200, $response, $res);
 		    }

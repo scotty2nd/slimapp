@@ -1,6 +1,3 @@
-<Panel ux:Class="Overlay" Background="#0008" Layer="Overlay" Opacity="0" Visibility="Collapsed">
-	<WhileTrue Value="{ShowOverlay}">
-	    <Change this.Visibility="Visible" Duration=".3" />
-	    <Change this.Opacity="1" Duration=".3" />
-	</WhileTrue>
-</Panel>
+<WhileTrue ux:Class="Overlay" Value="{ShowOverlay}">
+	<Panel Background="#0008" Layer="Overlay" />
+</WhileTrue>
