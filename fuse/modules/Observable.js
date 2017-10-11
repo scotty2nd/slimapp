@@ -1,10 +1,5 @@
 var Observable = require("FuseJS/Observable");
 
-var ShowOverlay = Observable(false),
-	ShowLoadingIndicator = Observable(false);
-
-var EmailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // Regex um auf gültige Email Adressen zu prüfen
-
 var Modal = { 
 	Visibility: Observable(false),
 	Background: "",
@@ -17,13 +12,40 @@ var Colors = {
 	Error: "#cc4339",
 	Success: "#008100",
 	Warning: "#000",
-	Info: "#000"
+	Info: "#000",
+	Primary: "#4080ff",
+	PrimaryDisabled: "#ccc"
+}
+
+var ShowOverlay = Observable(false),
+	ShowLoadingIndicator = Observable(false),
+	AndroidStatusbarColor = Observable(Colors.PrimaryDisabled);
+
+var EmailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // Regex um auf gültige Email Adressen zu prüfen
+
+function setAndroidStatusbarColor(param, type) {
+	var value = "";
+
+	if(type == 1){
+		value = param;
+	}else{
+		value = param.value;
+	}
+
+	if(value){
+		AndroidStatusbarColor.value = Colors.Primary;
+	}else{
+		AndroidStatusbarColor.value = Colors.PrimaryDisabled;
+	}
 }
 
 module.exports = {
+    Modal: Modal,
+    Colors: Colors,
     ShowOverlay: ShowOverlay,
     ShowLoadingIndicator: ShowLoadingIndicator,
+    AndroidStatusbarColor: AndroidStatusbarColor,
     EmailRegex: EmailRegex,
-    Modal: Modal,
-    Colors: Colors
+
+    setAndroidStatusbarColor: setAndroidStatusbarColor
 };

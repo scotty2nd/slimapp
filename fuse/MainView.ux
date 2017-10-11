@@ -1,6 +1,14 @@
 <App>
+    <JavaScript>
+        var Observable = require("modules/Observable");
+
+        module.exports = {
+            AndroidStatusbarColor: Observable.AndroidStatusbarColor
+        };
+    </JavaScript>
+
 	<iOS.StatusBarConfig IsVisible="true" Animation="Slide"/>
-    <Android.StatusBarConfig IsVisible="true" Color="Primary" />
+    <Android.StatusBarConfig IsVisible="true" Color="{AndroidStatusbarColor}" />
 	<Router ux:Name="router" />
 
     <!-- Include Custom Font -->
@@ -23,8 +31,16 @@
         <StatusBarBackground Dock="Top" />
         <Navigator DefaultPath="login">
         	<SplashPage ux:Template="splash" router="router" />
-        	<LoginPage ux:Template="login" router="router"/>
-            <RegisterPage ux:Template="register" router="router" />
+        	<LoginPage ux:Template="login" router="router">
+                 <WhileActive>
+                  <Callback Handler="{onPageActiv}" />
+                </WhileActive>   
+            </LoginPage>
+            <RegisterPage ux:Template="register" router="router">
+                 <WhileActive>
+                  <Callback Handler="{onPageActiv}" />
+                </WhileActive>  
+            </RegisterPage>
             <HomePage ux:Template="home" router="router" />
             <ForgotPasswordPage ux:Template="forgotPassword" router="router" />
         </Navigator>

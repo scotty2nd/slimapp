@@ -8,8 +8,15 @@ var Username = LoginObservable(""),
 
 var allCredentialsEntered = LoginObservable(function() {
 	var credentials = Username.value != "" && Password.value != "";
+	
+	Observable.setAndroidStatusbarColor(credentials, 1);
+
 	return credentials;
 });
+
+function onPageActiv() {
+	Observable.setAndroidStatusbarColor(allCredentialsEntered);
+}
 
 function login() {
 	Observable.ShowOverlay.value = true; // Overlay einblenden
@@ -76,7 +83,6 @@ function goToRegisterPage() {
 }
 
 function goToForgotPasswordPage() {
-	console.log('goToForgotPassword');
     router.push("forgotPassword");
 }
 
@@ -102,6 +108,7 @@ module.exports = {
 	Identifier: Customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 
 	allCredentialsEntered: allCredentialsEntered,
+	onPageActiv, onPageActiv,
 	login: login,
 	goToRegisterPage: goToRegisterPage,
 	goToForgotPasswordPage: goToForgotPasswordPage
