@@ -31,16 +31,8 @@
         <StatusBarBackground Dock="Top" />
         <Navigator DefaultPath="login">
         	<SplashPage ux:Template="splash" router="router" />
-        	<LoginPage ux:Template="login" router="router">
-                 <WhileActive>
-                  <Callback Handler="{onPageActiv}" />
-                </WhileActive>   
-            </LoginPage>
-            <RegisterPage ux:Template="register" router="router">
-                 <WhileActive>
-                  <Callback Handler="{onPageActiv}" />
-                </WhileActive>  
-            </RegisterPage>
+        	<LoginPage ux:Template="login" router="router" />
+            <RegisterPage ux:Template="register" router="router" />
             <HomePage ux:Template="home" router="router" />
             <ForgotPasswordPage ux:Template="forgotPassword" router="router" />
         </Navigator>

@@ -104,8 +104,12 @@
     	<Move Target="Content" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
 	</WhileKeyboardVisible>
 
+    <WhileActive>
+    	<Callback Handler="{onPageActiv}" />
+    </WhileActive>  
+
 	<!-- Showed only when Observable is true -->
- 	<Modal Background="Error" Headline="Oops!" Title="Es ist ein Fehler aufgetreten." />
+ 	<Modal />
  	<LoadingIndicator />
  	<Overlay />
 
