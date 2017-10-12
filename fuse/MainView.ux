@@ -1,14 +1,9 @@
 <App>
-    <JavaScript>
-        var Observable = require("modules/Observable");
-
-        module.exports = {
-            AndroidStatusbarColor: Observable.AndroidStatusbarColor
-        };
-    </JavaScript>
+    <JavaScript File="Main.js" />
 
 	<iOS.StatusBarConfig IsVisible="true" Animation="Slide"/>
     <Android.StatusBarConfig IsVisible="true" Color="{AndroidStatusbarColor}" />
+
 	<Router ux:Name="router" />
 
     <!-- Include Custom Font -->
