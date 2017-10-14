@@ -6,8 +6,8 @@
 
 	<Router ux:Name="router" />
 
-    <!-- Include Custom Font -->
     <!-- Aktuell auskommentiert da die App sonst nicht auf Android Geräten funktioniert -->
+    <!-- Include Custom Font -->
     <!--<Font File="assets/fonts/MyriadProRegular.ttf" ux:Global="MyriadProRegular" />
     <Font File="assets/fonts/MyriadProSemibold.ttf" ux:Global="MyriadProSemibold" />
     <Font File="assets/fonts/MyriadProBold.ttf" ux:Global="MyriadProBold" />-->

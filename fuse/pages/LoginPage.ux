@@ -66,12 +66,6 @@
 				</Panel>
 
 				<Panel>
-    		    	<!--<Text Value="{vehicles.type}" Color="{vehicles.name}" />
-    		    	-->
-    		    	<!--<Each Items="{vehicles}">
-		    		 	<Text Value="{name}" />
-    		    	</Each>-->
-
 				    <StackPanel Alignment="Bottom">
 				    	<Panel Padding="0, 25, 0, 25" Clicked="{goToRegisterPage}" HitTestMode="LocalBounds">
 					        <RegularText ux:Name="RegistrierenText" TextColor="White" TextAlignment="Center">
@@ -114,14 +108,15 @@
 	    </WhileWindowSize>
 	</WhileWindowLandscape>
 
-	<!-- When Keyboard become visible then move entire page 3/4 of keyboard size to top -->
-	<WhileKeyboardVisible>
-    	<Move Target="this" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
-	</WhileKeyboardVisible>
-
     <WhileActive>
     	<Callback Handler="{onPageActiv}" />
     </WhileActive> 
+
+	<!-- Aktuell irgendwie Buggy auf Aandroid wenn man mehrmals dreht erscheint ein weißer Bereich am unteren Ende des Bilschirms-->
+	<!-- When Keyboard become visible then move entire page 3/4 of keyboard size to top -->
+	<!--<WhileKeyboardVisible>
+    	<Move Target="this" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
+	</WhileKeyboardVisible>-->
 
  	<!-- Showed only when Observable is true -->
  	<Modal />

@@ -7,7 +7,7 @@ var Firstname = RegisterObservable(""),
 	Password = RegisterObservable(""),
 	RepeatPassword = RegisterObservable("");
 
-var areCredentialsValid = RegisterObservable(function() {
+var allCredentialsEntered = RegisterObservable(function() {
 	var credentials = Firstname.value != "" && Lastname.value != "" && Password.value != "" && RepeatPassword.value != "";
 
 	Observable.setAndroidStatusbarColor(credentials, 1);
@@ -16,7 +16,7 @@ var areCredentialsValid = RegisterObservable(function() {
 });
 
 function onPageActiv() {
-	Observable.setAndroidStatusbarColor(areCredentialsValid);
+	Observable.setAndroidStatusbarColor(allCredentialsEntered);
 }
 
 function register() {
@@ -132,7 +132,7 @@ module.exports = {
 	ShowLoadingIndicator: Observable.ShowLoadingIndicator,
 	Modal: Observable.Modal,
 
-	areCredentialsValid: areCredentialsValid,
+	allCredentialsEntered: allCredentialsEntered,
 	onPageActiv, onPageActiv,
 	register: register,
 	goBack: goBack

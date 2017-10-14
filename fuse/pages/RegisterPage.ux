@@ -90,7 +90,7 @@
 			</Grid>
 		</ScrollView>
 
-		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" Clicked="{register}" IsEnabled="{areCredentialsValid}" />
+		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" Clicked="{register}" IsEnabled="{allCredentialsEntered}" />
 	</Panel>
 
 	<!-- Optimized Sizes for iPad and bigger Views -->
@@ -99,37 +99,18 @@
 	    <Change LeftIconWrapper.Padding="20, 25" />
 	</WhileWindowSize>
 
-	<!-- When Keyboard become visible then move entire page 3/4 of keyboard size to top -->
-	<WhileKeyboardVisible>
-    	<Move Target="Content" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
-	</WhileKeyboardVisible>
-
     <WhileActive>
     	<Callback Handler="{onPageActiv}" />
     </WhileActive>  
+
+	<!-- Aktuell irgendwie Buggy auf Aandroid wenn man mehrmals dreht erscheint ein weißer Bereich am unteren Ende des Bilschirms-->
+	<!-- When Keyboard become visible then move entire page 3/4 of keyboard size to top -->
+	<!--<WhileKeyboardVisible>
+    	<Move Target="Content" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
+	</WhileKeyboardVisible>-->
 
 	<!-- Showed only when Observable is true -->
  	<Modal />
  	<LoadingIndicator />
  	<Overlay />
-
-		<!--
-		Alter Kram
-		<Grid Rows="1*,1*">
-			<StackPanel Alignment="VerticalCenter">
-				<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
-			</StackPanel>
-
-			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
- 				<MyTextInput PlaceholderText="Username" Value="{username}" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
- 				<MyTextInput PlaceholderText="Email" Value="{email}" InputHint="Email" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" />
- 				<MyTextInput PlaceholderText="Password" Value="{password}" IsPassword="true" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
- 				<MyTextInput PlaceholderText="Repeat Password" Value="{passwordRepeat}" IsPassword="true" ActionStyle="Send" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
-
-				<Text Alignment="HorizontalCenter" Opacity="1" TextColor="#000" Value="{data.error}" />
-				<Text Alignment="HorizontalCenter" Opacity="1" TextColor="#000" Value="{data.message}"/>
-				<Text Alignment="HorizontalCenter" Opacity=".5" />
-				<Text Alignment="HorizontalCenter" Opacity=".5" />
-			</StackPanel>
-		</Grid>-->
 </Page>
