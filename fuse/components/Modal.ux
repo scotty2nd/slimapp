@@ -34,7 +34,7 @@
 		<Scale Factor="1" Duration=".3" Easing="BounceIn" />
 
 		<JavaScript>
-			var include = require("modules/Observable");
+			var include = require("/Main");
 
 			this.Background.value = include.modal.background;
 			this.Headline.value = include.modal.headline;
@@ -42,7 +42,7 @@
 
 			function Ok() {
 				include.modal.visibility.value = false; // Error Modal ausblenden
-				include.ShowOverlay.value = false; // Overlay ausblenden
+				include.showOverlay.value = false; // Overlay ausblenden
 			}
 
 			module.exports = {

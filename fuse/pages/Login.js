@@ -1,4 +1,4 @@
-var include = require("modules/Observable"),
+var include = require("/Main"),
 	customer = require("modules/Customer");
 
 var username = include.observable(""),
