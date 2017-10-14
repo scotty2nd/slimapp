@@ -1,5 +1,0 @@
-<Text ux:Class="RegularText" TextColor="Black">
-	<WhileWindowSize GreaterThan="768,1">
-		<Change this.FontSize="BaseTablet" />
-	</WhileWindowSize>
-</Text>

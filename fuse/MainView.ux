@@ -1,37 +1,12 @@
 <App>
-    <JavaScript File="Main.js" />
-
-	<iOS.StatusBarConfig IsVisible="true" Animation="Slide"/>
-    <Android.StatusBarConfig IsVisible="true" Color="{AndroidStatusbarColor}" />
-
 	<Router ux:Name="router" />
-
-    <!-- Include Custom Font -->
-    <!-- Aktuell auskommentiert da die App sonst nicht auf Android Geräten funktioniert -->
-    <!--<Font File="assets/fonts/MyriadProRegular.ttf" ux:Global="MyriadProRegular" />
-    <Font File="assets/fonts/MyriadProSemibold.ttf" ux:Global="MyriadProSemibold" />
-    <Font File="assets/fonts/MyriadProBold.ttf" ux:Global="MyriadProBold" />-->
-
-    <!-- Include Custom Colors -->
-    <float4 ux:Global="Primary" ux:Value="#4080ff" />
-    <float4 ux:Global="PrimaryDisabled" ux:Value="#ccc" />
-    <float4 ux:Global="PrimaryPressed" ux:Value="#138" />
-    <float4 ux:Global="Error" ux:Value="#cc4339" />
-    <float4 ux:Global="LightGray" ux:Value="#fff8" />
-    <float4 ux:Global="Gray" ux:Value="#aaa" />
-
-    <float ux:Global="BaseTablet" ux:Value="24" />
 
     <DockPanel>
         <StatusBarBackground Dock="Top" />
         <Navigator DefaultPath="login">
-        	<SplashPage ux:Template="splash" router="router" />
         	<LoginPage ux:Template="login" router="router" />
-            <RegisterPage ux:Template="register" router="router" />
-            <HomePage ux:Template="home" router="router" />
-            <ForgotPasswordPage ux:Template="forgotPassword" router="router" />
         </Navigator>
-        <BottomBarBackground Dock="Bottom" IncludesKeyboard="false" />
+        <BottomBarBackground Dock="Bottom" IncludesKeyboard="true" />
     </DockPanel>
 </App>
 

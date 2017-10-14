@@ -1,3 +1,0 @@
-<WhileTrue ux:Class="Overlay" Value="{ShowOverlay}">
-	<Panel Background="#0008" Layer="Overlay" />
-</WhileTrue>
