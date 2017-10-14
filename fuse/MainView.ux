@@ -2,7 +2,7 @@
     <JavaScript File="Main.js" />
 
 	<iOS.StatusBarConfig IsVisible="true" Animation="Slide"/>
-    <Android.StatusBarConfig IsVisible="true" Color="{AndroidStatusbarColor}" />
+    <Android.StatusBarConfig IsVisible="true" Color="{androidStatusbarColor}" />
 
 	<Router ux:Name="router" />
 
@@ -17,6 +17,7 @@
     <float4 ux:Global="PrimaryDisabled" ux:Value="#ccc" />
     <float4 ux:Global="PrimaryPressed" ux:Value="#138" />
     <float4 ux:Global="Error" ux:Value="#cc4339" />
+    <float4 ux:Global="Success" ux:Value="#008100" />
     <float4 ux:Global="LightGray" ux:Value="#fff8" />
     <float4 ux:Global="Gray" ux:Value="#aaa" />
 

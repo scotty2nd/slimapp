@@ -1,43 +1,73 @@
-var Observable = require("modules/Observable");
-var RegisterObservable = require("FuseJS/Observable");
+var include = require("modules/Observable");
 
-var Firstname = RegisterObservable(""),
-	Lastname = RegisterObservable(""),
-	Email = RegisterObservable(""),
-	Password = RegisterObservable(""),
-	RepeatPassword = RegisterObservable("");
+var firstname = include.observable(""),
+	lastname = include.observable(""),
+	email = include.observable(""),
+	password = include.observable(""),
+	repeatPassword = include.observable("");
 
-var allCredentialsEntered = RegisterObservable(function() {
-	var credentials = Firstname.value != "" && Lastname.value != "" && Password.value != "" && RepeatPassword.value != "";
+/*Eventuell in Observable Datei auslagern*/
+var allCredentialsEntered = include.observable(function() {
+	var credentials = firstname.value != "" && lastname.value != "" && password.value != "" && repeatPassword.value != "";
 
-	Observable.setAndroidStatusbarColor(credentials, 1);
+	include.SetAndroidStatusbarColor(credentials, 1);
 
 	return credentials;
 });
 
-function onPageActiv() {
-	Observable.setAndroidStatusbarColor(allCredentialsEntered);
+/*var checkPasswordComplexity = RegisterObservable(function() {
+	var passwordStrongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"),
+    	passwordMediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})"),
+		passwordComplexity = "weak";
+
+	if(passwordStrongRegex.test(Password.value)) {
+	    console.log('starkes Passwort');
+	    passwordComplexity = "strong";
+	} else if(passwordMediumRegex.test(Password.value)) {
+	    console.log('mittleres Passwort');
+	    passwordComplexity = "medium";
+	} else {
+	    console.log('schwaches Passwort');
+	    passwordComplexity = "weak";
+	}
+
+	return passwordComplexity;
+});*/
+
+var checkPasswordComplexity12 = include.observable(function() {
+	console.log('observ function');
+	var passwordComplexity = include.GetPasswordComplexity(password.value);
+	
+	console.log(passwordComplexity);
+
+	return passwordComplexity;
+});
+
+function OnPageActiv() {
+	include.SetAndroidStatusbarColor(allCredentialsEntered);
 }
 
-function register() {
+function Register() {
 	/*
 		To Do:
-		- Passwort Komplexität einbauen
+		- Passwort Komplexität einbauen (in Arbeit)
 		- Nutzungs- und Datenschutzschutz Popup bauen
 		- Konstante für Host URL
 		- Console.logs entfernen
+		- Kommentare anpassen entweder alle in deutsch oder englisch
+		- In register und login show Modal funktion anlegen um Code zu reduzieren
 	*/
-	Observable.ShowOverlay.value = true; // Overlay einblenden
-	Observable.ShowLoadingIndicator.value = true; // Loading Symbol einblenden
+	include.showOverlay.value = true; // Overlay einblenden
+	include.showLoadingIndicator.value = true; // Loading Symbol einblenden
 
-	if(Firstname.value != "" && Lastname.value != "" && Email.value != "" && Password.value != "" && RepeatPassword.value != ""){
-		if(Observable.EmailRegex.test(Email.value)){
-			if(Password.value == RepeatPassword.value){
+	if(firstname.value != "" && lastname.value != "" && email.value != "" && password.value != "" && repeatPassword.value != ""){
+		if(include.emailRegex.test(email.value)){
+			if(password.value == repeatPassword.value){
 			    var requestObject = {
-			    	first_name: Firstname.value, 
-			    	last_name: Lastname.value, 
-			    	password: Password.value, 
-			    	email: Email.value
+			    	first_name: firstname.value, 
+			    	last_name: lastname.value, 
+			    	password: password.value, 
+			    	email: email.value
 			    };
 
 				fetch('http://app.scotty2nd.square7.ch/api/customer/add', {
@@ -49,91 +79,89 @@ function register() {
 			  	}).then(function(data) {
 				    // Server Antwort verarbeiten
 				    if(data.error == false){
-					    console.log('do something');
-					    console.log(data.error);
-					    console.log(data.message);
-
-			    		Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
+			    		include.showLoadingIndicator.value = false // Loading Symbol ausblenden
 						
-						Observable.Modal.Background = Observable.Colors.Success; // Modal Hintergrundfarbe setzen 
-						Observable.Modal.Headline = ""; // Modal Dachzeile setzen
-						Observable.Modal.Title = "Glückwunsch"; // Modal Titel setzen
-						Observable.Modal.Message.value = data.message; // Modal Text setzen
-						Observable.Modal.Visibility.value = true; // Modal sichtbar machen
+						include.modal.background = include.colors.success; // Modal Hintergrundfarbe setzen 
+						include.modal.headline = ""; // Modal Dachzeile setzen
+						include.modal.title = "Glückwunsch"; // Modal Titel setzen
+						include.modal.message.value = data.message; // Modal Text setzen
+						include.modal.visibility.value = true; // Modal sichtbar machen
 
-					    Firstname.value = '';		//Set Field to blank
-					    Lastname.value = '';
-					    Email.value = '';
-					    Password.value = '';
-					    RepeatPassword.value = '';
+					    firstname.value = '';		//Set Field to blank
+					    lastname.value = '';
+					    email.value = '';
+					    password.value = '';
+					    repeatPassword.value = '';
 					}else if(data.error == true){
-				    	Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
+				    	include.showLoadingIndicator.value = false // Loading Symbol ausblenden
 
-						Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
-						Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
-						Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-						Observable.Modal.Message.value = data.message; // Modal Text setzen
-						Observable.Modal.Visibility.value = true; // Modal sichtbar machen
+						include.modal.background = include.colors.error; // Modal Hintergrundfarbe setzen 
+						include.modal.headline = "Oops!"; // Modal Dachzeile setzen
+						include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+						include.modal.message.value = data.message; // Modal Text setzen
+						include.modal.visibility.value = true; // Modal sichtbar machen
 				    }
 				}).catch(function(error) {
 				    // An error occurred somewhere in the Promise chain
-				    Observable.ShowLoadingIndicator.value = false; // Loading Symbol ausblenden
+				    include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
 
-					Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
-					Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
-					Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-					Observable.Modal.Message.value = "Ein unbekannter Fehler ist aufgetreten."; // Modal Text setzen
-					Observable.Modal.Visibility.value = true; // Modal sichtbar machen
+					include.modal.background = include.colors.error; // Modal Hintergrundfarbe setzen 
+					include.modal.headline = "Oops!"; // Modal Dachzeile setzen
+					include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+					include.modal.message.value = "Ein unbekannter Fehler ist aufgetreten."; // Modal Text setzen
+					include.modal.visibility.value = true; // Modal sichtbar machen
 				});
 			}else{
 				// Passwort nicht identisch
-				Observable.ShowLoadingIndicator.value = false; // Loading Symbol ausblenden
+				include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
 
-				Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
-				Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
-				Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-				Observable.Modal.Message.value = "Die eingegebenen Passwörter stimmen nicht überein."; // Modal Text setzen
-				Observable.Modal.Visibility.value = true; // Modal sichtbar machen
+				include.modal.background = include.colors.error; // Modal Hintergrundfarbe setzen 
+				include.modal.headline = "Oops!"; // Modal Dachzeile setzen
+				include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+				include.modal.message.value = "Die eingegebenen Passwörter stimmen nicht überein."; // Modal Text setzen
+				include.modal.visibility.value = true; // Modal sichtbar machen
 			}
 		}else{
 			// Email Adresse ist ungültig
-			Observable.ShowLoadingIndicator.value = false; // Loading Symbol ausblenden
+			include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
 
-			Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
-			Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
-			Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-			Observable.Modal.Message.value = "Bitte geben Sie eine gültige Email-Adresse ein."; // Modal Text setzen
-			Observable.Modal.Visibility.value = true; // Modal sichtbar machen
+			include.modal.background = include.colors.error; // Modal Hintergrundfarbe setzen 
+			include.modal.headline = "Oops!"; // Modal Dachzeile setzen
+			include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+			include.modal.message.value = "Bitte geben Sie eine gültige Email-Adresse ein."; // Modal Text setzen
+			include.modal.visibility.value = true; // Modal sichtbar machen
 		}
 	}else{
 		// Nicht alle Felder ausgefüllt
-		Observable.ShowLoadingIndicator.value = false; // Loading Symbol ausblenden
+		include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
 
-		Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
-		Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
-		Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-		Observable.Modal.Message.value = "Bitte füllen Sie alle Felder aus."; // Modal Text setzen
-		Observable.Modal.Visibility.value = true; // Modal sichtbar machen
+		include.modal.background = include.colors.error; // Modal Hintergrundfarbe setzen 
+		include.modal.headline = "Oops!"; // Modal Dachzeile setzen
+		include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+		include.modal.message.value = "Bitte füllen Sie alle Felder aus."; // Modal Text setzen
+		include.modal.visibility.value = true; // Modal sichtbar machen
 	}
 }
 
-function goBack() {
+function GoBack() {
     router.goBack();
 }
 
 module.exports = {
-	Firstname: Firstname,
-	Lastname: Lastname,
-	Email: Email,
-	Password: Password,
-	RepeatPassword: RepeatPassword,
+	firstname: firstname,
+	lastname: lastname,
+	email: email,
+	password: password,
+	repeatPassword: repeatPassword,
 
-	ShowOverlay: Observable.ShowOverlay,
-	ShowLoadingIndicator: Observable.ShowLoadingIndicator,
-	Modal: Observable.Modal,
+	showOverlay: include.showOverlay,
+	showLoadingIndicator: include.showLoadingIndicator,
+	modal: include.modal,
 
 	allCredentialsEntered: allCredentialsEntered,
-	onPageActiv, onPageActiv,
-	register: register,
-	goBack: goBack
+	checkPasswordComplexity12: checkPasswordComplexity12,
+	
+	OnPageActiv, OnPageActiv,
+	Register: Register,
+	GoBack: GoBack
 };

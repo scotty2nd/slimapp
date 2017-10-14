@@ -1,5 +1,5 @@
-var Observable = require("modules/Observable");
+var include = require("modules/Observable");
 
 module.exports = {
-	AndroidStatusbarColor: Observable.AndroidStatusbarColor
+	androidStatusbarColor: include.androidStatusbarColor
 };

@@ -1,17 +1,17 @@
-var Observable = require("FuseJS/Observable");
-var CustomerBackend = require("./CustomerBackend");
+var observable = require("FuseJS/Observable");
+var customerBackend = require("./CustomerBackend");
 
-var Identifier = Observable();
+var identifier = observable();
 
 //Hikes initial aufrufen
-getIdentifier();
+GetIdentifier();
 
 /* *
  * Parameters: none
  * */
-function getIdentifier() {
-    CustomerBackend.getIdentifier().then(function(newIdentifier) {
-        Identifier.replaceAll(newIdentifier);
+function GetIdentifier() {
+    customerBackend.GetIdentifier().then(function(newIdentifier) {
+        identifier.replaceAll(newIdentifier);
     }).catch(function(error) {
         console.log("Couldn't get identifier: " + error);
     });
@@ -46,31 +46,31 @@ function updateHike(id, name, location, distance, rating, comments) {
 /* *
  * Parameters: error, message, id, apikey
  * */
-function addIdentifier(error, message, id, apikey) {
-    CustomerBackend.addIdentifier(error, message, id, apikey)
+function AddIdentifier(error, message, id, apikey) {
+    customerBackend.AddIdentifier(error, message, id, apikey)
         .catch(function(error) {
             console.log("Couldn't add Identifier: " + id);
         });
     
-    getIdentifier();
+    GetIdentifier();
 }
 
 /* *
  * Parameters: none
  * */
-function clearIdentifier() {
-    CustomerBackend.clearIdentifier()
+function ClearIdentifier() {
+    customerBackend.ClearIdentifier()
         .catch(function(error) {
             console.log("Couldn't clear Identifier: " + id);
         });
     
-    getIdentifier();
+    GetIdentifier();
 }
 
 module.exports = {
-    Identifier: Identifier,
+    identifier: identifier,
 
     //updateHike: updateHike,
-    addIdentifier: addIdentifier,
-    clearIdentifier: clearIdentifier
+    AddIdentifier: AddIdentifier,
+    ClearIdentifier: ClearIdentifier
 };

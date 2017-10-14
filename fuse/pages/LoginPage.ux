@@ -42,19 +42,19 @@
 
 				<Panel>
 				    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
-				    	<TextField ux:Name="EmailAdress" TextColor="White" CaretColor="White" Label="E-Mail-Adresse" LabelColor="White" PlaceholderColor="LightGray" PlaceholderText="E-Mail-Adresse eingeben" StrokeColor="LightGray" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Username}">
+				    	<TextField ux:Name="EmailAdress" TextColor="White" CaretColor="White" Label="E-Mail-Adresse" LabelColor="White" PlaceholderColor="LightGray" PlaceholderText="E-Mail-Adresse eingeben" StrokeColor="LightGray" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{username}">
 		            	    <TextInputActionTriggered>
 						        <GiveFocus Target="Password" />
 						    </TextInputActionTriggered>
 				    	</TextField>
 
-			            <TextField ux:Name="Password" TextColor="White" CaretColor="White" Label="Passwort" LabelColor="White" PlaceholderColor="LightGray" PlaceholderText="Passwort eingeben" StrokeColor="LightGray" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}" ActionTriggered="{login}">
+			            <TextField ux:Name="Password" TextColor="White" CaretColor="White" Label="Passwort" LabelColor="White" PlaceholderColor="LightGray" PlaceholderText="Passwort eingeben" StrokeColor="LightGray" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}" ActionTriggered="{Login}">
 		            	    <TextInputActionTriggered>
 						        <ReleaseFocus />
 						    </TextInputActionTriggered>
 			            </TextField>
 
-			            <Panel Padding="0, 15, 0, 5" Clicked="{goToForgotPasswordPage}" HitTestMode="LocalBounds">
+			            <Panel Padding="0, 15, 0, 5" Clicked="{GoToForgotPasswordPage}" HitTestMode="LocalBounds">
 				        	<RegularText ux:Name="PasswortVergessenText" TextColor="White" FontSize="14" Alignment="Right" TextAlignment="Center">
 				        		Passwort vergessen?
 				        	</RegularText>
@@ -67,7 +67,7 @@
 
 				<Panel>
 				    <StackPanel Alignment="Bottom">
-				    	<Panel Padding="0, 25, 0, 25" Clicked="{goToRegisterPage}" HitTestMode="LocalBounds">
+				    	<Panel Padding="0, 25, 0, 25" Clicked="{GoToRegisterPage}" HitTestMode="LocalBounds">
 					        <RegularText ux:Name="RegistrierenText" TextColor="White" TextAlignment="Center">
 					        	Kostenlos registrieren
 					        </RegularText>
@@ -76,7 +76,7 @@
 							</WhilePressed>
 				    	</Panel>
 
-				        <PrimaryButton Text="LOGIN" Clicked="{login}" IsEnabled="{allCredentialsEntered}" />
+				        <PrimaryButton Text="LOGIN" Clicked="{Login}" IsEnabled="{allCredentialsEntered}" />
 				    </StackPanel>
 				</Panel>
 			</Grid>
@@ -109,7 +109,7 @@
 	</WhileWindowLandscape>
 
     <WhileActive>
-    	<Callback Handler="{onPageActiv}" />
+    	<Callback Handler="{OnPageActiv}" />
     </WhileActive> 
 
 	<!-- Aktuell irgendwie Buggy auf Aandroid wenn man mehrmals dreht erscheint ein weißer Bereich am unteren Ende des Bilschirms-->
