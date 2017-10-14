@@ -6,7 +6,7 @@
         <Navigator DefaultPath="login">
         	<LoginPage ux:Template="login" router="router" />
         </Navigator>
-        <BottomBarBackground Dock="Bottom" IncludesKeyboard="true" />
+        <BottomBarBackground Dock="Bottom" IncludesKeyboard="false" />
     </DockPanel>
 </App>
 
