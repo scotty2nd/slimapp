@@ -11,8 +11,8 @@
 
 		<Rectangle ux:Name="StrokePasswordComplexity" Height="1" Width="100%" Opacity="0" Alignment="BottomLeft" Layer="Overlay">
 		    <LinearGradient AngleDegrees="0">
-		        <GradientStop Offset="0.3" Color="Error" />
-		        <GradientStop Offset="0.6" Color="Orange" />
+		        <GradientStop Offset="0.2" Color="Error" />
+		        <GradientStop Offset="0.4" Color="Orange" />
 		        <GradientStop Offset="1" Color="Success" />
 		    </LinearGradient>
 		</Rectangle>
@@ -36,40 +36,32 @@
 
 			<WhileString Value="{paasswordComplexity}" Equals="weak">
 				<Change Stroke.Opacity="0" Duration=".5" />
-				<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
-				<Change StrokePasswordComplexityOverlay.Width="66%" Duration=".4" />
 				<Change StrokePasswordComplexityOverlay.Opacity="1" Duration=".4" />
+				<Change StrokePasswordComplexityOverlay.Width="66%" Duration=".4" />
+				<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
 			</WhileString>
 
 			<WhileString Value="{paasswordComplexity}" Equals="medium">
 				<Change Stroke.Opacity="0" Duration=".5" />
-				<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
-				<Change StrokePasswordComplexityOverlay.Width="33%" Duration=".4" />
 				<Change StrokePasswordComplexityOverlay.Opacity="1" Duration=".4" />
+				<Change StrokePasswordComplexityOverlay.Width="33%" Duration=".4" />
+				<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
 			</WhileString>
 
 			<WhileString Value="{paasswordComplexity}" Equals="strong">
 				<Change Stroke.Opacity="0" Duration=".5" />
-				<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
-				<Change StrokePasswordComplexityOverlay.Width="0%" Duration=".4" />
 				<Change StrokePasswordComplexityOverlay.Opacity="1" Duration=".4" />
+				<Change StrokePasswordComplexityOverlay.Width="0%" Duration=".4" />
+				<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
 			</WhileString>
 		</WhileContainsText>
-
-		<WhileFocused>
-			<Change StrokeOnFocus.Opacity="1" Duration=".4" />
-			<Change StrokeOnFocus.Width="100%" Duration=".4" />
-			<Change Stroke.Opacity="0" Duration=".5" />
-		</WhileFocused>
 	</WhileTrue>
 
-	<WhileFalse Value="{ReadProperty PasswordComplexity}">
-		<WhileFocused>
-			<Change StrokeOnFocus.Opacity="1" Duration=".4" />
-			<Change StrokeOnFocus.Width="100%" Duration=".4" />
-			<Change Stroke.Opacity="0" Duration=".5" />
-		</WhileFocused>
-	</WhileFalse>
+	<WhileFocused>
+		<Change StrokeOnFocus.Opacity="1" Duration=".4" />
+		<Change StrokeOnFocus.Width="100%" Duration=".4" />
+		<Change Stroke.Opacity="0" Duration=".5" />
+	</WhileFocused>
 
     <WhileContainsText>
     	<Move Target="LabelText" Y="-22" Duration=".2" />

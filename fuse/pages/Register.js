@@ -29,7 +29,7 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Passwort Komplexität einbauen (in Arbeit)
+		- Passwort Komplexität einbauen (in Arbeit, hier in der Funktion Check einbauen der mindestens medium erfordert)
 		- Nutzungs- und Datenschutzschutz Popup bauen
 		- Konstante für Host URL
 		- Console.logs entfernen
