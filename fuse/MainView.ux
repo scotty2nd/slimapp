@@ -20,6 +20,7 @@
     <float4 ux:Global="Success" ux:Value="#008100" />
     <float4 ux:Global="LightGray" ux:Value="#fff8" />
     <float4 ux:Global="Gray" ux:Value="#aaa" />
+    <float4 ux:Global="Orange" ux:Value="#ffa500" />
 
     <float ux:Global="BaseTablet" ux:Value="24" />
 
