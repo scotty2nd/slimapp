@@ -28,6 +28,7 @@
 	<WhileTrue Value="{ReadProperty PasswordComplexity}">
 		<WhileContainsText>
 			<Change StrokeOverlay.Width="100%" Duration=".4" />
+			<Change StrokePasswordComplexityOverlay.Opacity=".9" Duration=".4" />
 
 			<WhileString Value="{paasswordComplexity}" Equals="none">
 				<Change StrokePasswordComplexityOverlay.Width="100%" Duration=".4" />
@@ -36,21 +37,18 @@
 
 			<WhileString Value="{paasswordComplexity}" Equals="weak">
 				<Change Stroke.Opacity="0" Duration=".5" />
-				<Change StrokePasswordComplexityOverlay.Opacity=".9" Duration=".4" />
 				<Change StrokePasswordComplexityOverlay.Width="66%" Duration=".4" />
 				<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
 			</WhileString>
 
 			<WhileString Value="{paasswordComplexity}" Equals="medium">
 				<Change Stroke.Opacity="0" Duration=".5" />
-				<Change StrokePasswordComplexityOverlay.Opacity=".9" Duration=".4" />
 				<Change StrokePasswordComplexityOverlay.Width="33%" Duration=".4" />
 				<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
 			</WhileString>
 
 			<WhileString Value="{paasswordComplexity}" Equals="strong">
 				<Change Stroke.Opacity="0" Duration=".5" />
-				<Change StrokePasswordComplexityOverlay.Opacity=".9" Duration=".4" />
 				<Change StrokePasswordComplexityOverlay.Width="0%" Duration=".4" />
 				<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
 			</WhileString>
