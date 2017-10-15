@@ -42,6 +42,7 @@ function Register() {
 	if(firstname.value != "" && lastname.value != "" && email.value != "" && password.value != "" && repeatPassword.value != ""){
 		if(include.emailRegex.test(email.value)){
 			if(password.value == repeatPassword.value){
+				//Hier checken ob passwort mindestens medium ist
 			    var requestObject = {
 			    	first_name: firstname.value, 
 			    	last_name: lastname.value, 

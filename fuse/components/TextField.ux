@@ -7,7 +7,7 @@
 	<RegularText ux:Name="LabelText" Value="{ReadProperty Label}" TextColor="{ReadProperty LabelColor}" Opacity="0" />
 	
 	<Panel Height="1" Alignment="Bottom" Padding="0, 10, 0, 0">
-		<Rectangle ux:Name="StrokePasswordComplexityOverlay" Height="1" Color="White" Width="100%" Opacity="0" Alignment="BottomRight" Layer="Overlay" />
+		<Rectangle ux:Name="StrokePasswordComplexityOverlay" Height="3" Color="White" Width="100%" Opacity="0" Alignment="BottomRight" Layer="Overlay" Margin="0, 1, 0, 0" />
 
 		<Rectangle ux:Name="StrokePasswordComplexity" Height="1" Width="100%" Opacity="0" Alignment="BottomLeft" Layer="Overlay">
 		    <LinearGradient AngleDegrees="0">
@@ -17,7 +17,7 @@
 		    </LinearGradient>
 		</Rectangle>
 
-		<Rectangle ux:Name="StrokeOverlay" Height="2" Color="White" Width="0%" Alignment="BottomLeft" Layer="Overlay" />
+		<Rectangle ux:Name="StrokeOverlay" Height="3" Color="White" Width="0%" Alignment="BottomLeft" Layer="Overlay" Margin="0, 1, 0, 0" />
 
 	    <Rectangle ux:Name="Stroke" Height="1" Color="{ReadProperty StrokeColor}" />
 
@@ -30,27 +30,27 @@
 			<Change StrokeOverlay.Width="100%" Duration=".4" />
 
 			<WhileString Value="{paasswordComplexity}" Equals="none">
-				<Change StrokePasswordComplexityOverlay.Width="0%" Duration=".4" />
+				<Change StrokePasswordComplexityOverlay.Width="100%" Duration=".4" />
 				<Change StrokePasswordComplexity.Opacity="0" Duration=".4" />
 			</WhileString>
 
 			<WhileString Value="{paasswordComplexity}" Equals="weak">
 				<Change Stroke.Opacity="0" Duration=".5" />
-				<Change StrokePasswordComplexityOverlay.Opacity="1" Duration=".4" />
+				<Change StrokePasswordComplexityOverlay.Opacity=".9" Duration=".4" />
 				<Change StrokePasswordComplexityOverlay.Width="66%" Duration=".4" />
 				<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
 			</WhileString>
 
 			<WhileString Value="{paasswordComplexity}" Equals="medium">
 				<Change Stroke.Opacity="0" Duration=".5" />
-				<Change StrokePasswordComplexityOverlay.Opacity="1" Duration=".4" />
+				<Change StrokePasswordComplexityOverlay.Opacity=".9" Duration=".4" />
 				<Change StrokePasswordComplexityOverlay.Width="33%" Duration=".4" />
 				<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
 			</WhileString>
 
 			<WhileString Value="{paasswordComplexity}" Equals="strong">
 				<Change Stroke.Opacity="0" Duration=".5" />
-				<Change StrokePasswordComplexityOverlay.Opacity="1" Duration=".4" />
+				<Change StrokePasswordComplexityOverlay.Opacity=".9" Duration=".4" />
 				<Change StrokePasswordComplexityOverlay.Width="0%" Duration=".4" />
 				<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
 			</WhileString>
