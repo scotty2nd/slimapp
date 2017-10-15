@@ -15,30 +15,9 @@ var allCredentialsEntered = include.observable(function() {
 	return credentials;
 });
 
-/*var checkPasswordComplexity = RegisterObservable(function() {
-	var passwordStrongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"),
-    	passwordMediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})"),
-		passwordComplexity = "weak";
-
-	if(passwordStrongRegex.test(Password.value)) {
-	    console.log('starkes Passwort');
-	    passwordComplexity = "strong";
-	} else if(passwordMediumRegex.test(Password.value)) {
-	    console.log('mittleres Passwort');
-	    passwordComplexity = "medium";
-	} else {
-	    console.log('schwaches Passwort');
-	    passwordComplexity = "weak";
-	}
-
-	return passwordComplexity;
-});*/
-
-var checkPasswordComplexity12 = include.observable(function() {
-	console.log('observ function');
+/*Passwort Feld überwachen und Passwort Komplexität prüfen und zurückgeben*/
+var paasswordComplexity = include.observable(function() {
 	var passwordComplexity = include.GetPasswordComplexity(password.value);
-	
-	console.log(passwordComplexity);
 
 	return passwordComplexity;
 });
@@ -159,7 +138,7 @@ module.exports = {
 	modal: include.modal,
 
 	allCredentialsEntered: allCredentialsEntered,
-	checkPasswordComplexity12: checkPasswordComplexity12,
+	paasswordComplexity: paasswordComplexity,
 	
 	OnPageActiv, OnPageActiv,
 	Register: Register,

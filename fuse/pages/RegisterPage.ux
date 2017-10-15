@@ -56,7 +56,7 @@
 					    </TextInputActionTriggered>
 			    	</TextField>
 
-	            	<TextField ux:Name="Password" Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}">
+	            	<TextField ux:Name="Password" Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}" PasswordComplexity="True">
 	            	    <TextInputActionTriggered>
 					        <GiveFocus Target="RepeatPassword" />
 					    </TextInputActionTriggered>

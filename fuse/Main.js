@@ -26,26 +26,25 @@ var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@
 function GetPasswordComplexity(password) {
 	var passwordStrongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"),
     	passwordMediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})"),
-		passwordComplexity = "";
+		passwordComplexity = "none";
 
 	if(passwordStrongRegex.test(password)) {
-	    console.log('starkes Passwort');
 	    passwordComplexity = "strong";
-	} else if(passwordMediumRegex.test(password)) {
-	    console.log('mittleres Passwort');
+	}else if(passwordMediumRegex.test(password)) {
 	    passwordComplexity = "medium";
-	} else {
-	    console.log('schwaches Passwort');
+	}else if(password == "") {
+		passwordComplexity = "none";
+	}else {
 	    passwordComplexity = "weak";
 	}
 
 	return passwordComplexity;
 }
 
-function SetAndroidStatusbarColor(param, type) {
+function SetAndroidStatusbarColor(param, paramWithoutValue) {
 	var value = "";
 
-	if(type == 1){
+	if(paramWithoutValue == 1){
 		value = param;
 	}else{
 		value = param.value;
@@ -70,11 +69,3 @@ module.exports = {
     GetPasswordComplexity: GetPasswordComplexity,
     SetAndroidStatusbarColor: SetAndroidStatusbarColor
 };
-
-
-
-/*var include = require("modules/Observable");
-
-module.exports = {
-	androidStatusbarColor: include.androidStatusbarColor
-};*/
