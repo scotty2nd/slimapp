@@ -7,7 +7,7 @@
 	<RegularText ux:Name="LabelText" Value="{ReadProperty Label}" TextColor="{ReadProperty LabelColor}" Opacity="0" />
 	
 	<Panel Height="1" Alignment="Bottom" Padding="0, 10, 0, 0">
-		<Rectangle ux:Name="StrokePasswordComplexityOverlay" Height="3" Color="White" Width="100%" Opacity="0" Alignment="BottomRight" Layer="Overlay" Margin="0, 1, 0, 0" />
+		<!--<Rectangle ux:Name="StrokePasswordComplexityOverlay" Height="3" Color="White" Width="100%" Opacity="0" Alignment="BottomRight" Layer="Overlay" Margin="0, 1, 0, 0" />
 
 		<Rectangle ux:Name="StrokePasswordComplexity" Height="1" Width="100%" Opacity="0" Alignment="BottomLeft" Layer="Overlay">
 		    <LinearGradient AngleDegrees="0">
@@ -17,15 +17,15 @@
 		    </LinearGradient>
 		</Rectangle>
 
-		<Rectangle ux:Name="StrokeOverlay" Height="3" Color="White" Width="0%" Alignment="BottomLeft" Layer="Overlay" Margin="0, 1, 0, 0" />
+		<Rectangle ux:Name="StrokeOverlay" Height="3" Color="White" Width="0%" Alignment="BottomLeft" Layer="Overlay" Margin="0, 1, 0, 0" />-->
 
 	    <Rectangle ux:Name="Stroke" Height="1" Color="{ReadProperty StrokeColor}" />
 
-	    <Rectangle ux:Name="StrokeOnFocus" Height="1" Width="0%" Alignment="BottomLeft" Color="Primary" Layer="Overlay" Opacity="0" />
+	    <Rectangle ux:Name="StrokeOnFocus" Height="1" Width="0%" Alignment="BottomLeft" Color="Primary" Opacity="0" />
 
 	</Panel>
 
-	<WhileTrue Value="{ReadProperty PasswordComplexity}">
+	<!--<WhileTrue Value="{ReadProperty PasswordComplexity}">
 		<WhileContainsText>
 			<Change StrokeOverlay.Width="100%" Duration=".4" />
 			<Change StrokePasswordComplexityOverlay.Opacity=".9" Duration=".4" />
@@ -53,7 +53,7 @@
 				<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
 			</WhileString>
 		</WhileContainsText>
-	</WhileTrue>
+	</WhileTrue>-->
 
 	<WhileFocused>
 		<Change StrokeOnFocus.Opacity="1" Duration=".4" />

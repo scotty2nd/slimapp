@@ -22,6 +22,13 @@ var passwordComplexity = include.observable(function() {
 	return passwordComplexity;
 });
 
+/*Repeat Passwort Feld überwachen und Passwort Komplexität prüfen und zurückgeben*/
+var repeatPasswordComplexity = include.observable(function() {
+	var passwordComplexity = include.GetPasswordComplexity(repeatPassword.value);
+
+	return passwordComplexity;
+});
+
 function OnPageActiv() {
 	include.SetAndroidStatusbarColor(allCredentialsEntered);
 }
@@ -141,6 +148,7 @@ module.exports = {
 
 	allCredentialsEntered: allCredentialsEntered,
 	passwordComplexity: passwordComplexity,
+	repeatPasswordComplexity: repeatPasswordComplexity,
 	
 	OnPageActiv, OnPageActiv,
 	Register: Register,
