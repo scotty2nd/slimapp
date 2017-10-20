@@ -1,4 +1,4 @@
-var include = include = require("/Main");
+var include = require("/Main");
 
 var firstname = include.observable(""),
 	lastname = include.observable(""),

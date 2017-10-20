@@ -41,13 +41,14 @@ function GetPasswordComplexity(password) {
 	return passwordComplexity;
 }
 
-function SetAndroidStatusbarColor(param, paramWithoutValue) {
+function SetAndroidStatusbarColor(allCredentialsEntered = false, allCredentialsEnteredReturnedWithoutValue = 0) {
+	
 	var value = "";
 
-	if(paramWithoutValue == 1){
-		value = param;
+	if(allCredentialsEnteredReturnedWithoutValue == 1){
+		value = allCredentialsEntered;
 	}else{
-		value = param.value;
+		value = allCredentialsEntered.value;
 	}
 
 	if(value){

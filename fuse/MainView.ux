@@ -34,5 +34,13 @@
         </Navigator>
         <BottomBarBackground Dock="Bottom" IncludesKeyboard="false" />
     </DockPanel>
+
+    <JavaScript>
+        var include = require("/Main");
+
+        module.exports = {
+            androidStatusbarColor: include.androidStatusbarColor
+        };
+    </JavaScript>
 </App>
 
