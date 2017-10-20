@@ -16,7 +16,7 @@ var allCredentialsEntered = include.observable(function() {
 });
 
 /*Passwort Feld überwachen und Passwort Komplexität prüfen und zurückgeben*/
-var paasswordComplexity = include.observable(function() {
+var passwordComplexity = include.observable(function() {
 	var passwordComplexity = include.GetPasswordComplexity(password.value);
 
 	return passwordComplexity;
@@ -29,6 +29,7 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
+		- Passwort Wiederholen Farbstrich einbauen
 		- Passwort Komplexität einbauen (in Arbeit, hier in der Funktion Check einbauen der mindestens medium erfordert)
 		- Nutzungs- und Datenschutzschutz Popup bauen
 		- Konstante für Host URL
@@ -139,7 +140,7 @@ module.exports = {
 	modal: include.modal,
 
 	allCredentialsEntered: allCredentialsEntered,
-	paasswordComplexity: paasswordComplexity,
+	passwordComplexity: passwordComplexity,
 	
 	OnPageActiv, OnPageActiv,
 	Register: Register,
