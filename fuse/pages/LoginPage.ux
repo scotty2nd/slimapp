@@ -114,9 +114,9 @@
 
 	<!-- Aktuell irgendwie Buggy auf Aandroid wenn man mehrmals dreht erscheint ein weißer Bereich am unteren Ende des Bilschirms-->
 	<!-- When Keyboard become visible then move entire page 3/4 of keyboard size to top -->
-	<!--<WhileKeyboardVisible>
+	<WhileKeyboardVisible>
     	<Move Target="this" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
-	</WhileKeyboardVisible>-->
+	</WhileKeyboardVisible>
 
  	<!-- Showed only when Observable is true -->
  	<Modal />

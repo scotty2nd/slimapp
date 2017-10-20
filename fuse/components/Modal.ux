@@ -12,10 +12,10 @@
 				<RegularText ux:Name="ModalMessage" Value="{modal.message}" TextColor="White" TextAlignment="Center" FontSize="14" TextWrapping="Wrap" />
 			</StackPanel>
 
-			<StackPanel Dock="Bottom" Height="60">
+			<StackPanel Dock="Bottom">
 				<Rectangle Width="100%" Height="1" Color="#0005"/>
 
-				<Panel ux:Name="OkButton" HitTestMode="LocalBounds" Background="#0003" Padding="20" Clicked="{Ok}">
+				<Panel ux:Name="OkButton" HitTestMode="LocalBounds" Background="#0003" Height="60" Padding="20" Clicked="{Ok}">
 				    <BoldText ux:Name="OkButtonText" TextColor="White" TextAlignment="Center" FontSize="16">
 				    	OK
 				    </BoldText>
