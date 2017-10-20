@@ -56,7 +56,8 @@
 					    </TextInputActionTriggered>
 			    	</TextField>
 
-	            	<TextField ux:Name="Password" Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}" PasswordComplexity="True">
+	            	<TextField ux:Name="Password" Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}">
+
 	            		<Rectangle ux:Name="StrokePasswordComplexityOverlay" Height="3" Color="White" Width="100%" Opacity="0" Margin="0, 0, 0, -9" Alignment="BottomRight" Layer="Overlay" />
 
         				<Rectangle ux:Name="StrokePasswordComplexity" Height="1" Width="100%" Opacity="0" Margin="0, 0, 0, -9" Alignment="BottomLeft" Layer="Overlay">
@@ -68,7 +69,7 @@
 						</Rectangle>
 
 						<WhileContainsText>
-							<Change StrokePasswordComplexityOverlay.Opacity=".9" Duration=".4" />
+							<Change StrokePasswordComplexityOverlay.Opacity=".9" Duration=".3" />
 
 							<WhileString Value="{passwordComplexity}" Equals="none">
 								<Change StrokePasswordComplexityOverlay.Width="100%" Duration=".4" />
@@ -97,6 +98,7 @@
 	            	</TextField>
 
 		            <TextField ux:Name="RepeatPassword" Label="Passwort wiederholen" PlaceholderText="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{repeatPassword}" ActionTriggered="{Register}">
+
 		            	<Rectangle ux:Name="StrokeRepeatPasswordComplexityOverlay" Height="3" Color="White" Width="100%" Opacity="0" Margin="0, 0, 0, -9" Alignment="BottomRight" Layer="Overlay" />
 
         				<Rectangle ux:Name="StrokeRepeatPasswordComplexity" Height="1" Width="100%" Opacity="0" Margin="0, 0, 0, -9" Alignment="BottomLeft" Layer="Overlay">
