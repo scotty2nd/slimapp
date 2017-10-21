@@ -69,7 +69,7 @@ function Register() {
 				    if(data.error == false){
 			    		include.showLoadingIndicator.value = false // Loading Symbol ausblenden
 						
-						include.modal.background = include.colors.success; // Modal Hintergrundfarbe setzen 
+						include.modal.color = include.colors.success; // Modal Hintergrundfarbe setzen 
 						include.modal.headline = ""; // Modal Dachzeile setzen
 						include.modal.title = "Glückwunsch"; // Modal Titel setzen
 						include.modal.message.value = data.message; // Modal Text setzen
@@ -83,7 +83,7 @@ function Register() {
 					}else if(data.error == true){
 				    	include.showLoadingIndicator.value = false // Loading Symbol ausblenden
 
-						include.modal.background = include.colors.error; // Modal Hintergrundfarbe setzen 
+						include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
 						include.modal.headline = "Oops!"; // Modal Dachzeile setzen
 						include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
 						include.modal.message.value = data.message; // Modal Text setzen
@@ -93,7 +93,7 @@ function Register() {
 				    // An error occurred somewhere in the Promise chain
 				    include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
 
-					include.modal.background = include.colors.error; // Modal Hintergrundfarbe setzen 
+					include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
 					include.modal.headline = "Oops!"; // Modal Dachzeile setzen
 					include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
 					include.modal.message.value = "Ein unbekannter Fehler ist aufgetreten."; // Modal Text setzen
@@ -103,7 +103,7 @@ function Register() {
 				// Passwort nicht identisch
 				include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
 
-				include.modal.background = include.colors.error; // Modal Hintergrundfarbe setzen 
+				include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
 				include.modal.headline = "Oops!"; // Modal Dachzeile setzen
 				include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
 				include.modal.message.value = "Die eingegebenen Passwörter stimmen nicht überein."; // Modal Text setzen
@@ -113,7 +113,7 @@ function Register() {
 			// Email Adresse ist ungültig
 			include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
 
-			include.modal.background = include.colors.error; // Modal Hintergrundfarbe setzen 
+			include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
 			include.modal.headline = "Oops!"; // Modal Dachzeile setzen
 			include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
 			include.modal.message.value = "Bitte geben Sie eine gültige Email-Adresse ein."; // Modal Text setzen
@@ -123,7 +123,7 @@ function Register() {
 		// Nicht alle Felder ausgefüllt
 		include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
 
-		include.modal.background = include.colors.error; // Modal Hintergrundfarbe setzen 
+		include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
 		include.modal.headline = "Oops!"; // Modal Dachzeile setzen
 		include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
 		include.modal.message.value = "Bitte füllen Sie alle Felder aus."; // Modal Text setzen

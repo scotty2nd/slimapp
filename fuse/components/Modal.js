@@ -1,6 +1,6 @@
 var include = require("/Main");
 
-this.Background.value = include.modal.background;
+this.Background.value = include.modal.color;
 this.Headline.value = include.modal.headline;
 this.Title.value = include.modal.title;
 

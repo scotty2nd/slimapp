@@ -2,7 +2,7 @@ var observable = require("FuseJS/Observable");
 
 var modal = { 
 	visibility: observable(false),
-	background: "",
+	color: "",
 	headline: "",
 	title: "",
 	message: observable("")

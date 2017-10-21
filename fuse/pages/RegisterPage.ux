@@ -58,39 +58,7 @@
 
 	            	<TextField ux:Name="Password" Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}">
 
-	            		<Rectangle ux:Name="StrokePasswordComplexityOverlay" Height="3" Color="White" Width="100%" Opacity="0" Margin="0, 0, 0, -9" Alignment="BottomRight" Layer="Overlay" />
-
-        				<Rectangle ux:Name="StrokePasswordComplexity" Height="1" Width="100%" Opacity="0" Margin="0, 0, 0, -9" Alignment="BottomLeft" Layer="Overlay">
-						    <LinearGradient AngleDegrees="0">
-						        <GradientStop Offset="0.2" Color="Error" />
-						        <GradientStop Offset="0.4" Color="Orange" />
-						        <GradientStop Offset="1" Color="Success" />
-						    </LinearGradient>
-						</Rectangle>
-
-						<WhileContainsText>
-							<Change StrokePasswordComplexityOverlay.Opacity=".9" Duration=".3" />
-
-							<WhileString Value="{passwordComplexity}" Equals="none">
-								<Change StrokePasswordComplexityOverlay.Width="100%" Duration=".4" />
-								<Change StrokePasswordComplexity.Opacity="0" Duration=".4" />
-							</WhileString>
-
-							<WhileString Value="{passwordComplexity}" Equals="weak">
-								<Change StrokePasswordComplexityOverlay.Width="66%" Duration=".4" />
-								<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
-							</WhileString>
-
-							<WhileString Value="{passwordComplexity}" Equals="medium">
-								<Change StrokePasswordComplexityOverlay.Width="33%" Duration=".4" />
-								<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
-							</WhileString>
-
-							<WhileString Value="{passwordComplexity}" Equals="strong">
-								<Change StrokePasswordComplexityOverlay.Width="0%" Duration=".4" />
-								<Change StrokePasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
-							</WhileString>
-						</WhileContainsText>
+						<PasswordComplexityStroke ObservableProperty="{passwordComplexity}" />
 
 	            	    <TextInputActionTriggered>
 					        <GiveFocus Target="RepeatPassword" />
@@ -99,39 +67,7 @@
 
 		            <TextField ux:Name="RepeatPassword" Label="Passwort wiederholen" PlaceholderText="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{repeatPassword}" ActionTriggered="{Register}">
 
-		            	<Rectangle ux:Name="StrokeRepeatPasswordComplexityOverlay" Height="3" Color="White" Width="100%" Opacity="0" Margin="0, 0, 0, -9" Alignment="BottomRight" Layer="Overlay" />
-
-        				<Rectangle ux:Name="StrokeRepeatPasswordComplexity" Height="1" Width="100%" Opacity="0" Margin="0, 0, 0, -9" Alignment="BottomLeft" Layer="Overlay">
-						    <LinearGradient AngleDegrees="0">
-						        <GradientStop Offset="0.2" Color="Error" />
-						        <GradientStop Offset="0.4" Color="Orange" />
-						        <GradientStop Offset="1" Color="Success" />
-						    </LinearGradient>
-						</Rectangle>
-
-						<WhileContainsText>
-							<Change StrokeRepeatPasswordComplexityOverlay.Opacity=".9" Duration=".4" />
-
-							<WhileString Value="{repeatPasswordComplexity}" Equals="none">
-								<Change StrokeRepeatPasswordComplexityOverlay.Width="100%" Duration=".4" />
-								<Change StrokeRepeatPasswordComplexity.Opacity="0" Duration=".4" />
-							</WhileString>
-
-							<WhileString Value="{repeatPasswordComplexity}" Equals="weak">
-								<Change StrokeRepeatPasswordComplexityOverlay.Width="66%" Duration=".4" />
-								<Change StrokeRepeatPasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
-							</WhileString>
-
-							<WhileString Value="{repeatPasswordComplexity}" Equals="medium">
-								<Change StrokeRepeatPasswordComplexityOverlay.Width="33%" Duration=".4" />
-								<Change StrokeRepeatPasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
-							</WhileString>
-
-							<WhileString Value="{repeatPasswordComplexity}" Equals="strong">
-								<Change StrokeRepeatPasswordComplexityOverlay.Width="0%" Duration=".4" />
-								<Change StrokeRepeatPasswordComplexity.Opacity="1" Duration=".4" Delay=".2" />
-							</WhileString>
-						</WhileContainsText>
+						<PasswordComplexityStroke ObservableProperty="{repeatPasswordComplexity}" />
 
 	            	    <TextInputActionTriggered>
 					        <ReleaseFocus />

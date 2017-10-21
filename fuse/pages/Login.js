@@ -49,7 +49,7 @@ function Login() {
 		    }else if(data.error == true){
 		    	include.showLoadingIndicator.value = false // Loading Symbol ausblenden
 
-				include.modal.background = include.colors.error; // Modal Hintergrundfarbe setzen 
+				include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
 				include.modal.headline = "Oops!"; // Modal Dachzeile setzen
 				include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
 				include.modal.message.value = data.message; // Modal Text setzen
@@ -59,7 +59,7 @@ function Login() {
 		    // An error occurred somewhere in the Promise chain
 		    include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
 
-			include.modal.background = include.colors.error; // Modal Hintergrundfarbe setzen 
+			include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
 			include.modal.headline = "Oops!"; // Modal Dachzeile setzen
 			include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
 			include.modal.message.value = "Ein unbekannter Fehler ist aufgetreten."; // Modal Text setzen
@@ -69,7 +69,7 @@ function Login() {
 		// Email Adresse ist ungültig
 		include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
 
-		include.modal.background = include.colors.error; // Modal Hintergrundfarbe setzen 
+		include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
 		include.modal.headline = "Oops!"; // Modal Dachzeile setzen
 		include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
 		include.modal.message.value = "Bitte E-Mail-Adresse und/oder Passwort eingeben."; // Modal Text setzen
