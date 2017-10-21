@@ -26,16 +26,16 @@ var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@
 function GetPasswordComplexity(password) {
 	var passwordStrongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"),
     	passwordMediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})"),
-		passwordComplexity = "none";
+		passwordComplexity = "";
 
 	if(passwordStrongRegex.test(password)) {
-	    passwordComplexity = "strong";
+	    passwordComplexity = "stark";
 	}else if(passwordMediumRegex.test(password)) {
-	    passwordComplexity = "medium";
+	    passwordComplexity = "mittel";
 	}else if(password == "") {
-		passwordComplexity = "none";
+		passwordComplexity = "";
 	}else {
-	    passwordComplexity = "weak";
+	    passwordComplexity = "schwach";
 	}
 
 	return passwordComplexity;

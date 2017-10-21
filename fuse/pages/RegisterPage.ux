@@ -58,7 +58,7 @@
 
 	            	<TextField ux:Name="Password" Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}">
 
-						<PasswordComplexityStroke ObservableProperty="{passwordComplexity}" />
+						<PasswordComplexityStroke ObserveFunction="{passwordComplexity}" />
 
 	            	    <TextInputActionTriggered>
 					        <GiveFocus Target="RepeatPassword" />
@@ -67,7 +67,7 @@
 
 		            <TextField ux:Name="RepeatPassword" Label="Passwort wiederholen" PlaceholderText="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{repeatPassword}" ActionTriggered="{Register}">
 
-						<PasswordComplexityStroke ObservableProperty="{repeatPasswordComplexity}" />
+						<PasswordComplexityStroke ObserveFunction="{repeatPasswordComplexity}" />
 
 	            	    <TextInputActionTriggered>
 					        <ReleaseFocus />
