@@ -36,44 +36,33 @@ function Login() {
 			return response.json(); // This returns a promise
 	  	}).then(function(data) {
 		    // Server Antwort verarbeiten
-		    if(data.id != "" && data.apikey != "" && data.error == false){ // Prüfe ob ID und der API Kkey gefüllt ist sowie kein Fehler existiert 
+		    if(data.id != "" && data.apikey != "" && data.error == false){ 
+		    	// Kein Fehler und Customer ID sowie API Key sind gefüllt
 	    		customer.AddIdentifier(data.error, data.message, data.id, data.apikey); // ID und API Key abspeichern
 
 	    		include.showLoadingIndicator.value = false // Loading Symbol ausblenden
 	    		include.showOverlay.value = false; // Overlay ausblenden
 
-	    		router.push("home"); // Weiterleiten auf Home Seite
+	    		// Weiterleiten auf Home Seite
+	    		router.push("home");
 
-			    username.value = '';  // Reset Field
-			    password.value = '';  // Reset Field
+	    		// Textfelder löschen
+			    username.value = '';
+			    password.value = '';
 		    }else if(data.error == true){
+				// Server Antwort enthält einen Fehler
 		    	include.showLoadingIndicator.value = false // Loading Symbol ausblenden
-
-				include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
-				include.modal.headline = "Oops!"; // Modal Dachzeile setzen
-				include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-				include.modal.message.value = data.message; // Modal Text setzen
-				include.modal.visibility.value = true; // Modal sichtbar machen
+		    	include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', data.message, true);
 		    }
 		}).catch(function(error) {
 		    // An error occurred somewhere in the Promise chain
 		    include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
-
-			include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
-			include.modal.headline = "Oops!"; // Modal Dachzeile setzen
-			include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-			include.modal.message.value = "Ein unbekannter Fehler ist aufgetreten."; // Modal Text setzen
-			include.modal.visibility.value = true; // Modal sichtbar machen
+		    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten.', true);
 		});
 	}else{
-		// Email Adresse ist ungültig
+		// Email Adresse ist ungültig 
 		include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
-
-		include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
-		include.modal.headline = "Oops!"; // Modal Dachzeile setzen
-		include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-		include.modal.message.value = "Bitte E-Mail-Adresse und/oder Passwort eingeben."; // Modal Text setzen
-		include.modal.visibility.value = true; // Modal sichtbar machen
+		include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Email-Adresse und/oder Passwort ungültig.', true);
 	}
 }
 

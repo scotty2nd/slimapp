@@ -58,6 +58,14 @@ function SetAndroidStatusbarColor(allCredentialsEntered = false, allCredentialsE
 	}
 }
 
+function ShowModal(color, headline, title, message, visibility) {
+	modal.color = color; // Modal Hintergrundfarbe setzen 
+	modal.headline = headline; // Modal Dachzeile setzen
+	modal.title = title; // Modal Titel setzen
+	modal.message.value = message; // Modal Text setzen
+	modal.visibility.value = visibility; // Modal sichtbar machen
+}
+
 module.exports = {
 	observable: observable,
     modal: modal,
@@ -68,5 +76,6 @@ module.exports = {
     emailRegex: emailRegex,
 
     GetPasswordComplexity: GetPasswordComplexity,
-    SetAndroidStatusbarColor: SetAndroidStatusbarColor
+    SetAndroidStatusbarColor: SetAndroidStatusbarColor,
+    ShowModal: ShowModal
 };

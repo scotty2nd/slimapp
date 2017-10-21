@@ -66,77 +66,45 @@ function Register() {
 				  	}).then(function(data) {
 					    // Server Antwort verarbeiten
 					    if(data.error == false){
+					    	// Kein Fehler Daten an den Server schicken
 				    		include.showLoadingIndicator.value = false // Loading Symbol ausblenden
+				    		include.ShowModal(include.colors.success, '', 'Glückwunsch', data.message, true);
 							
-							include.modal.color = include.colors.success; // Modal Hintergrundfarbe setzen 
-							include.modal.headline = ""; // Modal Dachzeile setzen
-							include.modal.title = "Glückwunsch"; // Modal Titel setzen
-							include.modal.message.value = data.message; // Modal Text setzen
-							include.modal.visibility.value = true; // Modal sichtbar machen
-
-						    firstname.value = '';		//Set Field to blank
+				    		// Textfelder löschen
+						    firstname.value = '';
 						    lastname.value = '';
 						    email.value = '';
 						    password.value = '';
 						    repeatPassword.value = '';
 						}else if(data.error == true){
+							// Server Antwort enthält einen Fehler
 					    	include.showLoadingIndicator.value = false // Loading Symbol ausblenden
-
-							include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
-							include.modal.headline = "Oops!"; // Modal Dachzeile setzen
-							include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-							include.modal.message.value = data.message; // Modal Text setzen
-							include.modal.visibility.value = true; // Modal sichtbar machen
+					    	include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', data.message, true);
 					    }
 					}).catch(function(error) {
 					    // An error occurred somewhere in the Promise chain
 					    include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
-
-						include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
-						include.modal.headline = "Oops!"; // Modal Dachzeile setzen
-						include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-						include.modal.message.value = "Ein unbekannter Fehler ist aufgetreten."; // Modal Text setzen
-						include.modal.visibility.value = true; // Modal sichtbar machen
+					    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten.', true);
 					});
 				}else{
-
+					// Passwort nicht komplex genug
 			    	include.showLoadingIndicator.value = false // Loading Symbol ausblenden
-
-					include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
-					include.modal.headline = "Oops!"; // Modal Dachzeile setzen
-					include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-					include.modal.message.value = "Das eingegebenen Passwort ist nicht komplex genug." // Modal Text setzen
-					include.modal.visibility.value = true; // Modal sichtbar machen
+			    	include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Das eingegebenen Passwort ist nicht komplex genug.', true);
 				}
 			}else{
 				// Passwort nicht identisch
 				include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
-
-				include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
-				include.modal.headline = "Oops!"; // Modal Dachzeile setzen
-				include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-				include.modal.message.value = "Die eingegebenen Passwörter stimmen nicht überein."; // Modal Text setzen
-				include.modal.visibility.value = true; // Modal sichtbar machen
+				include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Die eingegebenen Passwörter stimmen nicht überein.', true);
 			}
 		}else{
 			// Email Adresse ist ungültig
 			include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
-
-			include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
-			include.modal.headline = "Oops!"; // Modal Dachzeile setzen
-			include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-			include.modal.message.value = "Bitte geben Sie eine gültige Email-Adresse ein."; // Modal Text setzen
-			include.modal.visibility.value = true; // Modal sichtbar machen
+			include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Die eingegebenen Email-Adresse ist ungültig.', true);
 		}
 	}else{
 		// Nicht alle Felder ausgefüllt
 		include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
-
-		include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
-		include.modal.headline = "Oops!"; // Modal Dachzeile setzen
-		include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-		include.modal.message.value = "Bitte füllen Sie alle Felder aus."; // Modal Text setzen
-		include.modal.visibility.value = true; // Modal sichtbar machen
+		include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Bitte füllen Sie alle Felder aus.', true);
 	}
 }
 
