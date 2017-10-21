@@ -36,8 +36,6 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Passwort Wiederholen Farbstrich einbauen
-		- Passwort Komplexität einbauen (in Arbeit, hier in der Funktion Check einbauen der mindestens medium erfordert)
 		- Nutzungs- und Datenschutzschutz Popup bauen
 		- Konstante für Host URL
 		- Console.logs entfernen
@@ -50,55 +48,66 @@ function Register() {
 	if(firstname.value != "" && lastname.value != "" && email.value != "" && password.value != "" && repeatPassword.value != ""){
 		if(include.emailRegex.test(email.value)){
 			if(password.value == repeatPassword.value){
-				//Hier checken ob passwort mindestens medium ist
-			    var requestObject = {
-			    	first_name: firstname.value, 
-			    	last_name: lastname.value, 
-			    	password: password.value, 
-			    	email: email.value
-			    };
+				if((passwordComplexity.value == 'mittel' && repeatPasswordComplexity.value == 'mittel') || (passwordComplexity.value == 'stark' && repeatPasswordComplexity.value == 'stark')){
 
-				fetch('http://app.scotty2nd.square7.ch/api/customer/add', {
-				  	method: 'POST',
-				  	headers: { "Content-type": "application/json", "Accept": "application/json" },
-				  	body: JSON.stringify(requestObject)
-			  	}).then(function(response) {
-				  	return response.json();    // This returns a promise
-			  	}).then(function(data) {
-				    // Server Antwort verarbeiten
-				    if(data.error == false){
-			    		include.showLoadingIndicator.value = false // Loading Symbol ausblenden
-						
-						include.modal.color = include.colors.success; // Modal Hintergrundfarbe setzen 
-						include.modal.headline = ""; // Modal Dachzeile setzen
-						include.modal.title = "Glückwunsch"; // Modal Titel setzen
-						include.modal.message.value = data.message; // Modal Text setzen
-						include.modal.visibility.value = true; // Modal sichtbar machen
+					var requestObject = {
+				    	first_name: firstname.value, 
+				    	last_name: lastname.value, 
+				    	password: password.value, 
+				    	email: email.value
+				    };
 
-					    firstname.value = '';		//Set Field to blank
-					    lastname.value = '';
-					    email.value = '';
-					    password.value = '';
-					    repeatPassword.value = '';
-					}else if(data.error == true){
-				    	include.showLoadingIndicator.value = false // Loading Symbol ausblenden
+					fetch('http://app.scotty2nd.square7.ch/api/customer/add', {
+					  	method: 'POST',
+					  	headers: { "Content-type": "application/json", "Accept": "application/json" },
+					  	body: JSON.stringify(requestObject)
+				  	}).then(function(response) {
+					  	return response.json();    // This returns a promise
+				  	}).then(function(data) {
+					    // Server Antwort verarbeiten
+					    if(data.error == false){
+				    		include.showLoadingIndicator.value = false // Loading Symbol ausblenden
+							
+							include.modal.color = include.colors.success; // Modal Hintergrundfarbe setzen 
+							include.modal.headline = ""; // Modal Dachzeile setzen
+							include.modal.title = "Glückwunsch"; // Modal Titel setzen
+							include.modal.message.value = data.message; // Modal Text setzen
+							include.modal.visibility.value = true; // Modal sichtbar machen
+
+						    firstname.value = '';		//Set Field to blank
+						    lastname.value = '';
+						    email.value = '';
+						    password.value = '';
+						    repeatPassword.value = '';
+						}else if(data.error == true){
+					    	include.showLoadingIndicator.value = false // Loading Symbol ausblenden
+
+							include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
+							include.modal.headline = "Oops!"; // Modal Dachzeile setzen
+							include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+							include.modal.message.value = data.message; // Modal Text setzen
+							include.modal.visibility.value = true; // Modal sichtbar machen
+					    }
+					}).catch(function(error) {
+					    // An error occurred somewhere in the Promise chain
+					    include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
 
 						include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
 						include.modal.headline = "Oops!"; // Modal Dachzeile setzen
 						include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-						include.modal.message.value = data.message; // Modal Text setzen
+						include.modal.message.value = "Ein unbekannter Fehler ist aufgetreten."; // Modal Text setzen
 						include.modal.visibility.value = true; // Modal sichtbar machen
-				    }
-				}).catch(function(error) {
-				    // An error occurred somewhere in the Promise chain
-				    include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
+					});
+				}else{
+
+			    	include.showLoadingIndicator.value = false // Loading Symbol ausblenden
 
 					include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
 					include.modal.headline = "Oops!"; // Modal Dachzeile setzen
 					include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-					include.modal.message.value = "Ein unbekannter Fehler ist aufgetreten."; // Modal Text setzen
+					include.modal.message.value = "Das eingegebenen Passwort ist nicht komplex genug." // Modal Text setzen
 					include.modal.visibility.value = true; // Modal sichtbar machen
-				});
+				}
 			}else{
 				// Passwort nicht identisch
 				include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
