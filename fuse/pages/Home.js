@@ -1,4 +1,4 @@
-var Customer = require("modules/Customer");
+var customer = require("modules/Customer");
 /*var hike = this.Parameter;
 
 var name = hike.map(function(x) { return x.name; });
@@ -7,8 +7,8 @@ var distance = hike.map(function(x) { return x.distance; });
 var rating = hike.map(function(x) { return x.rating; });
 var comments = hike.map(function(x) { return x.comments; });*/
 
-function logout() {
-    Customer.clearIdentifier();
+function Logout() {
+    customer.ClearIdentifier();
     router.goBack();
 }
 
@@ -31,9 +31,9 @@ module.exports = {
     rating: rating,
     comments: comments,*/
 
-    Identifier: Customer.Identifier,
+    identifier: customer.identifier,
 
-    logout: logout,
+    Logout: Logout,
     //save: save,
     //cancel: cancel
 };

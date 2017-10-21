@@ -5,7 +5,7 @@
     <Panel>
     	<Panel ux:Name="Navbar" Height="60" Alignment="Top">
 			<Grid Columns="1*,2*,1*" Background="#fffe">
-				<Panel ux:Name="LeftIconWrapper" Clicked="{goBack}" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Left" >
+				<Panel ux:Name="LeftIconWrapper" Clicked="{GoBack}" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Left" >
 				    <Image>
 				        <MultiDensityImageSource>
 				            <FileImageSource Density="1" File="../assets/arrow-left.png" />
@@ -38,18 +38,40 @@
 				<Logo />
 
 				<StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
-			    	<TextField Label="Vorname" PlaceholderText="Vorname eingeben" ActionStyle="Next" Value="{Firstname}" />
+			    	<TextField ux:Name="Firstname" Label="Vorname" PlaceholderText="Vorname eingeben" ActionStyle="Next" Value="{firstname}">
+	            	    <TextInputActionTriggered>
+					        <GiveFocus Target="Lastname" />
+					    </TextInputActionTriggered>
+			    	</TextField>
 
-			    	<TextField Label="Nachname" PlaceholderText="Nachname eingeben" ActionStyle="Next" Value="{Lastname}" />
+			    	<TextField ux:Name="Lastname" Label="Nachname" PlaceholderText="Nachname eingeben" ActionStyle="Next" Value="{lastname}">
+	            	    <TextInputActionTriggered>
+					        <GiveFocus Target="EmailAdress" />
+					    </TextInputActionTriggered>
+			    	</TextField>
 
-			    	<TextField Label="E-Mail-Adresse" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{Email}" />
+			    	<TextField ux:Name="EmailAdress" Label="E-Mail-Adresse" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{email}">
+	            	    <TextInputActionTriggered>
+					        <GiveFocus Target="Password" />
+					    </TextInputActionTriggered>
+			    	</TextField>
 
-	            	<TextField Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{Password}" />
+	            	<TextField ux:Name="Password" Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}">
 
-		            <TextField Label="Passwort wiederholen" PlaceholderText="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{RepeatPassword}">
-		            	    <TextInputActionTriggered>
-						        <ReleaseFocus />
-						    </TextInputActionTriggered>
+						<PasswordComplexityStroke ObserveFunction="{passwordComplexity}" />
+
+	            	    <TextInputActionTriggered>
+					        <GiveFocus Target="RepeatPassword" />
+					    </TextInputActionTriggered>
+	            	</TextField>
+
+		            <TextField ux:Name="RepeatPassword" Label="Passwort wiederholen" PlaceholderText="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{repeatPassword}" ActionTriggered="{Register}">
+
+						<PasswordComplexityStroke ObserveFunction="{repeatPasswordComplexity}" />
+
+	            	    <TextInputActionTriggered>
+					        <ReleaseFocus />
+					    </TextInputActionTriggered>
 		            </TextField>
 
 					<StackPanel ContentAlignment="Center" Margin="0, 50, 0, 85">
@@ -74,7 +96,7 @@
 			</Grid>
 		</ScrollView>
 
-		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" Clicked="{register}" IsEnabled="{areCredentialsValid}" />
+		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" Clicked="{Register}" IsEnabled="{allCredentialsEntered}" />
 	</Panel>
 
 	<!-- Optimized Sizes for iPad and bigger Views -->
@@ -83,33 +105,18 @@
 	    <Change LeftIconWrapper.Padding="20, 25" />
 	</WhileWindowSize>
 
+    <WhileActive>
+    	<Callback Handler="{OnPageActiv}" />
+    </WhileActive>  
+
+	<!-- Aktuell irgendwie Buggy auf Aandroid wenn man mehrmals dreht erscheint ein weißer Bereich am unteren Ende des Bilschirms-->
 	<!-- When Keyboard become visible then move entire page 3/4 of keyboard size to top -->
 	<WhileKeyboardVisible>
     	<Move Target="Content" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
 	</WhileKeyboardVisible>
 
 	<!-- Showed only when Observable is true -->
- 	<Modal Background="Error" Headline="Oops!" Title="Es ist ein Fehler aufgetreten." />
+ 	<Modal />
  	<LoadingIndicator />
  	<Overlay />
-
-		<!--
-		Alter Kram
-		<Grid Rows="1*,1*">
-			<StackPanel Alignment="VerticalCenter">
-				<WhiteText Alignment="HorizontalCenter" FontSize="70">Logo</WhiteText>
-			</StackPanel>
-
-			<StackPanel Alignment="VerticalCenter" Margin="50,0,50,0">
- 				<MyTextInput PlaceholderText="Username" Value="{username}" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
- 				<MyTextInput PlaceholderText="Email" Value="{email}" InputHint="Email" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" />
- 				<MyTextInput PlaceholderText="Password" Value="{password}" IsPassword="true" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
- 				<MyTextInput PlaceholderText="Repeat Password" Value="{passwordRepeat}" IsPassword="true" ActionStyle="Send" AutoCorrectHint="Disabled" AutoCapitalizationHint="None"/>
-
-				<Text Alignment="HorizontalCenter" Opacity="1" TextColor="#000" Value="{data.error}" />
-				<Text Alignment="HorizontalCenter" Opacity="1" TextColor="#000" Value="{data.message}"/>
-				<Text Alignment="HorizontalCenter" Opacity=".5" />
-				<Text Alignment="HorizontalCenter" Opacity=".5" />
-			</StackPanel>
-		</Grid>-->
 </Page>

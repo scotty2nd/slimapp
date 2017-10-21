@@ -1,4 +1,4 @@
-<WhileTrue ux:Class="LoadingIndicator" Value="{ShowLoadingIndicator}">
+<WhileTrue ux:Class="LoadingIndicator" Value="{showLoadingIndicator}">
 	<Panel Layer="Overlay">
 		<Circle ux:Name="RotatingStroke" Width="50" Height="50" StartAngleDegrees="-45" EndAngleDegrees="45">
 			<Stroke Width="2" Color="White" />

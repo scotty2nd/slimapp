@@ -1,4 +1,4 @@
-<Text ux:Class="RegularText" TextColor="Black">
+<Text ux:Class="RegularText" TextColor="Black" Font="MyriadProRegular">
 	<WhileWindowSize GreaterThan="768,1">
 		<Change this.FontSize="BaseTablet" />
 	</WhileWindowSize>

@@ -9,13 +9,13 @@
 				<SemiboldText ux:Name="ModalHeadline" Value="{ReadProperty Headline}" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 5" />
 				<SemiboldText ux:Name="ModalTitel" Value="{ReadProperty Title}" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10" />
 
-				<RegularText ux:Name="ModalMessage" Value="{Modal.Message}" TextColor="White" TextAlignment="Center" FontSize="14" TextWrapping="Wrap" />
+				<RegularText ux:Name="ModalMessage" Value="{modal.message}" TextColor="White" TextAlignment="Center" FontSize="14" TextWrapping="Wrap" />
 			</StackPanel>
 
-			<StackPanel Dock="Bottom" Height="60">
+			<StackPanel Dock="Bottom">
 				<Rectangle Width="100%" Height="1" Color="#0005"/>
 
-				<Panel ux:Name="OkButton" HitTestMode="LocalBounds" Background="#0003" Padding="20" Clicked="{ok}">
+				<Panel ux:Name="OkButton" HitTestMode="LocalBounds" Background="#0003" Height="60" Padding="20" Clicked="{Ok}">
 				    <BoldText ux:Name="OkButtonText" TextColor="White" TextAlignment="Center" FontSize="16">
 				    	OK
 				    </BoldText>
@@ -29,30 +29,15 @@
 	</Panel>
 
 	<!-- Wenn das Modal sichtbar ist -->
-	<WhileTrue Value="{Modal.Visibility}">
+	<WhileTrue Value="{modal.visibility}">
 		<Change ModalBody.Visibility="Visible" />
 		<Scale Factor="1" Duration=".3" Easing="BounceIn" />
 
-		<JavaScript>
-			var Observable = require("modules/Observable");
-
-			this.Background.value = Observable.Modal.Background;
-			this.Headline.value = Observable.Modal.Headline;
-			this.Title.value = Observable.Modal.Title;
-
-			function ok() {
-				Observable.Modal.Visibility.value = false; // Error Modal ausblenden
-				Observable.ShowOverlay.value = false; // Overlay ausblenden
-			}
-
-			module.exports = {
-				ok: ok
-			};
-		</JavaScript>
+		<JavaScript File="Modal.js" />
 	</WhileTrue>
 
 	<!-- Wenn das Modal nicht sichtbar ist -->
-	<WhileFalse Value="{Modal.Visibility}">
+	<WhileFalse Value="{modal.visibility}">
 	    <Scale Factor="0" Duration=".3" Easing="BounceIn" />
 	    <Change ModalBody.Visibility="Collapsed" Delay="0.3" />
 	</WhileFalse>

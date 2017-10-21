@@ -12,7 +12,7 @@ var identifier = [
  * Parameters: none
  * Return: a Promise
  * */
-function getIdentifier() {
+function GetIdentifier() {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
             resolve(identifier);
@@ -44,7 +44,7 @@ function updateHike(id, name, location, distance, rating, comments) {
 /* *
  * Parameters: error, message, id, apikey
  * */
-function addIdentifier(error, message, id, apikey) {
+function AddIdentifier(error, message, id, apikey) {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
             identifier.push({
@@ -61,7 +61,7 @@ function addIdentifier(error, message, id, apikey) {
 /* *
  * Parameters: none
  * */
-function clearIdentifier() {
+function ClearIdentifier() {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
             identifier = [
@@ -78,8 +78,8 @@ function clearIdentifier() {
 }
 
 module.exports = {
-    getIdentifier: getIdentifier,
+    GetIdentifier: GetIdentifier,
+    AddIdentifier: AddIdentifier,
+    ClearIdentifier: ClearIdentifier,
     //updateHike: updateHike,
-    addIdentifier: addIdentifier,
-    clearIdentifier: clearIdentifier
 };

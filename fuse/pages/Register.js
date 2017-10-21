@@ -1,99 +1,165 @@
-var Observable = require("modules/Observable");
-var RegisterObservable = require("FuseJS/Observable");
+var include = require("/Main");
 
-var Firstname = RegisterObservable(""),
-	Lastname = RegisterObservable(""),
-	Email = RegisterObservable(""),
-	Password = RegisterObservable(""),
-	RepeatPassword = RegisterObservable("");
+var firstname = include.observable(""),
+	lastname = include.observable(""),
+	email = include.observable(""),
+	password = include.observable(""),
+	repeatPassword = include.observable("");
 
-var areCredentialsValid = RegisterObservable(function() {
-	var credentials = Firstname.value != "" && Lastname.value != "" && Password.value != "" && RepeatPassword.value != "";
+/*Eventuell in Observable Datei auslagern*/
+var allCredentialsEntered = include.observable(function() {
+	var credentials = firstname.value != "" && lastname.value != "" && password.value != "" && repeatPassword.value != "";
+
+	include.SetAndroidStatusbarColor(credentials, 1);
+
 	return credentials;
 });
 
-function register() {
-	/*
-		To Do:
-		- Email Adresse prüfen / Email Adress Prüfung in Funktion auslagern
-		- Passwort und Repeatpasswort prüfen
-		- Passwort Komplexität einbauen
-		- Nutzungs- und Datenschutzschutz Popup bauen
-		- Console.logs entfernen
-	*/
-	Observable.ShowOverlay.value = true; // Overlay einblenden
-	Observable.ShowLoadingIndicator.value = true; // Loading Symbol einblenden
+/*Passwort Feld überwachen und Passwort Komplexität prüfen und zurückgeben*/
+var passwordComplexity = include.observable(function() {
+	var passwordComplexity = include.GetPasswordComplexity(password.value);
 
-    var requestObject = {
-    	first_name: Firstname.value, 
-    	last_name: Lastname.value, 
-    	password: Password.value, 
-    	email: Email.value
-    };
+	return passwordComplexity;
+});
 
-	fetch('http://slimapp.dev/api/customer/add', {
-	  	method: 'POST',
-	  	headers: { "Content-type": "application/json", "Accept": "application/json" },
-	  	body: JSON.stringify(requestObject)
-  	}).then(function(response) {
-	  	return response.json();    // This returns a promise
-  	}).then(function(data) {
-	    // Server Antwort verarbeiten
-	    if(data.error == false){
-		    console.log('do something');
-		    console.log(data.error);
-		    console.log(data.message);
+/*Repeat Passwort Feld überwachen und Passwort Komplexität prüfen und zurückgeben*/
+var repeatPasswordComplexity = include.observable(function() {
+	var passwordComplexity = include.GetPasswordComplexity(repeatPassword.value);
 
-    		Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
-			
-			Observable.Modal.Background = Observable.Colors.Success; // Modal Hintergrundfarbe setzen 
-			Observable.Modal.Headline = ""; // Modal Dachzeile setzen
-			Observable.Modal.Title = "Glückwunsch"; // Modal Titel setzen
-			Observable.Modal.Message.value = data.message; // Modal Text setzen
-			Observable.Modal.Visibility.value = true; // Modal sichtbar machen
+	return passwordComplexity;
+});
 
-		    Firstname.value = '';		//Set Field to blank
-		    Lastname.value = '';
-		    Email.value = '';
-		    Password.value = '';
-		    RepeatPassword.value = '';
-		}else if(data.error == true){
-	    	Observable.ShowLoadingIndicator.value = false // Loading Symbol ausblenden
-
-			Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
-			Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
-			Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-			Observable.Modal.Message.value = data.message; // Modal Text setzen
-			Observable.Modal.Visibility.value = true; // Modal sichtbar machen
-	    }
-	}).catch(function(error) {
-	    // An error occurred somewhere in the Promise chain
-	    Observable.ShowLoadingIndicator.value = false; // Loading Symbol ausblenden
-
-		Observable.Modal.Background = Observable.Colors.Error; // Modal Hintergrundfarbe setzen 
-		Observable.Modal.Headline = "Oops!"; // Modal Dachzeile setzen
-		Observable.Modal.Title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
-		Observable.Modal.Message.value = "Ein unbekannter Fehler ist aufgetreten."; // Modal Text setzen
-		Observable.Modal.Visibility.value = true; // Modal sichtbar machen
-	});
+function OnPageActiv() {
+	include.SetAndroidStatusbarColor(allCredentialsEntered);
 }
 
-function goBack() {
+function Register() {
+	/*
+		To Do:
+		- Nutzungs- und Datenschutzschutz Popup bauen
+		- Konstante für Host URL
+		- Console.logs entfernen
+		- Kommentare anpassen entweder alle in deutsch oder englisch
+		- In register und login show Modal funktion anlegen um Code zu reduzieren
+	*/
+	include.showOverlay.value = true; // Overlay einblenden
+	include.showLoadingIndicator.value = true; // Loading Symbol einblenden
+
+	if(firstname.value != "" && lastname.value != "" && email.value != "" && password.value != "" && repeatPassword.value != ""){
+		if(include.emailRegex.test(email.value)){
+			if(password.value == repeatPassword.value){
+				if((passwordComplexity.value == 'mittel' && repeatPasswordComplexity.value == 'mittel') || (passwordComplexity.value == 'stark' && repeatPasswordComplexity.value == 'stark')){
+
+					var requestObject = {
+				    	first_name: firstname.value, 
+				    	last_name: lastname.value, 
+				    	password: password.value, 
+				    	email: email.value
+				    };
+
+					fetch('http://app.scotty2nd.square7.ch/api/customer/add', {
+					  	method: 'POST',
+					  	headers: { "Content-type": "application/json", "Accept": "application/json" },
+					  	body: JSON.stringify(requestObject)
+				  	}).then(function(response) {
+					  	return response.json();    // This returns a promise
+				  	}).then(function(data) {
+					    // Server Antwort verarbeiten
+					    if(data.error == false){
+				    		include.showLoadingIndicator.value = false // Loading Symbol ausblenden
+							
+							include.modal.color = include.colors.success; // Modal Hintergrundfarbe setzen 
+							include.modal.headline = ""; // Modal Dachzeile setzen
+							include.modal.title = "Glückwunsch"; // Modal Titel setzen
+							include.modal.message.value = data.message; // Modal Text setzen
+							include.modal.visibility.value = true; // Modal sichtbar machen
+
+						    firstname.value = '';		//Set Field to blank
+						    lastname.value = '';
+						    email.value = '';
+						    password.value = '';
+						    repeatPassword.value = '';
+						}else if(data.error == true){
+					    	include.showLoadingIndicator.value = false // Loading Symbol ausblenden
+
+							include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
+							include.modal.headline = "Oops!"; // Modal Dachzeile setzen
+							include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+							include.modal.message.value = data.message; // Modal Text setzen
+							include.modal.visibility.value = true; // Modal sichtbar machen
+					    }
+					}).catch(function(error) {
+					    // An error occurred somewhere in the Promise chain
+					    include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
+
+						include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
+						include.modal.headline = "Oops!"; // Modal Dachzeile setzen
+						include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+						include.modal.message.value = "Ein unbekannter Fehler ist aufgetreten."; // Modal Text setzen
+						include.modal.visibility.value = true; // Modal sichtbar machen
+					});
+				}else{
+
+			    	include.showLoadingIndicator.value = false // Loading Symbol ausblenden
+
+					include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
+					include.modal.headline = "Oops!"; // Modal Dachzeile setzen
+					include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+					include.modal.message.value = "Das eingegebenen Passwort ist nicht komplex genug." // Modal Text setzen
+					include.modal.visibility.value = true; // Modal sichtbar machen
+				}
+			}else{
+				// Passwort nicht identisch
+				include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
+
+				include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
+				include.modal.headline = "Oops!"; // Modal Dachzeile setzen
+				include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+				include.modal.message.value = "Die eingegebenen Passwörter stimmen nicht überein."; // Modal Text setzen
+				include.modal.visibility.value = true; // Modal sichtbar machen
+			}
+		}else{
+			// Email Adresse ist ungültig
+			include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
+
+			include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
+			include.modal.headline = "Oops!"; // Modal Dachzeile setzen
+			include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+			include.modal.message.value = "Bitte geben Sie eine gültige Email-Adresse ein."; // Modal Text setzen
+			include.modal.visibility.value = true; // Modal sichtbar machen
+		}
+	}else{
+		// Nicht alle Felder ausgefüllt
+		include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
+
+		include.modal.color = include.colors.error; // Modal Hintergrundfarbe setzen 
+		include.modal.headline = "Oops!"; // Modal Dachzeile setzen
+		include.modal.title = "Es ist ein Fehler aufgetreten."; // Modal Titel setzen
+		include.modal.message.value = "Bitte füllen Sie alle Felder aus."; // Modal Text setzen
+		include.modal.visibility.value = true; // Modal sichtbar machen
+	}
+}
+
+function GoBack() {
     router.goBack();
 }
 
 module.exports = {
-	Firstname: Firstname,
-	Lastname: Lastname,
-	Email: Email,
-	Password: Password,
-	RepeatPassword: RepeatPassword,
+	firstname: firstname,
+	lastname: lastname,
+	email: email,
+	password: password,
+	repeatPassword: repeatPassword,
 
-	ShowOverlay: Observable.ShowOverlay,
-	ShowLoadingIndicator: Observable.ShowLoadingIndicator,
-	Modal: Observable.Modal,
+	showOverlay: include.showOverlay,
+	showLoadingIndicator: include.showLoadingIndicator,
+	modal: include.modal,
 
-	areCredentialsValid: areCredentialsValid,
-	register: register,
-	goBack: goBack
+	allCredentialsEntered: allCredentialsEntered,
+	passwordComplexity: passwordComplexity,
+	repeatPasswordComplexity: repeatPasswordComplexity,
+	
+	OnPageActiv, OnPageActiv,
+	Register: Register,
+	GoBack: GoBack
 };

@@ -6,10 +6,10 @@
 		<StatusBarBackground Dock="Top" />
 		<BottomBarBackground Dock="Bottom" />
 
-		<Button Text="Logout" Clicked="{logout}" Color="#000" Dock="Top" HitTestMode="LocalBounds" Padding="20" />
+		<Button Text="Logout" Clicked="{Logout}" Color="#000" Dock="Top" HitTestMode="LocalBounds" Padding="20" />
 
 		<StackPanel Alignment="VerticalCenter">
-            <Each Items="{Identifier}">
+            <Each Items="{identifier}">
                 <!--<Button Text="{id}" Clicked="{goToHike}" />-->
                 <Button Text="{id}" />
             </Each>
