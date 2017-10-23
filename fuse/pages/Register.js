@@ -15,14 +15,14 @@ var allCredentialsEntered = include.observable(function() {
 	return credentials;
 });
 
-/*Passwort Feld überwachen und Passwort Komplexität prüfen und zurückgeben*/
+// Passwort Feld überwachen und Passwort Komplexität zurückgeben
 var passwordComplexity = include.observable(function() {
 	var passwordComplexity = include.GetPasswordComplexity(password.value);
 
 	return passwordComplexity;
 });
 
-/*Repeat Passwort Feld überwachen und Passwort Komplexität prüfen und zurückgeben*/
+// Repeat Passwort Feld überwachen und Passwort Komplexität zurückgeben
 var repeatPasswordComplexity = include.observable(function() {
 	var passwordComplexity = include.GetPasswordComplexity(repeatPassword.value);
 
@@ -36,16 +36,20 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Kommentare anpassen entweder alle in deutsch oder englisch
 		- Nutzungs- und Datenschutzschutz Popup bauen
+		- Navbar in Komponente auslagern
 		- Logo Untertitel einbauen (Mowi)
 	*/
-	include.showOverlay.value = true; // Overlay einblenden
-	include.showLoadingIndicator.value = true; // Loading Symbol einblenden
+	include.showOverlay.value = true; 			// Overlay einblenden
+	include.showLoadingIndicator.value = true; 	// Loading Symbol einblenden
 
+	// Check ob alle Felder eingegeben sind
 	if(firstname.value != "" && lastname.value != "" && email.value != "" && password.value != "" && repeatPassword.value != ""){
+		// Prüfen ob Email-Adresse gültig ist
 		if(include.emailRegex.test(email.value)){
+			// Prüfen ob Passwort und Passwort wiederholen identisch sind
 			if(password.value == repeatPassword.value){
+				// Prüfen ob Passwort komplex genug ist
 				if((passwordComplexity.value == 'mittel' && repeatPasswordComplexity.value == 'mittel') || (passwordComplexity.value == 'stark' && repeatPasswordComplexity.value == 'stark')){
 
 					var requestObject = {
@@ -65,8 +69,8 @@ function Register() {
 					    // Server Antwort verarbeiten
 					    if(data.error == false){
 					    	// Kein Fehler Daten an den Server schicken
-				    		include.showLoadingIndicator.value = false // Loading Symbol ausblenden
-				    		include.ShowModal(include.colors.success, '', 'Glückwunsch', data.message, true);
+				    		include.showLoadingIndicator.value = false; 										// Loading Symbol ausblenden
+				    		include.ShowModal(include.colors.success, '', 'Glückwunsch', data.message, true); 	// Erfolgsmeldung zeigen
 							
 				    		// Textfelder löschen
 						    firstname.value = '';
@@ -76,33 +80,33 @@ function Register() {
 						    repeatPassword.value = '';
 						}else if(data.error == true){
 							// Server Antwort enthält einen Fehler
-					    	include.showLoadingIndicator.value = false // Loading Symbol ausblenden
-					    	include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', data.message, true);
+					    	include.showLoadingIndicator.value = false; 																// Loading Symbol ausblenden
+					    	include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', data.message, true); 	// Fehlermeldung zeigen
 					    }
 					}).catch(function(error) {
-					    // An error occurred somewhere in the Promise chain
-					    include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
-					    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten.', true);
+					    // Ein Fehler ist bei der Verarbeitung aufgetreten
+					    include.showLoadingIndicator.value = false; 																							// Loading Symbol ausblenden
+					    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten.', true); 	// Fehlermeldung zeigen
 					});
 				}else{
 					// Passwort nicht komplex genug
-			    	include.showLoadingIndicator.value = false // Loading Symbol ausblenden
-			    	include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Das eingegebenen Passwort ist nicht komplex genug.', true);
+			    	include.showLoadingIndicator.value = false; 																									// Loading Symbol ausblenden
+			    	include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Das eingegebenen Passwort ist nicht komplex genug.', true);	// Fehlermeldung zeigen
 				}
 			}else{
 				// Passwort nicht identisch
-				include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
-				include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Die eingegebenen Passwörter stimmen nicht überein.', true);
+				include.showLoadingIndicator.value = false; 																									// Loading Symbol ausblenden
+				include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Die eingegebenen Passwörter stimmen nicht überein.', true); // Fehlermeldung zeigen
 			}
 		}else{
 			// Email Adresse ist ungültig
-			include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
-			include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Die eingegebenen Email-Adresse ist ungültig.', true);
+			include.showLoadingIndicator.value = false; 																								// Loading Symbol ausblenden
+			include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Die eingegebenen Email-Adresse ist ungültig.', true); 	// Fehlermeldung zeigen
 		}
 	}else{
 		// Nicht alle Felder ausgefüllt
-		include.showLoadingIndicator.value = false; // Loading Symbol ausblenden
-		include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Bitte füllen Sie alle Felder aus.', true);
+		include.showLoadingIndicator.value = false; 																					// Loading Symbol ausblenden
+		include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Bitte füllen Sie alle Felder aus.', true); 	// Fehlermeldung zeigen
 	}
 }
 

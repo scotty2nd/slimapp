@@ -1,3 +1,4 @@
+// Aktuell nur zur Kontrolle wird später noch angepasst
 var identifier = [
     {
         error: false,
@@ -48,10 +49,10 @@ function AddIdentifier(error, message, id, apikey) {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
             identifier.push({
-                error: error,
+                error:   error,
                 message: message,
-                id: id,
-                apikey: apikey
+                id:      id,
+                apikey:  apikey
             }); 
             resolve();
         }, 0);

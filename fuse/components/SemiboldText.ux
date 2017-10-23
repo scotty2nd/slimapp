@@ -1,4 +1,5 @@
 <Text ux:Class="SemiboldText" TextColor="Black" Font="MyriadProSemibold">
+	<!-- Optimierungen für Tablets und größere Ansichten -->
 	<WhileWindowSize GreaterThan="768,1">
 		<Change this.FontSize="BaseTablet" />
 	</WhileWindowSize>

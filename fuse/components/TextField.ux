@@ -21,6 +21,7 @@
     	<Change LabelText.Opacity="1" Duration=".1" />
     </WhileContainsText>
 
+	<!-- Optimierungen für Tablets und größere Ansichten -->
 	<WhileWindowSize GreaterThan="768,1">
 		<Change this.FontSize="BaseTablet" />
 		<Change this.Padding="0, 50, 0, 10" />

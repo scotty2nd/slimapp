@@ -3,10 +3,9 @@ var customerBackend = require("./CustomerBackend");
 
 var identifier = observable();
 
-//Hikes initial aufrufen
 GetIdentifier();
 
-/* *
+ /* *
  * Parameters: none
  * */
 function GetIdentifier() {

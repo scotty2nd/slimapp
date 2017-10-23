@@ -1,3 +1,4 @@
+// Variablen
 var observable = require("FuseJS/Observable");
 
 var modal = { 
@@ -20,10 +21,11 @@ var colors = {
 var showOverlay = observable(false),
 	showLoadingIndicator = observable(false),
 	androidStatusbarColor = observable(colors.primaryDisabled),
-	apiUrl = 'http://app.scotty2nd.square7.ch/api/';
+	apiUrl = 'http://app.scotty2nd.square7.ch/api/',
+	emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
 
-var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // Regex um auf gültige Email Adressen zu prüfen
 
+// Funktionen
 function GetPasswordComplexity(password) {
 	var passwordStrongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"),
     	passwordMediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})"),
@@ -43,7 +45,6 @@ function GetPasswordComplexity(password) {
 }
 
 function SetAndroidStatusbarColor(allCredentialsEntered = false, allCredentialsEnteredReturnedWithoutValue = 0) {
-	
 	var value = "";
 
 	if(allCredentialsEnteredReturnedWithoutValue == 1){
@@ -60,11 +61,11 @@ function SetAndroidStatusbarColor(allCredentialsEntered = false, allCredentialsE
 }
 
 function ShowModal(color, headline, title, message, visibility) {
-	modal.color = color; // Modal Hintergrundfarbe setzen 
-	modal.headline = headline; // Modal Dachzeile setzen
-	modal.title = title; // Modal Titel setzen
-	modal.message.value = message; // Modal Text setzen
-	modal.visibility.value = visibility; // Modal sichtbar machen
+	modal.color = color; 					// Modal Hintergrundfarbe setzen 
+	modal.headline = headline; 				// Modal Dachzeile setzen
+	modal.title = title; 					// Modal Titel setzen
+	modal.message.value = message; 			// Modal Text setzen
+	modal.visibility.value = visibility; 	// Modal sichtbar machen
 }
 
 module.exports = {

@@ -83,26 +83,26 @@
 		</ScrollView>
 	</Panel>
 
-    <!-- Extra Small Smartphone View e.g. iPhone 4, 3 und 2 -->
+    <!-- Optimierungen für Smartphone Ansicht wie iPhone 4, 3 und 2 -->
     <WhileWindowSize LessThan="321,481">
     	<Change Logo.Margin="0, 45, 0, 0"/>
     </WhileWindowSize>
 
-	<!-- Optimized Sizes for Tablets and bigger Views -->
+	<!-- Optimierungen für Tablets und größere Ansichten -->
 	<WhileWindowSize GreaterThan="768,1">
 		<Change PasswortVergessenText.FontSize="8" />
 	    <Change RegistrierenText.Margin="0, 0, 0, 50" />
 	</WhileWindowSize>
 
-	<!-- For all Landscape Views -->
+	<!-- Für alle Querformat Ansichten -->
     <WhileWindowLandscape>
-    	<!-- For Smartphone and smaller Views -->
+    	<!-- Optimierungen für Smartphone Ansicht -->
     	<WhileWindowSize LessThan="1023,99999">
     		<Change LoginGrid.Rows="auto, auto, auto" />
 	    	<Change RegistrierenText.Margin="0, 75, 0, 50" />
 		</WhileWindowSize>
 
-    	<!-- For Tablet and bigger Views -->
+    	<!-- Optimierungen für Tablets und größere Ansichten -->
     	<WhileWindowSize GreaterThan="1023,1">
 		    <Change RegistrierenText.Margin="0, 125, 0, 50" />
 	    </WhileWindowSize>
@@ -113,12 +113,12 @@
     </WhileActive> 
 
 	<!-- Aktuell irgendwie Buggy auf Aandroid wenn man mehrmals dreht erscheint ein weißer Bereich am unteren Ende des Bilschirms-->
-	<!-- When Keyboard become visible then move entire page 3/4 of keyboard size to top -->
 	<WhileKeyboardVisible>
+		<!-- Wenn die Tastatur sichtbar, dann schiebe die komplette Seite um die Hälfte der Tastatur nach oben -->
     	<Move Target="this" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
 	</WhileKeyboardVisible>
 
- 	<!-- Showed only when Observable is true -->
+ 	<!-- Folgende Elemente werden nur bei Bedarf sichtbar -->
  	<Modal />
  	<LoadingIndicator />
  	<Overlay />

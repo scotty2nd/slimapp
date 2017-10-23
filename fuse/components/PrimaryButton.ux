@@ -11,7 +11,7 @@
     	<Change this.Color="PrimaryDisabled" Duration="0.3" />
     </WhileDisabled>
 
-	<!-- Optimized Sizes for Tablets and bigger Views -->
+    <!-- Optimierungen für Tablets und größere Ansichten -->
 	<WhileWindowSize GreaterThan="768,1">
 	    <Change this.Height="80" />
 	</WhileWindowSize>

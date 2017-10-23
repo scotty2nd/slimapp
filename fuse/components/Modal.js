@@ -5,8 +5,8 @@ this.Headline.value = include.modal.headline;
 this.Title.value = include.modal.title;
 
 function Ok() {
-	include.modal.visibility.value = false; // Error Modal ausblenden
-	include.showOverlay.value = false; // Overlay ausblenden
+	include.modal.visibility.value = false; 	// Fehlermeldung ausblenden
+	include.showOverlay.value = false; 			// Overlay ausblenden
 }
 
 module.exports = {
