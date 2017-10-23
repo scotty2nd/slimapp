@@ -27,8 +27,8 @@ function Login() {
 			email: username.value, 
 			password: password.value
 		};
-
-	  	fetch('http://app.scotty2nd.square7.ch/api/login', {
+		
+	  	fetch(include.apiUrl + 'login', {
 		  	method: 'POST',
 		  	headers: { "Content-type": "application/json", "Accept": "application/json" },
 		  	body: JSON.stringify(requestObject)

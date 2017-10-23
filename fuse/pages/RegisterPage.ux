@@ -15,9 +15,9 @@
 				    </Image>
 				</Panel>
 
-				<RegularText ux:Name="PageTitel" TextColor="Primary" TextAlignment="Center" Margin="0, 3, 0, 0" Alignment="VerticalCenter">
+				<SemiboldText ux:Name="PageTitel" TextColor="Primary" TextAlignment="Center" Margin="0, 3, 0, 0" Alignment="VerticalCenter">
 					Registrieren
-				</RegularText>
+				</SemiboldText>
 				
 				<!-- More Bubble Icon -->
 				<!--<Panel Margin="25,10" Alignment="Right">

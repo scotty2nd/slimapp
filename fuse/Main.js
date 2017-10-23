@@ -19,7 +19,8 @@ var colors = {
 
 var showOverlay = observable(false),
 	showLoadingIndicator = observable(false),
-	androidStatusbarColor = observable(colors.primaryDisabled);
+	androidStatusbarColor = observable(colors.primaryDisabled),
+	apiUrl = 'http://app.scotty2nd.square7.ch/api/';
 
 var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // Regex um auf gültige Email Adressen zu prüfen
 
@@ -73,6 +74,7 @@ module.exports = {
     showOverlay: showOverlay,
     showLoadingIndicator: showLoadingIndicator,
     androidStatusbarColor: androidStatusbarColor,
+    apiUrl: apiUrl,
     emailRegex: emailRegex,
 
     GetPasswordComplexity: GetPasswordComplexity,

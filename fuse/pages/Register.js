@@ -36,11 +36,9 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Nutzungs- und Datenschutzschutz Popup bauen
-		- Konstante für Host URL
-		- Console.logs entfernen
 		- Kommentare anpassen entweder alle in deutsch oder englisch
-		- In register und login show Modal funktion anlegen um Code zu reduzieren
+		- Nutzungs- und Datenschutzschutz Popup bauen
+		- Logo Untertitel einbauen (Mowi)
 	*/
 	include.showOverlay.value = true; // Overlay einblenden
 	include.showLoadingIndicator.value = true; // Loading Symbol einblenden
@@ -57,7 +55,7 @@ function Register() {
 				    	email: email.value
 				    };
 
-					fetch('http://app.scotty2nd.square7.ch/api/customer/add', {
+					fetch(include.apiUrl + 'customer/add', {
 					  	method: 'POST',
 					  	headers: { "Content-type": "application/json", "Accept": "application/json" },
 					  	body: JSON.stringify(requestObject)
