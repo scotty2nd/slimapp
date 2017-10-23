@@ -54,14 +54,14 @@
 						    </TextInputActionTriggered>
 			            </TextField>
 
-			            <Panel Padding="0, 15, 0, 5" Clicked="{GoToForgotPasswordPage}" HitTestMode="LocalBounds">
+			            <!--<Panel Padding="0, 15, 0, 5" Clicked="{GoToForgotPasswordPage}" HitTestMode="LocalBounds">
 				        	<RegularText ux:Name="PasswortVergessenText" TextColor="White" FontSize="14" Alignment="Right" TextAlignment="Center">
 				        		Passwort vergessen?
 				        	</RegularText>
 			        		<WhilePressed>
 								<Scale Factor=".8" Duration=".2" Easing="BounceIn" />
 							</WhilePressed>
-			        	</Panel>
+			        	</Panel>-->
 				    </StackPanel>
 				</Panel>
 
@@ -90,7 +90,7 @@
 
 	<!-- Optimierungen für Tablets und größere Ansichten -->
 	<WhileWindowSize GreaterThan="768,1">
-		<Change PasswortVergessenText.FontSize="8" />
+		<!--<Change PasswortVergessenText.FontSize="8" />-->
 	    <Change RegistrierenText.Margin="0, 0, 0, 50" />
 	</WhileWindowSize>
 

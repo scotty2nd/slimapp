@@ -100,7 +100,7 @@
 		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" Clicked="{Register}" IsEnabled="{allCredentialsEntered}" />
 	</Panel>
 
-	<<!-- Optimierungen für Tablets und größere Ansichten -->
+	<!-- Optimierungen für Tablets und größere Ansichten -->
 	<WhileWindowSize GreaterThan="768,1">
 	    <Change Navbar.Height="80" />
 	    <Change LeftIconWrapper.Padding="20, 25" />
