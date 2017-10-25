@@ -1,9 +1,9 @@
 <Panel ux:Class="Modal" Layer="Overlay" >
-	<float4 ux:Property="Background" />
+	<float4 ux:Property="BackgroundColor" />
 	<string ux:Property="Headline" />
 	<string ux:Property="Title" />
 
-	<Panel ux:Name="ModalBody" Background="{ReadProperty Background}" Visibility="Collapsed" Width="100%" MaxWidth="400" Alignment="Center" ClipToBounds="True">
+	<Panel ux:Name="ModalBody" Background="{ReadProperty BackgroundColor}" Visibility="Collapsed" Width="100%" MaxWidth="400" Alignment="Center" ClipToBounds="True">
 		<DockPanel>
 			<StackPanel Dock="Top" Margin="20, 20, 20, 20">
 				<SemiboldText ux:Name="ModalHeadline" Value="{ReadProperty Headline}" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 5" />

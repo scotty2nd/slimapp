@@ -1,0 +1,61 @@
+<Panel ux:Class="Navbar" Height="60" Alignment="Top">
+	<Router ux:Dependency="router" />
+
+	<string ux:Property="LeftIcon" />
+	<string ux:Property="Title" />
+	<string ux:Property="RightIcon" />
+
+	<Grid Columns="1*,2*,1*" Background="#fffe">
+		<!-- Icon Links -->
+		<WhileString Value="{ReadProperty LeftIcon}" Equals="">
+			<Panel ux:Name="IconLeftWrapperEmpty" HitTestMode="LocalBounds" Padding="0" Alignment="Left"/>
+		</WhileString>
+
+		<WhileString Value="{ReadProperty LeftIcon}" Equals="Back">
+			<Panel ux:Name="IconLeftWrapper" Clicked="{GoBack}" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Left">
+				<!-- Arrow Left Icon -->
+				<Icon ux:Name="IconLeft">
+					&#xe900;
+				</Icon>
+			</Panel>
+		</WhileString>
+
+		<!-- Titel in der Mitte -->
+		<SemiboldText ux:Name="PageTitel" Value="{ReadProperty Title}" TextColor="Primary" TextAlignment="Center" Alignment="VerticalCenter" />
+		
+		<!-- Icon Rechts -->
+		<WhileString Value="{ReadProperty RightIcon}" Equals="">
+			<Panel ux:Name="IconRightWrapperEmpty" HitTestMode="LocalBounds" Padding="0" Alignment="Left" />
+		</WhileString>
+
+		<WhileString Value="{ReadProperty RightIcon}" Equals="More">
+			<Panel ux:Name="IconRightWrapper" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Right">
+				<!-- More Icon -->
+				<Grid Rows="7,7,7" Alignment="VerticalCenter">
+					<Circle Color="Primary" Width="4" Height="4"/>
+					<Circle Color="Primary" Width="4" Height="4"/>
+					<Circle Color="Primary" Width="4" Height="4"/>
+				</Grid>
+			</Panel>
+		</WhileString>
+	</Grid>
+
+	<Rectangle Height="1" Color="#000d" Alignment="Bottom" />
+
+	<!-- Optimierungen für Tablets und größere Ansichten -->
+	<WhileWindowSize GreaterThan="768,1">
+	    <Change this.Height="80" />
+	    <Change IconLeft.FontSize="32" />
+	    <Change IconLeftWrapper.Padding="20, 25" />
+	</WhileWindowSize>
+
+	<JavaScript>
+		function GoBack() {
+		    router.goBack();
+		}
+
+		module.exports = {
+			GoBack: GoBack
+		};
+	</JavaScript>
+</Panel>

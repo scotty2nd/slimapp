@@ -3,34 +3,7 @@
 	<JavaScript File="Register.js" />
 
     <Panel>
-    	<Panel ux:Name="Navbar" Height="60" Alignment="Top">
-			<Grid Columns="1*,2*,1*" Background="#fffe">
-				<Panel ux:Name="LeftIconWrapper" Clicked="{GoBack}" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Left" >
-				    <Image>
-				        <MultiDensityImageSource>
-				            <FileImageSource Density="1" File="../assets/arrow-left.png" />
-				            <FileImageSource Density="2" File="../assets/arrow-left@2x.png" />
-				            <FileImageSource Density="3" File="../assets/arrow-left@4x.png" />
-				        </MultiDensityImageSource>
-				    </Image>
-				</Panel>
-
-				<SemiboldText ux:Name="PageTitel" TextColor="Primary" TextAlignment="Center" Margin="0, 3, 0, 0" Alignment="VerticalCenter">
-					Registrieren
-				</SemiboldText>
-				
-				<!-- More Bubble Icon -->
-				<!--<Panel Margin="25,10" Alignment="Right">
-					<Grid Rows="7,7,7" Alignment="VerticalCenter">
-						<Circle Color="White" Width="4" Height="4"/>
-						<Circle Color="White" Width="4" Height="4"/>
-						<Circle Color="White" Width="4" Height="4"/>
-					</Grid>
-				</Panel>-->
-			</Grid>
-
-			<Rectangle Height="1" Color="#000d" Alignment="Bottom" />
-		</Panel>
+    	<Navbar LeftIcon="Back" Title="Registrieren" router="router" />
 
 	    <!-- Default View -->
 		<ScrollView ux:Name="Content">
@@ -99,12 +72,6 @@
 
 		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" Clicked="{Register}" IsEnabled="{allCredentialsEntered}" />
 	</Panel>
-
-	<!-- Optimierungen für Tablets und größere Ansichten -->
-	<WhileWindowSize GreaterThan="768,1">
-	    <Change Navbar.Height="80" />
-	    <Change LeftIconWrapper.Padding="20, 25" />
-	</WhileWindowSize>
 
     <WhileActive>
     	<Callback Handler="{OnPageActiv}" />

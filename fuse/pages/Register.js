@@ -110,10 +110,6 @@ function Register() {
 	}
 }
 
-function GoBack() {
-    router.goBack();
-}
-
 module.exports = {
 	firstname: firstname,
 	lastname: lastname,
@@ -130,6 +126,5 @@ module.exports = {
 	repeatPasswordComplexity: repeatPasswordComplexity,
 	
 	OnPageActiv, OnPageActiv,
-	Register: Register,
-	GoBack: GoBack
+	Register: Register
 };
