@@ -37,7 +37,6 @@ function Register() {
 	/*
 		To Do:
 		- Nutzungs- und Datenschutzschutz Popup bauen
-		- Navbar in Komponente auslagern
 		- Logo Untertitel einbauen (Mowi)
 	*/
 	include.showOverlay.value = true; 			// Overlay einblenden
@@ -110,6 +109,11 @@ function Register() {
 	}
 }
 
+function OpenPopup() {
+	// Popup einblenden
+	include.showPopup.value = true;
+}
+
 module.exports = {
 	firstname: firstname,
 	lastname: lastname,
@@ -119,6 +123,7 @@ module.exports = {
 
 	showOverlay: include.showOverlay,
 	showLoadingIndicator: include.showLoadingIndicator,
+	showPopup: include.showPopup,
 	modal: include.modal,
 
 	allCredentialsEntered: allCredentialsEntered,
@@ -126,5 +131,6 @@ module.exports = {
 	repeatPasswordComplexity: repeatPasswordComplexity,
 	
 	OnPageActiv, OnPageActiv,
-	Register: Register
+	Register: Register,
+	OpenPopup: OpenPopup
 };

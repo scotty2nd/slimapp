@@ -28,8 +28,17 @@
 			<Panel ux:Name="IconRightWrapperEmpty" HitTestMode="LocalBounds" Padding="0" Alignment="Left" />
 		</WhileString>
 
+		<WhileString Value="{ReadProperty RightIcon}" Equals="Close">
+			<Panel Clicked="{ClosePopup}" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Right">
+				<!-- Close Icon -->
+				<Icon TextColor="Black">
+					&#xe901;
+				</Icon>
+			</Panel>
+		</WhileString>
+
 		<WhileString Value="{ReadProperty RightIcon}" Equals="More">
-			<Panel ux:Name="IconRightWrapper" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Right">
+			<Panel HitTestMode="LocalBounds" Padding="20, 20" Alignment="Right">
 				<!-- More Icon -->
 				<Grid Rows="7,7,7" Alignment="VerticalCenter">
 					<Circle Color="Primary" Width="4" Height="4"/>
@@ -50,12 +59,20 @@
 	</WhileWindowSize>
 
 	<JavaScript>
+		var include = require("/Main");
+
 		function GoBack() {
 		    router.goBack();
 		}
 
+		function ClosePopup() {
+		    // Popup ausblenden
+	    	include.showPopup.value = false;
+		}
+
 		module.exports = {
-			GoBack: GoBack
+			GoBack: GoBack,
+			ClosePopup: ClosePopup
 		};
 	</JavaScript>
 </Panel>

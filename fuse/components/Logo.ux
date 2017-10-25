@@ -1,4 +1,4 @@
-<Panel ux:Class="Logo" Alignment="TopCenter" Margin=" 0, 75, 0, 55" Height="75">
+<Panel ux:Class="Logo" Alignment="TopCenter" Margin=" 0, 35, 0, 35" Height="75">
     <Image>
         <MultiDensityImageSource>
             <FileImageSource Density="1" File="../assets/logo.png" />

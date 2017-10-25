@@ -7,70 +7,91 @@
 
 	    <!-- Default View -->
 		<ScrollView ux:Name="Content">
-			<Grid Rows="auto, auto, auto" MinHeight="100%">
+			<PageContent Padding="0, 60, 0, 0">
+				<Grid Rows="auto, auto, auto" MinHeight="100%">
 
-				<Logo />
+					<Logo />
 
-				<StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
-			    	<TextField ux:Name="Firstname" Label="Vorname" PlaceholderText="Vorname eingeben" ActionStyle="Next" Value="{firstname}">
-	            	    <TextInputActionTriggered>
-					        <GiveFocus Target="Lastname" />
-					    </TextInputActionTriggered>
-			    	</TextField>
+					<StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
+				    	<TextField ux:Name="Firstname" Label="Vorname" PlaceholderText="Vorname eingeben" ActionStyle="Next" Value="{firstname}">
+		            	    <TextInputActionTriggered>
+						        <GiveFocus Target="Lastname" />
+						    </TextInputActionTriggered>
+				    	</TextField>
 
-			    	<TextField ux:Name="Lastname" Label="Nachname" PlaceholderText="Nachname eingeben" ActionStyle="Next" Value="{lastname}">
-	            	    <TextInputActionTriggered>
-					        <GiveFocus Target="EmailAdress" />
-					    </TextInputActionTriggered>
-			    	</TextField>
+				    	<TextField ux:Name="Lastname" Label="Nachname" PlaceholderText="Nachname eingeben" ActionStyle="Next" Value="{lastname}">
+		            	    <TextInputActionTriggered>
+						        <GiveFocus Target="EmailAdress" />
+						    </TextInputActionTriggered>
+				    	</TextField>
 
-			    	<TextField ux:Name="EmailAdress" Label="E-Mail-Adresse" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{email}">
-	            	    <TextInputActionTriggered>
-					        <GiveFocus Target="Password" />
-					    </TextInputActionTriggered>
-			    	</TextField>
+				    	<TextField ux:Name="EmailAdress" Label="E-Mail-Adresse" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{email}">
+		            	    <TextInputActionTriggered>
+						        <GiveFocus Target="Password" />
+						    </TextInputActionTriggered>
+				    	</TextField>
 
-	            	<TextField ux:Name="Password" Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}">
+		            	<TextField ux:Name="Password" Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}">
 
-						<PasswordComplexityStroke ObserveFunction="{passwordComplexity}" />
+							<PasswordComplexityStroke ObserveFunction="{passwordComplexity}" />
 
-	            	    <TextInputActionTriggered>
-					        <GiveFocus Target="RepeatPassword" />
-					    </TextInputActionTriggered>
-	            	</TextField>
+		            	    <TextInputActionTriggered>
+						        <GiveFocus Target="RepeatPassword" />
+						    </TextInputActionTriggered>
+		            	</TextField>
 
-		            <TextField ux:Name="RepeatPassword" Label="Passwort wiederholen" PlaceholderText="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{repeatPassword}" ActionTriggered="{Register}">
+			            <TextField ux:Name="RepeatPassword" Label="Passwort wiederholen" PlaceholderText="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{repeatPassword}" ActionTriggered="{Register}">
 
-						<PasswordComplexityStroke ObserveFunction="{repeatPasswordComplexity}" />
+							<PasswordComplexityStroke ObserveFunction="{repeatPasswordComplexity}" />
 
-	            	    <TextInputActionTriggered>
-					        <ReleaseFocus />
-					    </TextInputActionTriggered>
-		            </TextField>
+		            	    <TextInputActionTriggered>
+						        <ReleaseFocus />
+						    </TextInputActionTriggered>
+			            </TextField>
 
-					<StackPanel ContentAlignment="Center" Margin="0, 50, 0, 85">
-					    <StackPanel Orientation="Horizontal" ItemSpacing="2" ContentAlignment="Center">
-						    <RegularText FontSize="11" Value="Mit dem" />
-						    <BoldText FontSize="11" Value="Abschluss" />
-						    <RegularText FontSize="11" Value="der" />
-						    <BoldText FontSize="11" Value="Registrierung" />
-					    	<RegularText FontSize="11" Value="stimmen Sie den" />		
-						</StackPanel>
+						<StackPanel ContentAlignment="Center" Margin="0, 50, 0, 85">
+						    <StackPanel Orientation="Horizontal" ItemSpacing="2" ContentAlignment="Center">
+							    <RegularText FontSize="11" Value="Mit dem" />
+							    <BoldText FontSize="11" Value="Abschluss" />
+							    <RegularText FontSize="11" Value="der" />
+							    <BoldText FontSize="11" Value="Registrierung" />
+						    	<RegularText FontSize="11" Value="stimmen Sie den" />		
+							</StackPanel>
 
-						<StackPanel Orientation="Horizontal" ItemSpacing="2" ContentAlignment="Center">
-					    	<RegularText FontSize="11" TextColor="Primary" Value="Nutzungsbedingungen" />
-					    	<RegularText FontSize="11" Value="und den" />	
-					    	<RegularText FontSize="11" TextColor="Primary" Value="Datenschutzbestimmungen" />
-					    	<RegularText FontSize="11" Value="zu" />
-						</StackPanel>
-					</StackPanel>	
+							<StackPanel Orientation="Horizontal" ItemSpacing="2" ContentAlignment="Center">
+						    	<RegularText FontSize="11" TextColor="Primary" Value="Nutzungsbedingungen" />
+						    	<RegularText FontSize="11" Value="und den" />	
+						    	<RegularText FontSize="11" TextColor="Primary" Value="Datenschutzbestimmungen" Clicked="{OpenPopup}" />
+						    	<RegularText FontSize="11" Value="zu" />
+							</StackPanel>
+						</StackPanel>	
 
-			    </StackPanel>
-
-			</Grid>
+				    </StackPanel>
+				</Grid>
+			</PageContent>
 		</ScrollView>
 
 		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" Clicked="{Register}" IsEnabled="{allCredentialsEntered}" />
+	</Panel>
+
+	<Panel ux:Name="PrivacyPopup" Layer="Overlay" Background="White" Y="100%">
+		<Navbar Title="Datenschutzbestimmungen" RightIcon="Close" router="router" />
+		<ScrollView>
+			<PageContent>
+				<Panel Padding="20">
+					<Text TextWrapping="Wrap">
+						Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+
+						Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
+
+						Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+
+						Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer
+					</Text>
+				</Panel>
+			</PageContent>
+		</ScrollView>
+		<Shadow Size="20" />
 	</Panel>
 
     <WhileActive>
@@ -82,6 +103,11 @@
 		<!-- Wenn die Tastatur sichtbar, dann schiebe die komplette Seite um die Hälfte der Tastatur nach oben -->
     	<Move Target="Content" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
 	</WhileKeyboardVisible>
+
+	<!-- Wenn das Popup sichtbar ist -->
+	<WhileTrue Value="{showPopup}">
+		<Change PrivacyPopup.Y="0%" Duration="0.3" />
+	</WhileTrue>
 
 	<!-- Folgende Elemente werden nur bei Bedarf sichtbar -->
  	<Modal />

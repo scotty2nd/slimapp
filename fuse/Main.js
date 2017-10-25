@@ -20,6 +20,7 @@ var colors = {
 
 var showOverlay = observable(false),
 	showLoadingIndicator = observable(false),
+	showPopup = observable(false);
 	androidStatusbarColor = observable(colors.primaryDisabled),
 	apiUrl = 'http://app.scotty2nd.square7.ch/api/',
 	emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
@@ -74,6 +75,7 @@ module.exports = {
     colors: colors,
     showOverlay: showOverlay,
     showLoadingIndicator: showLoadingIndicator,
+    showPopup: showPopup,
     androidStatusbarColor: androidStatusbarColor,
     apiUrl: apiUrl,
     emailRegex: emailRegex,
