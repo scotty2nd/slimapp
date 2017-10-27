@@ -36,7 +36,7 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Nutzungs- und Datenschutzschutz Popup bauen
+		- Nutzungs- und Datenschutzschutz Popup bauen // In Komponente verlagern und dynamisch machen
 		- Logo Untertitel einbauen (Mowi)
 	*/
 	include.showOverlay.value = true; 			// Overlay einblenden
