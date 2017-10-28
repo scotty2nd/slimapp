@@ -109,9 +109,14 @@ function Register() {
 	}
 }
 
-function OpenPopup() {
-	// Popup einblenden
-	include.showPopup.value = true;
+function ShowTermsPopup() {
+	include.popup.text.value = "Test123";						// Variable soll im nächsten Step via Fetch vom Server abgerufen werden
+	include.ShowPopup("", "Nutzungsbestimmungen", "Close");		// Popup anzeigen
+}
+
+function ShowPrivacyPopup() {
+	include.popup.text.value = "Test456";						// Variable soll im nächsten Step via Fetch vom Server abgerufen werden
+	include.ShowPopup("", "Datenschutzbestimmungen", "Close");	// Popup anzeigen
 }
 
 module.exports = {
@@ -123,8 +128,8 @@ module.exports = {
 
 	showOverlay: include.showOverlay,
 	showLoadingIndicator: include.showLoadingIndicator,
-	showPopup: include.showPopup,
 	modal: include.modal,
+	popup: include.popup,
 
 	allCredentialsEntered: allCredentialsEntered,
 	passwordComplexity: passwordComplexity,
@@ -132,5 +137,6 @@ module.exports = {
 	
 	OnPageActiv, OnPageActiv,
 	Register: Register,
-	OpenPopup: OpenPopup
+	ShowTermsPopup: ShowTermsPopup,
+	ShowPrivacyPopup: ShowPrivacyPopup
 };

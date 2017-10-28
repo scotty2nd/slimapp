@@ -13,6 +13,7 @@
 					<Logo />
 
 					<StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
+
 				    	<TextField ux:Name="Firstname" Label="Vorname" PlaceholderText="Vorname eingeben" ActionStyle="Next" Value="{firstname}">
 		            	    <TextInputActionTriggered>
 						        <GiveFocus Target="Lastname" />
@@ -32,24 +33,22 @@
 				    	</TextField>
 
 		            	<TextField ux:Name="Password" Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}">
-
 							<PasswordComplexityStroke ObserveFunction="{passwordComplexity}" />
-
 		            	    <TextInputActionTriggered>
 						        <GiveFocus Target="RepeatPassword" />
 						    </TextInputActionTriggered>
 		            	</TextField>
 
 			            <TextField ux:Name="RepeatPassword" Label="Passwort wiederholen" PlaceholderText="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{repeatPassword}" ActionTriggered="{Register}">
-
 							<PasswordComplexityStroke ObserveFunction="{repeatPasswordComplexity}" />
-
 		            	    <TextInputActionTriggered>
 						        <ReleaseFocus />
 						    </TextInputActionTriggered>
 			            </TextField>
 
+			            <!-- Nutzungs und Datenschutzbestimmungen Text -->
 						<StackPanel ContentAlignment="Center" Margin="0, 50, 0, 85">
+							<!-- Erste Zeile -->
 						    <StackPanel Orientation="Horizontal" ItemSpacing="2" ContentAlignment="Center">
 							    <RegularText FontSize="11" Value="Mit dem" />
 							    <BoldText FontSize="11" Value="Abschluss" />
@@ -58,8 +57,9 @@
 						    	<RegularText FontSize="11" Value="stimmen Sie den" />	
 							</StackPanel>
 
+							<!-- Zweite Zeile -->
 							<StackPanel Orientation="Horizontal" ItemSpacing="2" ContentAlignment="Center">
-						    	<Panel Clicked="{OpenPopup}" HitTestMode="LocalBounds" Padding="0, 10, 0, 10">
+						    	<Panel Clicked="{ShowTermsPopup}" HitTestMode="LocalBounds" Padding="0, 10, 0, 10">
 						    		<RegularText FontSize="11" TextColor="Primary">
 						    			Nutzungsbedingungen
 						    		</RegularText>
@@ -71,7 +71,7 @@
 					    			</RegularText>
 					    		</Panel>
 						    	
-						    	<Panel Clicked="{OpenPopup}" HitTestMode="LocalBounds" Padding="0, 10, 0, 10">
+						    	<Panel Clicked="{ShowPrivacyPopup}" HitTestMode="LocalBounds" Padding="0, 10, 0, 10">
 						    		<RegularText FontSize="11" TextColor="Primary">
 						    			Datenschutzbestimmungen
 						    		</RegularText>
@@ -93,30 +93,14 @@
 		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" Clicked="{Register}" IsEnabled="{allCredentialsEntered}" />
 	</Panel>
 
-	<Panel ux:Name="PrivacyPopup" Layer="Overlay" Background="White" Y="100%" MinHeight="100%">
-		<Navbar Title="Datenschutzbestimmungen" RightIcon="Close" router="router" />
-		<ScrollView>
-			<PageContent>
-				<Panel Padding="20">
-					<RegularText TextWrapping="Wrap">
-						Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
-
-						Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
-
-						Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
-
-						Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer
-					</RegularText>
-				</Panel>
-			</PageContent>
-		</ScrollView>
-		<Shadow Size="20" />
-	</Panel>
-
-	<!-- Wenn das Popup sichtbar ist -->
-	<WhileTrue Value="{showPopup}">
-		<Change PrivacyPopup.Y="0%" Duration="0.3" />
-	</WhileTrue>
+	<!-- Datenschutz Popup soll noch in eigene Komponente ausgelagert werden -->
+	<!-- Folgende Elemente werden nur bei Bedarf sichtbar -->
+	<Popup router="router">
+		<RegularText Value="{popup.text}" />
+	</Popup>
+ 	<Modal />
+ 	<LoadingIndicator />
+ 	<Overlay />
 
     <WhileActive>
     	<Callback Handler="{OnPageActiv}" />
@@ -127,9 +111,4 @@
 		<!-- Wenn die Tastatur sichtbar, dann schiebe die komplette Seite um die Hälfte der Tastatur nach oben -->
     	<Move Target="Content" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
 	</WhileKeyboardVisible>
-
-	<!-- Folgende Elemente werden nur bei Bedarf sichtbar -->
- 	<Modal />
- 	<LoadingIndicator />
- 	<Overlay />
 </Page>

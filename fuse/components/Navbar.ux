@@ -29,7 +29,7 @@
 		</WhileString>
 
 		<WhileString Value="{ReadProperty RightIcon}" Equals="Close">
-			<Panel Clicked="{ClosePopup}" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Right">
+			<Panel Clicked="{HidePopup}" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Right">
 				<!-- Close Icon -->
 				<Icon TextColor="Black">
 					&#xe901;
@@ -65,14 +65,9 @@
 		    router.goBack();
 		}
 
-		function ClosePopup() {
-		    // Popup ausblenden
-	    	include.showPopup.value = false;
-		}
-
 		module.exports = {
 			GoBack: GoBack,
-			ClosePopup: ClosePopup
+			HidePopup: include.HidePopup
 		};
 	</JavaScript>
 </Panel>

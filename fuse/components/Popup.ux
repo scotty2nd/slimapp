@@ -1,0 +1,31 @@
+<Container ux:Class="Popup" Subtree="PopupContent" Layer="Overlay" Y="100%" MinHeight="100%">
+	<Router ux:Dependency="router" />
+	<string ux:Property="LeftIcon" />
+	<string ux:Property="Title" />
+	<string ux:Property="RightIcon" />
+
+	<Panel ux:Binding="Children" Background="White">
+		<Navbar LeftIcon="{ReadProperty LeftIcon}" Title="{ReadProperty Title}" RightIcon="{ReadProperty RightIcon}" router="router" />
+		<ScrollView>
+			<PageContent>
+				<Panel ux:Name="PopupContent" Padding="20">
+					<!-- Popup Content wird hier eingefügt -->
+				</Panel>
+			</PageContent>
+		</ScrollView>
+		<Shadow Size="20" />
+	</Panel>
+
+	<!-- Wenn das Popup sichtbar ist -->
+	<WhileTrue Value="{popup.visibility}">
+		<Change this.Y="0%" Duration="0.3" />
+
+		<JavaScript>
+			var include = require("/Main");
+
+			this.LeftIcon.value = include.popup.leftIcon;
+			this.Title.value = include.popup.title;
+			this.RightIcon.value = include.popup.rightIcon;
+		</JavaScript>
+	</WhileTrue>
+</Container>
