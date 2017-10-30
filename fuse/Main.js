@@ -33,6 +33,7 @@ var showOverlay = observable(false),
 	emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
 
 
+
 // Funktionen
 function GetPasswordComplexity(password) {
 	var passwordStrongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"),
@@ -86,6 +87,8 @@ function ShowPopup(leftIcon, title, rightIcon) {
 function HidePopup() {
 	popup.visibility.value = false;			// Popup ausblenden
 }
+
+
 
 module.exports = {
 	observable: observable,

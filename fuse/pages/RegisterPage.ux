@@ -96,8 +96,11 @@
 	<!-- Datenschutz Popup soll noch in eigene Komponente ausgelagert werden -->
 	<!-- Folgende Elemente werden nur bei Bedarf sichtbar -->
 	<Popup router="router">
-		<RegularText Value="{popup.text}" />
+		<NativeViewHost>
+			<WebView Source="{popup.text}" MinHeight="100" />
+		</NativeViewHost>
 	</Popup>
+
  	<Modal />
  	<LoadingIndicator />
  	<Overlay />

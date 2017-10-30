@@ -138,5 +138,15 @@
         private function generateApiKey(){
             return md5(uniqid(rand(), true));
         }
+
+                //Method to fetch all customer from database
+        public function getTerms(){
+            $stmt = $this->connection->prepare("SELECT * FROM customers");
+            $stmt->execute();
+            $customers = $stmt->get_result();
+            $stmt->close();
+
+            return $customers;
+        }
     }
 ?>

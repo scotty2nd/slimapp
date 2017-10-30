@@ -36,7 +36,9 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Nutzungs- und Datenschutzschutz Popup bauen // In Komponente verlagern und dynamisch machen
+		- Nutzungs- und Datenschutzschutz Popup bauen // Nutzungs und Datenschutzbedingugen von Server fetchen
+		- Popup Javascript in eigene Datei auslagern
+		- Navbar Javascript in eigene Datei auslagern
 		- Logo Untertitel einbauen (Mowi)
 	*/
 	include.showOverlay.value = true; 			// Overlay einblenden
@@ -110,7 +112,7 @@ function Register() {
 }
 
 function ShowTermsPopup() {
-	include.popup.text.value = "Test123";						// Variable soll im nächsten Step via Fetch vom Server abgerufen werden
+	include.popup.text.value = "<h1>Test123</h1><p>lorem ipsum fff</p>";						// Variable soll im nächsten Step via Fetch vom Server abgerufen werden
 	include.ShowPopup("", "Nutzungsbestimmungen", "Close");		// Popup anzeigen
 }
 
