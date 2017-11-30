@@ -93,12 +93,13 @@
 		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" Clicked="{Register}" IsEnabled="{allCredentialsEntered}" />
 	</Panel>
 
-	<!-- Datenschutz Popup soll noch in eigene Komponente ausgelagert werden -->
 	<!-- Folgende Elemente werden nur bei Bedarf sichtbar -->
 	<Popup router="router">
-		<NativeViewHost>
-			<WebView Source="{popup.text}" MinHeight="100" />
-		</NativeViewHost>
+		<!--<Text>lkasjdsaldjlasdlasjdlasjdlajdlajsdj aklsdjalsdjlasjd alkdasjdklasjdklas landlasdlkajdlajdlajd adajdlkajdkla</Text>-->
+			<!--<NativeViewHost ClipToBounds="true" MinHeight="100">
+				<WebView Source="{popup.text}" MinHeight="100" Background="Green" />
+			</NativeViewHost>-->
+			<Text Value="<BoldText>123</BoldText>"></Text>
 	</Popup>
 
  	<Modal />

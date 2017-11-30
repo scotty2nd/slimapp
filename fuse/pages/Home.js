@@ -31,7 +31,7 @@ module.exports = {
     rating: rating,
     comments: comments,*/
 
-    identifier: customer.identifier,
+    customer: customer.customer,
 
     Logout: Logout,
     //save: save,

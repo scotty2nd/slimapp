@@ -33,13 +33,14 @@ function Login() {
 		  	method: 'POST',
 		  	headers: { "Content-type": "application/json", "Accept": "application/json" },
 		  	body: JSON.stringify(requestObject)
-	  	}).then(function(response) {
-			return response.json(); // This returns a promise
-	  	}).then(function(data) {
-		    // Server Antwort verarbeiten
-		    if(data.id != "" && data.apikey != "" && data.error == false){ 
+	  	})
+		.then(result => result.json())
+		.then(result => {
+			// Server Antwort verarbeiten
+		    if(result.id != "" && result.apikey != "" && result.error == false){ 
 		    	// Kein Fehler und Customer ID sowie API Key sind gefüllt
-	    		customer.AddIdentifier(data.error, data.message, data.id, data.apikey); // ID und API Key abspeichern
+
+	    		customer.AddIdentifier(result.error, result.message, result.id, result.apikey); // ID und API Key abspeichern
 
 	    		include.showLoadingIndicator.value = false;	// Loading Symbol ausblenden
 	    		include.showOverlay.value = false; 			// Overlay ausblenden
@@ -50,15 +51,15 @@ function Login() {
 	    		// Textfelder löschen
 			    username.value = '';
 			    password.value = '';
-		    }else if(data.error == true){
+		    }else if(result.error == true){
 				// Server Antwort enthält einen Fehler
 		    	include.showLoadingIndicator.value = false; 																// Loading Symbol ausblenden
-		    	include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', data.message, true); 	// Fehlermeldung zeigen
-		    }
-		}).catch(function(error) {
+		    	include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', result.message, true); 	// Fehlermeldung zeigen
+		    }	
+		}).catch(error => {
 		    // Ein Fehler ist bei der Verarbeitung aufgetreten
 		    include.showLoadingIndicator.value = false; 																							// Loading Symbol ausblenden
-		    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten.', true); 	// Fehlermeldung zeigen
+		    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten. \n' + error, true); 	// Fehlermeldung zeigen
 		});
 	}else{
 		// Email Adresse ist ungültig 
@@ -82,7 +83,7 @@ module.exports = {
 	showOverlay: include.showOverlay,
 	showLoadingIndicator: include.showLoadingIndicator,
 	modal: include.modal,
-	Identifier: customer.Identifier,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
+	customer: customer.customer,					//Wird noch für die Kontroll ausgabe benötigt kann aber später entfernt werden
 
 	allCredentialsEntered: allCredentialsEntered,
 	
