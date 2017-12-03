@@ -1,4 +1,4 @@
-<Container ux:Class="Popup" Subtree="PopupContent" Layer="Overlay" Y="100%" MinHeight="100%" Opacity="0">
+<Container ux:Class="Popup" Subtree="PopupContent" Layer="Overlay" Y="100%" MinHeight="100%" Opacity="1">
 	<Router ux:Dependency="router" />
 	<string ux:Property="LeftIcon" />
 	<string ux:Property="Title" />
@@ -18,8 +18,8 @@
 
 	<!-- Wenn das Popup sichtbar ist -->
 	<WhileTrue Value="{popup.visibility}">
-		<Change this.Y="0%" Duration="0.3" />
-		<Change this.Opacity="1" Duration="0.3" />
+		<Change this.Y="0%" Duration=".3" Delay=".2" Easing="QuadraticInOut" />
+		<!--<Change this.Opacity="1" Duration=".3" />-->
 
 		<JavaScript>
 			var include = require("/Main");

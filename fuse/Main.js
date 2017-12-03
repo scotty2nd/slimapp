@@ -14,7 +14,7 @@ var popup = {
 	leftIcon: "",
 	title: "",
 	rightIcon: "",
-	text: observable("")
+	text: observable()
 }
 
 var colors = { 

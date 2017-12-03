@@ -36,6 +36,8 @@ function AddIdentifier(error, message, id, apikey) {
                 apikey:  apikey
             }); 
             resolve();
+            /*Testausgabe*/
+            console.dir(customerTemporay[0]);
         }, 0);
     });
 

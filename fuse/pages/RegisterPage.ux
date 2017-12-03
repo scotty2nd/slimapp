@@ -99,7 +99,28 @@
 			<!--<NativeViewHost ClipToBounds="true" MinHeight="100">
 				<WebView Source="{popup.text}" MinHeight="100" Background="Green" />
 			</NativeViewHost>-->
-			<Text Value="<BoldText>123</BoldText>"></Text>
+		<StackPanel>
+			<Each Items="{popup.text}">
+				<StackPanel>
+					<!--<Text Value="{termsText}" />-->
+					<WhileString Value="{tag}" Equals="h2">
+						<BoldText Value="{text}" Margin="0, 0, 0, 15" />
+					</WhileString>
+
+					<WhileString Value="{tag}" Equals="h3">
+						<SemiboldText Value="{text}" Margin="0, 15, 0, 10" />
+					</WhileString>
+
+					<WhileString Value="{tag}" Equals="h4">
+						<SemiboldText Value="{text}" Margin="0, 15, 0, 10" />
+					</WhileString>
+
+					<WhileString Value="{tag}" Equals="p">
+						<RegularText Value="{text}" TextWrapping="Wrap" />
+					</WhileString>
+        		</StackPanel>
+			</Each>
+		</StackPanel>
 	</Popup>
 
  	<Modal />
