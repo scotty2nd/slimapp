@@ -36,9 +36,12 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Nutzungs- und Datenschutzschutz Popup bauen
-		- Navbar in Komponente auslagern
+		- Nutzungs- und Datenschutzschutz Popup bauen // Nutzungs und Datenschutzbedingugen von Server fetchen
+		- Logo auf Login Seite ist aktuell zu hoch gerutscht
+		- Popup Javascript in eigene Datei auslagern
+		- Navbar Javascript in eigene Datei auslagern
 		- Logo Untertitel einbauen (Mowi)
+		- Go Back Tag einbauen um Javascript zu sparen siehe episode 3 
 	*/
 	include.showOverlay.value = true; 			// Overlay einblenden
 	include.showLoadingIndicator.value = true; 	// Loading Symbol einblenden
@@ -63,14 +66,13 @@ function Register() {
 					  	method: 'POST',
 					  	headers: { "Content-type": "application/json", "Accept": "application/json" },
 					  	body: JSON.stringify(requestObject)
-				  	}).then(function(response) {
-					  	return response.json();    // This returns a promise
-				  	}).then(function(data) {
-					    // Server Antwort verarbeiten
-					    if(data.error == false){
+				  	})
+				  	.then(result => result.json())
+				  	.then(result => {
+				  		if(result.error == false){
 					    	// Kein Fehler Daten an den Server schicken
 				    		include.showLoadingIndicator.value = false; 										// Loading Symbol ausblenden
-				    		include.ShowModal(include.colors.success, '', 'Glückwunsch', data.message, true); 	// Erfolgsmeldung zeigen
+				    		include.ShowModal(include.colors.success, '', 'Glückwunsch', result.message, true); 	// Erfolgsmeldung zeigen
 							
 				    		// Textfelder löschen
 						    firstname.value = '';
@@ -78,15 +80,15 @@ function Register() {
 						    email.value = '';
 						    password.value = '';
 						    repeatPassword.value = '';
-						}else if(data.error == true){
+						}else if(result.error == true){
 							// Server Antwort enthält einen Fehler
 					    	include.showLoadingIndicator.value = false; 																// Loading Symbol ausblenden
-					    	include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', data.message, true); 	// Fehlermeldung zeigen
+					    	include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', result.message, true); 	// Fehlermeldung zeigen
 					    }
-					}).catch(function(error) {
+					}).catch(error => {
 					    // Ein Fehler ist bei der Verarbeitung aufgetreten
 					    include.showLoadingIndicator.value = false; 																							// Loading Symbol ausblenden
-					    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten.', true); 	// Fehlermeldung zeigen
+					    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten. \n' + error, true); 	// Fehlermeldung zeigen
 					});
 				}else{
 					// Passwort nicht komplex genug
@@ -110,6 +112,34 @@ function Register() {
 	}
 }
 
+function ShowTermsPopup() {
+	fetch(include.apiUrl + 'terms')
+  	.then(result => result.json())
+  	.then(result => {
+		include.popup.text.clear();
+		include.popup.text.addAll(result);
+		include.ShowPopup("", "Nutzungsbestimmungen", "Close");		// Popup anzeigen
+	}).catch(error => {
+		// Ein Fehler ist bei der Verarbeitung aufgetreten
+	    include.showLoadingIndicator.value = false; 																										// Loading Symbol ausblenden
+	    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten. \n' + error, true); 	// Fehlermeldung zeigen			
+	});
+}
+
+function ShowPrivacyPopup() {
+	fetch(include.apiUrl + 'policy')
+  	.then(result => result.json())
+  	.then(result => {
+		include.popup.text.clear();
+		include.popup.text.addAll(result);
+		include.ShowPopup("", "Datenschutzbestimmungen", "Close");		// Popup anzeigen
+	}).catch(error => {
+		// Ein Fehler ist bei der Verarbeitung aufgetreten
+	    include.showLoadingIndicator.value = false; 																										// Loading Symbol ausblenden
+	    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten. \n' + error, true); 	// Fehlermeldung zeigen			
+	});
+}
+
 module.exports = {
 	firstname: firstname,
 	lastname: lastname,
@@ -120,11 +150,14 @@ module.exports = {
 	showOverlay: include.showOverlay,
 	showLoadingIndicator: include.showLoadingIndicator,
 	modal: include.modal,
+	popup: include.popup,
 
 	allCredentialsEntered: allCredentialsEntered,
 	passwordComplexity: passwordComplexity,
 	repeatPasswordComplexity: repeatPasswordComplexity,
 	
 	OnPageActiv, OnPageActiv,
-	Register: Register
+	Register: Register,
+	ShowTermsPopup: ShowTermsPopup,
+	ShowPrivacyPopup: ShowPrivacyPopup
 };

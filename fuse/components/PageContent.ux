@@ -1,0 +1,6 @@
+<Panel ux:Class="PageContent" Padding="0, 60, 0, 0">
+	<!-- Optimierungen für Tablets und größere Ansichten -->
+	<WhileWindowSize GreaterThan="768,1">
+	    <Change this.Padding="80" />
+	</WhileWindowSize>
+</Panel>

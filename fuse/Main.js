@@ -9,6 +9,14 @@ var modal = {
 	message: observable("")
 }
 
+var popup = {
+	visibility: observable(false),
+	leftIcon: "",
+	title: "",
+	rightIcon: "",
+	text: observable()
+}
+
 var colors = { 
 	error: "#cc4339",
 	success: "#008100",
@@ -23,6 +31,7 @@ var showOverlay = observable(false),
 	androidStatusbarColor = observable(colors.primaryDisabled),
 	apiUrl = 'http://app.scotty2nd.square7.ch/api/',
 	emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+
 
 
 // Funktionen
@@ -68,9 +77,23 @@ function ShowModal(color, headline, title, message, visibility) {
 	modal.visibility.value = visibility; 	// Modal sichtbar machen
 }
 
+function ShowPopup(leftIcon, title, rightIcon) {
+	popup.leftIcon = leftIcon;				// Popup Navbar Icon Links setzen 
+	popup.title = title;					// Popup Titel setzen
+	popup.rightIcon = rightIcon;			// Popup Navbar Icon Rechts setzen 
+	popup.visibility.value = true;			// Popup einblenden
+}
+
+function HidePopup() {
+	popup.visibility.value = false;			// Popup ausblenden
+}
+
+
+
 module.exports = {
 	observable: observable,
     modal: modal,
+    popup: popup,
     colors: colors,
     showOverlay: showOverlay,
     showLoadingIndicator: showLoadingIndicator,
@@ -80,5 +103,7 @@ module.exports = {
 
     GetPasswordComplexity: GetPasswordComplexity,
     SetAndroidStatusbarColor: SetAndroidStatusbarColor,
-    ShowModal: ShowModal
+    ShowModal: ShowModal,
+    ShowPopup: ShowPopup,
+    HidePopup: HidePopup
 };

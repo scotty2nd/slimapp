@@ -1,19 +1,71 @@
-var observable = require("FuseJS/Observable");
-var customerBackend = require("./CustomerBackend");
+var include = require("/Main"),
+    customer = include.observable(),
+    customerTemporay = [];
 
-var identifier = observable();
-
-GetIdentifier();
-
- /* *
+/* *
+ * Description
  * Parameters: none
+ * Return: a Promise
  * */
 function GetIdentifier() {
-    customerBackend.GetIdentifier().then(function(newIdentifier) {
-        identifier.replaceAll(newIdentifier);
+    var promise = new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            resolve(customerTemporay);
+        }, 0);
+    });
+
+    promise.then(function(result) {
+        customer.replaceAll(result);
     }).catch(function(error) {
         console.log("Couldn't get identifier: " + error);
     });
+}
+
+/* *
+ * Description
+ * Parameters: error, message, id, apikey
+ * Return: a Promise
+ * */
+function AddIdentifier(error, message, id, apikey) {
+    var promise = new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            customerTemporay.push({
+                error:   error,
+                message: message,
+                id:      id,
+                apikey:  apikey
+            }); 
+            resolve();
+            /*Testausgabe*/
+            console.dir(customerTemporay[0]);
+        }, 0);
+    });
+
+    promise.catch(function(error) {
+        console.log("Couldn't add Identifier: " + id);
+    });
+    
+    GetIdentifier();
+}
+
+/* *
+ * Description
+ * Parameters: none
+ * Return: a Promise
+ * */
+function ClearIdentifier() {
+    var promise = new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            customerTemporay = [];
+            resolve();
+        }, 0);
+    });
+
+    promise.catch(function(error) {
+        console.log("Couldn't clear Identifier: " + id);
+    });
+    
+    GetIdentifier();
 }
 
 /* TODO wird später noch mit eingebaut
@@ -42,34 +94,11 @@ function updateHike(id, name, location, distance, rating, comments) {
         });
 }*/
 
-/* *
- * Parameters: error, message, id, apikey
- * */
-function AddIdentifier(error, message, id, apikey) {
-    customerBackend.AddIdentifier(error, message, id, apikey)
-        .catch(function(error) {
-            console.log("Couldn't add Identifier: " + id);
-        });
-    
-    GetIdentifier();
-}
-
-/* *
- * Parameters: none
- * */
-function ClearIdentifier() {
-    customerBackend.ClearIdentifier()
-        .catch(function(error) {
-            console.log("Couldn't clear Identifier: " + id);
-        });
-    
-    GetIdentifier();
-}
-
 module.exports = {
-    identifier: identifier,
+    customer: customer,
 
-    //updateHike: updateHike,
+    GetIdentifier: GetIdentifier,
     AddIdentifier: AddIdentifier,
-    ClearIdentifier: ClearIdentifier
+    ClearIdentifier: ClearIdentifier,
+    //updateHike: updateHike,
 };

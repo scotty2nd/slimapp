@@ -23,7 +23,7 @@
             	<Text TextAlignment="Center" TextColor="#fff" Value="{ShowErrorModal}" />
         	</StackPanel>
 
-            <Each Items="{Identifier}">
+            <Each Items="{userData}">
             	<StackPanel Orientation="Horizontal" Alignment="HorizontalCenter">
                 	<Text TextAlignment="Center" TextColor="#fff">User ID: </Text>
                     <Button Text="{id}"/>
