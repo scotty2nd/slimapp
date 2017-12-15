@@ -18,6 +18,8 @@
                 echo "Failed to connect to MySQL: " . mysqli_connect_error();
             }
 
+            mysqli_set_charset($this->connection,"utf8");
+
             //finally returning the connection link 
             return $this->connection;
         }
@@ -139,14 +141,25 @@
             return md5(uniqid(rand(), true));
         }
 
-                //Method to fetch all customer from database
-        public function getTerms(){
-            $stmt = $this->connection->prepare("SELECT * FROM customers");
+        //Method to fetch all customer from database
+        public function getTermsText(){
+            //$stmt = $this->connection->prepare(" SELECT test FROM test");
+            $stmt = $this->connection->prepare(" SELECT terms_text FROM general");
             $stmt->execute();
-            $customers = $stmt->get_result();
+            $text = $stmt->get_result();
             $stmt->close();
 
-            return $customers;
+            return $text;
+        }
+
+        public function getPolicyText(){
+            //$stmt = $this->connection->prepare(" SELECT test FROM test");
+            $stmt = $this->connection->prepare(" SELECT privacy_policy_text FROM general");
+            $stmt->execute();
+            $text = $stmt->get_result();
+            $stmt->close();
+
+            return $text;
         }
     }
 ?>
