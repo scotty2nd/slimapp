@@ -36,7 +36,6 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Logo auf Login Seite ist aktuell zu hoch gerutscht
 		- Popup Javascript in eigene Datei auslagern
 		- Navbar Javascript in eigene Datei auslagern
 		- Logo Untertitel einbauen (Muwi)
