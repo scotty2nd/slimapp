@@ -38,7 +38,7 @@
     	<ScrollView>
     		<Grid ux:Name="LoginGrid" MinHeight="100%">
 
-				<Logo ux:Name="Logo" Margin="0, 95, 0, 15" />
+				<Logo ux:Name="Logo" Margin="0, 80, 0, 15" />
 
 				<Panel>
 				    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
