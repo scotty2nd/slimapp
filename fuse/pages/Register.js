@@ -36,6 +36,7 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
+		- Slim Updaten
 		- Popup Javascript in eigene Datei auslagern
 		- Navbar Javascript in eigene Datei auslagern
 		- Logo Untertitel einbauen (Muwi)
