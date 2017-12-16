@@ -5,7 +5,7 @@
 	use \Psr\Http\Message\ResponseInterface as Response;
 	use PHPHtmlParser\Dom;
 
-	$app = new \Slim\App;
+	//$app = new \Slim\App;
 
 	/* *
 	 * URL: http://slimapp.dev/api/terms

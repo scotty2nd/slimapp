@@ -36,12 +36,13 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Nutzungs- und Datenschutzschutz Popup bauen // Nutzungs und Datenschutzbedingugen von Server fetchen
 		- Logo auf Login Seite ist aktuell zu hoch gerutscht
 		- Popup Javascript in eigene Datei auslagern
 		- Navbar Javascript in eigene Datei auslagern
-		- Logo Untertitel einbauen (Mowi)
+		- Logo Untertitel einbauen (Muwi)
+		- Slim Updaten
 		- Go Back Tag einbauen um Javascript zu sparen siehe episode 3 
+		- Globals.ux erstellen siehe:https://www.fusetools.com/docs/fuse-for-designers
 	*/
 	include.showOverlay.value = true; 			// Overlay einblenden
 	include.showLoadingIndicator.value = true; 	// Loading Symbol einblenden
