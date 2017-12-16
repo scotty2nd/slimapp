@@ -20,6 +20,6 @@
 	<WhileTrue Value="{popup.visibility}">
 		<Change this.Y="0%" Duration=".3" Delay=".2" Easing="QuadraticInOut" />
 
-		<JavaScript File="Popup.js" />
+		<JavaScript File="./js/Popup.js" />
 	</WhileTrue>
 </Container>

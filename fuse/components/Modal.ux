@@ -33,7 +33,7 @@
 		<Change ModalBody.Visibility="Visible" />
 		<Scale Factor="1" Duration=".3" Easing="BounceIn" />
 
-		<JavaScript File="Modal.js" />
+		<JavaScript File="./js/Modal.js" />
 	</WhileTrue>
 
 	<!-- Wenn das Modal nicht sichtbar ist -->

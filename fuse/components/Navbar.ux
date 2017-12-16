@@ -58,5 +58,5 @@
 	    <Change IconLeftWrapper.Padding="20, 25" />
 	</WhileWindowSize>
 
-	<JavaScript File="Navbar.js" />
+	<JavaScript File="./js/Navbar.js" />
 </Panel>
