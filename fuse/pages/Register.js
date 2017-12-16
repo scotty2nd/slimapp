@@ -36,10 +36,7 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Popup Javascript in eigene Datei auslagern
-		- Navbar Javascript in eigene Datei auslagern
 		- Logo Untertitel einbauen (Muwi)
-		- Slim Updaten
 		- Go Back Tag einbauen um Javascript zu sparen siehe episode 3 
 		- Globals.ux erstellen siehe:https://www.fusetools.com/docs/fuse-for-designers
 	*/

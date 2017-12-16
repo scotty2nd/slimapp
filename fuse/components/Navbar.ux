@@ -58,16 +58,5 @@
 	    <Change IconLeftWrapper.Padding="20, 25" />
 	</WhileWindowSize>
 
-	<JavaScript>
-		var include = require("/Main");
-
-		function GoBack() {
-		    router.goBack();
-		}
-
-		module.exports = {
-			GoBack: GoBack,
-			HidePopup: include.HidePopup
-		};
-	</JavaScript>
+	<JavaScript File="Navbar.js" />
 </Panel>
