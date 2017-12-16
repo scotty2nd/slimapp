@@ -10,6 +10,7 @@
     <Font File="assets/fonts/MyriadProRegular.ttf" ux:Global="MyriadProRegular" />
     <Font File="assets/fonts/MyriadProSemibold.ttf" ux:Global="MyriadProSemibold" />
     <Font File="assets/fonts/MyriadProBold.ttf" ux:Global="MyriadProBold" />
+    <Font File="assets/fonts/Waltograph.ttf" ux:Global="Walt" />
     <Font File="assets/fonts/Iconfont.ttf" ux:Global="Iconfont" />
 
     <!-- Custom Colors definieren -->

@@ -36,9 +36,8 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Logo Untertitel einbauen (Muwi)
-		- Go Back Tag einbauen um Javascript zu sparen siehe episode 3 
 		- Globals.ux erstellen siehe:https://www.fusetools.com/docs/fuse-for-designers
+		- Go Back Tag einbauen um Javascript zu sparen siehe episode 3 
 		- Layout Animation einbauen
 	*/
 	include.showOverlay.value = true; 			// Overlay einblenden
