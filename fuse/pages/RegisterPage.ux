@@ -7,7 +7,7 @@
 
 	    <!-- Default View -->
 		<ScrollView ux:Name="Content">
-			<PageContent Padding="0, 60, 0, 0">
+			<PageContent>
 				<Grid Rows="auto, auto, auto" MinHeight="100%">
 
 					<Logo />
@@ -95,14 +95,9 @@
 
 	<!-- Folgende Elemente werden nur bei Bedarf sichtbar -->
 	<Popup router="router">
-		<!--<Text>lkasjdsaldjlasdlasjdlasjdlajdlajsdj aklsdjalsdjlasjd alkdasjdklasjdklas landlasdlkajdlajdlajd adajdlkajdkla</Text>-->
-			<!--<NativeViewHost ClipToBounds="true" MinHeight="100">
-				<WebView Source="{popup.text}" MinHeight="100" Background="Green" />
-			</NativeViewHost>-->
 		<StackPanel>
 			<Each Items="{popup.text}">
 				<StackPanel>
-					<!--<Text Value="{termsText}" />-->
 					<WhileString Value="{tag}" Equals="h2">
 						<BoldText Value="{text}" Margin="0, 0, 0, 15" />
 					</WhileString>
