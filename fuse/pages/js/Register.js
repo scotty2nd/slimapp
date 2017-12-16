@@ -39,6 +39,7 @@ function Register() {
 		- Logo Untertitel einbauen (Muwi)
 		- Go Back Tag einbauen um Javascript zu sparen siehe episode 3 
 		- Globals.ux erstellen siehe:https://www.fusetools.com/docs/fuse-for-designers
+		- Layout Animation einbauen
 	*/
 	include.showOverlay.value = true; 			// Overlay einblenden
 	include.showLoadingIndicator.value = true; 	// Loading Symbol einblenden
