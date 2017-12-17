@@ -85,13 +85,14 @@
 
     <!-- Optimierungen für Smartphone Ansicht wie iPhone 4, 3 und 2 -->
     <WhileWindowSize LessThan="321,481">
-    	<Change Logo.Margin="0, 45, 0, 0"/>
+    	<Change Logo.Margin="0, 50, 0, 15" />
     </WhileWindowSize>
 
 	<!-- Optimierungen für Tablets und größere Ansichten -->
 	<WhileWindowSize GreaterThan="768,1">
 		<!--<Change PasswortVergessenText.FontSize="8" />-->
-	    <Change RegistrierenText.Margin="0, 0, 0, 50" />
+	    <!--<Change RegistrierenText.Margin="0, 0, 0, 50" />-->
+	    <Change Logo.Margin="0, 100, 0, 15" />
 	</WhileWindowSize>
 
 	<!-- Für alle Querformat Ansichten -->
