@@ -36,7 +36,6 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Globals.ux erstellen siehe:https://www.fusetools.com/docs/fuse-for-designers
 		- Go Back Tag einbauen um Javascript zu sparen siehe episode 3 
 		- Layout Animation einbauen
 	*/

@@ -6,25 +6,6 @@
 
 	<Router ux:Name="router" />
 
-    <!-- Custom Font inkludieren -->
-    <Font File="assets/fonts/MyriadProRegular.ttf" ux:Global="MyriadProRegular" />
-    <Font File="assets/fonts/MyriadProSemibold.ttf" ux:Global="MyriadProSemibold" />
-    <Font File="assets/fonts/MyriadProBold.ttf" ux:Global="MyriadProBold" />
-    <Font File="assets/fonts/Waltograph.ttf" ux:Global="Walt" />
-    <Font File="assets/fonts/Iconfont.ttf" ux:Global="Iconfont" />
-
-    <!-- Custom Colors definieren -->
-    <float4 ux:Global="Primary" ux:Value="#4080ff" />
-    <float4 ux:Global="PrimaryDisabled" ux:Value="#ccc" />
-    <float4 ux:Global="PrimaryPressed" ux:Value="#138" />
-    <float4 ux:Global="Error" ux:Value="#cc4339" />
-    <float4 ux:Global="Success" ux:Value="#008100" />
-    <float4 ux:Global="LightGray" ux:Value="#fff8" />
-    <float4 ux:Global="Gray" ux:Value="#aaa" />
-    <float4 ux:Global="Orange" ux:Value="#ffa500" />
-
-    <float ux:Global="BaseTablet" ux:Value="24" />
-
     <DockPanel>
         <StatusBarBackground Dock="Top" />
         <Navigator DefaultPath="login">
