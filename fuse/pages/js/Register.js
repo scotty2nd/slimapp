@@ -36,7 +36,6 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Go Back Tag einbauen um Javascript zu sparen siehe episode 3 
 		- Layout Animation einbauen
 	*/
 	include.showOverlay.value = true; 			// Overlay einblenden
