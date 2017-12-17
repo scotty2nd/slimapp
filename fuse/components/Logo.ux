@@ -1,20 +1,22 @@
-<Panel ux:Class="Logo" Alignment="TopCenter" Margin=" 0, 35, 0, 35" Height="75">
-    <Image>
-        <MultiDensityImageSource>
-            <FileImageSource Density="1" File="../assets/logo.png" />
-            <FileImageSource Density="2" File="../assets/logo@2x.png" />
-            <FileImageSource Density="3" File="../assets/logo@4x.png" />
-        </MultiDensityImageSource>
-    </Image>
+<Panel ux:Class="Logo" Alignment="TopCenter" Margin=" 0, 20, 0, 35" Height="75">
+    <StackPanel>
+        <Image Margin="0, 0, 0, 15">
+            <MultiDensityImageSource>
+                <FileImageSource Density="1" File="../assets/logo.png" />
+                <FileImageSource Density="2" File="../assets/logo@2x.png" />
+                <FileImageSource Density="3" File="../assets/logo@4x.png" />
+            </MultiDensityImageSource>
+        </Image>
+        <Text ux:Name="subtitle" TextAlignment="Center" Font="Walt" FontSize="24" Color="Primary" Margin="0, 0, 0, 15">MUWI</Text>
+    </StackPanel>
 
     <!-- Optimierungen für Smartphone Ansicht wie iPhone 4, 3 und 2 -->
-    <WhileWindowSize LessThan="321,481">
-        <Change this.Margin="0, 105, 0, 50"/>
-    </WhileWindowSize>
+    <WhileWindowSize LessThan="321,481"></WhileWindowSize>
 
     <!-- Optimierungen für Tablets und größere Ansichten -->
 	<WhileWindowSize GreaterThan="768,1">
-		<Change this.Margin="0, 145, 0, 50"/>
-		<Change this.Height="150"/>
+		<Change this.Height="150" />
+        <Change subtitle.FontSize="38" />
+        <Change subtitle.Margin="0, 15, 0, 0" />
 	</WhileWindowSize>
 </Panel>

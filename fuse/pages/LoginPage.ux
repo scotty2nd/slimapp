@@ -1,6 +1,6 @@
 <Page ux:Class="LoginPage">
 	<Router ux:Dependency="router" />
-	<JavaScript File="Login.js" />
+	<JavaScript File="./js/Login.js" />
 
 	<Image ux:Name="BackgroundImage" File="../assets/background.jpg" Layer="Background" StretchMode="UniformToFill">
 		<Blur />
@@ -38,7 +38,7 @@
     	<ScrollView>
     		<Grid ux:Name="LoginGrid" MinHeight="100%">
 
-				<Logo ux:Name="Logo" Margin="0, 95, 0, 0" />
+				<Logo ux:Name="Logo" Margin="0, 80, 0, 15" />
 
 				<Panel>
 				    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
@@ -85,13 +85,14 @@
 
     <!-- Optimierungen für Smartphone Ansicht wie iPhone 4, 3 und 2 -->
     <WhileWindowSize LessThan="321,481">
-    	<Change Logo.Margin="0, 45, 0, 0"/>
+    	<Change Logo.Margin="0, 50, 0, 15" />
     </WhileWindowSize>
 
 	<!-- Optimierungen für Tablets und größere Ansichten -->
 	<WhileWindowSize GreaterThan="768,1">
 		<!--<Change PasswortVergessenText.FontSize="8" />-->
-	    <Change RegistrierenText.Margin="0, 0, 0, 50" />
+	    <!--<Change RegistrierenText.Margin="0, 0, 0, 50" />-->
+	    <Change Logo.Margin="0, 100, 0, 15" />
 	</WhileWindowSize>
 
 	<!-- Für alle Querformat Ansichten -->

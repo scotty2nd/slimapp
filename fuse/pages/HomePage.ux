@@ -1,6 +1,6 @@
 <Page ux:Class="HomePage">
 	<Router ux:Dependency="router" />
-	<JavaScript File="Home.js" />
+	<JavaScript File="./js/Home.js" />
 
 	<DockPanel>
 		<StatusBarBackground Dock="Top" />

@@ -19,14 +19,7 @@
 	<!-- Wenn das Popup sichtbar ist -->
 	<WhileTrue Value="{popup.visibility}">
 		<Change this.Y="0%" Duration=".3" Delay=".2" Easing="QuadraticInOut" />
-		<!--<Change this.Opacity="1" Duration=".3" />-->
 
-		<JavaScript>
-			var include = require("/Main");
-
-			this.LeftIcon.value = include.popup.leftIcon;
-			this.Title.value = include.popup.title;
-			this.RightIcon.value = include.popup.rightIcon;
-		</JavaScript>
+		<JavaScript File="./js/Popup.js" />
 	</WhileTrue>
 </Container>
