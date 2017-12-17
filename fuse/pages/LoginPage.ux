@@ -53,30 +53,30 @@
 						        <ReleaseFocus />
 						    </TextInputActionTriggered>
 			            </TextField>
-
-			            <!--<Panel Padding="0, 15, 0, 5" Clicked="{GoToForgotPasswordPage}" HitTestMode="LocalBounds">
-				        	<RegularText ux:Name="PasswortVergessenText" TextColor="White" FontSize="14" Alignment="Right" TextAlignment="Center">
-				        		Passwort vergessen?
-				        	</RegularText>
-			        		<WhilePressed>
-								<Scale Factor=".8" Duration=".2" Easing="BounceIn" />
-							</WhilePressed>
-			        	</Panel>-->
 				    </StackPanel>
 				</Panel>
 
 				<Panel>
 				    <StackPanel Alignment="Bottom">
-				    	<Panel Padding="0, 25, 0, 25" Clicked="{GoToRegisterPage}" HitTestMode="LocalBounds">
+				    	<Panel Padding="0, 25, 0, 25" HitTestMode="LocalBounds">
 					        <RegularText ux:Name="RegistrierenText" TextColor="White" TextAlignment="Center">
 					        	Kostenlos registrieren
 					        </RegularText>
+
+					        <Tapped>
+					        	<Callback Handler="{GoToRegisterPage}" />
+					        </Tapped>
+
 			        		<WhilePressed>
 								<Scale Factor=".8" Duration=".2" Easing="BounceIn" />
 							</WhilePressed>
 				    	</Panel>
 
-				        <PrimaryButton Text="LOGIN" Clicked="{Login}" IsEnabled="{allCredentialsEntered}" />
+				        <PrimaryButton Text="LOGIN" IsEnabled="{allCredentialsEntered}">
+				        	<Tapped>
+				        		<Callback Handler="{Login}" />
+				        	</Tapped>
+				        </PrimaryButton>
 				    </StackPanel>
 				</Panel>
 			</Grid>
@@ -91,7 +91,6 @@
 	<!-- Optimierungen für Tablets und größere Ansichten -->
 	<WhileWindowSize GreaterThan="768,1">
 		<!--<Change PasswortVergessenText.FontSize="8" />-->
-	    <!--<Change RegistrierenText.Margin="0, 0, 0, 50" />-->
 	    <Change Logo.Margin="0, 100, 0, 15" />
 	</WhileWindowSize>
 

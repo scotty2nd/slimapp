@@ -6,12 +6,19 @@
 		<StatusBarBackground Dock="Top" />
 		<BottomBarBackground Dock="Bottom" />
 
-		<Button Text="Logout" Clicked="{Logout}" Color="#000" Dock="Top" HitTestMode="LocalBounds" Padding="20" />
+		<Button Text="Logout" Color="#000" Dock="Top" HitTestMode="LocalBounds" Padding="20">
+            <Tapped>
+                <Callback Handler="{Logout}" />
+            </Tapped>      
+        </Button>
 
 		<StackPanel Alignment="VerticalCenter">
             <Each Items="{customer}">
-                <!--<Button Text="{id}" Clicked="{goToHike}" />-->
-                <Button Text="{id}" />
+                <Button Text="{id}">
+                    <!--<Tapped>
+                        <Callback Handler="{goToHike}" />
+                    </Tapped>-->
+                </Button>
             </Each>
 
 			<!--<Text Alignment="HorizontalCenter" Opacity=".5" Value="{Clear dataOb.id}"/>
@@ -35,8 +42,16 @@
                 <Text>Comments:</Text>
                 <TextView Value="{comments}" TextWrapping="Wrap" />
 
-                <Button Text="Save" Clicked="{save}" />
-                <Button Text="Cancel" Clicked="{cancel}" />
+                <Button Text="Save">
+                    <Tapped>
+                        <Callback Handler="{save}" />
+                    </Tapped>
+                </Button>
+                <Button Text="Cancel">
+                    <Tapped>
+                        <Callback Handler="{cancel}" />
+                    </Tapped>
+                </Button>
             </StackPanel>-->
 		</StackPanel>
 

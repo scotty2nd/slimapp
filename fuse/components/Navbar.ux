@@ -12,11 +12,15 @@
 		</WhileString>
 
 		<WhileString Value="{ReadProperty LeftIcon}" Equals="Back">
-			<Panel ux:Name="IconLeftWrapper" Clicked="{GoBack}" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Left">
+			<Panel ux:Name="IconLeftWrapper" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Left">
 				<!-- Arrow Left Icon -->
 				<Icon ux:Name="IconLeft">
 					&#xe900;
 				</Icon>
+
+				<Tapped>
+					<GoBack NavigationContext="router" />
+				</Tapped>
 			</Panel>
 		</WhileString>
 
@@ -29,11 +33,15 @@
 		</WhileString>
 
 		<WhileString Value="{ReadProperty RightIcon}" Equals="Close">
-			<Panel Clicked="{HidePopup}" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Right">
+			<Panel HitTestMode="LocalBounds" Padding="20, 20" Alignment="Right">
 				<!-- Close Icon -->
 				<Icon TextColor="Black">
 					&#xe901;
 				</Icon>
+
+				<Tapped>
+					<Callback Handler="{HidePopup}" />
+				</Tapped>
 			</Panel>
 		</WhileString>
 
