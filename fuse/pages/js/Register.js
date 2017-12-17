@@ -36,7 +36,13 @@ function OnPageActiv() {
 function Register() {
 	/*
 		To Do:
-		- Layout Animation einbauen
+		- Layout Animation einbauen / testen siehe https://www.youtube.com/watch?v=r9f0rLYnCJs
+			- Placeholder/Feldlabel Animation auf Login Page
+			- Placeholder/Feldlabel Animation auf Register Page
+			- Passwortstärke Strich Animation auf Register Page
+			- Modal Animation
+			- Popup Animation
+		- Terms und Privacy Popup laggt bei erstmaligen Text echt stark
 	*/
 	include.showOverlay.value = true; 			// Overlay einblenden
 	include.showLoadingIndicator.value = true; 	// Loading Symbol einblenden
