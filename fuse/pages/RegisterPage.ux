@@ -59,10 +59,14 @@
 
 							<!-- Zweite Zeile -->
 							<StackPanel Orientation="Horizontal" ItemSpacing="2" ContentAlignment="Center">
-						    	<Panel Clicked="{ShowTermsPopup}" HitTestMode="LocalBounds" Padding="0, 10, 0, 10">
+						    	<Panel HitTestMode="LocalBounds" Padding="0, 10, 0, 10">
 						    		<RegularText FontSize="11" TextColor="Primary">
 						    			Nutzungsbedingungen
 						    		</RegularText>
+
+						    		<Tapped>
+						    			<Callback Handler="{ShowTermsPopup}" />
+						    		</Tapped>
 					    		</Panel>
 
 					    		<Panel Padding="0, 10, 0, 10">
@@ -71,10 +75,14 @@
 					    			</RegularText>
 					    		</Panel>
 						    	
-						    	<Panel Clicked="{ShowPrivacyPopup}" HitTestMode="LocalBounds" Padding="0, 10, 0, 10">
+						    	<Panel HitTestMode="LocalBounds" Padding="0, 10, 0, 10">
 						    		<RegularText FontSize="11" TextColor="Primary">
 						    			Datenschutzbestimmungen
 						    		</RegularText>
+
+						    		<Tapped>
+						    			<Callback Handler="{ShowPrivacyPopup}" />
+						    		</Tapped>
 						    	</Panel>
 
 						    	<Panel Padding="0, 10, 0, 10">
@@ -90,8 +98,22 @@
 			</PageContent>
 		</ScrollView>
 
-		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" Clicked="{Register}" IsEnabled="{allCredentialsEntered}" />
+		<PrimaryButton Text="ABSENDEN" Dock="Bottom" Alignment="Bottom" Layer="Overlay" IsEnabled="{allCredentialsEntered}">
+			<Tapped>
+				<Callback Handler="{Register}" />
+			</Tapped>
+		</PrimaryButton>
 	</Panel>
+
+    <WhileActive>
+    	<Callback Handler="{OnPageActiv}" />
+    </WhileActive>  
+
+	<!-- Aktuell irgendwie Buggy auf Aandroid wenn man mehrmals dreht erscheint ein weißer Bereich am unteren Ende des Bilschirms-->
+	<WhileKeyboardVisible>
+		<!-- Wenn die Tastatur sichtbar, dann schiebe die komplette Seite um die Hälfte der Tastatur nach oben -->
+    	<Move Target="Content" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
+	</WhileKeyboardVisible>
 
 	<!-- Folgende Elemente werden nur bei Bedarf sichtbar -->
 	<Popup router="router">
@@ -121,14 +143,4 @@
  	<Modal />
  	<LoadingIndicator />
  	<Overlay />
-
-    <WhileActive>
-    	<Callback Handler="{OnPageActiv}" />
-    </WhileActive>  
-
-	<!-- Aktuell irgendwie Buggy auf Aandroid wenn man mehrmals dreht erscheint ein weißer Bereich am unteren Ende des Bilschirms-->
-	<WhileKeyboardVisible>
-		<!-- Wenn die Tastatur sichtbar, dann schiebe die komplette Seite um die Hälfte der Tastatur nach oben -->
-    	<Move Target="Content" RelativeTo="Keyboard" Y="-0.5" Duration="0.3"/>
-	</WhileKeyboardVisible>
 </Page>

@@ -1,9 +1,18 @@
 // Variablen
 var observable = require("FuseJS/Observable");
 
+var colors = { 
+	error: "#cc4339",
+	success: "#008100",
+	warning: "#000",
+	info: "#000",
+	primary: "#4080ff",
+	primaryDisabled: "#ccc"
+}
+
 var modal = { 
 	visibility: observable(false),
-	color: "",
+	color: colors.primary,
 	headline: "",
 	title: "",
 	message: observable("")
@@ -15,15 +24,6 @@ var popup = {
 	title: "",
 	rightIcon: "",
 	text: observable()
-}
-
-var colors = { 
-	error: "#cc4339",
-	success: "#008100",
-	warning: "#000",
-	info: "#000",
-	primary: "#4080ff",
-	primaryDisabled: "#ccc"
 }
 
 var showOverlay = observable(false),

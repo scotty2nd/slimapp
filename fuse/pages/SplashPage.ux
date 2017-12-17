@@ -21,7 +21,11 @@
 	     		<Text Alignment="HorizontalCenter" TextColor="#fff" Opacity=".5">subtitel</Text>
 	        </StackPanel>
 
-	        <Button Text="Get Started" Margin="50,0" Alignment="VerticalCenter" Clicked="{goToLoginPage}" />
+	        <Button Text="Get Started" Margin="50,0" Alignment="VerticalCenter">
+	        	<Tapped>
+	        		<Callback Handler="{goToLoginPage}" />
+	        	</Tapped>
+	        </Button>
 	    </Grid>
     </DockPanel>
 </Page>

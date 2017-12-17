@@ -15,10 +15,14 @@
 			<StackPanel Dock="Bottom">
 				<Rectangle Width="100%" Height="1" Color="#0005"/>
 
-				<Panel ux:Name="OkButton" HitTestMode="LocalBounds" Background="#0003" Height="60" Padding="20" Clicked="{Ok}">
+				<Panel ux:Name="OkButton" HitTestMode="LocalBounds" Background="#0003" Height="60" Padding="20">
 				    <BoldText ux:Name="OkButtonText" TextColor="White" TextAlignment="Center" FontSize="16">
 				    	OK
 				    </BoldText>
+
+				    <Tapped>
+				    	<Callback Handler="{OkClicked}" />
+				    </Tapped>
 
 				    <WhilePressed>
 				    	<Change OkButton.Background="#0004" Duration="0.3" Easing="QuarticInOut" />
@@ -32,7 +36,6 @@
 	<WhileTrue Value="{modal.visibility}">
 		<Change ModalBody.Visibility="Visible" />
 		<Scale Factor="1" Duration=".3" Easing="BounceIn" />
-
 		<JavaScript File="./js/Modal.js" />
 	</WhileTrue>
 
@@ -40,5 +43,6 @@
 	<WhileFalse Value="{modal.visibility}">
 	    <Scale Factor="0" Duration=".3" Easing="BounceIn" />
 	    <Change ModalBody.Visibility="Collapsed" Delay="0.3" />
+	    <JavaScript File="./js/Modal.js" />
 	</WhileFalse>
 </Panel>
