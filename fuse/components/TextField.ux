@@ -1,24 +1,23 @@
-<TextInput ux:Class="TextField" Padding="0, 30, 0, 10" LabelColor="Black" TextColor="Black" CaretColor="Black" StrokeColor="Gray" PlaceholderColor="Gray">
+<TextInput ux:Class="TextField" Padding="0, 30, 0, 10" LabelColor="Black" TextColor="Black" CaretColor="Black" StrokeColor="Gray">
 	<string ux:Property="Label" />
 	<float4 ux:Property="LabelColor" />
 	<float4 ux:Property="StrokeColor" />
 
-	<RegularText ux:Name="LabelText" Value="{ReadProperty Label}" TextColor="{ReadProperty LabelColor}" Opacity="0" />
+	<RegularText ux:Name="LabelText" Value="{ReadProperty Label}" TextColor="Gray" />
 	
 	<Panel Height="1" Alignment="Bottom" Padding="0, 10, 0, 0">
 	    <Rectangle ux:Name="Stroke" Height="1" Color="{ReadProperty StrokeColor}" />
-	    <Rectangle ux:Name="StrokeOnFocus" Height="1" Width="0%" Alignment="BottomLeft" Color="Primary" Opacity="0" />
+	    <Rectangle ux:Name="StrokeOnFocus" Height="1" Width="0%" Alignment="BottomLeft" Color="Primary" />
 	</Panel>
 
 	<WhileFocused>
-		<Change StrokeOnFocus.Opacity="1" Duration=".4" />
 		<Change StrokeOnFocus.Width="100%" Duration=".4" />
 		<Change Stroke.Opacity="0" Duration=".5" />
 	</WhileFocused>
 
     <WhileContainsText>
     	<Move Target="LabelText" Y="-22" Duration=".2" />
-    	<Change LabelText.Opacity="1" Duration=".1" />
+    	<Change LabelText.Color="{ReadProperty LabelColor}" Duration=".4" />
     </WhileContainsText>
 
 	<!-- Optimierungen für Tablets und größere Ansichten -->

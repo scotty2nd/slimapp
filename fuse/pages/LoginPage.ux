@@ -42,13 +42,13 @@
 
 				<Panel>
 				    <StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
-				    	<TextField ux:Name="EmailAdress" TextColor="White" CaretColor="White" Label="E-Mail-Adresse" LabelColor="White" PlaceholderColor="LightGray" PlaceholderText="E-Mail-Adresse eingeben" StrokeColor="LightGray" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{username}">
+				    	<TextField ux:Name="EmailAdress" TextColor="White" CaretColor="White" Label="E-Mail-Adresse" LabelColor="White" StrokeColor="LightGray" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{username}">
 		            	    <TextInputActionTriggered>
 						        <GiveFocus Target="Password" />
 						    </TextInputActionTriggered>
 				    	</TextField>
 
-			            <TextField ux:Name="Password" TextColor="White" CaretColor="White" Label="Passwort" LabelColor="White" PlaceholderColor="LightGray" PlaceholderText="Passwort eingeben" StrokeColor="LightGray" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}" ActionTriggered="{Login}">
+			            <TextField ux:Name="Password" TextColor="White" CaretColor="White" Label="Passwort" LabelColor="White" StrokeColor="LightGray" IsPassword="true" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}" ActionTriggered="{Login}">
 		            	    <TextInputActionTriggered>
 						        <ReleaseFocus />
 						    </TextInputActionTriggered>
