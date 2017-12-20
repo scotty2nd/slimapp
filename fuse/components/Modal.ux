@@ -1,15 +1,11 @@
 <Panel ux:Class="Modal" Layer="Overlay" >
-	<float4 ux:Property="BackgroundColor" />
-	<string ux:Property="Headline" />
-	<string ux:Property="Title" />
 
 	<!-- Default Modal Box -->
-	<Panel Color="{ReadProperty BackgroundColor}" Width="100%" MaxWidth="400" Alignment="Center" ClipToBounds="True">
+	<Panel Color="{modal.color}" Width="100%" MaxWidth="400" Alignment="Center" ClipToBounds="True">
 		<DockPanel>
 			<StackPanel Dock="Top" Margin="20, 20, 20, 20">
-				<SemiboldText ux:Name="ModalHeadline" Value="{ReadProperty Headline}" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 5" />
-				<SemiboldText ux:Name="ModalTitel" Value="{ReadProperty Title}" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10" />
-
+				<SemiboldText ux:Name="ModalHeadline" Value="{modal.headline}" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 5" />
+				<SemiboldText ux:Name="ModalTitel" Value="{modal.title}" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10" />
 				<RegularText ux:Name="ModalMessage" Value="{modal.message}" TextColor="White" TextAlignment="Center" FontSize="14" TextWrapping="Wrap" />
 			</StackPanel>
 
@@ -38,16 +34,6 @@
 	    <Scale Factor="0" Duration=".3" Easing="BounceIn" />
 	</WhileFalse>
 
-	<!-- Modal sichtbar -->
-	<WhileTrue Value="{modal.visibility}">
-		<JavaScript>
-			var include = require("/Main");
-
-			this.BackgroundColor.value = include.modal.color.value;
-			this.Headline.value = include.modal.headline.value;
-			this.Title.value = include.modal.title.value;
-		</JavaScript>
-	</WhileTrue>
-
     <JavaScript File="./js/Modal.js" />
+    
 </Panel>
