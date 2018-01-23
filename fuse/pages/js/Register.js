@@ -37,10 +37,7 @@ function Register() {
 	/*
 		To Do:
 		- Layout Animation einbauen / testen siehe https://www.youtube.com/watch?v=r9f0rLYnCJs
-			- Passwortstärke Strich Animation auf Register Page
-			- Modal Animation
 			- Popup Animation
-		- Smartphone Landscape Ansicht Login Seite etwas Margin unter dem Logo hinzufügen
 		- Terms und Privacy Popup laggt bei erstmaligen Text echt stark
 	*/
 	include.showOverlay.value = true; 			// Overlay einblenden

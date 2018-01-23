@@ -34,7 +34,7 @@
    	<!-- Wird später entfernt -->
 
     <!-- Default View -->
-    <Panel ux:Name="PortraitContent" Background="#000b">
+    <Panel Background="#000b">
     	<ScrollView>
     		<Grid ux:Name="LoginGrid" MinHeight="100%">
 
@@ -98,6 +98,7 @@
     <WhileWindowLandscape>
     	<!-- Optimierungen für Smartphone Ansicht -->
     	<WhileWindowSize LessThan="1023,99999">
+    		<Change Logo.Margin="0, 80, 0, 40" />
     		<Change LoginGrid.Rows="auto, auto, auto" />
 	    	<Change RegistrierenText.Margin="0, 75, 0, 50" />
 		</WhileWindowSize>
