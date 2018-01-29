@@ -107,7 +107,11 @@
 
     <WhileActive>
     	<Callback Handler="{OnPageActiv}" />
-    </WhileActive>  
+    </WhileActive>
+
+	<WhileInactive>
+    	<Callback Handler="{OnPageInactiv}" />
+    </WhileInactive>
 
 	<!-- Aktuell irgendwie Buggy auf Aandroid wenn man mehrmals dreht erscheint ein weißer Bereich am unteren Ende des Bilschirms-->
 	<WhileKeyboardVisible>
@@ -116,7 +120,7 @@
 	</WhileKeyboardVisible>
 
 	<!-- Folgende Elemente werden nur bei Bedarf sichtbar -->
-	<Popup router="router" Color="Gray">
+	<Popup router="router">
 		<StackPanel>
 			<Each Items="{popup.text}">
 				<StackPanel>

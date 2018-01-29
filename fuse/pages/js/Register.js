@@ -30,7 +30,14 @@ var repeatPasswordComplexity = include.observable(function() {
 });
 
 function OnPageActiv() {
+	console.log('activ');
 	include.SetAndroidStatusbarColor(allCredentialsEntered);
+}
+
+function OnPageInactiv() {
+	console.log('inactiv');
+	//include.SetAndroidStatusbarColor(allCredentialsEntered);
+	include.HidePopup();
 }
 
 function Register() {
@@ -110,7 +117,7 @@ function Register() {
 }
 
 function ShowTermsPopup() {
-	include.ShowPopup("", "Nutzungsbestimmungen", "Close");		// Popup anzeigen
+	include.ShowPopup("", "Nutzungsbestimmungen", "Close");			// Popup anzeigen
 
 	setTimeout(function(){ 
 	  FetchRichtext('terms');
@@ -159,6 +166,7 @@ module.exports = {
 	repeatPasswordComplexity: repeatPasswordComplexity,
 	
 	OnPageActiv, OnPageActiv,
+	OnPageInactiv, OnPageInactiv,
 	Register: Register,
 	ShowTermsPopup: ShowTermsPopup,
 	ShowPrivacyPopup: ShowPrivacyPopup
