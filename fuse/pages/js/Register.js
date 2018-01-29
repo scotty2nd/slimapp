@@ -113,9 +113,23 @@ function ShowTermsPopup() {
 	include.ShowPopup("", "Nutzungsbestimmungen", "Close");		// Popup anzeigen
 
 	setTimeout(function(){ 
-	  include.showLoadingIndicator.value = true; 
+	  FetchRichtext('terms');
+	}, 300);
+}
 
-	  fetch(include.apiUrl + 'terms')
+function ShowPrivacyPopup() {
+	include.ShowPopup("", "Datenschutzbestimmungen", "Close");		// Popup anzeigen
+
+	setTimeout(function(){ 
+		FetchRichtext('policy');
+	  }, 300);
+}
+
+function FetchRichtext(type) {
+	include.showLoadingIndicator.value = true;
+
+	//Fetch Terms oder Policy Text vom Server
+	fetch(include.apiUrl + type)
 		.then(result => result.json())
 		.then(result => {
 		  include.popup.text.clear();
@@ -126,22 +140,6 @@ function ShowTermsPopup() {
 		  include.showLoadingIndicator.value = false; 																										// Loading Symbol ausblenden
 		  include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten. \n' + error, true); 	// Fehlermeldung zeigen			
 	  });
-
-	}, 300);
-}
-
-function ShowPrivacyPopup() {
-	fetch(include.apiUrl + 'policy')
-  	.then(result => result.json())
-  	.then(result => {
-		include.popup.text.clear();
-		include.popup.text.addAll(result);
-		include.ShowPopup("", "Datenschutzbestimmungen", "Close");		// Popup anzeigen
-	}).catch(error => {
-		// Ein Fehler ist bei der Verarbeitung aufgetreten
-	    include.showLoadingIndicator.value = false; 																										// Loading Symbol ausblenden
-	    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten. \n' + error, true); 	// Fehlermeldung zeigen			
-	});
 }
 
 module.exports = {
