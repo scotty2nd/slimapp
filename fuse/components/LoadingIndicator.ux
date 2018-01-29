@@ -1,11 +1,15 @@
-<WhileTrue ux:Class="LoadingIndicator" Value="{showLoadingIndicator}">
-	<Panel Layer="Overlay">
-		<Circle ux:Name="RotatingStroke" Width="50" Height="50" StartAngleDegrees="-45" EndAngleDegrees="45">
-			<Stroke Width="2" Color="White" />
-		</Circle>
+<Panel ux:Class="LoadingIndicator" IconColor="White">
+	<float4 ux:Property="IconColor" />
 
-		<Circle Color="White" Width="20" Height="20" />
-	</Panel>
+	<WhileTrue Value="{showLoadingIndicator}">
+		<Panel Layer="Overlay">
+			<Circle ux:Name="RotatingStroke" Width="50" Height="50" StartAngleDegrees="-45" EndAngleDegrees="45">
+				<Stroke Width="2" Color="{ReadProperty IconColor}" />
+			</Circle>
 
-	<Spin Target="RotatingStroke" Frequency="1" />
-</WhileTrue>
+			<Circle Color="{ReadProperty IconColor}" Width="20" Height="20" />
+		</Panel>
+
+		<Spin Target="RotatingStroke" Frequency="1" />
+	</WhileTrue>
+</Panel>

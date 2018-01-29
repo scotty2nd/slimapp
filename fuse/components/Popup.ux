@@ -6,6 +6,7 @@
 
 	<Panel ux:Binding="Children" Background="White">
 		<Navbar LeftIcon="{ReadProperty LeftIcon}" Title="{ReadProperty Title}" RightIcon="{ReadProperty RightIcon}" router="router" />
+		<LoadingIndicator IconColor="Primary" />
 		<ScrollView>
 			<PageContent>
 				<Panel ux:Name="PopupContent" Padding="20">

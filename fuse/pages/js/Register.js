@@ -110,17 +110,24 @@ function Register() {
 }
 
 function ShowTermsPopup() {
-	fetch(include.apiUrl + 'terms')
-  	.then(result => result.json())
-  	.then(result => {
-		include.popup.text.clear();
-		include.popup.text.addAll(result);
-		include.ShowPopup("", "Nutzungsbestimmungen", "Close");		// Popup anzeigen
-	}).catch(error => {
-		// Ein Fehler ist bei der Verarbeitung aufgetreten
-	    include.showLoadingIndicator.value = false; 																										// Loading Symbol ausblenden
-	    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten. \n' + error, true); 	// Fehlermeldung zeigen			
-	});
+	include.ShowPopup("", "Nutzungsbestimmungen", "Close");		// Popup anzeigen
+
+	setTimeout(function(){ 
+	  include.showLoadingIndicator.value = true; 
+
+	  fetch(include.apiUrl + 'terms')
+		.then(result => result.json())
+		.then(result => {
+		  include.popup.text.clear();
+		  include.popup.text.addAll(result);
+		  include.showLoadingIndicator.value = false; 
+	  }).catch(error => {
+		  // Ein Fehler ist bei der Verarbeitung aufgetreten
+		  include.showLoadingIndicator.value = false; 																										// Loading Symbol ausblenden
+		  include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten. \n' + error, true); 	// Fehlermeldung zeigen			
+	  });
+
+	}, 300);
 }
 
 function ShowPrivacyPopup() {

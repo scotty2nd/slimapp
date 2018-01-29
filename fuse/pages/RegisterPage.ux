@@ -116,7 +116,7 @@
 	</WhileKeyboardVisible>
 
 	<!-- Folgende Elemente werden nur bei Bedarf sichtbar -->
-	<Popup router="router">
+	<Popup router="router" Color="Gray">
 		<StackPanel>
 			<Each Items="{popup.text}">
 				<StackPanel>
