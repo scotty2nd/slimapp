@@ -38,12 +38,6 @@ function OnPageInactiv() {
 }
 
 function Register() {
-	/*
-		To Do:
-		- Layout Animation einbauen / testen siehe https://www.youtube.com/watch?v=r9f0rLYnCJs
-			- Popup Animation
-		- Terms und Privacy Popup laggt bei erstmaligen Text echt stark
-	*/
 	include.showOverlay.value = true; 			// Overlay einblenden
 	include.showLoadingIndicator.value = true; 	// Loading Symbol einblenden
 
@@ -72,7 +66,7 @@ function Register() {
 				  	.then(result => {
 				  		if(result.error == false){
 					    	// Kein Fehler Daten an den Server schicken
-				    		include.showLoadingIndicator.value = false; 										// Loading Symbol ausblenden
+				    		include.showLoadingIndicator.value = false; 											// Loading Symbol ausblenden
 				    		include.ShowModal(include.colors.success, '', 'Glückwunsch', result.message, true); 	// Erfolgsmeldung zeigen
 							
 				    		// Textfelder löschen
@@ -88,7 +82,7 @@ function Register() {
 					    }
 					}).catch(error => {
 					    // Ein Fehler ist bei der Verarbeitung aufgetreten
-					    include.showLoadingIndicator.value = false; 																							// Loading Symbol ausblenden
+					    include.showLoadingIndicator.value = false; 																										// Loading Symbol ausblenden
 					    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten. \n' + error, true); 	// Fehlermeldung zeigen
 					});
 				}else{
