@@ -33,11 +33,11 @@ function OnPageActiv() {
 	include.SetAndroidStatusbarColor(allCredentialsEntered);
 }
 
+function OnPageInactiv() {
+	include.HidePopup();
+}
+
 function Register() {
-	/*
-		To Do:
-		- Layout Animation einbauen
-	*/
 	include.showOverlay.value = true; 			// Overlay einblenden
 	include.showLoadingIndicator.value = true; 	// Loading Symbol einblenden
 
@@ -66,7 +66,7 @@ function Register() {
 				  	.then(result => {
 				  		if(result.error == false){
 					    	// Kein Fehler Daten an den Server schicken
-				    		include.showLoadingIndicator.value = false; 										// Loading Symbol ausblenden
+				    		include.showLoadingIndicator.value = false; 											// Loading Symbol ausblenden
 				    		include.ShowModal(include.colors.success, '', 'Glückwunsch', result.message, true); 	// Erfolgsmeldung zeigen
 							
 				    		// Textfelder löschen
@@ -82,7 +82,7 @@ function Register() {
 					    }
 					}).catch(error => {
 					    // Ein Fehler ist bei der Verarbeitung aufgetreten
-					    include.showLoadingIndicator.value = false; 																							// Loading Symbol ausblenden
+					    include.showLoadingIndicator.value = false; 																										// Loading Symbol ausblenden
 					    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten. \n' + error, true); 	// Fehlermeldung zeigen
 					});
 				}else{
@@ -108,31 +108,36 @@ function Register() {
 }
 
 function ShowTermsPopup() {
-	fetch(include.apiUrl + 'terms')
-  	.then(result => result.json())
-  	.then(result => {
-		include.popup.text.clear();
-		include.popup.text.addAll(result);
-		include.ShowPopup("", "Nutzungsbestimmungen", "Close");		// Popup anzeigen
-	}).catch(error => {
-		// Ein Fehler ist bei der Verarbeitung aufgetreten
-	    include.showLoadingIndicator.value = false; 																										// Loading Symbol ausblenden
-	    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten. \n' + error, true); 	// Fehlermeldung zeigen			
-	});
+	include.ShowPopup("", "Nutzungsbestimmungen", "Close");			// Popup anzeigen
+
+	setTimeout(function(){ 
+	  FetchRichtext('terms');
+	}, 300);
 }
 
 function ShowPrivacyPopup() {
-	fetch(include.apiUrl + 'policy')
-  	.then(result => result.json())
-  	.then(result => {
-		include.popup.text.clear();
-		include.popup.text.addAll(result);
-		include.ShowPopup("", "Datenschutzbestimmungen", "Close");		// Popup anzeigen
-	}).catch(error => {
-		// Ein Fehler ist bei der Verarbeitung aufgetreten
-	    include.showLoadingIndicator.value = false; 																										// Loading Symbol ausblenden
-	    include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten. \n' + error, true); 	// Fehlermeldung zeigen			
-	});
+	include.ShowPopup("", "Datenschutzbestimmungen", "Close");		// Popup anzeigen
+
+	setTimeout(function(){ 
+		FetchRichtext('policy');
+	  }, 300);
+}
+
+function FetchRichtext(type) {
+	include.showLoadingIndicator.value = true;
+
+	//Fetch Terms oder Policy Text vom Server
+	fetch(include.apiUrl + type)
+		.then(result => result.json())
+		.then(result => {
+		  include.popup.text.clear();
+		  include.popup.text.addAll(result);
+		  include.showLoadingIndicator.value = false; 
+	  }).catch(error => {
+		  // Ein Fehler ist bei der Verarbeitung aufgetreten
+		  include.showLoadingIndicator.value = false; 																										// Loading Symbol ausblenden
+		  include.ShowModal(include.colors.error, 'Oops!', 'Es ist ein Fehler aufgetreten.', 'Ein unbekannter Fehler ist aufgetreten. \n' + error, true); 	// Fehlermeldung zeigen			
+	  });
 }
 
 module.exports = {
@@ -152,6 +157,7 @@ module.exports = {
 	repeatPasswordComplexity: repeatPasswordComplexity,
 	
 	OnPageActiv, OnPageActiv,
+	OnPageInactiv, OnPageInactiv,
 	Register: Register,
 	ShowTermsPopup: ShowTermsPopup,
 	ShowPrivacyPopup: ShowPrivacyPopup

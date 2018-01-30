@@ -14,32 +14,32 @@
 
 					<StackPanel Alignment="Center" Width="100%" MaxWidth="550" Margin="50, 0, 50, 0">
 
-				    	<TextField ux:Name="Firstname" Label="Vorname" PlaceholderText="Vorname eingeben" ActionStyle="Next" Value="{firstname}">
+				    	<TextField ux:Name="Firstname" Label="Vorname" ActionStyle="Next" Value="{firstname}">
 		            	    <TextInputActionTriggered>
 						        <GiveFocus Target="Lastname" />
 						    </TextInputActionTriggered>
 				    	</TextField>
 
-				    	<TextField ux:Name="Lastname" Label="Nachname" PlaceholderText="Nachname eingeben" ActionStyle="Next" Value="{lastname}">
+				    	<TextField ux:Name="Lastname" Label="Nachname" ActionStyle="Next" Value="{lastname}">
 		            	    <TextInputActionTriggered>
 						        <GiveFocus Target="EmailAdress" />
 						    </TextInputActionTriggered>
 				    	</TextField>
 
-				    	<TextField ux:Name="EmailAdress" Label="E-Mail-Adresse" PlaceholderText="E-Mail-Adresse eingeben" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{email}">
+				    	<TextField ux:Name="EmailAdress" Label="E-Mail-Adresse" InputHint="Email" ActionStyle="Next" AutoCapitalizationHint="None" Value="{email}">
 		            	    <TextInputActionTriggered>
 						        <GiveFocus Target="Password" />
 						    </TextInputActionTriggered>
 				    	</TextField>
 
-		            	<TextField ux:Name="Password" Label="Passwort" PlaceholderText="Passwort eingeben" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}">
+		            	<TextField ux:Name="Password" Label="Passwort" ActionStyle="Next" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{password}">
 							<PasswordComplexityStroke ObserveFunction="{passwordComplexity}" />
 		            	    <TextInputActionTriggered>
 						        <GiveFocus Target="RepeatPassword" />
 						    </TextInputActionTriggered>
 		            	</TextField>
 
-			            <TextField ux:Name="RepeatPassword" Label="Passwort wiederholen" PlaceholderText="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{repeatPassword}" ActionTriggered="{Register}">
+			            <TextField ux:Name="RepeatPassword" Label="Passwort wiederholen" ActionStyle="Done" AutoCorrectHint="Disabled" AutoCapitalizationHint="None" Value="{repeatPassword}" ActionTriggered="{Register}">
 							<PasswordComplexityStroke ObserveFunction="{repeatPasswordComplexity}" />
 		            	    <TextInputActionTriggered>
 						        <ReleaseFocus />
@@ -107,7 +107,11 @@
 
     <WhileActive>
     	<Callback Handler="{OnPageActiv}" />
-    </WhileActive>  
+    </WhileActive>
+
+	<WhileInactive>
+    	<Callback Handler="{OnPageInactiv}" />
+    </WhileInactive>
 
 	<!-- Aktuell irgendwie Buggy auf Aandroid wenn man mehrmals dreht erscheint ein weißer Bereich am unteren Ende des Bilschirms-->
 	<WhileKeyboardVisible>
@@ -117,7 +121,7 @@
 
 	<!-- Folgende Elemente werden nur bei Bedarf sichtbar -->
 	<Popup router="router">
-		<StackPanel>
+		<StackPanel ux:Name="popupText" Opacity="1">
 			<Each Items="{popup.text}">
 				<StackPanel>
 					<WhileString Value="{tag}" Equals="h2">
@@ -138,6 +142,11 @@
         		</StackPanel>
 			</Each>
 		</StackPanel>
+
+		<!-- Wenn Loading Icon Sichtbar Text ausblenden damit sich beides nicht überlagert -->
+		<WhileTrue Value="{showLoadingIndicator}">
+			<Change popupText.Opacity="0" />
+		</WhileTrue>
 	</Popup>
 
  	<Modal />

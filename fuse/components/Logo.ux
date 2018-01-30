@@ -7,7 +7,9 @@
                 <FileImageSource Density="3" File="../assets/logo@4x.png" />
             </MultiDensityImageSource>
         </Image>
-        <Text ux:Name="subtitle" TextAlignment="Center" Font="Walt" FontSize="24" Color="Primary" Margin="0, 0, 0, 15">MUWI</Text>
+        <Text ux:Name="subtitle" TextAlignment="Center" Font="Walt" FontSize="24" Color="Primary" Margin="0, 0, 0, 15">
+            MUWI
+        </Text>
     </StackPanel>
 
     <!-- Optimierungen für Smartphone Ansicht wie iPhone 4, 3 und 2 -->

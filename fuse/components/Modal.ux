@@ -1,14 +1,11 @@
 <Panel ux:Class="Modal" Layer="Overlay" >
-	<float4 ux:Property="BackgroundColor" />
-	<string ux:Property="Headline" />
-	<string ux:Property="Title" />
 
-	<Panel ux:Name="ModalBody" Background="{ReadProperty BackgroundColor}" Visibility="Collapsed" Width="100%" MaxWidth="400" Alignment="Center" ClipToBounds="True">
+	<!-- Default Modal Box -->
+	<Panel Color="{modal.color}" Width="100%" MaxWidth="400" Alignment="Center" ClipToBounds="True">
 		<DockPanel>
 			<StackPanel Dock="Top" Margin="20, 20, 20, 20">
-				<SemiboldText ux:Name="ModalHeadline" Value="{ReadProperty Headline}" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 5" />
-				<SemiboldText ux:Name="ModalTitel" Value="{ReadProperty Title}" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10" />
-
+				<SemiboldText ux:Name="ModalHeadline" Value="{modal.headline}" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 5" />
+				<SemiboldText ux:Name="ModalTitel" Value="{modal.title}" TextColor="White" TextAlignment="Center" FontSize="18" Margin="0, 0, 0, 10" />
 				<RegularText ux:Name="ModalMessage" Value="{modal.message}" TextColor="White" TextAlignment="Center" FontSize="14" TextWrapping="Wrap" />
 			</StackPanel>
 
@@ -32,17 +29,11 @@
 		</DockPanel>
 	</Panel>
 
-	<!-- Wenn das Modal sichtbar ist -->
-	<WhileTrue Value="{modal.visibility}">
-		<Change ModalBody.Visibility="Visible" />
-		<Scale Factor="1" Duration=".3" Easing="BounceIn" />
-		<JavaScript File="./js/Modal.js" />
-	</WhileTrue>
-
-	<!-- Wenn das Modal nicht sichtbar ist -->
+	<!-- Modal nicht sichtbar -->
 	<WhileFalse Value="{modal.visibility}">
 	    <Scale Factor="0" Duration=".3" Easing="BounceIn" />
-	    <Change ModalBody.Visibility="Collapsed" Delay="0.3" />
-	    <JavaScript File="./js/Modal.js" />
 	</WhileFalse>
+
+    <JavaScript File="./js/Modal.js" />
+    
 </Panel>

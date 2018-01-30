@@ -12,9 +12,9 @@ var colors = {
 
 var modal = { 
 	visibility: observable(false),
-	color: colors.primary,
-	headline: "",
-	title: "",
+	color: observable(colors.primary),
+	headline: observable(""),
+	title: observable(""),
 	message: observable("")
 }
 
@@ -70,9 +70,9 @@ function SetAndroidStatusbarColor(allCredentialsEntered = false, allCredentialsE
 }
 
 function ShowModal(color, headline, title, message, visibility) {
-	modal.color = color; 					// Modal Hintergrundfarbe setzen 
-	modal.headline = headline; 				// Modal Dachzeile setzen
-	modal.title = title; 					// Modal Titel setzen
+	modal.color.value = color; 				// Modal Hintergrundfarbe setzen 
+	modal.headline.value = headline; 		// Modal Dachzeile setzen
+	modal.title.value = title; 				// Modal Titel setzen
 	modal.message.value = message; 			// Modal Text setzen
 	modal.visibility.value = visibility; 	// Modal sichtbar machen
 }
