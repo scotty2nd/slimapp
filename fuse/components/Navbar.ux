@@ -11,6 +11,7 @@
 			<Panel ux:Name="IconLeftWrapperEmpty" HitTestMode="LocalBounds" Padding="0" Alignment="Left"/>
 		</WhileString>
 
+		<!-- Back Icon -->
 		<WhileString Value="{ReadProperty LeftIcon}" Equals="Back">
 			<Panel ux:Name="IconLeftWrapper" HitTestMode="LocalBounds" Padding="20, 20" Alignment="Left">
 				<!-- Arrow Left Icon -->
@@ -23,6 +24,16 @@
 				</Tapped>
 			</Panel>
 		</WhileString>
+
+		<!-- Hamburger Icon -->
+		<WhileString Value="{ReadProperty LeftIcon}" Equals="Hamburger">
+			<Panel Alignment="Left">
+				<!-- Hamburger Left Icon -->
+				<Hamburger />
+			</Panel>
+		</WhileString>
+
+
 
 		<!-- Titel in der Mitte -->
 		<SemiboldText ux:Name="PageTitel" Value="{ReadProperty Title}" TextColor="Primary" TextAlignment="Center" Alignment="VerticalCenter" />

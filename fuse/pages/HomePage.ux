@@ -6,11 +6,7 @@
 		<StatusBarBackground Dock="Top" />
 		<BottomBarBackground Dock="Bottom" />
 
-		<Button Text="Logout" Color="#000" Dock="Top" HitTestMode="LocalBounds" Padding="20">
-            <Tapped>
-                <Callback Handler="{Logout}" />
-            </Tapped>      
-        </Button>
+        <Navbar LeftIcon="Hamburger" Title="Übersicht" router="router" />
 
 		<StackPanel Alignment="VerticalCenter">
             <Each Items="{customer}">
@@ -54,6 +50,13 @@
                 </Button>
             </StackPanel>-->
 		</StackPanel>
+
+        
+		<Button Text="Logout" Color="#000" Dock="Bottom" HitTestMode="LocalBounds" Padding="20">
+            <Tapped>
+                <Callback Handler="{Logout}" />
+            </Tapped>      
+        </Button>
 
 	</DockPanel>
 </Page>
