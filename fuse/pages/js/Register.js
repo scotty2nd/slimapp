@@ -30,13 +30,10 @@ var repeatPasswordComplexity = include.observable(function() {
 });
 
 function OnPageActiv() {
-	console.log('activ');
 	include.SetAndroidStatusbarColor(allCredentialsEntered);
 }
 
 function OnPageInactiv() {
-	console.log('inactiv');
-	//include.SetAndroidStatusbarColor(allCredentialsEntered);
 	include.HidePopup();
 }
 

@@ -121,7 +121,7 @@
 
 	<!-- Folgende Elemente werden nur bei Bedarf sichtbar -->
 	<Popup router="router">
-		<StackPanel>
+		<StackPanel ux:Name="popupText" Opacity="1">
 			<Each Items="{popup.text}">
 				<StackPanel>
 					<WhileString Value="{tag}" Equals="h2">
@@ -142,6 +142,11 @@
         		</StackPanel>
 			</Each>
 		</StackPanel>
+
+		<!-- Wenn Loading Icon Sichtbar Text ausblenden damit sich beides nicht überlagert -->
+		<WhileTrue Value="{showLoadingIndicator}">
+			<Change popupText.Opacity="0" />
+		</WhileTrue>
 	</Popup>
 
  	<Modal />
